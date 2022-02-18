@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import arblib.Complex;
 import arblib.ThreadLocalComplex;
 import arblib.functions.Functions;
 import arblib.functions.Part;
@@ -38,7 +39,7 @@ public class ZPlot
                                                                 domain,
                                                                 (z, w) ->
                                                                 {
-                                                                  ZFunction.Z(z, 2, w, Functions.prec);
+                                                                  ZFunction.Z(z, 2, w, Complex.defaultPrec);
                                                                   w.normalize(w);
                                                                   // w.getImag().assign(0);
                                                                 });
