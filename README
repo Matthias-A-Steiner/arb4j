@@ -7,10 +7,10 @@ JDK (Tested with jdk-17 from Oracle)
 Once you have acquired these, run the bash script in the bin/
 subdirectory called "gaw" which stands for "generate arblib wrapper",
 which will then cause the .i files in the native/ subdirectory to be
-parsed and the corresponding java and C source files are generated.
+parsed with SWIG and the corresponding java and C source files are generated.
 After that happens, the script then calls the bin/caw which stands for
 "compile arblib wrapper" which, if all goes well, should leave a file
-named libarb.so in root directory of the project
+named libarblib.so in root directory of the project
 
 The output should look this if all goes well.
 
