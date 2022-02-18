@@ -1,3 +1,8 @@
+void arf_neg(arf_t y, const arf_t x);
+
+int arf_mul_rnd_any(arf_ptr z, arf_srcptr x, arf_srcptr y, slong prec, arf_rnd_t rnd);
+
+int arf_mul_rnd_down(arf_ptr z, arf_srcptr x, arf_srcptr y, slong prec);
 
 void * flint_malloc(size_t size);
 void * flint_realloc(void * ptr, size_t size);

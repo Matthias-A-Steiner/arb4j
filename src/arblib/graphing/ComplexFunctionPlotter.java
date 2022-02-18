@@ -198,6 +198,11 @@ public class ComplexFunctionPlotter extends
     ay.assign(domain.getMinY());
     bx.assign(domain.getMaxX());
     by.assign(domain.getMaxY());
+    bx.sub(ax, dx, prec, Constants.ARF_RND_DOWN).div(xnum * 2, dx, prec);
+    by.sub(ay, dy, prec, Constants.ARF_RND_DOWN).div(ynum * 2, dy, prec);
+
+    // System.out.format("dx=%s\n dy=%s\n", dx, dy);
+
     assignKeyBoardAndMouseHandler();
 
   }
@@ -307,12 +312,12 @@ public class ComplexFunctionPlotter extends
       Complex[][] basis = new Complex[2][2];
       for (int i = 0; i < 2; i++)
         for (int j = 0; j < 2; j++)
-          basis[i][j] = new Complex().init();
+          basis[i][j] = Complex.newArray(2);
       return basis;
     });
   }
 
-  protected Complex evaluateFunctionWithBilinearInterpolation(int x, int y)
+  public Complex evaluateFunctionWithBilinearInterpolation(int x, int y)
   {
     Complex[][] basis  = cells.get();
 
@@ -341,17 +346,34 @@ public class ComplexFunctionPlotter extends
       {
         Complex z  = zbasis[i][j];
         Complex w  = wbasis[i][j];
+
         // TOOD: add or subtract to zr and zi to form the corners of the sampling square
         Float   zr = z.getReal().getMid();
         Float   zi = z.getImag().getMid();
         for (int thisprec = 30; thisprec < 500; thisprec *= 2)
         {
-          // zi = ( (by - ay) * y ) / ( ynum - 1 )
-          // zr = ( (bx - ax) * x ) / ( xnum - 1 )
+          // zi = ( (by - ay) * y ) / ( ynum - 1 ) +/- dx
+          // zr = ( (bx - ax) * x ) / ( xnum - 1 ) +/- dy
           by.sub(ay, zi, thisprec).mul(y, zi, thisprec).div(ynum - 1, zi, thisprec).add(ay, zi, thisprec);
           bx.sub(ax, zr, thisprec).mul(x, zr, thisprec).div(xnum - 1, zr, thisprec).add(ax, zr, thisprec);
-
+          if (i == 0)
+          {
+            zr.sub(dx, zr, thisprec, Constants.ARF_RND_UP);
+          }
+          else
+          {
+            zr.add(dx, zr, thisprec, Constants.ARF_RND_DOWN);
+          }
+          if (j == 0)
+          {
+            zi.sub(dy, zi, thisprec, Constants.ARF_RND_UP);
+          }
+          else
+          {
+            zi.add(dy, zi, thisprec, Constants.ARF_RND_DOWN);
+          }
           function.evaluate(z, w);
+          // System.out.format("(%s,%s)=%s\n", zr, zi, w );
 
           if (w.relAccuracyBits() > 4)
             break;
@@ -360,7 +382,7 @@ public class ComplexFunctionPlotter extends
       }
     }
     Complex w = _w.get();
-    return wbasis[0][0].add(wbasis[0][1], w).add(wbasis[1][0], w).add(wbasis[1][1], w).div(4, w);
+    return wbasis[0][0].add(wbasis[0][1], prec, w).add(wbasis[1][0], prec, w).add(wbasis[1][1], prec, w).div(4, w);
   }
 
   public Complex evaluateFunctionNoInterpolation(int x, int y)
@@ -420,7 +442,9 @@ public class ComplexFunctionPlotter extends
       int y = pixel / xnum;
       int x = pixel % xnum;
 
-      colorizeAndRecordImagePixel(x, y, evaluateFunctionNoInterpolation(x, y));
+      colorizeAndRecordImagePixel(x, y, evaluateFunctionWithBilinearInterpolation(x, y));
+      // colorizeAndRecordImagePixel(x, y, evaluateFunctionNoInterpolation(x, y));
+
     });
   }
 
@@ -956,6 +980,10 @@ public class ComplexFunctionPlotter extends
   public Complex  trajectory;
 
   private boolean showHelp = false;
+
+  private Float   dx       = new Float();
+
+  private Float   dy       = new Float();
 
   public Double mapScreenToFunction(Point point)
   {

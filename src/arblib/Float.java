@@ -34,6 +34,18 @@ public class Float {
   }
 
 
+  public Float neg( Float res )
+  {
+    arblib.arf_neg( res, this );
+    return this;
+  }
+  
+  public Float mul( Float y, int prec, Float res )
+  {
+   arblib.arf_mul_rnd_down( res, this, y, prec );
+   return this;
+  }
+   
   public Magnitude getMagnitude(Magnitude v)
   {
     arblib.arf_get_mag(v, this);

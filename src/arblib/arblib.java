@@ -9,6 +9,18 @@
 package arblib;
 
 public class arblib {
+  public static void arf_neg(Float y, Float x) {
+    arblibJNI.arf_neg(Float.getCPtr(y), y, Float.getCPtr(x), x);
+  }
+
+  public static int arf_mul_rnd_any(Float z, Float x, Float y, int prec, int rnd) {
+    return arblibJNI.arf_mul_rnd_any(Float.getCPtr(z), z, Float.getCPtr(x), x, Float.getCPtr(y), y, prec, rnd);
+  }
+
+  public static int arf_mul_rnd_down(Float z, Float x, Float y, int prec) {
+    return arblibJNI.arf_mul_rnd_down(Float.getCPtr(z), z, Float.getCPtr(x), x, Float.getCPtr(y), y, prec);
+  }
+
   public static SWIGTYPE_p_void flint_malloc(long size) {
     long cPtr = arblibJNI.flint_malloc(size);
     return (cPtr == 0) ? null : new SWIGTYPE_p_void(cPtr, false);
