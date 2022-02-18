@@ -63,12 +63,6 @@ public class ComplexFunctionPlotter extends
                                     JComponent
 {
 
-  private static final String TODO = "TODO:\nDraw LevelLoci now that the connection is functional\n"
-                + "Curvature\nKoenig linearization\nShape Operator\nLame coefficients & orthogonal nets\n"
-                + "Toggle function layers\n" + "Changeable color scheme(Caching function values)\n"
-                + "Scale\nTranslate\nRotate\nSave image"
-                + "use Java bytebuffer allocation as custom arblib GMP allocator and get rid of finalize() method on swig wrappers";
-
   static class Pixel
   {
     double R[] = new double[1];
@@ -490,10 +484,6 @@ public class ComplexFunctionPlotter extends
     {
       x += xtick;
       markHorizontalTick(x);
-      if (++count % 10 == 0)
-      {
-        drawTextInScreenCoordinates(true, TODO, count, count);
-      }
     }
   }
 
@@ -682,7 +672,7 @@ public class ComplexFunctionPlotter extends
                                               + "F3     Toggle between Both/Real part only/Imaginary only\n"
                                               + "B      Show Both Real and Imaginary Parts\n"
                                               + "R      Show Real part only\n" + "I      Show Imaginary part only\n"
-                                              + "ESC    Exit progam\n" + TODO,
+                                              + "ESC    Exit progam\n",
                                 20,
                                 20);
 

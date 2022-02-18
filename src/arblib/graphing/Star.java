@@ -16,9 +16,7 @@ import java.awt.geom.Rectangle2D;
  * distance between the center of the star and the origin of the branches. The
  * outer radius is the distance between the center of the star and the tips of
  * the branches.
- * </p>
- *
- * @author Romain Guy <romain.guy@mac.com>
+ * </p> 
  */
 
 public class Star implements

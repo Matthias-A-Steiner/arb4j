@@ -8,6 +8,10 @@ import arblib.ComplexPolynomial;
 import arblib.Constants;
 import arblib.arblib;
 
+/**
+ * TODO: implement and move to other classes
+ * 
+ */
 public final class Functions
 {
   public static final int MIN_PREC = 60;
