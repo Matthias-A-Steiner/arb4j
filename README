@@ -1,0 +1,83 @@
+To build this library you will need the following:
+
+SWIG (Tested with Versions 4.0.1 and 4.0.2)
+libflint-arb-dev along with its dependencies (Tested with 2.19.0)
+JDK (Tested with jdk-17 from Oracle)
+
+Once you have acquired these, run the bash script in the bin/
+subdirectory called "gaw" which stands for "generate arblib wrapper",
+which will then cause the .i files in the native/ subdirectory to be
+parsed and the corresponding java and C source files are generated.
+After that happens, the script then calls the bin/caw which stands for
+"compile arblib wrapper" which, if all goes well, should leave a file
+named libarb.so in root directory of the project
+
+The output should look this if all goes well.
+
+stephen@msi:~/arb4j$ gaw
++ readlink -f /home/stephen/fm/bin/gaw
++ dirname /home/stephen/git/arb4j/bin/gaw
++ BASEDIR=/home/stephen/git/arb4j/bin/..
++ cd /home/stephen/git/arb4j/bin/..
++ export INCLUDES=-I/usr/include/x86_64-linux-gnu -I/usr/include/linux -I/usr/include/flint -I/usr/include -I/usr/include/i386-linux-gnu -I/usr/lib/gcc/x86_64-linux-gnu/11/include/
++ swig -debug-classes -v -java -package arblib -outdir src/arblib -I/usr/include/x86_64-linux-gnu -I/usr/include/linux -I/usr/include/flint -I/usr/include -I/usr/include/i386-linux-gnu -I/usr/lib/gcc/x86_64-linux-gnu/11/include/ native/arb.i
+Language subdirectory: java
+Search paths:
+   ./
+   /usr/include/x86_64-linux-gnu/
+   /usr/include/linux/
+   /usr/include/flint/
+   /usr/include/
+   /usr/include/i386-linux-gnu/
+   /usr/lib/gcc/x86_64-linux-gnu/11/include//
+   ./swig_lib/java/
+   /usr/share/swig4.0/java/
+   ./swig_lib/
+   /usr/share/swig4.0/
+Preprocessing...
+Starting language-specific parse...
+Processing unnamed structs...
+Processing types...
+C++ analysis...
+Generating wrappers...
+Classes
+------------
+arf_interval_struct
+mag_struct
+acb_struct
+dirichlet_group_struct
+dirichlet_char_struct
+dirichlet_prime_group_struct
+arb_struct
+mantissa_noptr_struct
+mantissa_ptr_struct
+mantissa_struct
+arf_struct
+__mpfr_struct
+acb_poly_struct
++ /home/stephen/git/arb4j/bin/../bin/caw
++ export JAVA_HOME=/usr/lib/jvm/jdk-17
++ readlink -f /home/stephen/git/arb4j/bin/../bin/caw
++ dirname /home/stephen/git/arb4j/bin/caw
++ export BASEDIR=/home/stephen/git/arb4j/bin/..
++ cd /home/stephen/git/arb4j/bin/..
++ export INCLUDES=-I/usr/lib/jvm/jdk-17/include -I/usr/lib/jvm/jdk-17/include/linux
++ export SOURCES=native/complex_plot.c native/arb_wrap.c
++ gcc -O3 -fPIC -shared native/complex_plot.c native/arb_wrap.c -I/usr/lib/jvm/jdk-17/include -I/usr/lib/jvm/jdk-17/include/linux -olibarblib.so -lflint-arb
+
+
+
+
+
+
+If that looks good, then go ahead and run "mvn install" or just open
+the project in Eclipse with the CDT (and Groovy) packages installed
+and let the builder call gaw/caw for you and open the progam "Zplot"
+or run the script bin/updateClasspath before running bin/Zplot to run
+the program from the console
+
+
+
+
+Stephen Crowley
+Feb 17th, 2021
