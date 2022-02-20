@@ -231,11 +231,8 @@ public class ComplexFunctionPlotter extends
   public synchronized void paintComponent(Graphics g)
   {
     // System.out.println( "Painting");
-    if (anythingChanged || rendering)
-    {
-      blendLayers(g, true);
-      anythingChanged = false;
-    }
+    blendLayers(g, true);
+
   }
 
   private void blendLayers(Graphics g, boolean dynamic)
@@ -248,7 +245,12 @@ public class ComplexFunctionPlotter extends
     {
       try
       {
-        drawDynamicMarkups();
+        if (anythingChanged)
+        {
+          drawDynamicMarkups();
+          anythingChanged = false;
+        }
+
       }
       catch (NoninvertibleTransformException e)
       {
@@ -439,6 +441,8 @@ public class ComplexFunctionPlotter extends
 
   }
 
+  boolean bilinearSmoothing = true;
+
   public void evaluateFunctionOnGrid()
   {
     AtomicInteger counter = new AtomicInteger(xnum * ynum);
@@ -448,8 +452,14 @@ public class ComplexFunctionPlotter extends
       int y = pixel / xnum;
       int x = pixel % xnum;
 
-      colorizeAndRecordImagePixel(x, y, evaluateFunctionWithBilinearInterpolation(x, y));
-      // colorizeAndRecordImagePixel(x, y, evaluateFunctionNoInterpolation(x, y));
+      if (bilinearSmoothing)
+      {
+        colorizeAndRecordImagePixel(x, y, evaluateFunctionWithBilinearInterpolation(x, y));
+      }
+      else
+      {
+        colorizeAndRecordImagePixel(x, y, evaluateFunctionNoInterpolation(x, y));
+      }
 
     });
   }
@@ -706,6 +716,7 @@ public class ComplexFunctionPlotter extends
                                               + "F3     Toggle between Both/Real part only/Imaginary only\n"
                                               + "B      Show Both Real and Imaginary Parts\n"
                                               + "R      Show Real part only\n" + "I      Show Imaginary part only\n"
+                                              + "Z      Select a rectangle to be magnified\n"
                                               + "ESC    Exit progam\n",
                                 20,
                                 20);
