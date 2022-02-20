@@ -985,6 +985,8 @@ public class ComplexFunctionPlotter extends
 
   private Float   dy       = new Float();
 
+  Mode mode = Mode.Default;
+
   public Double mapScreenToFunction(Point point)
   {
     Double dest = new Point2D.Double();
@@ -1019,6 +1021,12 @@ public class ComplexFunctionPlotter extends
   public void toggleShowHelp()
   {
     showHelp = !showHelp;
+  }
+
+  void enterZoomSelectionMode()
+  {
+    System.out.println( "Entering zoom selection mode from " + mode + " mode");
+    mode = Mode.Zoom;
   }
 
 }
