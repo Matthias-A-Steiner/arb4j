@@ -225,11 +225,17 @@ public class ComplexFunctionPlotter extends
 
   private AffineTransform originalTransform;
 
+  volatile boolean        anythingChanged = false;
+
   @Override
   public synchronized void paintComponent(Graphics g)
   {
     // System.out.println( "Painting");
-    blendLayers(g, true);
+    if (anythingChanged || rendering)
+    {
+      blendLayers(g, true);
+      anythingChanged = false;
+    }
   }
 
   private void blendLayers(Graphics g, boolean dynamic)
@@ -535,6 +541,8 @@ public class ComplexFunctionPlotter extends
     }
   }
 
+  boolean rendering = true;
+
   public BufferedImage plot() throws IOException, NoninvertibleTransformException
   {
     StopWatch stopWatch = new StopWatch();
@@ -546,6 +554,8 @@ public class ComplexFunctionPlotter extends
     drawStaticMarkups();
 
     evaluateFunctionOnGrid();
+
+    rendering = false;
 
     reportRenderingRate(stopWatch);
 
@@ -662,7 +672,7 @@ public class ComplexFunctionPlotter extends
     setStaticOverlayGraphicsFontSizeToHalfItsCurrentSize();
 
     renderCoordinateSystemAxes();
-    // renderHardyZRootLocations();
+    renderHardyZRootLocations();
 
   }
 
@@ -943,6 +953,7 @@ public class ComplexFunctionPlotter extends
                  N,
                  phase);
     }
+    anythingChanged = true;
 
   }
 

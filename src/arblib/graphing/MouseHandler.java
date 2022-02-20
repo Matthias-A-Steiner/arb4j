@@ -50,6 +50,7 @@ public final class MouseHandler implements
     Double point = plotter.mapScreenToFunction(e.getPoint());
     Complex clicked = new Complex().set(point.x, point.y);
     plotter.trajectory = plotter.calculateNewtonTrajectory(clicked, 25);
+    plotter.anythingChanged = true;
   }
 
   @Override
@@ -62,18 +63,22 @@ public final class MouseHandler implements
     }
     plotter.selectionStopPoint = point;
     // out.println( "Dragged to " + point );
+    plotter.anythingChanged = true;
 
   }
 
   @Override
   public void mouseEntered(MouseEvent e)
   {
+    plotter.anythingChanged = true;
 
   }
 
   @Override
   public void mouseExited(MouseEvent e)
   {
+    plotter.anythingChanged = true;
+
     // plotter.cursorInFunctionSpace = null;
   }
 
@@ -102,6 +107,7 @@ public final class MouseHandler implements
   {
     Double point = plotter.mapScreenToFunction(e.getPoint());
     out.println("pressed " + point);
+    plotter.anythingChanged = true;
 
   }
 
@@ -114,6 +120,8 @@ public final class MouseHandler implements
     {
       stopDragging(point);
     }
+    plotter.anythingChanged = true;
+
   }
 
   private void startDragging(Double point)
@@ -122,6 +130,8 @@ public final class MouseHandler implements
     plotter.selection = true;
     plotter.selectionStartPoint = point;
     // out.println("started dragging at " + point );
+    plotter.anythingChanged = true;
+
   }
 
   private void stopDragging(Double point)
@@ -132,6 +142,8 @@ public final class MouseHandler implements
     // out.println("stopped dragging at " + point );
     Rectangle2D.Double domain = getSelectedRectangle();
     plotter.zoomTo(domain);
+    plotter.anythingChanged = true;
+
   }
 
 }
