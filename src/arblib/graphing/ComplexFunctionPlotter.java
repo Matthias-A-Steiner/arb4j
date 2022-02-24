@@ -392,7 +392,7 @@ public class ComplexFunctionPlotter extends
     Float   zr = z.getReal().getMid();
     Float   zi = z.getImag().getMid();
 
-    for (int thisprec = 30; thisprec < 500; thisprec *= 2)
+    for (int thisprec = 30; thisprec < 500; thisprec *= 2) 
     {
       refineFunctionEvaluation(x, y, z, w, zr, zi, thisprec);
 

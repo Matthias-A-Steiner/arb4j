@@ -9,6 +9,10 @@
 package arblib;
 
 public class arblib {
+  public static void arf_zero(Float x) {
+    arblibJNI.arf_zero(Float.getCPtr(x), x);
+  }
+
   public static void acb_cosh(Complex y, Complex x, int prec) {
     arblibJNI.acb_cosh(Complex.getCPtr(y), y, Complex.getCPtr(x), x, prec);
   }

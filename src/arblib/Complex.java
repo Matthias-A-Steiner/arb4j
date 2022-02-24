@@ -57,7 +57,7 @@ public class Complex implements AutoCloseable {
     return arblib.acb_rel_accuracy_bits(this);
   }
 
-  public Complex cosh( Complex x, int prec, Complex res )
+  public Complex cosh( int prec, Complex res )
   {
     arblib.acb_cosh( res, this, prec );
     return this;

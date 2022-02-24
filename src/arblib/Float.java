@@ -34,6 +34,12 @@ public class Float {
   }
 
 
+  public Float zero()
+  {
+    arblib.arf_zero( this );
+    return this;
+  }
+  
   public Float neg( Float res )
   {
     arblib.arf_neg( res, this );
