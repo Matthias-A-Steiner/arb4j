@@ -10,6 +10,26 @@ import static arblib.Constants.*;
 
 %typemap(javacode) arf_struct %{
 
+  static final PoolService<Float> pool = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
+                                                              new FloatFactory(),
+                                                              100,
+                                                              100000000,
+                                                              false,
+                                                              new FloatListener() );
+
+ public static Float claim()
+ {
+   Float r = pool.take();
+   r.poolService = pool;
+   return r;
+ }
+ 
+  public Float zero()
+  {
+    arblib.arf_zero( this );
+    return this;
+  }
+  
   public Float neg( Float res )
   {
     arblib.arf_neg( res, this );

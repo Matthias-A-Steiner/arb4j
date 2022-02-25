@@ -79,7 +79,7 @@ public interface RealFunction
     {
       int   msign = 0;
       // TODO: pool
-      Float u     = new Float();
+      Float u     =  new Float();
 
       arb_init(t);
       arb_init(m);

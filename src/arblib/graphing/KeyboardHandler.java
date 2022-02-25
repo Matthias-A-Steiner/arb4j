@@ -40,6 +40,9 @@ public class KeyboardHandler implements
     case KeyEvent.VK_F3:
       toggleDisplay();
       break;
+    case KeyEvent.VK_Z:
+      plotter.enterZoomSelectionMode();
+      break;
 
     case KeyEvent.VK_ESCAPE:
       System.exit(1);

@@ -14,11 +14,11 @@ public final class MouseHandler implements
                                 MouseListener,
                                 MouseMotionListener
 {
-  Complex t;
+  Complex                              t;
 
-  Complex Z;
+  Complex                              Z;
 
-  Complex Y;
+  Complex                              Y;
 
   /**
    * 
@@ -31,9 +31,9 @@ public final class MouseHandler implements
   MouseHandler(ComplexFunctionPlotter complexPlot)
   {
     plotter = complexPlot;
-    Z = Complex.newArray(2);
-    Y = Complex.newArray(2);
-    t = Complex.newArray(1);
+    Z       = Complex.newArray(2);
+    Y       = Complex.newArray(2);
+    t       = Complex.newArray(1);
   }
 
   public java.awt.geom.Rectangle2D.Double getSelectedRectangle()
@@ -49,8 +49,11 @@ public final class MouseHandler implements
   {
     Double point = plotter.mapScreenToFunction(e.getPoint());
     Complex clicked = new Complex().set(point.x, point.y);
+    if ( plotter.mode == Mode.Default )
+    {
     plotter.trajectory = plotter.calculateNewtonTrajectory(clicked, 25);
     plotter.anythingChanged = true;
+    }
   }
 
   @Override
@@ -89,7 +92,7 @@ public final class MouseHandler implements
     {
       try
       {
-        plotter.cursorInScreenSpace = plotter.mapFunctionToScreen(e.getPoint());
+        plotter.cursorInScreenSpace   = plotter.mapFunctionToScreen(e.getPoint());
         plotter.cursorInFunctionSpace = plotter.mapScreenToFunction(e.getPoint());
         t.getReal().assign(plotter.cursorInFunctionSpace.x);
         t.getImag().assign(plotter.cursorInFunctionSpace.y);
@@ -127,7 +130,7 @@ public final class MouseHandler implements
   private void startDragging(Double point)
   {
     assert !plotter.selection : "already dragging";
-    plotter.selection = true;
+    plotter.selection           = true;
     plotter.selectionStartPoint = point;
     // out.println("started dragging at " + point );
     plotter.anythingChanged = true;
@@ -137,7 +140,7 @@ public final class MouseHandler implements
   private void stopDragging(Double point)
   {
     assert plotter.selection : "not dragging yet therefore cannot stop";
-    plotter.selection = false;
+    plotter.selection          = false;
     plotter.selectionStopPoint = point;
     // out.println("stopped dragging at " + point );
     Rectangle2D.Double domain = getSelectedRectangle();

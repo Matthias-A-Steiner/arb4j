@@ -32,7 +32,6 @@ public class RealFactory implements
   @Override
   public boolean readyToRestore(Real obj)
   {
-    arblib.arb_zero(obj);
     return true;
   }
 

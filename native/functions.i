@@ -1,3 +1,7 @@
+void arf_zero(arf_t x);
+
+void acb_cosh(acb_t y, const acb_t x, slong prec);
+
 void arf_neg(arf_t y, const arf_t x);
 
 int arf_mul_rnd_any(arf_ptr z, arf_srcptr x, arf_srcptr y, slong prec, arf_rnd_t rnd);

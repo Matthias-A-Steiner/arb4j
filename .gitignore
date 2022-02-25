@@ -1,5 +1,8 @@
 
 /.gitignore~
 /pom.xml~
+<<<<<<< HEAD
 /README~
+=======
+>>>>>>> branch 'master' of /git/arb4j
 /out.png
