@@ -14,7 +14,7 @@ import org.vibur.objectpool.PoolService;
 import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 
-public class Float {
+public class Float implements AutoCloseable {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -38,6 +38,19 @@ public class Float {
   }
 
 
+  @Override
+  public void close()
+  { 
+   if (poolService != null)
+    {
+      poolService.restore(this);
+    }
+    else
+    {
+      delete();
+    }
+  }
+  
   PoolService<Float> poolService;
 
   static final PoolService<Float> pool = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),

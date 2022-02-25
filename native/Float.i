@@ -7,6 +7,7 @@ import static arblib.Constants.*;
 %}
 
 %typemap(javafinalize) arf_struct ""
+%typemap(javainterfaces) arf_struct "AutoCloseable"
 
 %typemap(javacode) arf_interval_struct %{
  public static final int BYTES = 64;
@@ -14,6 +15,19 @@ import static arblib.Constants.*;
 
 %typemap(javacode) arf_struct %{
 
+  @Override
+  public void close()
+  { 
+   if (poolService != null)
+    {
+      poolService.restore(this);
+    }
+    else
+    {
+      delete();
+    }
+  }
+  
   PoolService<Float> poolService;
 
   static final PoolService<Float> pool = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
