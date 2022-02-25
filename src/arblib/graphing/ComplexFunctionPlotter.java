@@ -400,7 +400,7 @@ public class ComplexFunctionPlotter extends
     Float   zr = z.getReal().getMid();
     Float   zi = z.getImag().getMid();
 
-    for (int thisprec = 30; thisprec < 500; thisprec *= 2) 
+    for (int thisprec = 30; thisprec < 500; thisprec *= 2)
     {
       refineFunctionEvaluation(x, y, z, w, zr, zi, thisprec);
 
@@ -1007,7 +1007,7 @@ public class ComplexFunctionPlotter extends
 
   private Float   dy       = new Float();
 
-  Mode mode = Mode.Default;
+  Mode            mode     = Mode.Default;
 
   public Double mapScreenToFunction(Point point)
   {
@@ -1047,8 +1047,13 @@ public class ComplexFunctionPlotter extends
 
   void enterZoomSelectionMode()
   {
-    System.out.println( "Entering zoom selection mode from " + mode + " mode");
+    System.out.println("Entering zoom selection mode from " + mode + " mode");
     mode = Mode.Zoom;
+  }
+
+  public Complex evaluateFunction(int i, int j, boolean smoothing)
+  {
+    return smoothing ? evaluateFunctionWithBilinearInterpolation(i, j) : evaluateFunctionNoInterpolation(i, j);
   }
 
 }

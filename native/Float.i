@@ -1,4 +1,8 @@
 %typemap(javaimports) arf_struct %{
+import java.util.concurrent.TimeUnit;
+import org.vibur.objectpool.ConcurrentPool;
+import org.vibur.objectpool.PoolService;
+import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 %}
 
@@ -9,6 +13,8 @@ import static arblib.Constants.*;
 %}
 
 %typemap(javacode) arf_struct %{
+
+  PoolService<Float> poolService;
 
   static final PoolService<Float> pool = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
                                                               new FloatFactory(),

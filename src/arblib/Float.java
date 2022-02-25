@@ -8,6 +8,10 @@
 
 package arblib;
 
+import java.util.concurrent.TimeUnit;
+import org.vibur.objectpool.ConcurrentPool;
+import org.vibur.objectpool.PoolService;
+import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 
 public class Float {
@@ -34,6 +38,22 @@ public class Float {
   }
 
 
+  PoolService<Float> poolService;
+
+  static final PoolService<Float> pool = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
+                                                              new FloatFactory(),
+                                                              100,
+                                                              100000000,
+                                                              false,
+                                                              new FloatListener() );
+
+ public static Float claim()
+ {
+   Float r = pool.take();
+   r.poolService = pool;
+   return r;
+ }
+ 
   public Float zero()
   {
     arblib.arf_zero( this );
