@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 
 import arblib.Complex;
 import arblib.ThreadLocalComplex;
+import arblib.functions.ComplexFunction;
 import arblib.functions.Functions;
 import arblib.functions.Part;
 import arblib.functions.ZFunction;
@@ -35,14 +36,15 @@ public class ZPlot
 
     ThreadLocalComplex Z = new ThreadLocalComplex(2);
 
+    ComplexFunction fuck = (z, w) ->
+    {
+      ZFunction.Z(z, 2, w, Complex.defaultPrec);
+      w.normalize(w);
+      // w.getImag().assign(0);
+    };
     ComplexFunctionPlotter plotter = new ComplexFunctionPlotter(screen,
                                                                 domain,
-                                                                (z, w) ->
-                                                                {
-                                                                  ZFunction.Z(z, 2, w, Complex.defaultPrec);
-                                                                  w.normalize(w);
-                                                                  // w.getImag().assign(0);
-                                                                });
+                                                                fuck);
 
     plotter.color_mode = 1;
 

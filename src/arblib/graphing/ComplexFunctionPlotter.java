@@ -1051,9 +1051,9 @@ public class ComplexFunctionPlotter extends
     mode = Mode.Zoom;
   }
 
-  public Complex evaluateFunction(int i, int j, boolean smoothing)
+  public Complex evaluateFunction(int i, int j)
   {
-    return smoothing ? evaluateFunctionWithBilinearInterpolation(i, j) : evaluateFunctionNoInterpolation(i, j);
+    return bilinearSmoothing ? evaluateFunctionWithBilinearInterpolation(i, j) : evaluateFunctionNoInterpolation(i, j);
   }
 
 }
