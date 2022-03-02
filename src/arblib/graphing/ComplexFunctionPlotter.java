@@ -984,7 +984,7 @@ public class ComplexFunctionPlotter extends
   {
     assert N != null;
 
-    Complex unnormalizedN = w.div(w.get(1), N);
+    Complex unnormalizedN = w.div(w.get(1), N).neg(N);
     // Complex dt = unnormalizedN.normalize(N).neg(N);
 
     // acb_div(N, w, w.get(1), prec);
