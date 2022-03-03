@@ -8,27 +8,31 @@
 
 package arblib;
 
-public class ComplexPolynomial {
-  private transient long swigCPtr;
+import static arblib.Constants.*;
+
+public class ComplexPolynomial implements
+                               AutoCloseable
+{
+  private transient long      swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  public ComplexPolynomial(long cPtr, boolean cMemoryOwn) {
+  public ComplexPolynomial(long cPtr, boolean cMemoryOwn)
+  {
     swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
+    swigCPtr    = cPtr;
   }
 
-  public static long getCPtr(ComplexPolynomial obj) {
+  public static long getCPtr(ComplexPolynomial obj)
+  {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
-  @SuppressWarnings("deprecation")
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
+  public synchronized void delete()
+  {
+    if (swigCPtr != 0)
+    {
+      if (swigCMemOwn)
+      {
         swigCMemOwn = false;
         arblibJNI.delete_ComplexPolynomial(swigCPtr);
       }
@@ -36,33 +40,49 @@ public class ComplexPolynomial {
     }
   }
 
-  public void setCoeffs(Complex value) {
+  @Override
+  public void close()
+  {
+    delete();
+  }
+
+  public void setCoeffs(Complex value)
+  {
     arblibJNI.ComplexPolynomial_coeffs_set(swigCPtr, this, Complex.getCPtr(value), value);
   }
 
-  public Complex getCoeffs() {
+  public Complex getCoeffs()
+  {
     long cPtr = arblibJNI.ComplexPolynomial_coeffs_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new Complex(cPtr, false);
+    return (cPtr == 0) ? null : new Complex(cPtr,
+                                            false);
   }
 
-  public void setLength(int value) {
+  public void setLength(int value)
+  {
     arblibJNI.ComplexPolynomial_length_set(swigCPtr, this, value);
   }
 
-  public int getLength() {
+  public int getLength()
+  {
     return arblibJNI.ComplexPolynomial_length_get(swigCPtr, this);
   }
 
-  public void setAlloc(int value) {
+  public void setAlloc(int value)
+  {
     arblibJNI.ComplexPolynomial_alloc_set(swigCPtr, this, value);
   }
 
-  public int getAlloc() {
+  public int getAlloc()
+  {
     return arblibJNI.ComplexPolynomial_alloc_get(swigCPtr, this);
   }
 
-  public ComplexPolynomial() {
-    this(arblibJNI.new_ComplexPolynomial(), true);
+  public ComplexPolynomial()
+  {
+    this(arblibJNI.new_ComplexPolynomial(),
+         true);
   }
+
 
 }

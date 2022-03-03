@@ -37,6 +37,8 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 
 %include "Complex.i"
 
+%include "ComplexPolynomial.i"
+
 %include "TypesAndStructures.i"
 
 %include "functions.i"

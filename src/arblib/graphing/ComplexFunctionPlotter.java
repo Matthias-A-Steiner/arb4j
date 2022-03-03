@@ -285,7 +285,7 @@ public class ComplexFunctionPlotter extends
 
       switch (displayMode)
       {
-      case Both:
+      case Phase:
         arblib.color_function(pixel.R, pixel.G, pixel.B, w, color_mode);
         break;
       case Real:

@@ -4,5 +4,6 @@ public enum Part
 {
  Real,
  Imag,
- Both
+ Phase,
+ Blend
 }

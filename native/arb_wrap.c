@@ -1830,6 +1830,28 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1ComplexPolynomial(JNIEnv *
 }
 
 
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1poly_1interpolate_1newton(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jint jarg4, jint jarg5) {
+  acb_poly_struct *arg1 ;
+  acb_srcptr arg2 = (acb_srcptr) 0 ;
+  acb_srcptr arg3 = (acb_srcptr) 0 ;
+  long arg4 ;
+  long arg5 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg3_;
+  arg1 = *(acb_poly_struct **)&jarg1; 
+  arg2 = *(acb_srcptr *)&jarg2; 
+  arg3 = *(acb_srcptr *)&jarg3; 
+  arg4 = (long)jarg4; 
+  arg5 = (long)jarg5; 
+  acb_poly_interpolate_newton(arg1,(acb_struct const *)arg2,(acb_struct const *)arg3,arg4,arg5);
+  
+}
+
+
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_arf_1zero(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   arf_struct *arg1 ;
   
