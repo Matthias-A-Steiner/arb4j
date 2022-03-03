@@ -69,12 +69,13 @@ public interface RealFunction
 
     public void reallocate(int newAllocation)
     {
-      Block[]       newBlocks = new Block[newAllocation];
-      FloatInterval inner     = new FloatInterval(SWIGTYPE_p_void.getCPtr((arblib.flint_realloc(new SWIGTYPE_p_void(FloatInterval.getCPtr(blocks[0].interval),
-                                                                                                                    false),
-                                                                                                FloatInterval.BYTES
-                                                                                                              * newAllocation))),
-                                                  false);
+      Block[]         newBlocks                 = new Block[newAllocation];
+      SWIGTYPE_p_void firstBlockIntervalPointer = new SWIGTYPE_p_void(FloatInterval.getCPtr(blocks[0].interval),
+                                                                      false);
+      SWIGTYPE_p_void heap                      = arblib.flint_realloc(firstBlockIntervalPointer,
+                                                                       FloatInterval.BYTES * newAllocation);
+      FloatInterval   inner                     = new FloatInterval(SWIGTYPE_p_void.getCPtr(heap),
+                                                                    false);
       blocks[0]          = new Block();
       blocks[0].interval = inner;
       blocks[0].alloc    = newAllocation;
