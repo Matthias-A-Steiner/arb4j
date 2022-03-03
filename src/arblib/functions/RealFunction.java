@@ -11,6 +11,16 @@ import arblib.Real;
 import arblib.SWIGTYPE_p_void;
 import arblib.arblib;
 
+/**
+ * Copyright ©2022 Stephen Crowley
+ * 
+ * This file is part of Arb4j.
+ * 
+ * Arb is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU Lesser General Public License (LGPL) as published by the
+ * Free Software Foundation; either version 2.1 of the License, or (at your
+ * option) any later version. See <http://www.gnu.org/licenses/>.
+ */
 public interface RealFunction
 {
   static final int FLINT_BITS = 64;
@@ -28,8 +38,8 @@ public interface RealFunction
   {
     FloatInterval interval = new FloatInterval();
     int           flags;
-    long          length;
-    long          alloc;
+    int           length;
+    int           alloc;
   }
 
   public static class BlockSet
@@ -41,45 +51,43 @@ public interface RealFunction
       blocks = new Block[size];
     }
 
-    public void reallocate(int new_alloc)
+    public void addBlock(Block block)
     {
-      Block[]       newBlocks = new Block[new_alloc];
+      Block zeroBlock = blocks[0];
+
+      int   length    = zeroBlock.length;
+      if (length >= zeroBlock.alloc)
+      {
+        int newAllocation = (blocks[0].alloc == 0) ? 1 : 2 * blocks[0].alloc;
+        reallocate(newAllocation);
+      }
+      blocks[length].interval.init().set(block.interval);
+
+//      (*flags)[*length] = status; 
+//      (*length)++; 
+    }
+
+    public void reallocate(int newAllocation)
+    {
+      Block[]       newBlocks = new Block[newAllocation];
       FloatInterval inner     = new FloatInterval(SWIGTYPE_p_void.getCPtr((arblib.flint_realloc(new SWIGTYPE_p_void(FloatInterval.getCPtr(blocks[0].interval),
                                                                                                                     false),
                                                                                                 FloatInterval.BYTES
-                                                                                                              * new_alloc))),
+                                                                                                              * newAllocation))),
                                                   false);
       blocks[0]          = new Block();
       blocks[0].interval = inner;
-      blocks[0].alloc    = new_alloc;
+      blocks[0].alloc    = newAllocation;
 
     }
 
   }
 
-  public static void addBlock(BlockSet blockSet)
-  {
-    Block[] blocks    = blockSet.blocks;
-    Block   zeroBlock = blocks[0];
-
-//    if (zeroBlock.length >= zeroBlock.alloc)   
-//    {   
-//        long new_alloc = (blocks[0].alloc == 0) ? 1 : 2 * blocks[0].alloc;
-//        blockSet.reallocate( new_alloc );
-//    }   
-//    arf_interval_init((*blocks) + *length);   
-//    arf_interval_set((*blocks) + *length, block);   
-//    (*flags)[*length] = status; 
-//    (*length)++; 
-  }
-
   public default int calculatePartition(FloatInterval L, FloatInterval R, FloatInterval block, int prec)
   {
-    try ( Real t = Real.claim(); Real m = Real.claim();)
+    try ( Real t = Real.claim(); Real m = Real.claim(); Float u = Float.claim())
     {
-      int   msign = 0;
-      // TODO: pool
-      Float u     =  new Float();
+      int msign = 0;
 
       arb_init(t);
       arb_init(m);

@@ -27,6 +27,7 @@ typedef struct
 }
 arf_interval_struct;
 
+
 typedef struct
 {
     fmpz exp;

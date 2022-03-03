@@ -8,27 +8,31 @@
 
 package arblib;
 
-public class FloatInterval {
-  private transient long swigCPtr;
+import static arblib.Constants.*;
+
+public class FloatInterval implements
+                           AutoCloseable
+{
+  private transient long      swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  public FloatInterval(long cPtr, boolean cMemoryOwn) {
+  public FloatInterval(long cPtr, boolean cMemoryOwn)
+  {
     swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
+    swigCPtr    = cPtr;
   }
 
-  public static long getCPtr(FloatInterval obj) {
+  public static long getCPtr(FloatInterval obj)
+  {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
-  @SuppressWarnings("deprecation")
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
+  public synchronized void delete()
+  {
+    if (swigCPtr != 0)
+    {
+      if (swigCMemOwn)
+      {
         swigCMemOwn = false;
         arblibJNI.delete_FloatInterval(swigCPtr);
       }
@@ -36,28 +40,55 @@ public class FloatInterval {
     }
   }
 
- public static final int BYTES = 64;
+  public static final int BYTES = 64;
 
-  public void setA(Float value) {
+  @Override
+  public void close()
+  {
+    delete();
+  }
+
+  public FloatInterval init()
+  {
+    getA().init();
+    getB().init();
+    return this;
+  }
+
+  public void setA(Float value)
+  {
     arblibJNI.FloatInterval_a_set(swigCPtr, this, Float.getCPtr(value), value);
   }
 
-  public Float getA() {
+  public Float getA()
+  {
     long cPtr = arblibJNI.FloatInterval_a_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new Float(cPtr, false);
+    return (cPtr == 0) ? null : new Float(cPtr,
+                                          false);
   }
 
-  public void setB(Float value) {
+  public void setB(Float value)
+  {
     arblibJNI.FloatInterval_b_set(swigCPtr, this, Float.getCPtr(value), value);
   }
 
-  public Float getB() {
+  public Float getB()
+  {
     long cPtr = arblibJNI.FloatInterval_b_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new Float(cPtr, false);
+    return (cPtr == 0) ? null : new Float(cPtr,
+                                          false);
   }
 
-  public FloatInterval() {
-    this(arblibJNI.new_FloatInterval(), true);
+  public FloatInterval()
+  {
+    this(arblibJNI.new_FloatInterval(),
+         true);
+  }
+
+  public void set(FloatInterval interval)
+  {
+    setA(interval.getA());
+    setB(interval.getB());
   }
 
 }

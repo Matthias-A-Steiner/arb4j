@@ -35,6 +35,8 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 
 %include "Float.i"
 
+%include "FloatInterval.i"
+
 %include "Complex.i"
 
 %include "ComplexPolynomial.i"
