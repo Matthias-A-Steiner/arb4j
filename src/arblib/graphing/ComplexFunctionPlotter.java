@@ -447,21 +447,25 @@ public class ComplexFunctionPlotter extends
   {
     AtomicInteger counter = new AtomicInteger(xnum * ynum);
 
-    shuffledEvaluationOrder().parallel().forEach(pixel ->
+    if (bilinearSmoothing)
     {
-      int y = pixel / xnum;
-      int x = pixel % xnum;
-
-      if (bilinearSmoothing)
+      shuffledEvaluationOrder().parallel().forEach(pixel ->
       {
+        int y = pixel / xnum;
+        int x = pixel % xnum;
         colorizeAndRecordImagePixel(x, y, evaluateFunctionWithBilinearInterpolation(x, y));
-      }
-      else
+      });
+    }
+    else
+    {
+      shuffledEvaluationOrder().parallel().forEach(pixel ->
       {
+        int y = pixel / xnum;
+        int x = pixel % xnum;
         colorizeAndRecordImagePixel(x, y, evaluateFunctionNoInterpolation(x, y));
-      }
+      });
+    }
 
-    });
   }
 
   public AffineTransform getScreenToFunctionDomainMapping()
@@ -1053,7 +1057,8 @@ public class ComplexFunctionPlotter extends
 
   public Complex evaluateFunction(int i, int j)
   {
-    return bilinearSmoothing ? evaluateFunctionWithBilinearInterpolation(i, j) : evaluateFunctionNoInterpolation(i, j);
+    return bilinearSmoothing ? evaluateFunctionWithBilinearInterpolation(i, j) : evaluateFunctionNoInterpolation(i,
+                                                                                                                 j);
   }
 
 }
