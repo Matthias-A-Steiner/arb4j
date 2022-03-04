@@ -669,7 +669,7 @@ public class ComplexFunctionPlotter extends
                                           0.25,
                                           0.5,
                                           5));
-      drawTextInFunctionCoordinates(false, String.format("%f", rootp), rootp, 0.1);
+      drawTextInFunctionCoordinates(false, String.format("%2.3f", rootp), rootp, 0.1);
 
     });
   }

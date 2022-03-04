@@ -1,19 +1,14 @@
 package arblib.graphing.plots;
 
-import static arblib.functions.ComplexFunction.nFoldComposition;
+import java.awt.*;
+import java.awt.geom.*;
+import java.io.*;
 
-import java.awt.Dimension;
-import java.awt.geom.NoninvertibleTransformException;
-import java.awt.geom.Rectangle2D;
-import java.io.IOException;
+import javax.swing.*;
 
-import javax.swing.JFrame;
-
-import arblib.Complex;
-import arblib.Constants;
-import arblib.Real;
+import arblib.*;
 import arblib.functions.*;
-import arblib.graphing.ComplexFunctionPlotter;
+import arblib.graphing.*;
 
 /**
  * Copyright ©2022 Stephen Crowley
@@ -34,29 +29,21 @@ public class YPlot
     System.loadLibrary("arblib");
   }
 
-  static SFunction T = new SFunction(Constants.ONE);
-
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
+    double                 vscale        = 0.81;
+    Rectangle2D.Double     domain        = new Rectangle2D.Double(-50 * vscale,
+                                                                  -25 * vscale,
+                                                                  100 * vscale,
+                                                                  50 * vscale);
 
-    Rectangle2D.Double     domain        = new Rectangle2D.Double(0,
-                                                                  -7.5,
-                                                                  55,
-                                                                  15);
+    Dimension              screen        = new Dimension(2500,
+                                                         1250);
 
-    Dimension              screen        = new Dimension(1250,
-                                                         675);
-
-    int                    prec          = 256;                                                    ///// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------/*
+    int                    prec          = 256;                                  ///// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------/*
 
     Complex                root          = ZFunction.complexRoots.getOrCreate(1);
     final int              normalization = (int) Math.pow(2, 3);
-
-    ComplexFunction        function      = (z,
-                                            w) -> nFoldComposition(3,
-                                                                   (q, r) -> T.TNewton(q, prec, r),
-                                                                   z,
-                                                                   w).mul(normalization, w);
 
     Real                   scale         = new Real().assign(2);
     YFunction              yFunction     = new YFunction(scale);
@@ -65,7 +52,7 @@ public class YPlot
                                                                       domain,
                                                                       yFunction);
 
-    plotter.color_mode = 5;
+    plotter.color_mode = 0;
 
     frame              = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,7 +63,7 @@ public class YPlot
     frame.pack();
     frame.setResizable(false);
     frame.setVisible(true);
-    plotter.displayMode = Part.Phase;
+    plotter.displayMode = Part.Real;
     plotter.plot();
 
   }
