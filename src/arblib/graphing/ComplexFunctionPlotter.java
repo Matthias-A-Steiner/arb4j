@@ -51,14 +51,7 @@ import arblib.functions.Part;
 import arblib.functions.ZFunction;
 import util.DateUtils;
 
-/**
- * See Y/pixelsAsPlancks.txt
- *
- * Started by emulating the logic in complex_plot.c found in arblib examples
- * 
- * TODO: implement anti-aliasing
- * 
- */
+
 public class ComplexFunctionPlotter extends
                                     JComponent
 {
