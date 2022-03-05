@@ -434,7 +434,7 @@ public class ComplexFunctionPlotter extends
 
   }
 
-  boolean bilinearSmoothing = true;
+  public boolean bilinearSmoothing = true;
 
   public void evaluateFunctionOnGrid()
   {

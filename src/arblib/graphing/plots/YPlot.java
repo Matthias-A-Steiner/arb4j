@@ -32,10 +32,10 @@ public class YPlot
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
     double                 vscale        = 0.81;
-    Rectangle2D.Double     domain        = new Rectangle2D.Double(-50 * vscale,
-                                                                  -25 * vscale,
-                                                                  100 * vscale,
-                                                                  50 * vscale);
+    Rectangle2D.Double     domain        = new Rectangle2D.Double(7004.4,
+                                                                  -0.5,
+                                                                  1.1,
+                                                                  1);
 
     Dimension              screen        = new Dimension(2500,
                                                          1250);
@@ -64,6 +64,7 @@ public class YPlot
     frame.setResizable(false);
     frame.setVisible(true);
     plotter.displayMode = Part.Real;
+    plotter.bilinearSmoothing = false;
     plotter.plot();
 
   }
