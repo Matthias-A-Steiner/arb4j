@@ -175,7 +175,7 @@ public class ComplexFunctionPlotter extends
 
     Font currentFont = new Font("Monospaced",
                                 Font.BOLD,
-                                14);
+                                6);
     newFont              = currentFont.deriveFont(currentFont.getSize() * 2F);
     alphaComposite       = makeComposite(0.69f);
     brightAlphaComposite = makeComposite(0.95f);
