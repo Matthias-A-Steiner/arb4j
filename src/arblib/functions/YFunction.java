@@ -2,7 +2,7 @@ package arblib.functions;
 
 import static arblib.Complex.*;
 import static arblib.Constants.*;
-import static arblib.functions.SFunction.*;
+import static arblib.functions.TFunction.*;
 import static arblib.functions.ZFunction.*;
 import static java.lang.Math.*;
 
@@ -55,12 +55,12 @@ public class YFunction implements
 
   public static Complex Y(Complex t, Complex Z, Real scale, int order, Complex res, int prec)
   {
-    return S(Z(t, order, Z, prec), Z, scale, order, true, prec, res);
+    return T(Z(t, order, Z, prec), Z, scale, order, true, prec, res);
   }
 
   public static Complex Ynot(Complex t, Complex Z, Real scale, int order, Complex res, int prec)
   {
-    return S(Z(t, order, Z, prec).mul(Constants.i, Z), Z, scale, order, true, prec, res);
+    return T(Z(t, order, Z, prec).mul(Constants.i, Z), Z, scale, order, true, prec, res);
   }
 
   public static Complex Y(Complex z, Complex Z, Real scale, int order, Complex res)

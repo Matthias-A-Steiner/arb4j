@@ -393,7 +393,7 @@ public class ComplexFunctionPlotter extends
     Float   zr = z.getReal().getMid();
     Float   zi = z.getImag().getMid();
 
-    for (int thisprec = 30; thisprec < 500; thisprec *= 2)
+    for (int thisprec = 64; thisprec < 500; thisprec *= 2)
     {
       refineFunctionEvaluation(x, y, z, w, zr, zi, thisprec);
 
@@ -422,15 +422,15 @@ public class ComplexFunctionPlotter extends
 
     evalFunction(z, w);
 
-//    System.out.format("(x,y)=(%d,%d) prec=%d\n z=%s zr=%s zi=%s w=%s w.relBits=%d\n",
-//                      x,
-//                      y,
-//                      prec,
-//                      z.get(0),
-//                      zr,
-//                      zi,
-//                      w,
-//                      w.relAccuracyBits());
+    System.out.format("(x,y)=(%d,%d) prec=%d\n z=%s zr=%s zi=%s w=%s w.relBits=%d\n",
+                      x,
+                      y,
+                      prec,
+                      z.get(0),
+                      zr,
+                      zi,
+                      w,
+                      w.relAccuracyBits());
 
   }
 
