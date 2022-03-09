@@ -29,6 +29,7 @@ public class KeyboardHandler implements
   @Override
   public void keyPressed(KeyEvent e)
   {
+    plotter.anythingChanged = true;
     switch (e.getKeyCode())
     {
     case KeyEvent.VK_F1:
