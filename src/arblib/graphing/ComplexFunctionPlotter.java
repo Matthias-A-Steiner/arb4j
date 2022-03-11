@@ -430,17 +430,6 @@ public class ComplexFunctionPlotter extends
     zr.add(ax, zr, prec);
 
     evalFunction(z, w);
-
-    System.out.format("(x,y)=(%d,%d) prec=%d\n z=%s zr=%s zi=%s w=%s w.relBits=%d\n",
-                      x,
-                      y,
-                      prec,
-                      z.get(0),
-                      zr,
-                      zi,
-                      w,
-                      w.relAccuracyBits());
-
   }
 
   public boolean bilinearSmoothing = true;

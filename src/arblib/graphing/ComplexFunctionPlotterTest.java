@@ -48,7 +48,7 @@ public class ComplexFunctionPlotterTest extends TestCase {
 			SFunction.S(null, z, Constants.ONE, 2, false, Complex.defaultPrec, w);
 		});
 		Complex point = plotter.evaluateFunctionNoInterpolation(75, 25 );
-		System.out.format("evalFunction(75,25)=%s\n", point);
+	//	System.out.format("evalFunction(75,25)=%s\n", point);
 
 		assertEquals(1.2, point.getReal().doubleValue(), Math.pow(10, -15));
 		assertEquals(0.4, point.getImag().doubleValue(), Math.pow(10, -15));
