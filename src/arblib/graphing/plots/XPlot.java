@@ -20,7 +20,7 @@ import arblib.graphing.*;
  * Free Software Foundation; either version 2.1 of the License, or (at your
  * option) any later version. See <http://www.gnu.org/licenses/>.
  */
-public class YPlot
+public class XPlot
 {
   private static JFrame frame;
 
@@ -32,10 +32,10 @@ public class YPlot
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
     double                 vscale        = 0.81;
-    Rectangle2D.Double     domain        = new Rectangle2D.Double(7004.70,
-                                                                  -0.5,
-                                                                  1,
-                                                                  1.2);
+    Rectangle2D.Double     domain        = new Rectangle2D.Double(7004.50,
+                                                                  -0.4,
+                                                                  1.25,
+                                                                  1);
 
     Dimension              screen        = new Dimension(2500,
                                                          1250);
@@ -45,12 +45,12 @@ public class YPlot
     Complex                root          = ZFunction.complexRoots.getOrCreate(1);
     final int              normalization = (int) Math.pow(2, 3);
 
-    Real                   scale         = new Real().assign(2);
-    YFunction              yFunction     = new YFunction(scale);
+    Real                   scale         = new Real().assign(1);
+    XFunction              xFunction     = new XFunction(scale);
 
     ComplexFunctionPlotter plotter       = new ComplexFunctionPlotter(screen,
                                                                       domain,
-                                                                      yFunction);
+                                                                      xFunction);
 
     plotter.color_mode = 0;
 
@@ -63,7 +63,7 @@ public class YPlot
     frame.pack();
     frame.setResizable(false);
     frame.setVisible(true);
-    plotter.displayMode = Part.Real;
+    plotter.displayMode       = Part.Real;
     plotter.bilinearSmoothing = false;
     plotter.plot();
 

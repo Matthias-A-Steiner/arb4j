@@ -1059,8 +1059,16 @@ public class ComplexFunctionPlotter extends
 
   public Complex evaluateFunction(int i, int j)
   {
-    return bilinearSmoothing ? evaluateFunctionWithBilinearInterpolation(i, j) : evaluateFunctionNoInterpolation(i,
-                                                                                                                 j);
+    if (bilinearSmoothing)
+    {
+      return evaluateFunctionWithBilinearInterpolation(i, j);
+    }
+    else
+    {
+      return evaluateFunctionNoInterpolation(i, j);
+
+    }
+
   }
 
 }
