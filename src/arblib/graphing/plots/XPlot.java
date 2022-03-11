@@ -34,8 +34,8 @@ public class XPlot
     double                 vscale        = 0.81;
     Rectangle2D.Double     domain        = new Rectangle2D.Double(7004.50,
                                                                   -0.4,
-                                                                  1.25,
-                                                                  1);
+                                                                  1,
+                                                                  0.8);
 
     Dimension              screen        = new Dimension(2500,
                                                          1250);

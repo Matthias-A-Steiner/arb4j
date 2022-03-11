@@ -42,16 +42,17 @@ public class SPlot
     // (1/2)^n which is the same as multiplying by 2^n
     final int              normalization = (int) Math.pow(2, n);
 
-    ComplexFunction        tfunc         = new SFunction(Real.claim().assign(2));
+    SFunction              sfunc         = new SFunction(Real.claim().assign(2));
 
     ComplexFunctionPlotter plotter       = new ComplexFunctionPlotter(screen,
                                                                       domain,
-                                                                      tfunc)
+                                                                      sfunc)
                                          {
                                            @Override
                                            public synchronized Complex calculateNewtonTrajectory(Complex t, int n)
                                            {
-                                             return T.TNewtonIter(t, n);
+
+                                             return sfunc.SNewtonIter(t, n);
 
                                            }
                                          };

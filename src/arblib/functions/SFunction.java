@@ -74,7 +74,7 @@ public class SFunction implements
     }
   }
 
-  public Complex TNewton(Complex t, int prec, Complex res)
+  public Complex performNewtonStep(Complex t, int prec, Complex res)
   {
     try (Complex r = claim(); Complex s = claim2())
     {
@@ -90,12 +90,12 @@ public class SFunction implements
    * @param res
    * @return
    */
-  public Complex TNewtonLim(Complex t0, int bits, Complex res)
+  public Complex takeNewtonStepLimit(Complex t0, int bits, Complex res)
   {
     try (Complex Y = claim(); Complex Z = claim(); Complex r = claim(); Complex s = claim(); Complex q = claim())
     {
       res.set(t0);
-      for (int i = 0; TNewton(res, bits, r).isFinite() && r.relAccuracyBits() > 60; i++)
+      for (int i = 0; performNewtonStep(res, bits, r).isFinite() && r.relAccuracyBits() > 60; i++)
       {
         if (i == 0)
         {
@@ -129,7 +129,7 @@ public class SFunction implements
     return res;
   }
 
-  public Complex TNewtonIter(Complex t0, int n)
+  public Complex SNewtonIter(Complex t0, int n)
   {
     Complex trajectory = Complex.newArray(n);
     try (Complex t = claim().set(t0); Complex r = claim())
@@ -137,7 +137,7 @@ public class SFunction implements
       for (int i = 0; i < n; i++)
       {
         trajectory.get(i).set(t);
-        TNewton(t, Functions.prec, r);
+        performNewtonStep(t, Functions.prec, r);
         System.out.println(i + " " + r);
         t.set(r);
       }
@@ -145,34 +145,6 @@ public class SFunction implements
     }
   }
 
-  /**
-   * Radial hyperbolic tangent of the implicitly defined curve Re(S(t))=0
-   * 
-   * @param t    a point on the curve where Re(Y(t))=0
-   * @param s    OUTPUT s=t+h*e^(i*π*a)
-   * @param h    magnitude
-   * @param a    angle ranging from [-1,1] indicating direction
-   * @param res  OUTPUT angle ranging from [-1,1] indicating a direction which
-   *             should be pointing in a direction of less than or equal real part
-   *             as the compared to the value at the input angle a
-   * @param prec
-   * 
-   * @return res=frac(a+tanh(Re(T(t+h*e^(i*Pi*a)))/Im(T'(t+h*e^(i*Pi*a))*h*Pi*e^(i*Pi*a))))
-   */
-  public Real realSang(Complex t, Complex s, Real h, Real a, Real res, int prec)
-  {
-    assert t.isFinite();
-    assert a.isFinite();
-    try (Complex dt = claim(); Complex y = claim2(); Complex p = claim(); Complex Z = claim2())
-    {
-      s = t.add(h.mul(iπ.mul(a, prec, dt).exp(prec, dt), dt), prec, s);
-      assert s.isFinite() : String.format("s=%s t=%s h=%s a=%s dt=%s\n", s, t, h, a, dt);
-      return S(null, s, a, 2, false, prec, y).getReal()
-                                             .div(y.get(1).mul(dt, prec, p).getImag().mul(π, p.getImag()), prec, res)
-                                             .tanh(res, prec)
-                                             .add(a, prec, res)
-                                             .frac(prec, res);
-    }
-  }
+ 
 
 }

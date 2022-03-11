@@ -10,49 +10,67 @@ import arblib.functions.Functions;
 import arblib.functions.SFunction;
 import junit.framework.TestCase;
 
-public class ComplexFunctionPlotterTest extends TestCase {
-	static SFunction T = new SFunction(Constants.ONE);
+public class ComplexFunctionPlotterTest extends
+                                        TestCase
+{
+  static SFunction T = new SFunction(Constants.ONE);
 
-	public static void testEvalFunctionOnGrid() throws NoninvertibleTransformException {
-		Rectangle2D.Double domain = new Rectangle2D.Double(-0.4, -2, 0.8, 4);
-		Dimension screen = new Dimension(3, 3);
+  public static void testEvalFunctionWithBilinearInterpolation() throws NoninvertibleTransformException
+  {
+    Rectangle2D.Double     domain  = new Rectangle2D.Double(-2,
+                                                            -2,
+                                                            4,
+                                                            4);
+    Dimension              screen  = new Dimension(101,
+                                                   101);
 
-		ComplexFunctionPlotter plotter = new ComplexFunctionPlotter(screen, domain, (z, w) -> {
-			Functions.trace = false;
-			T.TNewtonLim(z, 80, w);
-		});
-		plotter.evaluateFunctionOnGrid();
-
-	}
-
-	public static void testEvalFunctionWithBilinearInterpolation() throws NoninvertibleTransformException {
-    Rectangle2D.Double domain = new Rectangle2D.Double(-2, -2, 4, 4);
-		Dimension screen = new Dimension(101, 101);
-
-		ComplexFunctionPlotter plotter = new ComplexFunctionPlotter(screen, domain, (z, w) -> {
-			Functions.trace = false;
-			SFunction.S(null, z, Constants.ONE, 2, false, Complex.defaultPrec, w);
-		});
-		Complex point = plotter.evaluateFunction(75, 25);
-		System.out.format("evalFunction(100,100)=%s\n", point);
-    assertEquals(1.1999986511406498272 , point.getReal().doubleValue(), Math.pow(10, -9));
+    ComplexFunctionPlotter plotter = new ComplexFunctionPlotter(screen,
+                                                                domain,
+                                                                (z, w) ->
+                                                                {
+                                                                  Functions.trace = false;
+                                                                  SFunction.S(null,
+                                                                              z,
+                                                                              Constants.ONE,
+                                                                              2,
+                                                                              false,
+                                                                              Complex.defaultPrec,
+                                                                              w);
+                                                                });
+    Complex                point   = plotter.evaluateFunction(75, 25);
+    System.out.format("evalFunction(100,100)=%s\n", point);
+    assertEquals(1.1999986511406498272, point.getReal().doubleValue(), Math.pow(10, -9));
     assertEquals(0.39999523486993030996, point.getImag().doubleValue(), Math.pow(10, -9));
-	}
+  }
 
-	public static void testEvalFunctionNoInterpolation() throws NoninvertibleTransformException {
-		Rectangle2D.Double domain = new Rectangle2D.Double(-2, -2, 4, 4);
-		Dimension screen = new Dimension(101, 101);
+  public static void testEvalFunctionNoInterpolation() throws NoninvertibleTransformException
+  {
+    Rectangle2D.Double     domain  = new Rectangle2D.Double(-2,
+                                                            -2,
+                                                            4,
+                                                            4);
+    Dimension              screen  = new Dimension(101,
+                                                   101);
 
-		ComplexFunctionPlotter plotter = new ComplexFunctionPlotter(screen, domain, (z, w) -> {
-			Functions.trace = false;
-			SFunction.S(null, z, Constants.ONE, 2, false, Complex.defaultPrec, w);
-		});
-		Complex point = plotter.evaluateFunctionNoInterpolation(75, 25 );
-	//	System.out.format("evalFunction(75,25)=%s\n", point);
+    ComplexFunctionPlotter plotter = new ComplexFunctionPlotter(screen,
+                                                                domain,
+                                                                (z, w) ->
+                                                                {
+                                                                  Functions.trace = false;
+                                                                  SFunction.S(null,
+                                                                              z,
+                                                                              Constants.ONE,
+                                                                              2,
+                                                                              false,
+                                                                              Complex.defaultPrec,
+                                                                              w);
+                                                                });
+    Complex                point   = plotter.evaluateFunctionNoInterpolation(75, 25);
+    // System.out.format("evalFunction(75,25)=%s\n", point);
 
-		assertEquals(1.2, point.getReal().doubleValue(), Math.pow(10, -15));
-		assertEquals(0.4, point.getImag().doubleValue(), Math.pow(10, -15));
+    assertEquals(1.2, point.getReal().doubleValue(), Math.pow(10, -15));
+    assertEquals(0.4, point.getImag().doubleValue(), Math.pow(10, -15));
 
-	}
+  }
 
 }

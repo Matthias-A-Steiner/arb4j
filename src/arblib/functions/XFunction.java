@@ -103,7 +103,7 @@ public class XFunction implements
     { 100 };
     XFunction    yFunc    = new XFunction();
     RealFunction realYang = (outDir, order, prec, inDir) -> yFunc.realXang(t, s, h, inDir, outDir, prec);
-    RealFunction.iteratedCompositionLimit(realYang, scale, convergenceTester, iters, heading, resolution);
+    realYang.iteratedCompositionLimit(scale, convergenceTester, iters, heading, resolution);
 
     if (trace)
     {
@@ -121,7 +121,7 @@ public class XFunction implements
    * 
    * @param t     a point on the curve where Re(X(t))=0
    * @param s     OUTPUT s=t+h*e^(i*π*a)
-   * @param scale 
+   * @param scale
    * @param h     magnitude
    * @param a     angle ranging from [-1,1] indicating direction
    * @param res   OUTPUT angle ranging from [-1,1] indicating a direction which
@@ -158,7 +158,7 @@ public class XFunction implements
       { 100 };
       XFunction    xFunc            = new XFunction(ONE);
       RealFunction realYangFunction = (outDir, order, bits, inDir) -> xFunc.realXang(y0, s, h, inDir, outDir, bits);
-      RealFunction.iteratedCompositionLimit(realYangFunction, a, tester, iters, heading, prec);
+      realYangFunction.iteratedCompositionLimit( a, tester, iters, heading, prec);
       // assertEquals(0.74754757546711682717, vector.get(0).doubleValue(),
       // Math.pow(10, -17));
       // assertEquals(0.7475482453531754, vector.get(1).doubleValue(), Math.pow(10,
