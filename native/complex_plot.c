@@ -303,16 +303,14 @@ bessely(acb_t res, const acb_t z, slong prec)
 }
 
 jclass realFunctionClass;
+jmethodID realFunctionEvaluationMethod;
 
 void
 callRealJavaFunction (JNIEnv *env, jobject realFunction, acb_ptr out, const acb_t inp, void *param, slong order,
 			 slong prec)
 {
-      jmethodID mid = (*env)->GetMethodID(env, realFunctionClass, "evaluate", "(Larblib/Real;IILarblib/Real;)V");
-      if (mid == 0) {
-          return;
-      }
-      (*env)->CallVoidMethod(env, realFunction, mid);
+
+      (*env)->CallObjectMethod(env, realFunction, realFunctionEvaluationMethod);
 }
 
 long isolateRootsOfRealJavaFunction(arf_interval_ptr * blocks, int ** flags,
