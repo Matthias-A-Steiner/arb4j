@@ -3,6 +3,7 @@
 
 #include "../native/complex_plot.h"
 
+#include <jni.h>
 #include <string.h>
 #include <acb.h>
 #include <flint/fmpz.h>
@@ -299,6 +300,28 @@ bessely(acb_t res, const acb_t z, slong prec)
     acb_init(nu);
     acb_hypgeom_bessel_y(res, nu, z, prec);
     acb_clear(nu);
+}
+
+jclass realFunctionClass;
+
+void
+callRealJavaFunction (JNIEnv *env, jobject realFunction, acb_ptr out, const acb_t inp, void *param, slong order,
+			 slong prec)
+{
+      jmethodID mid = (*env)->GetMethodID(env, realFunctionClass, "evaluate", "(Larblib/Real;IILarblib/Real;)V");
+      if (mid == 0) {
+          return;
+      }
+      (*env)->CallVoidMethod(env, realFunction, mid);
+}
+
+long isolateRootsOfRealJavaFunction(arf_interval_ptr * blocks, int ** flags,
+    void * param,
+    JNIEnv *env, jobject realFunction,
+    const arf_interval_t block, slong maxdepth, slong maxeval, slong maxfound,
+    slong prec)
+{
+  return 0;
 }
 
 void

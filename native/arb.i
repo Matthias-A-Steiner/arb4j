@@ -44,4 +44,25 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 %include "TypesAndStructures.i"
 
 %include "functions.i"
+
+%wrapper %{
+ #include <jni.h>
+
+extern jclass realFunctionClass;
+
+jint
+JNI_OnLoad (JavaVM *vm, void *reserved)
+{
+  JNIEnv *env;
+  if ((*vm)->GetEnv (vm, (void**) &env, JNI_VERSION_10) != JNI_OK)
+    {
+      return -1;
+    }
+  realFunctionClass = (*env)->FindClass (env, "arblib/functions/RealFunction");
+  return JNI_VERSION_10;
+}
+
+%}
+
+
    

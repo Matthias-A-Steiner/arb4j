@@ -4128,6 +4128,24 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1sqrt(JNIEnv *jenv, jclass jcl
 }
 
 
+
+ #include <jni.h>
+
+extern jclass realFunctionClass;
+
+jint
+JNI_OnLoad (JavaVM *vm, void *reserved)
+{
+  JNIEnv *env;
+  if ((*vm)->GetEnv (vm, (void**) &env, JNI_VERSION_10) != JNI_OK)
+    {
+      return -1;
+    }
+  realFunctionClass = (*env)->FindClass (env, "arblib/functions/RealFunction");
+  return JNI_VERSION_10;
+}
+
+
 #ifdef __cplusplus
 }
 #endif
