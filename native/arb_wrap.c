@@ -4150,6 +4150,7 @@ JNI_OnLoad (JavaVM *vm, void *reserved)
       return -1;
   }
   printf("arblib loaded\n");
+  fflush(stdout);
   return JNI_VERSION_10;
 }
 

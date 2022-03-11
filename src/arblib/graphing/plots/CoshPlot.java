@@ -15,7 +15,7 @@ import arblib.functions.SFunction;
 import arblib.functions.TFunction;
 import arblib.graphing.ComplexFunctionPlotter;
 
-public class SCoshPlot
+public class CoshPlot
 {
   private static JFrame frame;
 
@@ -44,7 +44,7 @@ public class SCoshPlot
       z.getReal().sub(Constants.HALF, prec, z.getReal());
       //z.cosh(prec, w);//.mul(Constants.i, prec, w);
       // TFunction.T(z, w, Constants.ONE, 2, false, prec, w);
-      SFunction.S(z.cosh(prec, w), w, ONE, 2, false, prec, w);
+      z.cosh(prec, w);
 
     };
 
@@ -63,7 +63,7 @@ public class SCoshPlot
     frame.pack();
     frame.setResizable(false);
     frame.setVisible(true);
-    plotter.displayMode = arblib.functions.Part.Real;
+    plotter.displayMode = arblib.functions.Part.Phase;
     plotter.plot();
 
   }

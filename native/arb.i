@@ -45,33 +45,8 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 
 %include "functions.i"
 
-%wrapper %{
-#include <jni.h>
+%include "init.i"
 
-extern jclass realFunctionClass;
-extern jmethodID realFunctionEvaluationMethod;
-
-jint
-JNI_OnLoad (JavaVM *vm, void *reserved)
-{
-  JNIEnv *env;
-  if ((*vm)->GetEnv (vm, (void**) &env, JNI_VERSION_10) != JNI_OK)
-    {
-      printf("GetEnv failed\n");
-      return -1;
-    }
-  realFunctionClass = (*env)->FindClass (env, "arblib/functions/RealFunction");
-  realFunctionEvaluationMethod = (*env)->GetMethodID(env, realFunctionClass, "evaluate", "(Larblib/Real;IILarblib/Real;)V");
-  if (realFunctionEvaluationMethod == 0) {
-      printf("GetMethodID failed for realFunctionEvaluationMethod\n");
-      return -1;
-  }
-  printf("arblib loaded\n");
-  return JNI_VERSION_10;
-}
-
-
-%}
 
 
    
