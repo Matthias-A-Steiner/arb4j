@@ -20,7 +20,7 @@ public class SPlot
     System.loadLibrary("arblib");
   }
 
-  static SFunction T = new SFunction(Constants.ONE);
+  static SFunction sFunc = new SFunction(Constants.ONE);
 
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
@@ -56,7 +56,7 @@ public class SPlot
 
                                            }
                                          };
-    frame.setTitle("Field of Forces corresponding to Iterated Newton map of T(t)=tanh(ln(1+t^2))");
+    frame.setTitle("Field of Forces corresponding to Iterated Newton map of S(t)=tanh(ln(1-t^2))");
 
     plotter.color_mode = 0;
     frame              = new JFrame();
