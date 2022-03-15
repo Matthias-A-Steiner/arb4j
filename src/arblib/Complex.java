@@ -57,6 +57,23 @@ public class Complex implements AutoCloseable {
     return arblib.acb_rel_accuracy_bits(this);
   }
 
+  /**
+   * this=x vector
+   * 
+   * @param y    vector
+   * @param prec
+   * @param res  the dimension should be set, it determines the value of n passed
+   *             to
+   *             {@link arblib#acb_poly_interpolate_newton(ComplexPolynomial, Complex, Complex, int, int)}
+   * @return res
+   */
+  public ComplexPolynomial interpolateNewton(Complex y, int n, int prec, ComplexPolynomial res)
+  {
+    assert dim == y.dim;
+    arblib.acb_poly_interpolate_newton(res, this, y, n, prec);
+    return res;
+  }
+  
   public Complex cosh( int prec, Complex res )
   {
     arblib.acb_cosh( res, this, prec );
