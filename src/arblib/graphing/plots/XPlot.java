@@ -15,7 +15,7 @@ import arblib.graphing.*;
  * 
  * This file is part of Arb4j.
  * 
- * Arb is free software: you can redistribute it and/or modify it under the
+ * Arb4j is free software: you can redistribute it and/or modify it under the
  * terms of the GNU Lesser General Public License (LGPL) as published by the
  * Free Software Foundation; either version 2.1 of the License, or (at your
  * option) any later version. See <http://www.gnu.org/licenses/>.
@@ -32,6 +32,7 @@ public class XPlot
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
     double                 vscale        = 0.81;
+    // let's take a look at the region around the first Lehmer pair
     Rectangle2D.Double     domain        = new Rectangle2D.Double(7004.50,
                                                                   -0.4,
                                                                   1,
