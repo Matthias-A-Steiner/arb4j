@@ -43,7 +43,8 @@ public class ZetaPlot
                                                                   z.mul(Constants.i, prec, w).ζ(prec, w);
                                                                 });
 
-    plotter.color_mode  = 4;
+    plotter.color_mode  = 3;
+    plotter.bilinearSmoothing = true;
     plotter.displayMode = arblib.functions.Part.Real;
 
     frame               = new JFrame();
