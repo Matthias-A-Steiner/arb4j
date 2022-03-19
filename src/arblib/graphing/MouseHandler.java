@@ -31,9 +31,9 @@ public final class MouseHandler implements
   MouseHandler(ComplexFunctionPlotter complexPlot)
   {
     plotter = complexPlot;
-    Z       = Complex.newArray(2);
-    Y       = Complex.newArray(2);
-    t       = Complex.newArray(1);
+    Z       = Complex.newVector(2);
+    Y       = Complex.newVector(2);
+    t       = Complex.newVector(1);
   }
 
   public java.awt.geom.Rectangle2D.Double getSelectedRectangle()

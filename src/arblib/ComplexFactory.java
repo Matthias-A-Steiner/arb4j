@@ -25,7 +25,7 @@ public class ComplexFactory implements
   @Override
   public Complex create()
   {
-    return Complex.newArray(dim);
+    return Complex.newVector(dim);
   }
 
   @Override

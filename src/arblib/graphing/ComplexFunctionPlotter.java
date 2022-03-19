@@ -79,7 +79,7 @@ public class ComplexFunctionPlotter extends
 
   protected Complex      w;
 
-  protected Complex      N          = Complex.newArray(2);                       // Newton step. w/dw
+  protected Complex      N          = Complex.newVector(2);                       // Newton step. w/dw
 
   ThreadLocalComplex     _z         = new ThreadLocalComplex(2);
 
@@ -166,7 +166,7 @@ public class ComplexFunctionPlotter extends
     this.xnum          = screen.width;
     this.ynum          = screen.height;
     phase              = Real.claim();
-    w                  = Complex.newArray(2);
+    w                  = Complex.newVector(2);
     functionImage      = new BufferedImage(xnum,
                                            ynum,
                                            BufferedImage.TYPE_INT_RGB);
@@ -322,7 +322,7 @@ public class ComplexFunctionPlotter extends
       Complex[][] basis = new Complex[2][2];
       for (int i = 0; i < 2; i++)
         for (int j = 0; j < 2; j++)
-          basis[i][j] = Complex.newArray(2);
+          basis[i][j] = Complex.newVector(2);
       return basis;
     });
   }

@@ -7,8 +7,8 @@ public class ComplexTest extends
 {
   public static void testNewtonInterpolation()
   {
-    Complex x = Complex.newArray(5);
-    Complex y = Complex.newArray(5);
+    Complex x = Complex.newVector(5);
+    Complex y = Complex.newVector(5);
     
     
   }

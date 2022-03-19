@@ -131,7 +131,7 @@ public class SFunction implements
 
   public Complex SNewtonIter(Complex t0, int n)
   {
-    Complex trajectory = Complex.newArray(n);
+    Complex trajectory = Complex.newVector(n);
     try (Complex t = claim().set(t0); Complex r = claim())
     {
       for (int i = 0; i < n; i++)

@@ -119,7 +119,7 @@ public class Complex implements AutoCloseable {
   public Complex slice(int start, int end)
   {
     int size = end - start;
-    Complex x = Complex.newArray(size);
+    Complex x = Complex.newVector(size);
     for ( int i = 0; i < size; i++ )
     {
       x.get(i).set(get(start+i));
@@ -301,7 +301,7 @@ public class Complex implements AutoCloseable {
     return dim;
   }
   
-  public static Complex newArray( int dim )
+  public static Complex newVector( int dim )
   {
     Complex array = arblib._acb_vec_init(dim);    
     array.dim = dim;

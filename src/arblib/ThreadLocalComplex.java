@@ -22,7 +22,7 @@ public class ThreadLocalComplex extends
   @Override
   protected Complex initialValue()
   {
-    return Complex.newArray(dim);
+    return Complex.newVector(dim);
   }
 
   public Complex get(int i)
