@@ -282,7 +282,7 @@ import static arblib.Constants.*;
     return array;
   }
   
-    public Complex cos(int prec, Complex result )
+  public Complex cos(int prec, Complex result )
   {
     arblib.acb_cos(result, this, prec );
     return result;
