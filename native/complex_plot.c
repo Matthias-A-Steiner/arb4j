@@ -302,25 +302,6 @@ bessely(acb_t res, const acb_t z, slong prec)
     acb_clear(nu);
 }
 
-jclass realFunctionClass;
-jmethodID realFunctionEvaluationMethod;
-
-void
-callRealJavaFunction (JNIEnv *env, jobject realFunction, acb_ptr out, const acb_t inp, void *param, slong order,
-			 slong prec)
-{
-
-      (*env)->CallObjectMethod(env, realFunction, realFunctionEvaluationMethod);
-}
-
-long isolateRootsOfRealJavaFunction(arf_interval_ptr * blocks, int ** flags,
-    void * param,
-    JNIEnv *env, jobject realFunction,
-    const arf_interval_t block, slong maxdepth, slong maxeval, slong maxfound,
-    slong prec)
-{
-  return 0;
-}
 
 void
 besseli(acb_t res, const acb_t z, slong prec)

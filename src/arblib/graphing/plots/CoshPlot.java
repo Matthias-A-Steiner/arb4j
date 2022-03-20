@@ -44,7 +44,7 @@ public class CoshPlot
       z.getReal().sub(Constants.HALF, prec, z.getReal());
       //z.cosh(prec, w);//.mul(Constants.i, prec, w);
       // TFunction.T(z, w, Constants.ONE, 2, false, prec, w);
-      z.cosh(prec, w);
+      return z.cosh(prec, w);
 
     };
 

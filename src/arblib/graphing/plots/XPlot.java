@@ -31,12 +31,17 @@ public class XPlot
 
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
-    double                 vscale        = 0.81;
-    // let's take a look at the region around the first Lehmer pair
-    Rectangle2D.Double     domain        = new Rectangle2D.Double(7004.50,
-                                                                  -0.4,
-                                                                  1,
-                                                                  0.8);
+    double                 vscale        = 2.5;
+    // the first Lehmer pair
+//    Rectangle2D.Double     domain        = new Rectangle2D.Double(7004.50,
+//                                                                  -0.4,
+//                                                                  1,
+//                                                                  0.8);
+
+    Rectangle2D.Double     domain        = new Rectangle2D.Double(-20,
+                                                                  -5,
+                                                                  70,
+                                                                  30);
 
     Dimension              screen        = new Dimension(2500,
                                                          1250);
@@ -46,12 +51,12 @@ public class XPlot
     Complex                root          = ZFunction.complexRoots.getOrCreate(1);
     final int              normalization = (int) Math.pow(2, 3);
 
-    Real                   scale         = new Real().assign(1);
+    Real                   scale         = new Real().assign(vscale);
     XFunction              xFunction     = new XFunction(scale);
 
     ComplexFunctionPlotter plotter       = new ComplexFunctionPlotter(screen,
                                                                       domain,
-                                                                      xFunction);
+                                                                      (z,w)->xFunction.evaluate(z, w));
 
     plotter.color_mode = 0;
 
@@ -64,7 +69,7 @@ public class XPlot
     frame.pack();
     frame.setResizable(false);
     frame.setVisible(true);
-    plotter.displayMode       = Part.Real;
+    plotter.displayMode       = Part.Imag;
     plotter.bilinearSmoothing = false;
     plotter.plot();
 

@@ -36,9 +36,9 @@ public class TFunction implements
   }
 
   @Override
-  public void evaluate(Complex z, Complex w)
+  public Complex evaluate(Complex z, Complex w)
   {
-    T(null, z.mul(Constants.i, z), a, 2, false, Complex.defaultPrec, w);
+    return T(null, z.mul(Constants.i, z), a, 2, false, Complex.defaultPrec, w);
   }
 
   public static Complex

@@ -50,9 +50,9 @@ public class XFunction implements
   }
 
   @Override
-  public void evaluate(Complex z, Complex w)
+  public Complex evaluate(Complex z, Complex w)
   {
-    X(z, w, scale, 2, w, prec);
+    return X(z, w, scale, 2, w, prec);
   }
 
   public static Complex X(Complex t, Complex Z, Real scale, int order, Complex res, int prec)

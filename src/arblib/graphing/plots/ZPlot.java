@@ -36,15 +36,14 @@ public class ZPlot
 
     ThreadLocalComplex Z = new ThreadLocalComplex(2);
 
-    ComplexFunction fuck = (z, w) ->
+    ComplexFunction normalizedHardyZFunction = (z, w) ->
     {
       ZFunction.Z(z, 2, w, Complex.defaultPrec);
-      w.normalize(w);
-      // w.getImag().assign(0);
+      return w.normalize(w);
     };
     ComplexFunctionPlotter plotter = new ComplexFunctionPlotter(screen,
                                                                 domain,
-                                                                fuck);
+                                                                normalizedHardyZFunction);
 
     plotter.color_mode = 1;
 

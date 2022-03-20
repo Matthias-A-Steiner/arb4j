@@ -5,7 +5,7 @@ import arblib.Complex;
 public interface ComplexFunction
 {
 
-  void evaluate(Complex z, Complex w);
+  Complex evaluate(Complex z, Complex w);
 
   static public Complex nFoldComposition(int n, ComplexFunction func, Complex z0, Complex res)
   {

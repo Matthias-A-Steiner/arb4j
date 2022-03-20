@@ -40,14 +40,14 @@ public class ZetaPlot
                                                                 domain,
                                                                 (z, w) ->
                                                                 {
-                                                                  z.mul(Constants.i, prec, w).ζ(prec, w);
+                                                                  return z.mul(Constants.i, prec, w).ζ(prec, w);
                                                                 });
 
-    plotter.color_mode  = 3;
+    plotter.color_mode        = 3;
     plotter.bilinearSmoothing = true;
-    plotter.displayMode = arblib.functions.Part.Real;
+    plotter.displayMode       = arblib.functions.Part.Real;
 
-    frame               = new JFrame();
+    frame                     = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(screen.width, screen.height);
     frame.setResizable(false);
