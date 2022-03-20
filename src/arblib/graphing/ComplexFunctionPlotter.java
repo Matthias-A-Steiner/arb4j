@@ -79,13 +79,14 @@ public class ComplexFunctionPlotter extends
 
   protected Complex      w;
 
-  protected Complex      N          = Complex.newVector(2);                       // Newton step. w/dw
+  protected Complex      N          = Complex.newVector(2);                      // Newton step. w/dw
 
   ThreadLocalComplex     _z         = new ThreadLocalComplex(2);
 
   ThreadLocalComplex     _w         = new ThreadLocalComplex(2);
 
   ThreadLocal<Pixel>     pixel      = ThreadLocal.withInitial(() -> new Pixel());
+  ThreadLocal<Pixel>     pixel2     = ThreadLocal.withInitial(() -> new Pixel());
 
   public int             color_mode = 0;
 
@@ -146,7 +147,7 @@ public class ComplexFunctionPlotter extends
 
   private Font           newFont;
 
-  private BufferedImage  outputImage;
+  BufferedImage          outputImage;
 
   private Graphics2D     outputGraphics;
 
@@ -297,6 +298,17 @@ public class ComplexFunctionPlotter extends
       case Imag:
         w2.getImag().set(w.getImag());
         arblib.color_function(pixel.R, pixel.G, pixel.B, w2, color_mode);
+        break;
+      case Blend:
+        w2.getImag().set(w.getImag());
+        arblib.color_function(pixel.R, pixel.G, pixel.B, w2, color_mode);
+        Pixel pixel2 = this.pixel2.get();
+        w2.getImag().zero();
+        w2.getReal().set(w.getReal());
+        arblib.color_function(pixel2.R, pixel2.G, pixel2.B, w2, color_mode);
+        pixel.R[0] = (pixel.R[0] + pixel2.R[0] / 2.0);
+        pixel.G[0] = (pixel.G[0] + pixel2.G[0] / 2.0);
+        pixel.B[0] = (pixel.B[0] + pixel2.B[0] / 2.0);
       }
     }
     return pixel;
@@ -648,6 +660,8 @@ public class ComplexFunctionPlotter extends
     markVerticalTicks();
   }
 
+  public boolean labelHardyZRoots = true;
+
   private void renderHardyZRootLocations()
   {
     // TODO: use estimated root number based on range
@@ -658,7 +672,10 @@ public class ComplexFunctionPlotter extends
     {
       double rootp = ZFunction.roots.getOrCreate(i).doubleValue();
 
-      drawTextInFunctionCoordinates(false, String.format("%2.3f", rootp), rootp, 0.1);
+      if (labelHardyZRoots)
+      {
+        drawTextInFunctionCoordinates(false, String.format("%2.3f", rootp), rootp, 0.1);
+      }
       staticOverlayGraphics.draw(new Star(rootp,
                                           0,
                                           0.25,
@@ -672,12 +689,17 @@ public class ComplexFunctionPlotter extends
     });
   }
 
+  public boolean showHardyZRootLocations = true;
+
   private void drawStaticMarkups()
   {
     setStaticOverlayGraphicsFontSizeToHalfItsCurrentSize();
 
     renderCoordinateSystemAxes();
-    renderHardyZRootLocations();
+    if (showHardyZRootLocations)
+    {
+      renderHardyZRootLocations();
+    }
 
   }
 
@@ -727,7 +749,6 @@ public class ComplexFunctionPlotter extends
 
   public Point2D.Double  cursorInScreenSpace;
 
-  int                    frame                           = 0;
 
   Color                  cursorColor                     = Color.BLACK;
 

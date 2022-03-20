@@ -40,6 +40,9 @@ int realJavaFunction(arb_ptr out,
 {
   jobject realFunction = (jobject)&param;
 
+  /**
+   * TODO: pass parameters to this
+   */
   jobject result = (*env)->CallObjectMethod (env, realFunction,
 					     realFunctionEvaluationMethod);
 
