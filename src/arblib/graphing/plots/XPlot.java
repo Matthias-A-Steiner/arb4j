@@ -46,7 +46,7 @@ public class XPlot
     Dimension              screen        = new Dimension(2500,
                                                          1250);
 
-    int                    prec          = 256;                                  ///// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------/*
+    int                    prec          = 256;                                                         ///// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------/*
 
     Complex                root          = ZFunction.complexRoots.getOrCreate(1);
     final int              normalization = (int) Math.pow(2, 3);
@@ -56,7 +56,8 @@ public class XPlot
 
     ComplexFunctionPlotter plotter       = new ComplexFunctionPlotter(screen,
                                                                       domain,
-                                                                      (z,w)->xFunction.evaluate(z, w));
+                                                                      (z, w) -> xFunction.evaluate(z, w)
+                                                                                         );
 
     plotter.color_mode = 0;
 
@@ -69,7 +70,7 @@ public class XPlot
     frame.pack();
     frame.setResizable(false);
     frame.setVisible(true);
-    plotter.displayMode       = Part.Imag;
+    plotter.displayMode       = Part.Real;
     plotter.bilinearSmoothing = false;
     plotter.plot();
 

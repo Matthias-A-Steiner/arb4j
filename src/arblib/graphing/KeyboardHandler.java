@@ -4,6 +4,18 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/*
+ * Copyright ©2022 Stephen Crowley
+ * 
+ * This file is part of Arb4j
+ * 
+ * Arb4j is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU Lesser General Public License (LGPL) as published by the
+ * Free Software Foundation; either version 2.1 of the License, or (at your
+ * option) any later version. See <http://www.gnu.org/licenses/>.
+ * 
+ * TODO: add keys to increase and decrease the font size
+ */
 public class KeyboardHandler implements
                              KeyListener
 {

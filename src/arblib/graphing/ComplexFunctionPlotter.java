@@ -657,6 +657,8 @@ public class ComplexFunctionPlotter extends
     rangeClosed(1, 20).forEach(i ->
     {
       double rootp = ZFunction.roots.getOrCreate(i).doubleValue();
+
+      drawTextInFunctionCoordinates(false, String.format("%2.3f", rootp), rootp, 0.1);
       staticOverlayGraphics.draw(new Star(rootp,
                                           0,
                                           0.25,
@@ -667,8 +669,6 @@ public class ComplexFunctionPlotter extends
                                           0.25,
                                           0.5,
                                           5));
-      drawTextInFunctionCoordinates(false, String.format("%2.3f", rootp), rootp, 0.1);
-
     });
   }
 

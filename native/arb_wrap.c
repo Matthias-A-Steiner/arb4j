@@ -4138,7 +4138,6 @@ extern jmethodID realFunctionEvaluationMethod;
 jint
 JNI_OnLoad (JavaVM *vm, void *reserved)
 {
-  JNIEnv *env;
   if ((*vm)->GetEnv (vm, (void**) &env, JNI_VERSION_10) != JNI_OK)
     {
       printf("GetEnv failed\n");
