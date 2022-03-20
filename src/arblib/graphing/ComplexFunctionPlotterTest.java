@@ -29,13 +29,13 @@ public class ComplexFunctionPlotterTest extends
                                                                 (z, w) ->
                                                                 {
                                                                   Functions.trace = false;
-                                                                  SFunction.S(null,
-                                                                              z,
-                                                                              Constants.ONE,
-                                                                              2,
-                                                                              false,
-                                                                              Complex.defaultPrec,
-                                                                              w);
+                                                                  return SFunction.S(null,
+                                                                                     z,
+                                                                                     Constants.ONE,
+                                                                                     2,
+                                                                                     false,
+                                                                                     Complex.defaultPrec,
+                                                                                     w);
                                                                 });
     Complex                point   = plotter.evaluateFunction(75, 25);
     System.out.format("evalFunction(100,100)=%s\n", point);
@@ -57,13 +57,13 @@ public class ComplexFunctionPlotterTest extends
                                                                 (z, w) ->
                                                                 {
                                                                   Functions.trace = false;
-                                                                  SFunction.S(null,
-                                                                              z,
-                                                                              Constants.ONE,
-                                                                              2,
-                                                                              false,
-                                                                              Complex.defaultPrec,
-                                                                              w);
+                                                                  return SFunction.S(null,
+                                                                                     z,
+                                                                                     Constants.ONE,
+                                                                                     2,
+                                                                                     false,
+                                                                                     Complex.defaultPrec,
+                                                                                     w);
                                                                 });
     Complex                point   = plotter.evaluateFunctionNoInterpolation(75, 25);
     // System.out.format("evalFunction(75,25)=%s\n", point);

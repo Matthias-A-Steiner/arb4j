@@ -56,7 +56,7 @@ public class XPlot
 
     ComplexFunctionPlotter plotter       = new ComplexFunctionPlotter(screen,
                                                                       domain,
-                                                                      xFunction);
+                                                                      (z,w)->xFunction.evaluate(z, w));
 
     plotter.color_mode = 0;
 
@@ -69,7 +69,7 @@ public class XPlot
     frame.pack();
     frame.setResizable(false);
     frame.setVisible(true);
-    plotter.displayMode       = Part.Real;
+    plotter.displayMode       = Part.Imag;
     plotter.bilinearSmoothing = false;
     plotter.plot();
 

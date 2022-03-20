@@ -28,9 +28,9 @@ public class SFunction implements
   }
 
   @Override
-  public void evaluate(Complex z, Complex w)
+  public Complex evaluate(Complex z, Complex w)
   {
-    S(null, z, a, 2, false, Complex.defaultPrec, w);
+    return S(null, z, a, 2, false, Complex.defaultPrec, w);
   }
 
   public static Complex
