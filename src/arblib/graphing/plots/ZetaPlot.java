@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import arblib.Constants;
 import arblib.Real;
 import arblib.ThreadLocalComplex;
+import arblib.functions.*;
 import arblib.graphing.ComplexFunctionPlotter;
 
 public class ZetaPlot
@@ -27,7 +28,7 @@ public class ZetaPlot
     Rectangle2D.Double     domain  = new Rectangle2D.Double(0,
                                                             15,
                                                             41,
-                                                            -20);
+                                                            -30);
 
     Dimension              screen  = new Dimension(1900,
                                                    1040);
@@ -40,12 +41,12 @@ public class ZetaPlot
                                                                 domain,
                                                                 (z, w) ->
                                                                 {
-                                                                  return z.mul(Constants.i, prec, w).ζ(prec, w);
+                                                                  return z.mul(Constants.i, prec, w).ζ(prec, w).normalize(w);
                                                                 });
 
     plotter.color_mode        = 3;
     plotter.bilinearSmoothing = true;
-    plotter.displayMode       = arblib.functions.Part.Real;
+    plotter.displayMode       = Part.Blend;
 
     frame                     = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
