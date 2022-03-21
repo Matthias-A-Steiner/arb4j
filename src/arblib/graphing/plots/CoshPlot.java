@@ -63,7 +63,7 @@ public class CoshPlot
     frame.pack();
     frame.setResizable(false);
     frame.setVisible(true);
-    plotter.displayMode = arblib.functions.Part.Phase;
+    plotter.displayMode = arblib.functions.Part.Blend;
     plotter.plot();
 
   }

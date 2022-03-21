@@ -9,13 +9,13 @@
 package arblib;
 
 import java.util.concurrent.TimeUnit;
-
+import java.util.Iterator;
 import org.vibur.objectpool.ConcurrentPool;
 import org.vibur.objectpool.PoolService;
 import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 
-public class Complex implements AutoCloseable {
+public class Complex implements AutoCloseable,Iterable<Complex> {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -38,6 +38,12 @@ public class Complex implements AutoCloseable {
     }
   }
 
+  @Override
+  public Iterator<Complex> iterator()
+  {
+    return new ComplexIterator(this);
+  }
+  
   PoolService<Complex> poolService;
    
   public Complex( PoolService<Complex> poolService ) 
