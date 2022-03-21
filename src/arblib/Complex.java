@@ -10,6 +10,8 @@ package arblib;
 
 import java.util.concurrent.TimeUnit;
 import java.util.Iterator;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 import org.vibur.objectpool.ConcurrentPool;
 import org.vibur.objectpool.PoolService;
 import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
@@ -38,6 +40,12 @@ public class Complex implements AutoCloseable,Iterable<Complex> {
     }
   }
 
+
+  public Stream<Complex> stream()
+  {
+    return StreamSupport.stream(spliterator(), false);
+  }
+  
   @Override
   public Iterator<Complex> iterator()
   {

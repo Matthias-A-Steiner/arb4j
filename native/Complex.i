@@ -1,6 +1,8 @@
 %typemap(javaimports) acb_struct %{
 import java.util.concurrent.TimeUnit;
 import java.util.Iterator;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 import org.vibur.objectpool.ConcurrentPool;
 import org.vibur.objectpool.PoolService;
 import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
@@ -12,6 +14,12 @@ import static arblib.Constants.*;
 %typemap(javainterfaces) acb_struct "AutoCloseable,Iterable<Complex>"
 
 %typemap(javacode) acb_struct %{
+
+  public Stream<Complex> stream()
+  {
+    return StreamSupport.stream(spliterator(), false);
+  }
+  
   @Override
   public Iterator<Complex> iterator()
   {
