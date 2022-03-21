@@ -15,6 +15,34 @@ import static arblib.Constants.*;
 
 %typemap(javacode) acb_struct %{
 
+  /**
+   * Computes the dot product of the vectors x and y, setting res to
+   * <code>s+(-1)^subtract+sum(this[i]*y[i],i=0..len-1)</code> The initial term s
+   * is optional and can be omitted by passing NULL (equivalently, s=0 ). The
+   * length len is allowed to be negative, which is equivalent to a length of
+   * zero. The parameters xstep or ystep specify a step length for traversing
+   * subsequences of the vectors x and y; either can be negative to step in the
+   * reverse direction starting from the initial pointer. Aliasing is allowed
+   * between res and s but not between res and the entries of x and y.
+   * 
+   * @param y        the other vector
+   * @param initial  initial value to be added to the vector, can be NULL which is
+   *                 equivalent to 0
+   * @param subtract must be 0 or 1
+   * @param xstep    signed step length for traversing subsequences of this (x)
+   *                 vector
+   * @param ystep    signed step length for traversing subsequences of y vector
+   * @param len      negative numbers are interpreted as 0
+   * @param prec     precision
+   * @param res      variable which the result is to be stored in
+   * @return res
+   */
+  public Complex dot(Complex y, Complex initial, int subtract, int xstep, int ystep, int len, int prec, Complex res)
+  {
+    arblib.acb_dot(res, initial, subtract, this, xstep, y, ystep, len, prec);
+    return res;
+  }
+
   public Stream<Complex> stream()
   {
     return StreamSupport.stream(spliterator(), false);
