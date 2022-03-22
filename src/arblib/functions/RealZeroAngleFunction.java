@@ -6,7 +6,9 @@ import static arblib.Constants.iπ;
 import static arblib.Constants.π;
 
 import arblib.Complex;
+import arblib.ComplexFunction;
 import arblib.Real;
+import arblib.RealFunction;
 
 /**
  * Copyright ©2022 Stephen Crowley

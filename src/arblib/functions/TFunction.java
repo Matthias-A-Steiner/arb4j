@@ -7,6 +7,7 @@ import static arblib.Constants.π;
 import static java.lang.String.format;
 
 import arblib.Complex;
+import arblib.ComplexFunction;
 import arblib.Constants;
 import arblib.Real;
 

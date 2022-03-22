@@ -1,6 +1,4 @@
-package arblib.functions;
-
-import arblib.Complex;
+package arblib;
 
 public interface ComplexFunction
 {

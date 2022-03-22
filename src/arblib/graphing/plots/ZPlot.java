@@ -8,8 +8,8 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 import arblib.Complex;
+import arblib.ComplexFunction;
 import arblib.ThreadLocalComplex;
-import arblib.functions.ComplexFunction;
 import arblib.functions.Functions;
 import arblib.functions.Part;
 import arblib.functions.ZFunction;
