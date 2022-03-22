@@ -28,7 +28,7 @@ import static arblib.Constants.*;
 
   public Stream<Real> realStream()
   {
-    return StreamSupport.stream(Spliterators.spliterator(realIterator(), dim, Spliterator.SIZED | Spliterator.SIZED),
+    return StreamSupport.stream(Spliterators.spliterator(realIterator(), dim, Spliterator.SIZED | Spliterator.ORDERED),
                                 false);
   }
 
@@ -36,7 +36,7 @@ import static arblib.Constants.*;
   {
     return StreamSupport.stream(Spliterators.spliterator(imaginaryIterator(),
                                                          dim,
-                                                         Spliterator.SIZED | Spliterator.SIZED),
+                                                         Spliterator.SIZED | Spliterator.ORDERED),
                                 false);
   }
   

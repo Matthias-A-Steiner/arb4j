@@ -54,7 +54,7 @@ public class Complex implements AutoCloseable,Iterable<Complex> {
 
   public Stream<Real> realStream()
   {
-    return StreamSupport.stream(Spliterators.spliterator(realIterator(), dim, Spliterator.SIZED | Spliterator.SIZED),
+    return StreamSupport.stream(Spliterators.spliterator(realIterator(), dim, Spliterator.SIZED | Spliterator.ORDERED),
                                 false);
   }
 
@@ -62,7 +62,7 @@ public class Complex implements AutoCloseable,Iterable<Complex> {
   {
     return StreamSupport.stream(Spliterators.spliterator(imaginaryIterator(),
                                                          dim,
-                                                         Spliterator.SIZED | Spliterator.SIZED),
+                                                         Spliterator.SIZED | Spliterator.ORDERED),
                                 false);
   }
   
