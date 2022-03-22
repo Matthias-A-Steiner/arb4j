@@ -33,7 +33,6 @@ public class SZetaPlot
     Dimension              screen    = new Dimension(2500,
                                                      1250);
 
-    ThreadLocalComplex     Z         = new ThreadLocalComplex(2);
     final int              prec      = 256;
     Real                   scale     = new Real().assign(1);
 
@@ -45,10 +44,11 @@ public class SZetaPlot
                                                                                                   prec,
                                                                                                   w)
                                                                                              .ζ(prec, w),
-                                                                                            w).normalize(w));
+                                                                                            w)
+                                                                                  .normalize(w));
 
     plotter.color_mode        = 0;
-    plotter.bilinearSmoothing = true;
+    plotter.bilinearSmoothing = false;
     plotter.displayMode       = arblib.functions.Part.Blend;
 
     frame                     = new JFrame();
