@@ -17,8 +17,8 @@ public class ComplexTest extends
   {
     Complex    x       = Complex.newVector(5);
     Complex    y       = Complex.newVector(5);
-    List<Real> xValues = x.stream().map(z -> z.getReal()).collect(Collectors.toList());
-    List<Real> yValues = x.stream().map(z -> z.getImag()).collect(Collectors.toList());
+    List<Real> xValues = x.realStream().collect(Collectors.toList());
+    List<Real> yValues = x.imaginaryStream().collect(Collectors.toList());
     IntStream.range(0, 5).forEach(i ->
     {
       double xval = (double) i;

@@ -25,13 +25,13 @@ public class SZetaPlot
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
 
-    Rectangle2D.Double     domain    = new Rectangle2D.Double(0,
-                                                              15,
-                                                              41,
-                                                              -20);
+    Rectangle2D.Double     domain    = new Rectangle2D.Double(-55,
+                                                              30,
+                                                              110,
+                                                              -40);
 
-    Dimension              screen    = new Dimension(1900,
-                                                     1040);
+    Dimension              screen    = new Dimension(2500,
+                                                     1250);
 
     ThreadLocalComplex     Z         = new ThreadLocalComplex(2);
     final int              prec      = 256;
@@ -45,7 +45,7 @@ public class SZetaPlot
                                                                                                   prec,
                                                                                                   w)
                                                                                              .ζ(prec, w),
-                                                                                            w));
+                                                                                            w).normalize(w));
 
     plotter.color_mode        = 0;
     plotter.bilinearSmoothing = true;

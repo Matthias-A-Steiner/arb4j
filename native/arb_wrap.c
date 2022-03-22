@@ -4176,7 +4176,7 @@ JNI_OnLoad (JavaVM *vm, void *reserved)
       fflush(stdout);
       return -1;
     }
-  realFunctionClass = (*env)->FindClass (env, "arblib/functions/RealFunction");
+  realFunctionClass = (*env)->FindClass (env, "arblib/RealFunction");
   realFunctionEvaluationMethod = (*env)->GetMethodID(env, realFunctionClass, "evaluate", "(Larblib/Real;IILarblib/Real;)V");
   if (realFunctionEvaluationMethod == 0) {
       printf("GetMethodID failed for realFunctionEvaluationMethod\n");

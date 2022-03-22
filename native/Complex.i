@@ -3,6 +3,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.Iterator;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+import java.util.Spliterator;
+import java.util.Spliterators;
 import org.vibur.objectpool.ConcurrentPool;
 import org.vibur.objectpool.PoolService;
 import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
@@ -14,7 +16,30 @@ import static arblib.Constants.*;
 %typemap(javainterfaces) acb_struct "AutoCloseable,Iterable<Complex>"
 
 %typemap(javacode) acb_struct %{
+  public Iterator<Real> realIterator()
+  {
+    return new ComplexRealPartIterator(this);
+  }
 
+  public Iterator<Real> imaginaryIterator()
+  {
+    return new ComplexImaginaryPartIterator(this);
+  }
+
+  public Stream<Real> realStream()
+  {
+    return StreamSupport.stream(Spliterators.spliterator(realIterator(), dim, Spliterator.SIZED | Spliterator.SIZED),
+                                false);
+  }
+
+  public Stream<Real> imaginaryStream()
+  {
+    return StreamSupport.stream(Spliterators.spliterator(imaginaryIterator(),
+                                                         dim,
+                                                         Spliterator.SIZED | Spliterator.SIZED),
+                                false);
+  }
+  
   /**
    * Computes the dot product of the vectors x and y, setting res to
    * <code>s+(-1)^subtract+sum(this[i]*y[i],i=0..len-1)</code> The initial term s
