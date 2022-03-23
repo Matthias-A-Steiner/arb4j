@@ -1,15 +1,9 @@
-package arblib.functions;
+package arblib;
 
 import static arblib.arblib.arb_init;
 import static arblib.arblib.arf_init;
 
-import arblib.Constants;
-import arblib.Float;
-import arblib.FloatInterval;
-import arblib.Magnitude;
-import arblib.Real;
-import arblib.SWIGTYPE_p_void;
-import arblib.arblib;
+import arblib.functions.RealConvergenceTester;
 
 /**
  * Copyright ©2022 Stephen Crowley

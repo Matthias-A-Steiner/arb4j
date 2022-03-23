@@ -1,6 +1,10 @@
 %typemap(javaimports) acb_struct %{
 import java.util.concurrent.TimeUnit;
-
+import java.util.Iterator;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+import java.util.Spliterator;
+import java.util.Spliterators;
 import org.vibur.objectpool.ConcurrentPool;
 import org.vibur.objectpool.PoolService;
 import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
@@ -9,9 +13,72 @@ import static arblib.Constants.*;
 
 %typemap(javafinalize) acb_struct ""
 
-%typemap(javainterfaces) acb_struct "AutoCloseable"
+%typemap(javainterfaces) acb_struct "AutoCloseable,Iterable<Complex>"
 
 %typemap(javacode) acb_struct %{
+  public Iterator<Real> realIterator()
+  {
+    return new ComplexRealPartIterator(this);
+  }
+
+  public Iterator<Real> imaginaryIterator()
+  {
+    return new ComplexImaginaryPartIterator(this);
+  }
+
+  public Stream<Real> realStream()
+  {
+    return StreamSupport.stream(Spliterators.spliterator(realIterator(), dim, Spliterator.SIZED | Spliterator.ORDERED),
+                                false);
+  }
+
+  public Stream<Real> imaginaryStream()
+  {
+    return StreamSupport.stream(Spliterators.spliterator(imaginaryIterator(),
+                                                         dim,
+                                                         Spliterator.SIZED | Spliterator.ORDERED),
+                                false);
+  }
+  
+  /**
+   * Computes the dot product of the vectors x and y, setting res to
+   * <code>s+(-1)^subtract+sum(this[i]*y[i],i=0..len-1)</code> The initial term s
+   * is optional and can be omitted by passing NULL (equivalently, s=0 ). The
+   * length len is allowed to be negative, which is equivalent to a length of
+   * zero. The parameters xstep or ystep specify a step length for traversing
+   * subsequences of the vectors x and y; either can be negative to step in the
+   * reverse direction starting from the initial pointer. Aliasing is allowed
+   * between res and s but not between res and the entries of x and y.
+   * 
+   * @param y        the other vector
+   * @param initial  initial value to be added to the vector, can be NULL which is
+   *                 equivalent to 0
+   * @param subtract must be 0 or 1
+   * @param xstep    signed step length for traversing subsequences of this (x)
+   *                 vector
+   * @param ystep    signed step length for traversing subsequences of y vector
+   * @param len      negative numbers are interpreted as 0
+   * @param prec     precision
+   * @param res      variable which the result is to be stored in
+   * @return res
+   */
+  public Complex dot(Complex y, Complex initial, int subtract, int xstep, int ystep, int len, int prec, Complex res)
+  {
+    arblib.acb_dot(res, initial, subtract, this, xstep, y, ystep, len, prec);
+    return res;
+  }
+
+  public Stream<Complex> stream()
+  {
+    return StreamSupport.stream(spliterator(), false);
+  }
+  
+  @Override
+  public Iterator<Complex> iterator()
+  {
+    return new ComplexIterator(this);
+  }
+  
   PoolService<Complex> poolService;
    
   public Complex( PoolService<Complex> poolService ) 

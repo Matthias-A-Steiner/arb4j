@@ -9,6 +9,10 @@
 package arblib;
 
 public class arblib {
+  public static void acb_dot(Complex res, Complex initial, int subtract, Complex x, int xstep, Complex y, int ystep, int len, int prec) {
+    arblibJNI.acb_dot(Complex.getCPtr(res), res, Complex.getCPtr(initial), initial, subtract, Complex.getCPtr(x), x, xstep, Complex.getCPtr(y), y, ystep, len, prec);
+  }
+
   public static void acb_poly_interpolate_newton(ComplexPolynomial poly, Complex xs, Complex ys, int n, int prec) {
     arblibJNI.acb_poly_interpolate_newton(ComplexPolynomial.getCPtr(poly), poly, Complex.getCPtr(xs), xs, Complex.getCPtr(ys), ys, n, prec);
   }

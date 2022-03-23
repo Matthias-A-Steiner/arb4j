@@ -41,12 +41,12 @@ import javax.swing.Timer;
 import org.apache.commons.lang.time.StopWatch;
 
 import arblib.Complex;
+import arblib.ComplexFunction;
 import arblib.Constants;
 import arblib.Float;
 import arblib.Real;
 import arblib.ThreadLocalComplex;
 import arblib.arblib;
-import arblib.functions.ComplexFunction;
 import arblib.functions.Part;
 import arblib.functions.ZFunction;
 import util.DateUtils;

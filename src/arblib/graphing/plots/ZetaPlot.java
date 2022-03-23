@@ -44,7 +44,7 @@ public class ZetaPlot
                                                                   return z.mul(Constants.i, prec, w).ζ(prec, w).normalize(w);
                                                                 });
 
-    plotter.color_mode        = 3;
+    plotter.color_mode        = 0;
     plotter.bilinearSmoothing = true;
     plotter.displayMode       = Part.Blend;
 

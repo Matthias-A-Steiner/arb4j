@@ -43,7 +43,7 @@ public class SPlot
     final int              normalization = (int) Math.pow(2, n);
 
     SFunction              sfunc         = new SFunction(Real.claim().assign(2));
-
+    
     ComplexFunctionPlotter plotter       = new ComplexFunctionPlotter(screen,
                                                                       domain,
                                                                       sfunc)
@@ -65,7 +65,7 @@ public class SPlot
     frame.setVisible(true);
     frame.setContentPane(new JScrollPane(plotter));
     frame.pack();
-    plotter.displayMode = Part.Phase;
+    plotter.displayMode = Part.Blend;
     plotter.plot();
   }
 

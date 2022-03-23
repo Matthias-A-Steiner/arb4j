@@ -23,7 +23,7 @@ public class ComplexFunctionAnimator
     gif.start(outputFile);
     gif.setDelay(250);
     
-    int frameCount = 100;
+    int frameCount = 5;
 
     for (int i = 0; i < frameCount; i++)
     {
@@ -31,7 +31,7 @@ public class ComplexFunctionAnimator
       XPlotter plot = new XPlotter(2 + i * 0.01);
       plot.plotter.labelHardyZRoots = false;
       plot.plot();
-      gif.addFrame(plot.plotter.outputImage);
+      gif.addFrame(plot.plotter.outputImage);      
       plot.frame.dispose();
     }
     gif.finish();

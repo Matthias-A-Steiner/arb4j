@@ -9,8 +9,8 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import arblib.ComplexFunction;
 import arblib.Constants;
-import arblib.functions.ComplexFunction;
 import arblib.functions.SFunction;
 import arblib.functions.TFunction;
 import arblib.graphing.ComplexFunctionPlotter;
@@ -63,7 +63,7 @@ public class SCoshPlot
     frame.pack();
     frame.setResizable(false);
     frame.setVisible(true);
-    plotter.displayMode = arblib.functions.Part.Real;
+    plotter.displayMode = arblib.functions.Part.Blend;
     plotter.plot();
 
   }
