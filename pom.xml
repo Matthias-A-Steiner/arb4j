@@ -24,6 +24,11 @@
 		</plugins>
 	</build>
 	<dependencies>
+	  <dependency>
+ 	    <groupId>com.github.hageldave.jplotter</groupId> 
+	    <artifactId>jplotter</artifactId>
+	    <version>0.5.1-arb4j</version>	
+	  </dependency>	
 		<dependency>
 			<groupId>org.vibur</groupId>
 			<artifactId>vibur-object-pool</artifactId>
