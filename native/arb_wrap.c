@@ -232,6 +232,141 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_ComplexMatrix_1entries_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  acb_mat_struct *arg1 = (acb_mat_struct *) 0 ;
+  acb_ptr arg2 = (acb_ptr) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(acb_mat_struct **)&jarg1; 
+  arg2 = *(acb_ptr *)&jarg2; 
+  if (arg1) (arg1)->entries = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_ComplexMatrix_1entries_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  acb_mat_struct *arg1 = (acb_mat_struct *) 0 ;
+  acb_ptr result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(acb_mat_struct **)&jarg1; 
+  result = (acb_ptr) ((arg1)->entries);
+  *(acb_ptr *)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_ComplexMatrix_1r_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  acb_mat_struct *arg1 = (acb_mat_struct *) 0 ;
+  long arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(acb_mat_struct **)&jarg1; 
+  arg2 = (long)jarg2; 
+  if (arg1) (arg1)->r = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_ComplexMatrix_1r_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  acb_mat_struct *arg1 = (acb_mat_struct *) 0 ;
+  long result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(acb_mat_struct **)&jarg1; 
+  result = (long) ((arg1)->r);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_ComplexMatrix_1c_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  acb_mat_struct *arg1 = (acb_mat_struct *) 0 ;
+  long arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(acb_mat_struct **)&jarg1; 
+  arg2 = (long)jarg2; 
+  if (arg1) (arg1)->c = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_ComplexMatrix_1c_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  acb_mat_struct *arg1 = (acb_mat_struct *) 0 ;
+  long result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(acb_mat_struct **)&jarg1; 
+  result = (long) ((arg1)->c);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_ComplexMatrix_1rows_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  acb_mat_struct *arg1 = (acb_mat_struct *) 0 ;
+  acb_ptr *arg2 = (acb_ptr *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(acb_mat_struct **)&jarg1; 
+  arg2 = *(acb_ptr **)&jarg2; 
+  if (arg1) (arg1)->rows = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_ComplexMatrix_1rows_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  acb_mat_struct *arg1 = (acb_mat_struct *) 0 ;
+  acb_ptr *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(acb_mat_struct **)&jarg1; 
+  result = (acb_ptr *) ((arg1)->rows);
+  *(acb_ptr **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_new_1ComplexMatrix(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  acb_mat_struct *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (acb_mat_struct *)calloc(1, sizeof(acb_mat_struct));
+  *(acb_mat_struct **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1ComplexMatrix(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  acb_mat_struct *arg1 = (acb_mat_struct *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(acb_mat_struct **)&jarg1; 
+  free((char *) arg1);
+}
+
+
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_FloatInterval_1a_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   arf_interval_struct *arg1 = (arf_interval_struct *) 0 ;
   arf_struct *arg2 = (arf_struct *) 0 ;
@@ -1827,6 +1962,22 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1ComplexPolynomial(JNIEnv *
   (void)jcls;
   arg1 = *(acb_poly_struct **)&jarg1; 
   free((char *) arg1);
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1mat_1init(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  acb_mat_struct *arg1 ;
+  long arg2 ;
+  long arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(acb_mat_struct **)&jarg1; 
+  arg2 = (long)jarg2; 
+  arg3 = (long)jarg3; 
+  acb_mat_init(arg1,arg2,arg3);
+  
 }
 
 

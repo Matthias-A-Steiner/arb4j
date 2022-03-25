@@ -26,9 +26,9 @@ public class SZetaPlot
   {
 
     Rectangle2D.Double     domain    = new Rectangle2D.Double(-55,
-                                                              30,
+                                                              15,
                                                               110,
-                                                              -40);
+                                                              -25);
 
     Dimension              screen    = new Dimension(2500,
                                                      1250);
@@ -47,8 +47,8 @@ public class SZetaPlot
                                                                                             w)
                                                                                   .normalize(w));
 
-    plotter.color_mode        = 0;
-    plotter.bilinearSmoothing = false;
+    plotter.color_mode        = 6;
+    plotter.bilinearSmoothing = true;
     plotter.displayMode       = arblib.functions.Part.Blend;
 
     frame                     = new JFrame();

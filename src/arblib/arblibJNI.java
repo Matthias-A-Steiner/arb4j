@@ -9,6 +9,16 @@
 package arblib;
 
 public class arblibJNI {
+  public final static native void ComplexMatrix_entries_set(long jarg1, ComplexMatrix jarg1_, long jarg2, Complex jarg2_);
+  public final static native long ComplexMatrix_entries_get(long jarg1, ComplexMatrix jarg1_);
+  public final static native void ComplexMatrix_r_set(long jarg1, ComplexMatrix jarg1_, int jarg2);
+  public final static native int ComplexMatrix_r_get(long jarg1, ComplexMatrix jarg1_);
+  public final static native void ComplexMatrix_c_set(long jarg1, ComplexMatrix jarg1_, int jarg2);
+  public final static native int ComplexMatrix_c_get(long jarg1, ComplexMatrix jarg1_);
+  public final static native void ComplexMatrix_rows_set(long jarg1, ComplexMatrix jarg1_, long jarg2);
+  public final static native long ComplexMatrix_rows_get(long jarg1, ComplexMatrix jarg1_);
+  public final static native long new_ComplexMatrix();
+  public final static native void delete_ComplexMatrix(long jarg1);
   public final static native void FloatInterval_a_set(long jarg1, FloatInterval jarg1_, long jarg2, Float jarg2_);
   public final static native long FloatInterval_a_get(long jarg1, FloatInterval jarg1_);
   public final static native void FloatInterval_b_set(long jarg1, FloatInterval jarg1_, long jarg2, Float jarg2_);
@@ -119,6 +129,7 @@ public class arblibJNI {
   public final static native int ComplexPolynomial_alloc_get(long jarg1, ComplexPolynomial jarg1_);
   public final static native long new_ComplexPolynomial();
   public final static native void delete_ComplexPolynomial(long jarg1);
+  public final static native void acb_mat_init(long jarg1, ComplexMatrix jarg1_, int jarg2, int jarg3);
   public final static native void acb_dot(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, int jarg3, long jarg4, Complex jarg4_, int jarg5, long jarg6, Complex jarg6_, int jarg7, int jarg8, int jarg9);
   public final static native void acb_poly_interpolate_newton(long jarg1, ComplexPolynomial jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, int jarg4, int jarg5);
   public final static native void arf_zero(long jarg1, Float jarg1_);

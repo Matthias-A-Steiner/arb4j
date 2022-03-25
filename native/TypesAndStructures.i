@@ -19,6 +19,16 @@
 #endif
 %}
 
+typedef struct
+{
+    acb_ptr entries;
+    slong r;
+    slong c;
+    acb_ptr * rows;
+}
+acb_mat_struct;
+
+typedef acb_mat_struct acb_mat_t[1];
 
 typedef struct
 {

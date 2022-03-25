@@ -1,3 +1,5 @@
+ void acb_mat_init(acb_mat_t mat, slong r, slong c);
+ 
 void acb_dot(acb_t res, const acb_t initial, int subtract, acb_srcptr x, slong xstep, acb_srcptr y, slong ystep, slong len, slong prec);
 
 void acb_poly_interpolate_newton(acb_poly_t poly, acb_srcptr xs, acb_srcptr ys, slong n, slong prec);

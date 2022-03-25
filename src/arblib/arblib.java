@@ -9,6 +9,10 @@
 package arblib;
 
 public class arblib {
+  public static void acb_mat_init(ComplexMatrix mat, int r, int c) {
+    arblibJNI.acb_mat_init(ComplexMatrix.getCPtr(mat), mat, r, c);
+  }
+
   public static void acb_dot(Complex res, Complex initial, int subtract, Complex x, int xstep, Complex y, int ystep, int len, int prec) {
     arblibJNI.acb_dot(Complex.getCPtr(res), res, Complex.getCPtr(initial), initial, subtract, Complex.getCPtr(x), x, xstep, Complex.getCPtr(y), y, ystep, len, prec);
   }
