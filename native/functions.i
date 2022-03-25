@@ -1,3 +1,5 @@
+void arb_mat_init(arb_mat_t mat, slong r, slong c);
+  
  void acb_mat_init(acb_mat_t mat, slong r, slong c);
  
 void acb_dot(acb_t res, const acb_t initial, int subtract, acb_srcptr x, slong xstep, acb_srcptr y, slong ystep, slong len, slong prec);

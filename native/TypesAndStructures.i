@@ -21,6 +21,17 @@
 
 typedef struct
 {
+    arb_ptr entries;
+    slong r;
+    slong c;
+    arb_ptr * rows;
+}
+arb_mat_struct;
+
+typedef arb_mat_struct arb_mat_t[1];
+
+typedef struct
+{
     acb_ptr entries;
     slong r;
     slong c;

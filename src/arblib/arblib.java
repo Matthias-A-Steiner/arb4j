@@ -9,6 +9,10 @@
 package arblib;
 
 public class arblib {
+  public static void arb_mat_init(RealMatrix mat, int r, int c) {
+    arblibJNI.arb_mat_init(RealMatrix.getCPtr(mat), mat, r, c);
+  }
+
   public static void acb_mat_init(ComplexMatrix mat, int r, int c) {
     arblibJNI.acb_mat_init(ComplexMatrix.getCPtr(mat), mat, r, c);
   }
