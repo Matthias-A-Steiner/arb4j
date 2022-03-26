@@ -16,7 +16,7 @@ import hageldave.jplotter.renderables.Triangles.*;
 import hageldave.jplotter.renderers.*;
 
 /**
- * TODO: adapt this cut-n-paste of hageldave.jplotter.howto.LineChart
+ * TODO: adapt this cut-n-paste of hageldave.jplotter.howto.LineChart modeled after CommplexFunctionPlotter
  */
 public class RealFunctionPlotter extends
                                  JComponent
