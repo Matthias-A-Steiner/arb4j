@@ -9,6 +9,16 @@
 package arblib;
 
 public class arblibJNI {
+  public final static native void RealMatrix_entries_set(long jarg1, RealMatrix jarg1_, long jarg2, Real jarg2_);
+  public final static native long RealMatrix_entries_get(long jarg1, RealMatrix jarg1_);
+  public final static native void RealMatrix_r_set(long jarg1, RealMatrix jarg1_, int jarg2);
+  public final static native int RealMatrix_r_get(long jarg1, RealMatrix jarg1_);
+  public final static native void RealMatrix_c_set(long jarg1, RealMatrix jarg1_, int jarg2);
+  public final static native int RealMatrix_c_get(long jarg1, RealMatrix jarg1_);
+  public final static native void RealMatrix_rows_set(long jarg1, RealMatrix jarg1_, long jarg2);
+  public final static native long RealMatrix_rows_get(long jarg1, RealMatrix jarg1_);
+  public final static native long new_RealMatrix();
+  public final static native void delete_RealMatrix(long jarg1);
   public final static native void ComplexMatrix_entries_set(long jarg1, ComplexMatrix jarg1_, long jarg2, Complex jarg2_);
   public final static native long ComplexMatrix_entries_get(long jarg1, ComplexMatrix jarg1_);
   public final static native void ComplexMatrix_r_set(long jarg1, ComplexMatrix jarg1_, int jarg2);
@@ -129,6 +139,8 @@ public class arblibJNI {
   public final static native int ComplexPolynomial_alloc_get(long jarg1, ComplexPolynomial jarg1_);
   public final static native long new_ComplexPolynomial();
   public final static native void delete_ComplexPolynomial(long jarg1);
+  public final static native int isolateRootsOfRealFunction(long jarg1, long jarg2, java.lang.Object jarg3, long jarg4, int jarg5, int jarg6, int jarg7, int jarg8);
+  public final static native void arb_mat_init(long jarg1, RealMatrix jarg1_, int jarg2, int jarg3);
   public final static native void acb_mat_init(long jarg1, ComplexMatrix jarg1_, int jarg2, int jarg3);
   public final static native void acb_dot(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, int jarg3, long jarg4, Complex jarg4_, int jarg5, long jarg6, Complex jarg6_, int jarg7, int jarg8, int jarg9);
   public final static native void acb_poly_interpolate_newton(long jarg1, ComplexPolynomial jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, int jarg4, int jarg5);

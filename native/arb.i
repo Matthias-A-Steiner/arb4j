@@ -27,6 +27,7 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 %rename (DirichletPrimeGroup) dirichlet_prime_group_struct;
 %rename (ComplexPolynomial) acb_poly_struct;
 %rename (ComplexMatrix) acb_mat_struct;
+%rename (RealMatrix) arb_mat_struct;
 
 
 
@@ -43,6 +44,8 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 %include "ComplexPolynomial.i"
 
 %include "ComplexMatrix.i"
+
+%include "RealMatrix.i"
 
 %include "TypesAndStructures.i"
 

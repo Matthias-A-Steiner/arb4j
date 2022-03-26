@@ -48,3 +48,9 @@ int realJavaFunction(arb_ptr out,
 
   return 0;
 }
+
+slong isolateRootsOfRealFunction(arf_interval_ptr *found, int **flags, jobject realFunction, arf_interval_t interval, slong maxdepth, slong maxeval, slong maxfound, slong prec)
+{
+  return arb_calc_isolate_roots(found, flags, realJavaFunction, &realFunction, interval, maxdepth, maxeval, maxfound, prec);
+}
+
