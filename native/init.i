@@ -1,6 +1,7 @@
 
 %wrapper %{
 #include <jni.h>
+#include "calculus.h"
 
 extern JNIEnv* env;
 extern jclass realFunctionClass;
