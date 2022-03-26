@@ -2100,6 +2100,40 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1ComplexPolynomial(JNIEnv *
 }
 
 
+SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_isolateRootsOfRealFunction(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jobject jarg3, jlong jarg4, jint jarg5, jint jarg6, jint jarg7, jint jarg8) {
+  jint jresult = 0 ;
+  arf_interval_ptr *arg1 = (arf_interval_ptr *) 0 ;
+  int **arg2 = (int **) 0 ;
+  jobject arg3 ;
+  arf_interval_ptr arg4 ;
+  long arg5 ;
+  long arg6 ;
+  long arg7 ;
+  long arg8 ;
+  arf_interval_ptr *argp4 ;
+  long result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(arf_interval_ptr **)&jarg1; 
+  arg2 = *(int ***)&jarg2; 
+  arg3 = jarg3; 
+  argp4 = *(arf_interval_ptr **)&jarg4; 
+  if (!argp4) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null arf_interval_ptr");
+    return 0;
+  }
+  arg4 = *argp4; 
+  arg5 = (long)jarg5; 
+  arg6 = (long)jarg6; 
+  arg7 = (long)jarg7; 
+  arg8 = (long)jarg8; 
+  result = (long)isolateRootsOfRealFunction(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_arb_1mat_1init(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
   arb_mat_struct *arg1 ;
   long arg2 ;

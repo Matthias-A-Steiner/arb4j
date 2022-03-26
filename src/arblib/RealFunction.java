@@ -20,6 +20,29 @@ public interface RealFunction
   public void evaluate(Real res, int order, int prec, Real z);
 
   /**
+   * TODO: rectify the SWIGTYPE prefixes
+   * 
+   * @param found
+   * @param flags
+   * @param interval
+   * @param maxdepth
+   * @param maxeval
+   * @param maxfound
+   * @param prec
+   * @return
+   */
+  public default int isolateRoots(SWIGTYPE_p_arf_interval_ptr found,
+                                  SWIGTYPE_p_p_int flags,
+                                  SWIGTYPE_p_arf_interval_ptr interval,
+                                  int maxdepth,
+                                  int maxeval,
+                                  int maxfound,
+                                  int prec)
+  {
+    return arblib.isolateRootsOfRealFunction(found, flags, this, interval, maxdepth, maxeval, maxfound, prec);
+  }
+
+  /**
    * TODO: add option for monotonic convergence
    * 
    * @param func
