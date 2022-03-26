@@ -30,6 +30,7 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 %rename (ComplexMatrix) acb_mat_struct;
 %rename (RealMatrix) arb_mat_struct;
 %rename (FoundRoots) root_struct;
+%rename (RealFunctionParams) real_java_function_param_struct;
 
 
 %include "Real.i"
@@ -49,6 +50,8 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 %include "RealMatrix.i"
 
 %include "FoundRoots.i"
+
+%include "RealFunctionParams.i"
 
 %include "TypesAndStructures.i"
 

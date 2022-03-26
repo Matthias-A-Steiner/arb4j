@@ -26,7 +26,7 @@ public class XPlotter
                                  IOException
   {
     // the first Lehmer pair
-    Rectangle2D.Double     domain        = new Rectangle2D.Double(7002.8,
+    Rectangle2D.Double     domain        = new Rectangle2D.Double(3002.8,
                                                                   -1.15,
                                                                   4,
                                                                   2.5);

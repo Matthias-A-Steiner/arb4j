@@ -17,10 +17,24 @@
 #include <acb_dirichlet.h>
 #include <string.h>
 #include "calculus.h"
+JNIEnv *env;
 
 jclass realFunctionClass;
+jclass realClass;
+jclass complexClass;
+jclass complexFunctionClass;
 jmethodID realFunctionEvaluationMethod;
-JNIEnv *env;
+jmethodID complexFunctionEvaluationMethod;
+jfieldID realCPtrField;
+jfieldID complexCPtrField;
+
+
+void initCalculus()
+{
+  realClass = (*env)->FindClass (env, "arblib/Real");
+  printf("realClass=%p\n", realClass );
+  fflush(stdout);
+}
 
 /**
  * Implements  a univariate real function that calls RealFunction#evaluate for some jobject passed
@@ -34,18 +48,19 @@ JNIEnv *env;
  *
  */
 int
-realJavaFunction (arb_ptr out, const arb_t inp, void *param,
+realJavaFunction (arb_ptr outp, const arb_t inp, void *param,
 slong order,
                   slong prec)
 {
-  jobject realFunction = (jobject) &param;
+  real_java_function_param_struct *params = (real_java_function_param_struct*) param;
+  jobject realFunction = params->realFunction;
+  jobject z = params->z;
+  jobject w = params->w;
+  (*env)->SetLongField(env, z, realCPtrField, (long)&inp);
+  (*env)->SetLongField(env, w, realCPtrField, (long)outp);
+  jobject result = (*env)->CallObjectMethod(env, realFunction, realFunctionEvaluationMethod, z, order, prec, w);
 
-  /**
-   * TODO: pass parameters to this
-   */
-  jobject result = (*env)->CallObjectMethod(env, realFunction, realFunctionEvaluationMethod);
-
-  return 0;
+  return ARB_CALC_SUCCESS;
 }
 
 /**
@@ -55,12 +70,14 @@ slong order,
  flint_free(info); where num is the return value indicating the nuymber of roots found
  */
 slong
-isolateRootsOfRealFunction (root_struct rootStruct, jobject realFunction, arf_interval_t interval, slong maxdepth,
-slong maxeval,
+isolateRootsOfRealFunction (root_struct rootStruct, jobject realFunction, real_java_function_param_struct params,
+                            arf_interval_t interval, slong maxdepth,
+                            slong maxeval,
                             slong maxfound,
                             slong prec)
 {
-  return arb_calc_isolate_roots(&rootStruct.found, &rootStruct.flags, realJavaFunction, &realFunction, interval,
-                                maxdepth, maxeval, maxfound, prec);
+  params.realFunction = realFunction;
+  return arb_calc_isolate_roots(&rootStruct.found, &rootStruct.flags, realJavaFunction, &params, interval, maxdepth,
+                                maxeval, maxfound, prec);
 }
 

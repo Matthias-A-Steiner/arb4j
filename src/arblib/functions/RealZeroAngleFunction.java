@@ -38,7 +38,7 @@ public class RealZeroAngleFunction<F extends ComplexFunction> implements
   Complex t = null;
 
   @Override
-  public void evaluate(Real res, int order, int prec, Real a)
+  public Real evaluate(Real a, int order, int prec, Real res)
   {
     assert a.isFinite();
 
@@ -46,12 +46,12 @@ public class RealZeroAngleFunction<F extends ComplexFunction> implements
     {
       s = t.add(h.mul(iπ.mul(a, prec, dt).exp(prec, dt), dt), prec, s);
       assert s.isFinite() : String.format("s=%s t=%s h=%s a=%s dt=%s\n", s, t, h, a, dt);
-      SFunction.S(null, s, a, 2, false, prec, y)
-               .getReal()
-               .div(y.get(1).mul(dt, prec, p).getImag().mul(π, p.getImag()), prec, res)
-               .tanh(res, prec)
-               .add(a, prec, res)
-               .frac(prec, res);
+      return SFunction.S(null, s, a, 2, false, prec, y)
+                      .getReal()
+                      .div(y.get(1).mul(dt, prec, p).getImag().mul(π, p.getImag()), prec, res)
+                      .tanh(res, prec)
+                      .add(a, prec, res)
+                      .frac(prec, res);
 
     }
   }

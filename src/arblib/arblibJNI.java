@@ -9,6 +9,14 @@
 package arblib;
 
 public class arblibJNI {
+  public final static native void RealFunctionParams_realFunction_set(long jarg1, RealFunctionParams jarg1_, java.lang.Object jarg2);
+  public final static native java.lang.Object RealFunctionParams_realFunction_get(long jarg1, RealFunctionParams jarg1_);
+  public final static native void RealFunctionParams_z_set(long jarg1, RealFunctionParams jarg1_, java.lang.Object jarg2);
+  public final static native java.lang.Object RealFunctionParams_z_get(long jarg1, RealFunctionParams jarg1_);
+  public final static native void RealFunctionParams_w_set(long jarg1, RealFunctionParams jarg1_, java.lang.Object jarg2);
+  public final static native java.lang.Object RealFunctionParams_w_get(long jarg1, RealFunctionParams jarg1_);
+  public final static native long new_RealFunctionParams();
+  public final static native void delete_RealFunctionParams(long jarg1);
   public final static native void RealMatrix_entries_set(long jarg1, RealMatrix jarg1_, long jarg2, Real jarg2_);
   public final static native long RealMatrix_entries_get(long jarg1, RealMatrix jarg1_);
   public final static native void RealMatrix_r_set(long jarg1, RealMatrix jarg1_, int jarg2);
@@ -145,7 +153,8 @@ public class arblibJNI {
   public final static native int ComplexPolynomial_alloc_get(long jarg1, ComplexPolynomial jarg1_);
   public final static native long new_ComplexPolynomial();
   public final static native void delete_ComplexPolynomial(long jarg1);
-  public final static native int isolateRootsOfRealFunction(long jarg1, FoundRoots jarg1_, java.lang.Object jarg2, long jarg3, FloatInterval jarg3_, int jarg4, int jarg5, int jarg6, int jarg7);
+  public final static native void initCalculus();
+  public final static native int isolateRootsOfRealFunction(long jarg1, FoundRoots jarg1_, java.lang.Object jarg2, long jarg3, RealFunctionParams jarg3_, long jarg4, FloatInterval jarg4_, int jarg5, int jarg6, int jarg7, int jarg8);
   public final static native void flint_free(long jarg1);
   public final static native void arb_mat_init(long jarg1, RealMatrix jarg1_, int jarg2, int jarg3);
   public final static native void acb_mat_init(long jarg1, ComplexMatrix jarg1_, int jarg2, int jarg3);

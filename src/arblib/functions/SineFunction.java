@@ -7,11 +7,11 @@ public class SineFunction implements
 {
 
   @Override
-  public void evaluate(Real res, int order, int prec, Real z)
+  public Real evaluate(Real z, int order, int prec, Real res)
   {
     // TODO: implement order>1
     assert order == 1;
-    z.sin(prec, res);
+    return z.sin(prec, res);
   }
 
 }

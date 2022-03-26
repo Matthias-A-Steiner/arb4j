@@ -1,5 +1,8 @@
+void initCalculus();
+
 slong
-isolateRootsOfRealFunction (root_struct rootStruct, jobject realFunction, arf_interval_t interval, slong maxdepth,
+isolateRootsOfRealFunction (root_struct rootStruct, jobject realFunction, real_java_function_param_struct params,
+                            arf_interval_t interval, slong maxdepth,
                             slong maxeval,
                             slong maxfound,
                             slong prec);

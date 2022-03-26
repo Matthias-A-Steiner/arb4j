@@ -11,7 +11,28 @@ import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 %}
 
+%typemap(javabody) arb_struct %{
+
+ static
+ {
+   System.loadLibrary( "arblib" );
+ }
+ 
+  public long swigCPtr;
+  public boolean swigCMemOwn;
+
+  public $javaclassname(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
+
+  public static long getCPtr($javaclassname obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
+%}
+
 %typemap(javacode) arb_struct %{
+
 
  PoolService<Real> poolService;
  
@@ -35,14 +56,14 @@ import static arblib.Constants.*;
 
   static final PoolService<Real> pool = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
                                                              new RealFactory(),
-                                                             100,
+                                                             0,
                                                              100000000,
                                                              false,
                                                              new RealListener() );
 
   static final PoolService<Real> pool2 = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
                                                               new RealFactory(2),
-                                                              100,
+                                                              0,
                                                               100000000,
                                                               false,
                                                               new RealListener() );

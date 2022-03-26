@@ -11,6 +11,20 @@ import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 %}
 
+%typemap(javabody) acb_struct %{
+  public long swigCPtr;
+  public boolean swigCMemOwn;
+
+  public $javaclassname(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
+
+  public static long getCPtr($javaclassname obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
+%}
+
 %typemap(javafinalize) acb_struct ""
 
 %typemap(javainterfaces) acb_struct "AutoCloseable,Iterable<Complex>"

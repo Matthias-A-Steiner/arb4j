@@ -17,7 +17,7 @@ import arblib.functions.RealConvergenceTester;
  */
 public interface RealFunction
 {
-  public void evaluate(Real res, int order, int prec, Real z);
+  public Real evaluate(Real z, int order, int prec, Real res);
 
   /**
    * <code>
@@ -45,7 +45,7 @@ public interface RealFunction
    
    * The following breaking criteria are implemented:
    * At most maxdepth recursive subdivisions are attempted. 
-   * The smallest details that can be distinguished are therefore about times the width of interval. 
+   * The smallest details that can be distinguished are therefore about maxdepth times the width of interval. 
    * 
    * The total number of calls to func is thereby restricted to a small multiple of maxeval (the actual count can be slightly higher depending on implementation details). 
    * </code>
@@ -76,8 +76,11 @@ public interface RealFunction
    */
   public default FoundRoots isolateRoots(FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec)
   {
-    FoundRoots roots = new FoundRoots();
-    roots.n = arblib.isolateRootsOfRealFunction(roots, this, interval, maxdepth, maxeval, maxfound, prec);
+    FoundRoots         roots  = new FoundRoots();
+    RealFunctionParams params = new RealFunctionParams();
+    params.setZ(new Real());
+    params.setW(new Real());
+    roots.n = arblib.isolateRootsOfRealFunction(roots, this, params, interval, maxdepth, maxeval, maxfound, prec);
     return roots;
   }
 
@@ -103,7 +106,7 @@ public interface RealFunction
       for (i = 0; i < iters[0]; i++)
       {
         assert z.isFinite() : String.format("z is not finite,i=%s", i);
-        evaluate(z, 1, bits, res);
+        evaluate(res, 1, bits, z);
         bits = res.relAccuracyBits() * 2;
 
         assert res.isFinite() : String.format("res is not finite: i=%s and z=%s", i, z);
@@ -137,7 +140,7 @@ public interface RealFunction
     Real z = z0;
     for (int i = 0; i < n; i++)
     {
-      evaluate(z, 1, prec, z = res.get(i));
+      evaluate(z = res.get(i), 1, prec, z);
     }
     return res;
   }

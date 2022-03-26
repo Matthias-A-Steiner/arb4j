@@ -102,7 +102,7 @@ public class XFunction implements
     int          iters[]  = new int[]
     { 100 };
     XFunction    yFunc    = new XFunction();
-    RealFunction realYang = (outDir, order, prec, inDir) -> yFunc.realXang(t, s, h, inDir, outDir, prec);
+    RealFunction realYang = (inDir, order, prec, outDir) -> yFunc.realXang(t, s, h, inDir, outDir, prec);
     realYang.iteratedCompositionLimit(scale, convergenceTester, iters, heading, resolution);
 
     if (trace)
@@ -157,7 +157,7 @@ public class XFunction implements
       int          iters[]          = new int[]
       { 100 };
       XFunction    xFunc            = new XFunction(ONE);
-      RealFunction realYangFunction = (outDir, order, bits, inDir) -> xFunc.realXang(y0, s, h, inDir, outDir, bits);
+      RealFunction realYangFunction = (inDir, order, bits, outDir) -> xFunc.realXang(y0, s, h, inDir, outDir, bits);
       realYangFunction.iteratedCompositionLimit( a, tester, iters, heading, prec);
       // assertEquals(0.74754757546711682717, vector.get(0).doubleValue(),
       // Math.pow(10, -17));

@@ -20,6 +20,10 @@ public class RealFactory implements
   @Override
   public Real create()
   {
+    if (dim == 1)
+    {
+      return new Real();
+    }
     return Real.newArray(dim);
   }
 

@@ -16,8 +16,14 @@ import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 
 public class Real implements AutoCloseable {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+
+ static
+ {
+   System.loadLibrary( "arblib" );
+ }
+ 
+  public long swigCPtr;
+  public boolean swigCMemOwn;
 
   public Real(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
@@ -37,6 +43,7 @@ public class Real implements AutoCloseable {
       swigCPtr = 0;
     }
   }
+
 
 
  PoolService<Real> poolService;
@@ -61,14 +68,14 @@ public class Real implements AutoCloseable {
 
   static final PoolService<Real> pool = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
                                                              new RealFactory(),
-                                                             100,
+                                                             0,
                                                              100000000,
                                                              false,
                                                              new RealListener() );
 
   static final PoolService<Real> pool2 = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
                                                               new RealFactory(2),
-                                                              100,
+                                                              0,
                                                               100000000,
                                                               false,
                                                               new RealListener() );
