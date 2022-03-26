@@ -77,7 +77,7 @@ public interface RealFunction
   public default FoundRoots isolateRoots(FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec)
   {
     FoundRoots roots = new FoundRoots();
-    arblib.isolateRootsOfRealFunction(roots, this, interval, maxdepth, maxeval, maxfound, prec);
+    roots.n = arblib.isolateRootsOfRealFunction(roots, this, interval, maxdepth, maxeval, maxfound, prec);
     return roots;
   }
 

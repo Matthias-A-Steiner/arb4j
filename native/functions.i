@@ -3,6 +3,8 @@ isolateRootsOfRealFunction (root_struct rootStruct, jobject realFunction, arf_in
                             slong maxeval,
                             slong maxfound,
                             slong prec);
+
+void flint_free(void * ptr);
                             
 void arb_mat_init(arb_mat_t mat, slong r, slong c);
   

@@ -12,6 +12,7 @@
 #include <acb_dirichlet.h>
 #include <dirichlet.h>
 #include <acb_modular.h>
+#include "calculus.h"
 
 #include "complex_plot.h"
 #ifndef size_t

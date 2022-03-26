@@ -221,6 +221,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include <acb_dirichlet.h>
 #include <dirichlet.h>
 #include <acb_modular.h>
+#include "calculus.h"
 
 #include "complex_plot.h"
 #ifndef size_t
@@ -2211,6 +2212,16 @@ SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_isolateRootsOfRealFunction(JNIEnv 
   jresult = (jint)result; 
   
   return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_flint_1free(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  void *arg1 = (void *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(void **)&jarg1; 
+  flint_free(arg1);
 }
 
 

@@ -8,7 +8,9 @@
 
 package arblib;
 
-public class FoundRoots {
+import static arblib.Constants.*;
+
+public class FoundRoots implements AutoCloseable {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -21,11 +23,6 @@ public class FoundRoots {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
-  @SuppressWarnings("deprecation")
-  protected void finalize() {
-    delete();
-  }
-
   public synchronized void delete() {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
@@ -35,6 +32,24 @@ public class FoundRoots {
       swigCPtr = 0;
     }
   }
+
+  int n;
+  
+  @Override
+  public void close()
+  {
+    delete();
+    for (int i = 0; i < n; i++)
+    {
+      // TODO: enable array of interval access and call arf_interval_clear on each
+    }
+    arblib.flint_free(new SWIGTYPE_p_void(FloatInterval.getCPtr(getFound()),
+                                          false));
+    arblib.flint_free(new SWIGTYPE_p_void(SWIGTYPE_p_int.getCPtr(getFlags()),
+                                          false));
+  }
+
+  
 
   public void setFound(FloatInterval value) {
     arblibJNI.FoundRoots_found_set(swigCPtr, this, FloatInterval.getCPtr(value), value);

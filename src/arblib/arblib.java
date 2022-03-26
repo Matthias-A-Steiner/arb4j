@@ -13,6 +13,10 @@ public class arblib {
     return arblibJNI.isolateRootsOfRealFunction(FoundRoots.getCPtr(rootStruct), rootStruct, realFunction, FloatInterval.getCPtr(interval), interval, maxdepth, maxeval, maxfound, prec);
   }
 
+  public static void flint_free(SWIGTYPE_p_void ptr) {
+    arblibJNI.flint_free(SWIGTYPE_p_void.getCPtr(ptr));
+  }
+
   public static void arb_mat_init(RealMatrix mat, int r, int c) {
     arblibJNI.arb_mat_init(RealMatrix.getCPtr(mat), mat, r, c);
   }
