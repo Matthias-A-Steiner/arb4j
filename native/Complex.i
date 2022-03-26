@@ -529,14 +529,14 @@ import static arblib.Constants.*;
  
   static final PoolService<Complex> pool = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
                                                                 new ComplexFactory(),
-                                                                100,
+                                                                0,
                                                                 100000000,
                                                                 false,
                                                                 new ComplexListener() );
 
   static final PoolService<Complex> pool2 = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
                                                                  new ComplexFactory(2),
-                                                                 100,
+                                                                 0,
                                                                  100000000,
                                                                  false,
                                                                  new ComplexListener() );
