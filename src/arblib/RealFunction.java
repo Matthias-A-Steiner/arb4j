@@ -74,15 +74,11 @@ public interface RealFunction
    *                 does not make sense for maxdepth to exceed prec.
    * @return
    */
-  public default int isolateRoots(SWIGTYPE_p_arf_interval_ptr found,
-                                  SWIGTYPE_p_p_int flags,
-                                  SWIGTYPE_p_arf_interval_ptr interval,
-                                  int maxdepth,
-                                  int maxeval,
-                                  int maxfound,
-                                  int prec)
+  public default FoundRoots isolateRoots(FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec)
   {
-    return arblib.isolateRootsOfRealFunction(found, flags, this, interval, maxdepth, maxeval, maxfound, prec);
+    FoundRoots roots = new FoundRoots();
+    roots.n = arblib.isolateRootsOfRealFunction(roots, this, interval, maxdepth, maxeval, maxfound, prec);
+    return roots;
   }
 
   /**

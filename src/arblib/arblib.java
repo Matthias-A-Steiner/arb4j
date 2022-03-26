@@ -9,8 +9,12 @@
 package arblib;
 
 public class arblib {
-  public static int isolateRootsOfRealFunction(SWIGTYPE_p_arf_interval_ptr found, SWIGTYPE_p_p_int flags, java.lang.Object realFunction, SWIGTYPE_p_arf_interval_ptr interval, int maxdepth, int maxeval, int maxfound, int prec) {
-    return arblibJNI.isolateRootsOfRealFunction(SWIGTYPE_p_arf_interval_ptr.getCPtr(found), SWIGTYPE_p_p_int.getCPtr(flags), realFunction, SWIGTYPE_p_arf_interval_ptr.getCPtr(interval), maxdepth, maxeval, maxfound, prec);
+  public static int isolateRootsOfRealFunction(FoundRoots rootStruct, java.lang.Object realFunction, FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec) {
+    return arblibJNI.isolateRootsOfRealFunction(FoundRoots.getCPtr(rootStruct), rootStruct, realFunction, FloatInterval.getCPtr(interval), interval, maxdepth, maxeval, maxfound, prec);
+  }
+
+  public static void flint_free(SWIGTYPE_p_void ptr) {
+    arblibJNI.flint_free(SWIGTYPE_p_void.getCPtr(ptr));
   }
 
   public static void arb_mat_init(RealMatrix mat, int r, int c) {

@@ -2,6 +2,7 @@
 
 %include typemaps.i
 
+
 #define __signed__
 #define slong signed long
 #define ulong unsigned long
@@ -28,7 +29,7 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 %rename (ComplexPolynomial) acb_poly_struct;
 %rename (ComplexMatrix) acb_mat_struct;
 %rename (RealMatrix) arb_mat_struct;
-
+%rename (FoundRoots) root_struct;
 
 
 %include "Real.i"
@@ -46,6 +47,8 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 %include "ComplexMatrix.i"
 
 %include "RealMatrix.i"
+
+%include "FoundRoots.i"
 
 %include "TypesAndStructures.i"
 

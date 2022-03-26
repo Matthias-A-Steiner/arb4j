@@ -1,5 +1,11 @@
-slong isolateRootsOfRealFunction(arf_interval_ptr *found, int **flags, jobject realFunction, arf_interval_ptr interval, slong maxdepth, slong maxeval, slong maxfound, slong prec);
+slong
+isolateRootsOfRealFunction (root_struct rootStruct, jobject realFunction, arf_interval_t interval, slong maxdepth,
+                            slong maxeval,
+                            slong maxfound,
+                            slong prec);
 
+void flint_free(void * ptr);
+                            
 void arb_mat_init(arb_mat_t mat, slong r, slong c);
   
  void acb_mat_init(acb_mat_t mat, slong r, slong c);

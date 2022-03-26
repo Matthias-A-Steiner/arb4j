@@ -12,6 +12,7 @@
 #include <acb_dirichlet.h>
 #include <dirichlet.h>
 #include <acb_modular.h>
+#include "calculus.h"
 
 #include "complex_plot.h"
 #ifndef size_t
@@ -48,6 +49,15 @@ typedef struct
 }
 arf_interval_struct;
 
+typedef arf_interval_struct arf_interval_t[1];
+typedef arf_interval_struct * arf_interval_ptr;
+typedef const arf_interval_struct * arf_interval_srcptr;
+
+typedef struct
+{
+  arf_interval_ptr found;
+  int *flags;
+} root_struct;
 
 typedef struct
 {
