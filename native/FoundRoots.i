@@ -11,7 +11,6 @@ import static arblib.Constants.*;
   @Override
   public void close()
   {
-    delete();
     for (int i = 0; i < n; i++)
     {
       // TODO: enable array of interval access and call arf_interval_clear on each
@@ -20,6 +19,8 @@ import static arblib.Constants.*;
                                           false));
     arblib.flint_free(new SWIGTYPE_p_void(SWIGTYPE_p_int.getCPtr(getFlags()),
                                           false));
+    delete();
+                                          
   }
 
   
