@@ -84,7 +84,8 @@ import static arblib.Constants.*;
 
   public Stream<Complex> stream()
   {
-    return StreamSupport.stream(spliterator(), false);
+    return StreamSupport.stream(Spliterators.spliterator(iterator(), dim, Spliterator.SIZED | Spliterator.ORDERED),
+                                false);
   }
   
   @Override
