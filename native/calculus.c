@@ -64,17 +64,17 @@ slong order,
 {
   real_java_function_param_struct *params = (real_java_function_param_struct*) param;
   jobject realFunction = params->realFunction;
-//  printf("inp=");
-//  arb_print(inp);
-//  printf("\n");
-//  printf("outp=");
-//  arb_print(outp);
-//  printf("\n");
-//
-//  fflush(stdout);
+  printf("inp=");
+  arb_print(inp);
+  printf("\n");
+  printf("outp=");
+  arb_print(outp);
+  printf("\n");
+
+  fflush(stdout);
   const arb_t *inp0 = (const arb_t*) &inp;
-  long long inpointer = (long long) inp0;
-  long long outpointer = (long long) outp;
+  jlong inpointer = (jlong) inp0;
+  jlong outpointer = (jlong) outp;
   //printf("input pointer = 0x%lx\n", inpointer );
   //printf("output pointer = 0x%lx\n", outpointer );
   //fflush(stdout);
@@ -91,8 +91,8 @@ slong order,
   }
 
 
-  jobject z = params->zobj;
-  jobject w = params->wobj;
+  jobject z = (*env)->NewGlobalRef( env, params->zobj );
+  jobject w = (*env)->NewGlobalRef( env, params->wobj );
   (*env)->SetLongField(env, z, realCPtrField, inpointer);
   (*env)->SetLongField(env, w, realCPtrField, outpointer);
 
