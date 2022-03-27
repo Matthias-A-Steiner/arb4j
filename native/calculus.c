@@ -29,19 +29,20 @@ jmethodID complexFunctionEvaluationMethod;
 jfieldID realCPtrField;
 jfieldID complexCPtrField;
 
-jobject newReal( long long p )
+jobject
+newReal (long long p)
 {
-  printf("newReal p=0x%lx env=0x%lx realClass=0x%lx realConstructor=0x%lx\n", p, env, realClass, realConstructor );
+  printf("newReal p=0x%lx env=0x%lx realClass=0x%lx realConstructor=0x%lx\n", p, env, realClass, realConstructor);
   fflush(stdout);
   jobject o = (*env)->NewObject(env, realClass, realConstructor, p);
-  if ( (*env)->ExceptionCheck(env) )
-   {
-     printf(" NewObject thrw an EXCEPTION p=%p\n", p );
-     (*env)->ExceptionDescribe(env);
-     fflush(stdout);
-     exit(1);
-     return ARB_CALC_NO_CONVERGENCE;
-   }
+  if ((*env)->ExceptionCheck(env))
+  {
+    printf(" NewObject thrw an EXCEPTION p=%p\n", p);
+    (*env)->ExceptionDescribe(env);
+    fflush(stdout);
+    exit(1);
+    return ARB_CALC_NO_CONVERGENCE;
+  }
   return o;
 }
 
@@ -63,68 +64,63 @@ slong order,
 {
   real_java_function_param_struct *params = (real_java_function_param_struct*) param;
   jobject realFunction = params->realFunction;
-  printf("inp=");
-  arb_print(inp);
-  printf("\n");
-  printf("outp=");
-  arb_print(outp);
-  printf("\n");
-
-  fflush(stdout);
-  const arb_t *inp0 = (const arb_t *)&inp;
-  long long inpointer = (long long)
-      inp0;
+//  printf("inp=");
+//  arb_print(inp);
+//  printf("\n");
+//  printf("outp=");
+//  arb_print(outp);
+//  printf("\n");
+//
+//  fflush(stdout);
+  const arb_t *inp0 = (const arb_t*) &inp;
+  long long inpointer = (long long) inp0;
   long long outpointer = (long long) outp;
-  printf("input pointer = 0x%lx\n", inpointer );
-  printf("output pointer = 0x%lx\n", outpointer );
-  fflush(stdout);
-  if ( (*env)->ExceptionCheck(env) )
-  {
-    printf("Excepting pending.. shouldnt call method..!\n");
-    fflush(stdout);
-  }
+  //printf("input pointer = 0x%lx\n", inpointer );
+  //printf("output pointer = 0x%lx\n", outpointer );
+  //fflush(stdout);
 
-  if ( params->zobj == 0 )
+  if (params->zobj == 0)
   {
-    params->zobj =  (*env)->NewObject( env, realClass, realConstructor, inpointer ) ;
-  }
-  else
-  {
-    (*env)->SetLongField(env, params->zobj, realCPtrField, inpointer );
+    params->zobj = (*env)->NewObject(env, realClass, realConstructor);
   }
 
 
-  if ( params->wobj == 0 )
+  if (params->wobj == 0)
   {
-    params->wobj =  (*env)->NewObject( env, realClass, realConstructor, outpointer ) ;
+    params->wobj = (*env)->NewObject(env, realClass, realConstructor);
   }
-  else
-  {
-    (*env)->SetLongField(env, params->wobj, realCPtrField, outpointer );
-  }
+
 
   jobject z = params->zobj;
   jobject w = params->wobj;
-  jlong zaddr = (*env)->GetLongField(env, z, realCPtrField);
+  (*env)->SetLongField(env, z, realCPtrField, inpointer);
+  (*env)->SetLongField(env, w, realCPtrField, outpointer);
 
-  printf("z = 0x%lx should be equal to 0x%lx\n", z, inpointer );
-  printf("w = 0x%lx should be equal to 0x%lx\n", w, outpointer );
-  fflush(stdout);
-  if ( (*env)->ExceptionCheck(env) )
+//  jlong zaddr = (*env)->GetLongField(env, z, realCPtrField);
+//  jlong waddr = (*env)->GetLongField(env, w, realCPtrField);
+//  arb_ptr wptr = (arb_ptr)waddr;
+
+// printf("z = 0x%lx should be equal to 0x%lx\n", zaddr, inpointer);
+  //printf("w = 0x%lx should be equal to 0x%lx\n", waddr, outpointer);
+
+  if ((*env)->ExceptionCheck(env))
   {
     printf("Excepting pending.. shouldnt call method..!\n");
     fflush(stdout);
   }
   jobject result = (*env)->CallObjectMethod(env, realFunction, realFunctionEvaluationMethod, z, order, prec, w);
-  if ( (*env)->ExceptionCheck(env) )
+  if ((*env)->ExceptionCheck(env))
   {
-    printf(" CallObjectMethod thrw an EXCEPTION result=%p\n", result );
+    printf(" CallObjectMethod thrw an EXCEPTION result=%p\n", result);
     (*env)->ExceptionDescribe(env);
     fflush(stdout);
     exit(1);
     return ARB_CALC_NO_CONVERGENCE;
   }
-  printf("returned  result=%p\n", result );
+//  arb_print(wptr);
+//  printf("\n");
+//  fflush(stdout);
+//  printf("returned  result=%p\n", result);
 
   return ARB_CALC_SUCCESS;
 }

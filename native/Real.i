@@ -247,7 +247,7 @@ import static arblib.Constants.*;
   }
   
   
-  public String toString()
+  public synchronized String toString()
   {
     if ( dim == 1 )
     {

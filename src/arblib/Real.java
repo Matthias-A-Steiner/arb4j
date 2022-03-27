@@ -259,7 +259,7 @@ public class Real implements AutoCloseable {
   }
   
   
-  public String toString()
+  public synchronized String toString()
   {
     if ( dim == 1 )
     {

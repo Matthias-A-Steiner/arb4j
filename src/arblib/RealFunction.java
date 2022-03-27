@@ -90,14 +90,7 @@ public interface RealFunction
   {
     RealFunctionParams params = new RealFunctionParams();
     params.setRealFunction(this);
-    Real w = new Real();
-    params.setW(w);
-    params.setWobj(w);
-    Real z = new Real();
-    params.setZ(z);
-    params.setZobj(z);
-    System.out.format("at time of getParams() call w.cPtr=0x%x and z.cPtr=0x%x\n", w.swigCPtr, z.swigCPtr);
-    System.out.flush();
+
     return params;
   }
 
