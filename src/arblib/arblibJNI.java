@@ -19,6 +19,14 @@ public class arblibJNI {
   public final static native void delete_FoundRoots(long jarg1);
   public final static native void RealFunctionParams_realFunction_set(long jarg1, RealFunctionParams jarg1_, java.lang.Object jarg2);
   public final static native java.lang.Object RealFunctionParams_realFunction_get(long jarg1, RealFunctionParams jarg1_);
+  public final static native void RealFunctionParams_z_set(long jarg1, RealFunctionParams jarg1_, long jarg2, Real jarg2_);
+  public final static native long RealFunctionParams_z_get(long jarg1, RealFunctionParams jarg1_);
+  public final static native void RealFunctionParams_zobj_set(long jarg1, RealFunctionParams jarg1_, java.lang.Object jarg2);
+  public final static native java.lang.Object RealFunctionParams_zobj_get(long jarg1, RealFunctionParams jarg1_);
+  public final static native void RealFunctionParams_w_set(long jarg1, RealFunctionParams jarg1_, long jarg2, Real jarg2_);
+  public final static native long RealFunctionParams_w_get(long jarg1, RealFunctionParams jarg1_);
+  public final static native void RealFunctionParams_wobj_set(long jarg1, RealFunctionParams jarg1_, java.lang.Object jarg2);
+  public final static native java.lang.Object RealFunctionParams_wobj_get(long jarg1, RealFunctionParams jarg1_);
   public final static native long new_RealFunctionParams();
   public final static native void delete_RealFunctionParams(long jarg1);
   public final static native void RealMatrix_entries_set(long jarg1, RealMatrix jarg1_, long jarg2, Real jarg2_);

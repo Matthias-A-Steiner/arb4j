@@ -74,13 +74,31 @@ public interface RealFunction
    *                 does not make sense for maxdepth to exceed prec.
    * @return
    */
-  public default FoundRoots isolateRoots(FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec)
+  public default FoundRoots isolateRoots(RealFunctionParams params,
+                                         FloatInterval interval,
+                                         int maxdepth,
+                                         int maxeval,
+                                         int maxfound,
+                                         int prec)
   {
-    FoundRoots         roots  = new FoundRoots();
-    RealFunctionParams params = new RealFunctionParams();
-    params.setRealFunction(this); 
+    FoundRoots roots = new FoundRoots();
     roots.n = arblib.isolateRootsOfRealFunction(roots, this, params, interval, maxdepth, maxeval, maxfound, prec);
     return roots;
+  }
+
+  default RealFunctionParams getParams()
+  {
+    RealFunctionParams params = new RealFunctionParams();
+    params.setRealFunction(this);
+    Real w = new Real();
+    params.setW(w);
+    params.setWobj(w);
+    Real z = new Real();
+    params.setZ(z);
+    params.setZobj(z);
+    System.out.format("at time of getParams() call w.cPtr=0x%x and z.cPtr=0x%x\n", w.swigCPtr, z.swigCPtr);
+    System.out.flush();
+    return params;
   }
 
   /**

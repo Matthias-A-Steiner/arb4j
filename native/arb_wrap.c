@@ -368,6 +368,120 @@ SWIGEXPORT jobject JNICALL Java_arblib_arblibJNI_RealFunctionParams_1realFunctio
 }
 
 
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_RealFunctionParams_1z_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
+  arb_ptr arg2 = (arb_ptr) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(real_java_function_param_struct **)&jarg1; 
+  arg2 = *(arb_ptr *)&jarg2; 
+  if (arg1) (arg1)->z = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_RealFunctionParams_1z_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
+  arb_ptr result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(real_java_function_param_struct **)&jarg1; 
+  result = (arb_ptr) ((arg1)->z);
+  *(arb_ptr *)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_RealFunctionParams_1zobj_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
+  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
+  jobject arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(real_java_function_param_struct **)&jarg1; 
+  arg2 = jarg2; 
+  if (arg1) (arg1)->zobj = arg2;
+}
+
+
+SWIGEXPORT jobject JNICALL Java_arblib_arblibJNI_RealFunctionParams_1zobj_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jobject jresult = 0 ;
+  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
+  jobject result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(real_java_function_param_struct **)&jarg1; 
+  result =  ((arg1)->zobj);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_RealFunctionParams_1w_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
+  arb_ptr arg2 = (arb_ptr) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(real_java_function_param_struct **)&jarg1; 
+  arg2 = *(arb_ptr *)&jarg2; 
+  if (arg1) (arg1)->w = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_RealFunctionParams_1w_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
+  arb_ptr result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(real_java_function_param_struct **)&jarg1; 
+  result = (arb_ptr) ((arg1)->w);
+  *(arb_ptr *)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_RealFunctionParams_1wobj_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
+  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
+  jobject arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(real_java_function_param_struct **)&jarg1; 
+  arg2 = jarg2; 
+  if (arg1) (arg1)->wobj = arg2;
+}
+
+
+SWIGEXPORT jobject JNICALL Java_arblib_arblibJNI_RealFunctionParams_1wobj_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jobject jresult = 0 ;
+  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
+  jobject result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(real_java_function_param_struct **)&jarg1; 
+  result =  ((arg1)->wobj);
+  jresult = result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_new_1RealFunctionParams(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   real_java_function_param_struct *result = 0 ;

@@ -74,16 +74,47 @@ slong order,
   const arb_t *inp0 = (const arb_t *)&inp;
   long long inpointer = (long long)
       inp0;
-  jobject z = newReal(inpointer);
   long long outpointer = (long long) outp;
-  jobject w = newReal(outpointer);
   printf("input pointer = 0x%lx\n", inpointer );
   printf("output pointer = 0x%lx\n", outpointer );
   fflush(stdout);
-  printf("z = 0x%lx\n", z );
-  printf("w = 0x%lx\n", w );
-  fflush(stdout);
+  if ( (*env)->ExceptionCheck(env) )
+  {
+    printf("Excepting pending.. shouldnt call method..!\n");
+    fflush(stdout);
+  }
 
+  if ( params->zobj == 0 )
+  {
+    params->zobj =  (*env)->NewObject( env, realClass, realConstructor, inpointer ) ;
+  }
+  else
+  {
+    (*env)->SetLongField(env, params->zobj, realCPtrField, inpointer );
+  }
+
+
+  if ( params->wobj == 0 )
+  {
+    params->wobj =  (*env)->NewObject( env, realClass, realConstructor, outpointer ) ;
+  }
+  else
+  {
+    (*env)->SetLongField(env, params->wobj, realCPtrField, outpointer );
+  }
+
+  jobject z = params->zobj;
+  jobject w = params->wobj;
+  jlong zaddr = (*env)->GetLongField(env, z, realCPtrField);
+
+  printf("z = 0x%lx should be equal to 0x%lx\n", z, inpointer );
+  printf("w = 0x%lx should be equal to 0x%lx\n", w, outpointer );
+  fflush(stdout);
+  if ( (*env)->ExceptionCheck(env) )
+  {
+    printf("Excepting pending.. shouldnt call method..!\n");
+    fflush(stdout);
+  }
   jobject result = (*env)->CallObjectMethod(env, realFunction, realFunctionEvaluationMethod, z, order, prec, w);
   if ( (*env)->ExceptionCheck(env) )
   {
