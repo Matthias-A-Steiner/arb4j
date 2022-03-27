@@ -14,7 +14,7 @@ public class RealFunctionTest extends
   public static void testIsolateRoots()
   {
     SineFunction sineFunction = new SineFunction();
-    FoundRoots   roots        = sineFunction.isolateRoots(new FloatInterval(4.0,
+    FoundRoots   roots        = sineFunction.isolateRoots(new FloatInterval(-4.0,
                                                                             4.0),
                                                           50,
                                                           100000,

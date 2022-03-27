@@ -9,10 +9,6 @@
 package arblib;
 
 public class arblib {
-  public static void initCalculus() {
-    arblibJNI.initCalculus();
-  }
-
   public static int isolateRootsOfRealFunction(FoundRoots rootStruct, java.lang.Object realFunction, RealFunctionParams params, FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec) {
     return arblibJNI.isolateRootsOfRealFunction(FoundRoots.getCPtr(rootStruct), rootStruct, realFunction, RealFunctionParams.getCPtr(params), params, FloatInterval.getCPtr(interval), interval, maxdepth, maxeval, maxfound, prec);
   }

@@ -233,6 +233,113 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 extern "C" {
 #endif
 
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_FoundRoots_1found_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  root_struct *arg1 = (root_struct *) 0 ;
+  arf_interval_ptr arg2 = (arf_interval_ptr) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(root_struct **)&jarg1; 
+  arg2 = *(arf_interval_ptr *)&jarg2; 
+  if (arg1) (arg1)->found = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_FoundRoots_1found_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  root_struct *arg1 = (root_struct *) 0 ;
+  arf_interval_ptr result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(root_struct **)&jarg1; 
+  result = (arf_interval_ptr) ((arg1)->found);
+  *(arf_interval_ptr *)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_FoundRoots_1flags_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  root_struct *arg1 = (root_struct *) 0 ;
+  int *arg2 = (int *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(root_struct **)&jarg1; 
+  arg2 = *(int **)&jarg2; 
+  if (arg1) (arg1)->flags = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_FoundRoots_1flags_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  root_struct *arg1 = (root_struct *) 0 ;
+  int *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(root_struct **)&jarg1; 
+  result = (int *) ((arg1)->flags);
+  *(int **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_FoundRoots_1n_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  root_struct *arg1 = (root_struct *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(root_struct **)&jarg1; 
+  arg2 = (int)jarg2; 
+  if (arg1) (arg1)->n = arg2;
+}
+
+
+SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_FoundRoots_1n_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  root_struct *arg1 = (root_struct *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(root_struct **)&jarg1; 
+  result = (int) ((arg1)->n);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_new_1FoundRoots(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  root_struct *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (root_struct *)calloc(1, sizeof(root_struct));
+  *(root_struct **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1FoundRoots(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  root_struct *arg1 = (root_struct *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(root_struct **)&jarg1; 
+  free((char *) arg1);
+}
+
+
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_RealFunctionParams_1realFunction_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
   real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
   jobject arg2 ;
@@ -256,62 +363,6 @@ SWIGEXPORT jobject JNICALL Java_arblib_arblibJNI_RealFunctionParams_1realFunctio
   (void)jarg1_;
   arg1 = *(real_java_function_param_struct **)&jarg1; 
   result =  ((arg1)->realFunction);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_RealFunctionParams_1z_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
-  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
-  jobject arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(real_java_function_param_struct **)&jarg1; 
-  arg2 = jarg2; 
-  if (arg1) (arg1)->z = arg2;
-}
-
-
-SWIGEXPORT jobject JNICALL Java_arblib_arblibJNI_RealFunctionParams_1z_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jobject jresult = 0 ;
-  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
-  jobject result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(real_java_function_param_struct **)&jarg1; 
-  result =  ((arg1)->z);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_RealFunctionParams_1w_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
-  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
-  jobject arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(real_java_function_param_struct **)&jarg1; 
-  arg2 = jarg2; 
-  if (arg1) (arg1)->w = arg2;
-}
-
-
-SWIGEXPORT jobject JNICALL Java_arblib_arblibJNI_RealFunctionParams_1w_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jobject jresult = 0 ;
-  real_java_function_param_struct *arg1 = (real_java_function_param_struct *) 0 ;
-  jobject result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(real_java_function_param_struct **)&jarg1; 
-  result =  ((arg1)->w);
   jresult = result; 
   return jresult;
 }
@@ -685,85 +736,6 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1FloatInterval(JNIEnv *jenv
   (void)jenv;
   (void)jcls;
   arg1 = *(arf_interval_struct **)&jarg1; 
-  free((char *) arg1);
-}
-
-
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_FoundRoots_1found_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  root_struct *arg1 = (root_struct *) 0 ;
-  arf_interval_ptr arg2 = (arf_interval_ptr) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(root_struct **)&jarg1; 
-  arg2 = *(arf_interval_ptr *)&jarg2; 
-  if (arg1) (arg1)->found = arg2;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_FoundRoots_1found_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  root_struct *arg1 = (root_struct *) 0 ;
-  arf_interval_ptr result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(root_struct **)&jarg1; 
-  result = (arf_interval_ptr) ((arg1)->found);
-  *(arf_interval_ptr *)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_FoundRoots_1flags_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  root_struct *arg1 = (root_struct *) 0 ;
-  int *arg2 = (int *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(root_struct **)&jarg1; 
-  arg2 = *(int **)&jarg2; 
-  if (arg1) (arg1)->flags = arg2;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_FoundRoots_1flags_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  root_struct *arg1 = (root_struct *) 0 ;
-  int *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(root_struct **)&jarg1; 
-  result = (int *) ((arg1)->flags);
-  *(int **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_new_1FoundRoots(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  root_struct *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (root_struct *)calloc(1, sizeof(root_struct));
-  *(root_struct **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1FoundRoots(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  root_struct *arg1 = (root_struct *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(root_struct **)&jarg1; 
   free((char *) arg1);
 }
 
@@ -2286,25 +2258,16 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1ComplexPolynomial(JNIEnv *
 }
 
 
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_initCalculus(JNIEnv *jenv, jclass jcls) {
-  (void)jenv;
-  (void)jcls;
-  initCalculus();
-}
-
-
 SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_isolateRootsOfRealFunction(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2, jlong jarg3, jobject jarg3_, jlong jarg4, jobject jarg4_, jint jarg5, jint jarg6, jint jarg7, jint jarg8) {
   jint jresult = 0 ;
-  root_struct arg1 ;
+  root_struct *arg1 = (root_struct *) 0 ;
   jobject arg2 ;
-  real_java_function_param_struct arg3 ;
+  real_java_function_param_struct *arg3 = (real_java_function_param_struct *) 0 ;
   arf_interval_struct *arg4 ;
   long arg5 ;
   long arg6 ;
   long arg7 ;
   long arg8 ;
-  root_struct *argp1 ;
-  real_java_function_param_struct *argp3 ;
   long result;
   
   (void)jenv;
@@ -2312,19 +2275,9 @@ SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_isolateRootsOfRealFunction(JNIEnv 
   (void)jarg1_;
   (void)jarg3_;
   (void)jarg4_;
-  argp1 = *(root_struct **)&jarg1; 
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null root_struct");
-    return 0;
-  }
-  arg1 = *argp1; 
+  arg1 = *(root_struct **)&jarg1; 
   arg2 = jarg2; 
-  argp3 = *(real_java_function_param_struct **)&jarg3; 
-  if (!argp3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null real_java_function_param_struct");
-    return 0;
-  }
-  arg3 = *argp3; 
+  arg3 = *(real_java_function_param_struct **)&jarg3; 
   arg4 = *(arf_interval_struct **)&jarg4; 
   arg5 = (long)jarg5; 
   arg6 = (long)jarg6; 
@@ -4718,6 +4671,7 @@ extern jclass realClass;
 extern jclass complexClass;
 extern jclass realFunctionClass;
 extern jclass complexFunctionClass;
+extern jmethodID realConstructor;
 extern jmethodID realFunctionEvaluationMethod;
 extern jmethodID complexFunctionEvaluationMethod;
 extern jfieldID realCPtrField;
@@ -4726,6 +4680,7 @@ extern jfieldID complexCPtrField;
 jint
 JNI_OnLoad (JavaVM *vm, void *reserved)
 {
+  
   printf("trying to load...\n");
   printf("\n");
   fflush(stdout);
@@ -4737,6 +4692,8 @@ JNI_OnLoad (JavaVM *vm, void *reserved)
     return -1;
   }
   realClass = (*env)->FindClass(env, "arblib/Real");
+  realConstructor = (*env)->GetMethodID(env,  realClass, "<init>", "(J)V");
+  
   complexClass = (*env)->FindClass(env, "arblib/Complex");  
   realFunctionClass = (*env)->FindClass(env, "arblib/RealFunction");
   complexFunctionClass = (*env)->FindClass(env, "arblib/ComplexFunction");
@@ -4753,7 +4710,7 @@ JNI_OnLoad (JavaVM *vm, void *reserved)
   realCPtrField = (*env)->GetFieldID(env, realClass, "swigCPtr", "J");
   complexCPtrField = (*env)->GetFieldID(env, complexClass, "swigCPtr", "J");
   
-  printf("arblib loaded\n");
+  printf("arblib loaded, realConstructor=0x%lx\n", realConstructor );
   fflush(stdout);
 
   return JNI_VERSION_10;

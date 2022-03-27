@@ -21,7 +21,13 @@ import static arblib.Constants.*;
   public long swigCPtr;
   public boolean swigCMemOwn;
 
+  public $javaclassname(long cPtr) {
+    this(cPtr,false);
+  }
+    
   public $javaclassname(long cPtr, boolean cMemoryOwn) {
+  System.out.format("init Real cPtr=%p \n", cPtr );
+  System.out.flush();
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }

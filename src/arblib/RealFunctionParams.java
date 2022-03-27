@@ -50,22 +50,6 @@ public class RealFunctionParams implements AutoCloseable {
     return arblibJNI.RealFunctionParams_realFunction_get(swigCPtr, this);
   }
 
-  public void setZ(java.lang.Object value) {
-    arblibJNI.RealFunctionParams_z_set(swigCPtr, this, value);
-  }
-
-  public java.lang.Object getZ() {
-    return arblibJNI.RealFunctionParams_z_get(swigCPtr, this);
-  }
-
-  public void setW(java.lang.Object value) {
-    arblibJNI.RealFunctionParams_w_set(swigCPtr, this, value);
-  }
-
-  public java.lang.Object getW() {
-    return arblibJNI.RealFunctionParams_w_get(swigCPtr, this);
-  }
-
   public RealFunctionParams() {
     this(arblibJNI.new_RealFunctionParams(), true);
   }

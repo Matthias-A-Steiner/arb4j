@@ -8,6 +8,7 @@ extern jclass realClass;
 extern jclass complexClass;
 extern jclass realFunctionClass;
 extern jclass complexFunctionClass;
+extern jmethodID realConstructor;
 extern jmethodID realFunctionEvaluationMethod;
 extern jmethodID complexFunctionEvaluationMethod;
 extern jfieldID realCPtrField;
@@ -16,6 +17,7 @@ extern jfieldID complexCPtrField;
 jint
 JNI_OnLoad (JavaVM *vm, void *reserved)
 {
+  
   printf("trying to load...\n");
   printf("\n");
   fflush(stdout);
@@ -27,6 +29,8 @@ JNI_OnLoad (JavaVM *vm, void *reserved)
     return -1;
   }
   realClass = (*env)->FindClass(env, "arblib/Real");
+  realConstructor = (*env)->GetMethodID(env,  realClass, "<init>", "(J)V");
+  
   complexClass = (*env)->FindClass(env, "arblib/Complex");  
   realFunctionClass = (*env)->FindClass(env, "arblib/RealFunction");
   complexFunctionClass = (*env)->FindClass(env, "arblib/ComplexFunction");
@@ -43,7 +47,7 @@ JNI_OnLoad (JavaVM *vm, void *reserved)
   realCPtrField = (*env)->GetFieldID(env, realClass, "swigCPtr", "J");
   complexCPtrField = (*env)->GetFieldID(env, complexClass, "swigCPtr", "J");
   
-  printf("arblib loaded\n");
+  printf("arblib loaded, realConstructor=0x%lx\n", realConstructor );
   fflush(stdout);
 
   return JNI_VERSION_10;

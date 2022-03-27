@@ -22,9 +22,14 @@
 
 typedef struct
 {
+  arf_interval_ptr found;
+  int *flags;
+  int n;
+} root_struct;
+
+typedef struct
+{
   jobject realFunction;
-  jobject z;
-  jobject w;
 } real_java_function_param_struct;
 
 typedef struct
@@ -60,11 +65,7 @@ typedef arf_interval_struct arf_interval_t[1];
 typedef arf_interval_struct * arf_interval_ptr;
 typedef const arf_interval_struct * arf_interval_srcptr;
 
-typedef struct
-{
-  arf_interval_ptr found;
-  int *flags;
-} root_struct;
+
 
 typedef struct
 {

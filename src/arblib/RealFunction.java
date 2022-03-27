@@ -78,8 +78,7 @@ public interface RealFunction
   {
     FoundRoots         roots  = new FoundRoots();
     RealFunctionParams params = new RealFunctionParams();
-    params.setZ(new Real());
-    params.setW(new Real());
+    params.setRealFunction(this); 
     roots.n = arblib.isolateRootsOfRealFunction(roots, this, params, interval, maxdepth, maxeval, maxfound, prec);
     return roots;
   }

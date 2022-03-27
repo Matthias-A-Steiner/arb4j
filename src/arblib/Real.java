@@ -25,7 +25,13 @@ public class Real implements AutoCloseable {
   public long swigCPtr;
   public boolean swigCMemOwn;
 
+  public Real(long cPtr) {
+    this(cPtr,false);
+  }
+    
   public Real(long cPtr, boolean cMemoryOwn) {
+  System.out.format("init Real cPtr=%p \n", cPtr );
+  System.out.flush();
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }

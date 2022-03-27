@@ -11,6 +11,7 @@ public class SineFunction implements
   {
     // TODO: implement order>1
     assert order == 1;
+    //System.out.format( "THe z addy is 0x%x", z.swigCPtr );
     return z.sin(prec, res);
   }
 

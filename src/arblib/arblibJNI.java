@@ -9,12 +9,16 @@
 package arblib;
 
 public class arblibJNI {
+  public final static native void FoundRoots_found_set(long jarg1, FoundRoots jarg1_, long jarg2, FloatInterval jarg2_);
+  public final static native long FoundRoots_found_get(long jarg1, FoundRoots jarg1_);
+  public final static native void FoundRoots_flags_set(long jarg1, FoundRoots jarg1_, long jarg2);
+  public final static native long FoundRoots_flags_get(long jarg1, FoundRoots jarg1_);
+  public final static native void FoundRoots_n_set(long jarg1, FoundRoots jarg1_, int jarg2);
+  public final static native int FoundRoots_n_get(long jarg1, FoundRoots jarg1_);
+  public final static native long new_FoundRoots();
+  public final static native void delete_FoundRoots(long jarg1);
   public final static native void RealFunctionParams_realFunction_set(long jarg1, RealFunctionParams jarg1_, java.lang.Object jarg2);
   public final static native java.lang.Object RealFunctionParams_realFunction_get(long jarg1, RealFunctionParams jarg1_);
-  public final static native void RealFunctionParams_z_set(long jarg1, RealFunctionParams jarg1_, java.lang.Object jarg2);
-  public final static native java.lang.Object RealFunctionParams_z_get(long jarg1, RealFunctionParams jarg1_);
-  public final static native void RealFunctionParams_w_set(long jarg1, RealFunctionParams jarg1_, java.lang.Object jarg2);
-  public final static native java.lang.Object RealFunctionParams_w_get(long jarg1, RealFunctionParams jarg1_);
   public final static native long new_RealFunctionParams();
   public final static native void delete_RealFunctionParams(long jarg1);
   public final static native void RealMatrix_entries_set(long jarg1, RealMatrix jarg1_, long jarg2, Real jarg2_);
@@ -43,12 +47,6 @@ public class arblibJNI {
   public final static native long FloatInterval_b_get(long jarg1, FloatInterval jarg1_);
   public final static native long new_FloatInterval();
   public final static native void delete_FloatInterval(long jarg1);
-  public final static native void FoundRoots_found_set(long jarg1, FoundRoots jarg1_, long jarg2, FloatInterval jarg2_);
-  public final static native long FoundRoots_found_get(long jarg1, FoundRoots jarg1_);
-  public final static native void FoundRoots_flags_set(long jarg1, FoundRoots jarg1_, long jarg2);
-  public final static native long FoundRoots_flags_get(long jarg1, FoundRoots jarg1_);
-  public final static native long new_FoundRoots();
-  public final static native void delete_FoundRoots(long jarg1);
   public final static native void Magnitude_exp_set(long jarg1, Magnitude jarg1_, long jarg2);
   public final static native long Magnitude_exp_get(long jarg1, Magnitude jarg1_);
   public final static native void Magnitude_man_set(long jarg1, Magnitude jarg1_, long jarg2);
@@ -153,7 +151,6 @@ public class arblibJNI {
   public final static native int ComplexPolynomial_alloc_get(long jarg1, ComplexPolynomial jarg1_);
   public final static native long new_ComplexPolynomial();
   public final static native void delete_ComplexPolynomial(long jarg1);
-  public final static native void initCalculus();
   public final static native int isolateRootsOfRealFunction(long jarg1, FoundRoots jarg1_, java.lang.Object jarg2, long jarg3, RealFunctionParams jarg3_, long jarg4, FloatInterval jarg4_, int jarg5, int jarg6, int jarg7, int jarg8);
   public final static native void flint_free(long jarg1);
   public final static native void arb_mat_init(long jarg1, RealMatrix jarg1_, int jarg2, int jarg3);

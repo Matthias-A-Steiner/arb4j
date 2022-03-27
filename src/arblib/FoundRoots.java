@@ -70,6 +70,14 @@ public class FoundRoots implements AutoCloseable {
     return (cPtr == 0) ? null : new SWIGTYPE_p_int(cPtr, false);
   }
 
+  public void setN(int value) {
+    arblibJNI.FoundRoots_n_set(swigCPtr, this, value);
+  }
+
+  public int getN() {
+    return arblibJNI.FoundRoots_n_get(swigCPtr, this);
+  }
+
   public FoundRoots() {
     this(arblibJNI.new_FoundRoots(), true);
   }

@@ -51,7 +51,7 @@ public class XPlotter
                                                            domain,
                                                            (z, w) -> xFunction.evaluate(z, w));
 
-    plotter.color_mode        = 0;
+    plotter.color_mode        = 1;
     plotter.bilinearSmoothing = false;
 
     frame                     = new JFrame();
