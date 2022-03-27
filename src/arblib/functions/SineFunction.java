@@ -25,7 +25,7 @@ public class SineFunction implements
       assert order == 1;
       // System.out.format( "THe z addy is 0x%x", z.swigCPtr );
       Real sin = z.sin(prec, w);
-      System.out.format( "z=%s w=%s\n", z.doubleValue(), w.doubleValue());
+      System.out.format( "z=%s w=%s\n", z, w);
 //      System.out.flush();
       return sin;
     }

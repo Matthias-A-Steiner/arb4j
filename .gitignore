@@ -1,13 +1,11 @@
-
 /.gitignore~
 /pom.xml~
-<<<<<<< HEAD
 /README~
-=======
->>>>>>> branch 'master' of /git/arb4j
 /out.png
 /libarblib.so
 /target/
 /X.gif
 /class.path
 /hs_err_pid120044.log
+/core.*
+/hs_err*.log
