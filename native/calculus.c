@@ -66,14 +66,14 @@ slong order,
   jobject realFunction = params->realFunction;
   printf("inp=");
   arb_print(inp);
-  printf("\n");
+  printf(" address=%p\n", (void*)&inp);
   printf("outp=");
   arb_print(outp);
-  printf("\n");
+  printf(" address=%p\n", (void*)outp);
 
   fflush(stdout);
-  const arb_t *inp0 = (const arb_t*) &inp;
-  jlong inpointer = (jlong) inp0;
+
+  jlong inpointer = (jlong) &inp;
   jlong outpointer = (jlong) outp;
   //printf("input pointer = 0x%lx\n", inpointer );
   //printf("output pointer = 0x%lx\n", outpointer );
@@ -91,11 +91,13 @@ slong order,
   }
 
 
-  jobject z = (*env)->NewGlobalRef( env, params->zobj );
-  jobject w = (*env)->NewGlobalRef( env, params->wobj );
+  jobject z = params->zobj;
+  jobject w = params->wobj;
   (*env)->SetLongField(env, z, realCPtrField, inpointer);
   (*env)->SetLongField(env, w, realCPtrField, outpointer);
-
+  printf("setting zPtr to 0x%lx and wPtr to 0x%lx\n", inpointer, outpointer );
+  printf("\n");
+  fflush(stdout);
 //  jlong zaddr = (*env)->GetLongField(env, z, realCPtrField);
 //  jlong waddr = (*env)->GetLongField(env, w, realCPtrField);
 //  arb_ptr wptr = (arb_ptr)waddr;

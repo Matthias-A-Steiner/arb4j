@@ -16,7 +16,7 @@ public class RealFunctionTest
     RealFunctionParams params       = sineFunction.getParams();
     FoundRoots         roots        = sineFunction.isolateRoots(params,
                                                                 new FloatInterval(-1.0,
-                                                                                  1.0),
+                                                                                  0.5),
                                                                 50,
                                                                 20,
                                                                 10,

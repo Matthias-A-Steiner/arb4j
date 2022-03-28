@@ -1,4 +1,4 @@
-#!/bin/sh -x
+\#!/bin/sh -x
 
 export JAVA_HOME=/usr/lib/jvm/jdk-17
 export BASEDIR=$(dirname $(readlink -f $0))/..
@@ -8,4 +8,4 @@ cd $BASEDIR
 export INCLUDES="-I$JAVA_HOME/include -I$JAVA_HOME/include/linux"
 export SOURCES="native/complex_plot.c native/arb_wrap.c native/calculus.c"
 
-gcc -O3 -fPIC -shared $SOURCES $INCLUDES -olibarblib.so -lflint-arb 
+gcc -Og -fPIC -shared $SOURCES $INCLUDES -olibarblib.so -lflint-arb 
