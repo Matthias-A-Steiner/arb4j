@@ -159,6 +159,7 @@ public class arblibJNI {
   public final static native int ComplexPolynomial_alloc_get(long jarg1, ComplexPolynomial jarg1_);
   public final static native long new_ComplexPolynomial();
   public final static native void delete_ComplexPolynomial(long jarg1);
+  public final static native void acb_poly_product_roots(long jarg1, ComplexPolynomial jarg1_, long jarg2, Complex jarg2_, int jarg3, int jarg4);
   public final static native void acb_poly_evaluate(long jarg1, Complex jarg1_, long jarg2, ComplexPolynomial jarg2_, long jarg3, Complex jarg3_, int jarg4);
   public final static native void acb_poly_evaluate2(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, ComplexPolynomial jarg3_, long jarg4, Complex jarg4_, int jarg5);
   public final static native int isolateRootsOfRealFunction(long jarg1, FoundRoots jarg1_, java.lang.Object jarg2, long jarg3, RealFunctionParams jarg3_, long jarg4, FloatInterval jarg4_, int jarg5, int jarg6, int jarg7, int jarg8);

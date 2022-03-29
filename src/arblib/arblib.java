@@ -9,6 +9,10 @@
 package arblib;
 
 public class arblib {
+  public static void acb_poly_product_roots(ComplexPolynomial poly, Complex xs, int n, int prec) {
+    arblibJNI.acb_poly_product_roots(ComplexPolynomial.getCPtr(poly), poly, Complex.getCPtr(xs), xs, n, prec);
+  }
+
   public static void acb_poly_evaluate(Complex y, ComplexPolynomial f, Complex x, int prec) {
     arblibJNI.acb_poly_evaluate(Complex.getCPtr(y), y, ComplexPolynomial.getCPtr(f), f, Complex.getCPtr(x), x, prec);
   }

@@ -2372,6 +2372,25 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1ComplexPolynomial(JNIEnv *
 }
 
 
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1poly_1product_1roots(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3, jint jarg4) {
+  acb_poly_struct *arg1 ;
+  acb_srcptr arg2 = (acb_srcptr) 0 ;
+  long arg3 ;
+  long arg4 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(acb_poly_struct **)&jarg1; 
+  arg2 = *(acb_srcptr *)&jarg2; 
+  arg3 = (long)jarg3; 
+  arg4 = (long)jarg4; 
+  acb_poly_product_roots(arg1,(acb_struct const *)arg2,arg3,arg4);
+  
+}
+
+
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1poly_1evaluate(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jint jarg4) {
   acb_struct *arg1 ;
   acb_poly_struct *arg2 ;
