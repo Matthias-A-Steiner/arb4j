@@ -25,10 +25,10 @@ public class SZetaPlot
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
 
-    Rectangle2D.Double     domain    = new Rectangle2D.Double(-55,
-                                                              15,
-                                                              110,
-                                                              -25);
+    Rectangle2D.Double     domain    = new Rectangle2D.Double(13,
+                                                              5,
+                                                              25,
+                                                              -10);
 
     Dimension              screen    = new Dimension(2500,
                                                      1250);
@@ -47,7 +47,7 @@ public class SZetaPlot
                                                                                             w)
                                                                                   .normalize(w));
 
-    plotter.color_mode        = 6;
+    plotter.color_mode        = 0;
     plotter.bilinearSmoothing = true;
     plotter.displayMode       = arblib.functions.Part.Blend;
 
