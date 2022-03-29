@@ -1,4 +1,7 @@
- void acb_poly_product_roots(acb_poly_t poly, acb_srcptr xs, slong n, slong prec);
+void acb_poly_derivative(acb_poly_t res, const acb_poly_t poly, slong prec);
+void acb_poly_integral(acb_poly_t res, const acb_poly_t poly, slong prec);
+ 
+void acb_poly_product_roots(acb_poly_t poly, acb_srcptr xs, slong n, slong prec);
  
 void acb_poly_evaluate(acb_t y, const acb_poly_t f, const acb_t x, slong prec);
  

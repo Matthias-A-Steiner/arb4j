@@ -2372,6 +2372,42 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1ComplexPolynomial(JNIEnv *
 }
 
 
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1poly_1derivative(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3) {
+  acb_poly_struct *arg1 ;
+  acb_poly_struct *arg2 ;
+  long arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(acb_poly_struct **)&jarg1; 
+  arg2 = *(acb_poly_struct **)&jarg2; 
+  arg3 = (long)jarg3; 
+  acb_poly_derivative(arg1,(acb_poly_struct const (*))arg2,arg3);
+  
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1poly_1integral(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3) {
+  acb_poly_struct *arg1 ;
+  acb_poly_struct *arg2 ;
+  long arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(acb_poly_struct **)&jarg1; 
+  arg2 = *(acb_poly_struct **)&jarg2; 
+  arg3 = (long)jarg3; 
+  acb_poly_integral(arg1,(acb_poly_struct const (*))arg2,arg3);
+  
+  
+}
+
+
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1poly_1product_1roots(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3, jint jarg4) {
   acb_poly_struct *arg1 ;
   acb_srcptr arg2 = (acb_srcptr) 0 ;
