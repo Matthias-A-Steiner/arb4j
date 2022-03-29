@@ -9,6 +9,14 @@
 package arblib;
 
 public class arblib {
+  public static void acb_poly_evaluate(Complex y, ComplexPolynomial f, Complex x, int prec) {
+    arblibJNI.acb_poly_evaluate(Complex.getCPtr(y), y, ComplexPolynomial.getCPtr(f), f, Complex.getCPtr(x), x, prec);
+  }
+
+  public static void acb_poly_evaluate2(Complex y, Complex z, ComplexPolynomial f, Complex x, int prec) {
+    arblibJNI.acb_poly_evaluate2(Complex.getCPtr(y), y, Complex.getCPtr(z), z, ComplexPolynomial.getCPtr(f), f, Complex.getCPtr(x), x, prec);
+  }
+
   public static int isolateRootsOfRealFunction(FoundRoots rootStruct, java.lang.Object realFunction, RealFunctionParams params, FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec) {
     return arblibJNI.isolateRootsOfRealFunction(FoundRoots.getCPtr(rootStruct), rootStruct, realFunction, RealFunctionParams.getCPtr(params), params, FloatInterval.getCPtr(interval), interval, maxdepth, maxeval, maxfound, prec);
   }
