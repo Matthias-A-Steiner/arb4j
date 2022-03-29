@@ -1,12 +1,20 @@
 package arblib.functions;
 
-import static arblib.Complex.*;
-import static arblib.Constants.*;
-import static arblib.functions.SFunction.*;
-import static arblib.functions.ZFunction.*;
-import static java.lang.Math.*;
+import static arblib.Complex.claim;
+import static arblib.Complex.claim2;
+import static arblib.Complex.defaultPrec;
+import static arblib.Constants.ONE;
+import static arblib.Constants.iπ;
+import static arblib.Constants.π;
+import static arblib.functions.SFunction.S;
+import static arblib.functions.ZFunction.Z;
+import static java.lang.Math.pow;
 
-import arblib.*;
+import arblib.Complex;
+import arblib.ComplexFunction;
+import arblib.Constants;
+import arblib.Real;
+import arblib.RealFunction;
 
 /**
  * Copyright ©2022 Stephen Crowley

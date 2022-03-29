@@ -1,8 +1,5 @@
 package arblib;
 
-import static arblib.arblib.arb_init;
-import static arblib.arblib.arf_init;
-
 import arblib.functions.RealConvergenceTester;
 
 /**

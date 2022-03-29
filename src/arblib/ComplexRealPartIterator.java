@@ -1,7 +1,5 @@
 package arblib;
 
-import java.util.Iterator;
-
 public class ComplexRealPartIterator extends ComplexPartIterator 
 {
 

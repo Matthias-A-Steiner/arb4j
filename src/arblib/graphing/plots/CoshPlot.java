@@ -1,7 +1,5 @@
 package arblib.graphing.plots;
 
-import static arblib.Constants.ONE;
-
 import java.awt.Dimension;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Rectangle2D;
@@ -11,7 +9,6 @@ import javax.swing.JFrame;
 
 import arblib.ComplexFunction;
 import arblib.Constants;
-import arblib.functions.SFunction;
 import arblib.functions.TFunction;
 import arblib.graphing.ComplexFunctionPlotter;
 

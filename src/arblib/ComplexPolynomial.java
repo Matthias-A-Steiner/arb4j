@@ -8,8 +8,6 @@
 
 package arblib;
 
-import static arblib.Constants.*;
-
 public class ComplexPolynomial implements AutoCloseable,ComplexFunction {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;

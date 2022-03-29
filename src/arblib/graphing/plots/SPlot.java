@@ -1,14 +1,19 @@
 package arblib.graphing.plots;
 
-import java.awt.*;
-import java.awt.geom.*;
-import java.io.*;
+import java.awt.Dimension;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Rectangle2D;
+import java.io.IOException;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
-import arblib.*;
-import arblib.functions.*;
-import arblib.graphing.*;
+import arblib.Complex;
+import arblib.Constants;
+import arblib.Real;
+import arblib.functions.Part;
+import arblib.functions.SFunction;
+import arblib.graphing.ComplexFunctionPlotter;
 
 public class SPlot
 {

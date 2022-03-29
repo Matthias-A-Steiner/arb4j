@@ -8,12 +8,9 @@
 
 package arblib;
 
-import java.util.concurrent.TimeUnit;
-
 import org.vibur.objectpool.ConcurrentPool;
 import org.vibur.objectpool.PoolService;
 import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
-import static arblib.Constants.*;
 
 public class Magnitude implements AutoCloseable,Comparable<Magnitude> {
   private transient long swigCPtr;

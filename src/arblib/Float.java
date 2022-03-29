@@ -8,11 +8,12 @@
 
 package arblib;
 
-import java.util.concurrent.TimeUnit;
+import static arblib.Constants.ARF_RND_DOWN;
+import static arblib.Constants.ARF_RND_NEAR;
+
 import org.vibur.objectpool.ConcurrentPool;
 import org.vibur.objectpool.PoolService;
 import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
-import static arblib.Constants.*;
 
 public class Float implements AutoCloseable {
   private transient long swigCPtr;

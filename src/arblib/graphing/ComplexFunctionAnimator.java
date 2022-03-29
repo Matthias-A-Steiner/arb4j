@@ -1,11 +1,6 @@
 
 package arblib.graphing;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-
-import javax.imageio.ImageIO;
-
 import com.madgag.gif.fmsware.AnimatedGifEncoder;
 
 import arblib.graphing.plots.XPlotter;

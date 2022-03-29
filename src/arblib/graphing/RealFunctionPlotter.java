@@ -12,12 +12,10 @@ import javax.swing.JFrame;
 import arblib.Constants;
 import arblib.Float;
 import arblib.FloatInterval;
-import arblib.ImaginaryPart;
 import arblib.Real;
 import arblib.RealFunction;
 import arblib.RealPart;
 import arblib.functions.SFunction;
-import arblib.functions.TFunction;
 import hageldave.jplotter.canvas.BlankCanvas;
 import hageldave.jplotter.renderables.Lines;
 import hageldave.jplotter.renderables.Lines.SegmentDetails;
@@ -27,6 +25,16 @@ import hageldave.jplotter.renderers.CoordSysRenderer;
 import hageldave.jplotter.renderers.LinesRenderer;
 import hageldave.jplotter.renderers.TrianglesRenderer;
 
+/**
+ * Copyright ©2022 Stephen Crowley
+ * 
+ * This file is part of Arb4j
+ * 
+ * Arb4j is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU Lesser General Public License (LGPL) as published by the
+ * Free Software Foundation; either version 2.1 of the License, or (at your
+ * option) any later version. See <http://www.gnu.org/licenses/>.
+ */
 public class RealFunctionPlotter extends
                                  BlankCanvas
 {
@@ -82,6 +90,14 @@ public class RealFunctionPlotter extends
   private Real          realIn  = new Real();
   private Real          realOut = new Real();
 
+  /**
+   * TODO: add support for multiple functions
+   * 
+   * @param function
+   * @param domain
+   * @param range
+   * @param numPoints
+   */
   public RealFunctionPlotter(RealFunction function, FloatInterval domain, FloatInterval range, int numPoints)
   {
     this.func      = function;

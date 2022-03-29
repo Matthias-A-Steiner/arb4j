@@ -1,7 +1,6 @@
 package arblib;
 
 import arblib.functions.SineFunction;
-import junit.framework.TestCase;
 
 public class RealFunctionTest
 {

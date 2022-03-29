@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import arblib.Complex;
 import arblib.ComplexFunction;
 import arblib.ThreadLocalComplex;
-import arblib.functions.Functions;
 import arblib.functions.Part;
 import arblib.functions.ZFunction;
 import arblib.graphing.ComplexFunctionPlotter;

@@ -1,6 +1,7 @@
 package arblib.functions;
 
-import arblib.*;
+import arblib.Real;
+import arblib.RealFunction;
 
 public class SineFunction implements
                           RealFunction

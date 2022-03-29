@@ -3,8 +3,6 @@ package arblib.functions;
 import static arblib.Complex.claim;
 import static arblib.Complex.claim2;
 import static arblib.Constants.COMPLEX_ONE;
-import static arblib.Constants.iπ;
-import static arblib.Constants.π;
 import static java.lang.String.format;
 
 import arblib.Complex;

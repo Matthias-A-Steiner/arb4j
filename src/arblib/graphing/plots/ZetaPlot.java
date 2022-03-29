@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import arblib.Constants;
 import arblib.Real;
 import arblib.ThreadLocalComplex;
-import arblib.functions.*;
+import arblib.functions.Part;
 import arblib.graphing.ComplexFunctionPlotter;
 
 public class ZetaPlot
