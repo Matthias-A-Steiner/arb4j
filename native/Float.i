@@ -61,7 +61,13 @@ import static arblib.Constants.*;
    arblib.arf_mul_rnd_down( res, this, y, prec );
    return this;
   }
-   
+
+  public Float div( Float y, int prec, Float res )
+  {
+   arblib.arf_div_rnd_down( res, this, y, prec );
+   return this;
+  }
+     
   public Magnitude getMagnitude(Magnitude v)
   {
     arblib.arf_get_mag(v, this);
@@ -148,5 +154,9 @@ import static arblib.Constants.*;
 	return div(i,res,thisprec,ARF_RND_DOWN);
   }
   
-  
+  public Float div(int numPoints, int i, Float dt, int prec )
+  {
+    arblib.arf_div_ui(dt, this, numPoints, prec, ARF_RND_DOWN);
+    return dt;
+  }  
 %};

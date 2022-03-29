@@ -30,9 +30,13 @@ void acb_cosh(acb_t y, const acb_t x, slong prec);
 
 void arf_neg(arf_t y, const arf_t x);
 
+int arf_mul_si(arf_ptr z, arf_srcptr x, slong y, slong prec, arf_rnd_t rnd);
+
 int arf_mul_rnd_any(arf_ptr z, arf_srcptr x, arf_srcptr y, slong prec, arf_rnd_t rnd);
 
 int arf_mul_rnd_down(arf_ptr z, arf_srcptr x, arf_srcptr y, slong prec);
+
+int arf_div_rnd_down(arf_ptr z, arf_srcptr x, arf_srcptr y, slong prec);
 
 void * flint_malloc(size_t size);
 void * flint_realloc(void * ptr, size_t size);
@@ -95,6 +99,9 @@ void acb_mul_si(acb_t z, const acb_t x, slong y, slong prec);
 
  
  int arf_mul_ui(arf_ptr z, arf_srcptr x, ulong y, slong prec, arf_rnd_t rnd);
+
+int
+arf_mul_si(arf_ptr z, arf_srcptr x, slong y, slong prec, arf_rnd_t rnd);
 
  int arf_div_ui(arf_ptr z, arf_srcptr x, ulong y, slong prec, arf_rnd_t rnd);
 

@@ -2649,6 +2649,30 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_arf_1neg(JNIEnv *jenv, jclass jcls
 }
 
 
+SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_arf_1mul_1si(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3, jint jarg4, jint jarg5) {
+  jint jresult = 0 ;
+  arf_ptr arg1 = (arf_ptr) 0 ;
+  arf_srcptr arg2 = (arf_srcptr) 0 ;
+  long arg3 ;
+  long arg4 ;
+  int arg5 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(arf_ptr *)&jarg1; 
+  arg2 = *(arf_srcptr *)&jarg2; 
+  arg3 = (long)jarg3; 
+  arg4 = (long)jarg4; 
+  arg5 = (int)jarg5; 
+  result = (int)arf_mul_si(arg1,(arf_struct const *)arg2,arg3,arg4,arg5);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_arf_1mul_1rnd_1any(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jint jarg4, jint jarg5) {
   jint jresult = 0 ;
   arf_ptr arg1 = (arf_ptr) 0 ;
@@ -2692,6 +2716,29 @@ SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_arf_1mul_1rnd_1down(JNIEnv *jenv, 
   arg3 = *(arf_srcptr *)&jarg3; 
   arg4 = (long)jarg4; 
   result = (int)arf_mul_rnd_down(arg1,(arf_struct const *)arg2,(arf_struct const *)arg3,arg4);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_arf_1div_1rnd_1down(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jint jarg4) {
+  jint jresult = 0 ;
+  arf_ptr arg1 = (arf_ptr) 0 ;
+  arf_srcptr arg2 = (arf_srcptr) 0 ;
+  arf_srcptr arg3 = (arf_srcptr) 0 ;
+  long arg4 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg3_;
+  arg1 = *(arf_ptr *)&jarg1; 
+  arg2 = *(arf_srcptr *)&jarg2; 
+  arg3 = *(arf_srcptr *)&jarg3; 
+  arg4 = (long)jarg4; 
+  result = (int)arf_div_rnd_down(arg1,(arf_struct const *)arg2,(arf_struct const *)arg3,arg4);
   jresult = (jint)result; 
   return jresult;
 }

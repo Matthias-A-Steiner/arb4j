@@ -65,12 +65,20 @@ public class arblib {
     arblibJNI.arf_neg(Float.getCPtr(y), y, Float.getCPtr(x), x);
   }
 
+  public static int arf_mul_si(Float z, Float x, int y, int prec, int rnd) {
+    return arblibJNI.arf_mul_si(Float.getCPtr(z), z, Float.getCPtr(x), x, y, prec, rnd);
+  }
+
   public static int arf_mul_rnd_any(Float z, Float x, Float y, int prec, int rnd) {
     return arblibJNI.arf_mul_rnd_any(Float.getCPtr(z), z, Float.getCPtr(x), x, Float.getCPtr(y), y, prec, rnd);
   }
 
   public static int arf_mul_rnd_down(Float z, Float x, Float y, int prec) {
     return arblibJNI.arf_mul_rnd_down(Float.getCPtr(z), z, Float.getCPtr(x), x, Float.getCPtr(y), y, prec);
+  }
+
+  public static int arf_div_rnd_down(Float z, Float x, Float y, int prec) {
+    return arblibJNI.arf_div_rnd_down(Float.getCPtr(z), z, Float.getCPtr(x), x, Float.getCPtr(y), y, prec);
   }
 
   public static SWIGTYPE_p_void flint_malloc(long size) {

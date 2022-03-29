@@ -11,6 +11,9 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import arblib.FloatInterval;
+import arblib.RealFunction;
+import arblib.functions.SineFunction;
 import hageldave.imagingkit.core.Img;
 import hageldave.imagingkit.core.io.ImageSaver;
 import hageldave.jplotter.canvas.BlankCanvas;
@@ -23,10 +26,16 @@ import hageldave.jplotter.renderables.Triangles.TriangleDetails;
 import hageldave.jplotter.renderers.CoordSysRenderer;
 import hageldave.jplotter.renderers.LinesRenderer;
 import hageldave.jplotter.renderers.TrianglesRenderer;
+import arblib.Constants;
+import arblib.Float;
 
 public class RealFunctionPlotter extends
                                  BlankCanvas
 {
+  static
+  {
+    System.loadLibrary("arblib");
+  }
 
   private static double[] randomData(int n)
   {
@@ -40,10 +49,16 @@ public class RealFunctionPlotter extends
 
   public static void main(String args[])
   {
-    JFrame              frame   = new JFrame();
-    RealFunctionPlotter plotter = new RealFunctionPlotter();
+    JFrame              frame        = new JFrame();
+    SineFunction        sineFunction = new SineFunction();
+    FloatInterval       domain       = new FloatInterval(-5,
+                                                         5);
+    RealFunctionPlotter plotter      = new RealFunctionPlotter(sineFunction,
+                                                               domain,
+                                                               1000);
+
     frame.getContentPane().add(plotter.asComponent());
-    frame.setTitle("linechart");
+    frame.setTitle(sineFunction.getClass().getSimpleName());
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     plotter.addCleanupOnWindowClosingListener(frame);
     // make visible on AWT event dispatch thread
@@ -63,11 +78,22 @@ public class RealFunctionPlotter extends
     System.out.println("Neat eh");
   }
 
-  public RealFunctionPlotter()
+  private RealFunction func;
+
+  public RealFunctionPlotter(RealFunction function, FloatInterval domain, int numPoints)
   {
-    // obtain data series
+    this.func = function;
+    Float    left      = domain.getA();
+    Float    right     = domain.getB();
+    Float    width     = right.sub(left, new Float(), 128);
+    Float    dt        = width.div(numPoints, new Float(), 128);
+    Float    point     = new Float();
+
+    double[] seriesA_x = IntStream.range(0, numPoints)
+                                  .mapToDouble(i -> left.add(dt.mul(i, point, 128), new Float(), i)
+                                                        .doubleValue(Constants.ARF_RND_DOWN))
+                                  .toArray();
     double[] seriesA_y = randomData(20);
-    double[] seriesA_x = IntStream.range(0, 20).mapToDouble(i -> i / 19.0).toArray();
     double[] seriesB_y = randomData(30);
     double[] seriesB_x = randomData(30);
     Arrays.sort(seriesB_x);
