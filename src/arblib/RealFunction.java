@@ -78,8 +78,27 @@ public interface RealFunction
                                          int maxfound,
                                          int prec)
   {
-    FoundRoots roots = new FoundRoots();
-    roots.n = arblib.isolateRootsOfRealFunction(roots, this, params, interval, maxdepth, maxeval, maxfound, prec);
+    FoundRoots roots  = new FoundRoots();
+    int        asign, bsign;
+    long       length = 0, alloc = 0;
+
+    try ( Real m = Real.claim(); Real v = Real.claim();)
+    {
+      m.setMid(interval.getA());
+      asign = evaluate(m, 1, prec, v).sign();
+
+      m.setMid(interval.getB());
+      bsign = evaluate(m, 1, prec, v).sign();
+    }
+
+//    isolate_roots_recursive(blocks, flags, &length, &alloc,
+//        func, param, block, asign, bsign,
+//        maxdepth, &maxeval, &maxfound, prec);
+//
+//    *blocks = flint_realloc(*blocks, length * sizeof(arf_interval_struct));
+//    *flags = flint_realloc(*flags, length * sizeof(int));
+//
+//    return length;
     return roots;
   }
 

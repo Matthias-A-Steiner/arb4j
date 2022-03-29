@@ -8,9 +8,12 @@
 
 package arblib;
 
+import java.util.concurrent.TimeUnit;
+
 import org.vibur.objectpool.ConcurrentPool;
 import org.vibur.objectpool.PoolService;
 import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
+import static arblib.Constants.*;
 
 public class Real implements AutoCloseable {
 
@@ -367,7 +370,14 @@ public class Real implements AutoCloseable {
     arblib.acb_mul_arb(r, exp, this, Complex.defaultPrec);
     return r;
   }
-  
+
+  /**
+   * @return arblib#arb_sgn_nonzero(Real)
+   */
+  public int sign()
+  {
+    return arblib.arb_sgn_nonzero(this);
+  }  
 
   public void setMid(Float value) {
     arblibJNI.Real_mid_set(swigCPtr, this, Float.getCPtr(value), value);

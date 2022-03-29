@@ -1,3 +1,5 @@
+int arb_sgn_nonzero(const arb_t x);
+
 void acb_poly_derivative(acb_poly_t res, const acb_poly_t poly, slong prec);
 void acb_poly_integral(acb_poly_t res, const acb_poly_t poly, slong prec);
  

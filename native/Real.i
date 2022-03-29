@@ -358,6 +358,13 @@ import static arblib.Constants.*;
     arblib.acb_mul_arb(r, exp, this, Complex.defaultPrec);
     return r;
   }
-  
+
+  /**
+   * @return arblib#arb_sgn_nonzero(Real)
+   */
+  public int sign()
+  {
+    return arblib.arb_sgn_nonzero(this);
+  }  
 %};
 

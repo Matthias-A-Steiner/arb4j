@@ -9,6 +9,10 @@
 package arblib;
 
 public class arblib {
+  public static int arb_sgn_nonzero(Real x) {
+    return arblibJNI.arb_sgn_nonzero(Real.getCPtr(x), x);
+  }
+
   public static void acb_poly_derivative(ComplexPolynomial res, ComplexPolynomial poly, int prec) {
     arblibJNI.acb_poly_derivative(ComplexPolynomial.getCPtr(res), res, ComplexPolynomial.getCPtr(poly), poly, prec);
   }

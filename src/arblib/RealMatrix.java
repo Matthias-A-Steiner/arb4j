@@ -8,6 +8,8 @@
 
 package arblib;
 
+import static arblib.Constants.*;
+
 public class RealMatrix implements AutoCloseable {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
