@@ -10,7 +10,7 @@ package arblib;
 
 import static arblib.Constants.*;
 
-public class ComplexPolynomial implements AutoCloseable {
+public class ComplexPolynomial implements AutoCloseable,ComplexFunction {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -40,7 +40,15 @@ public class ComplexPolynomial implements AutoCloseable {
       delete();
   }
   
- 
+  /**
+   * TODO: change method signature so it takes the order and precision parameters
+   */
+  @Override
+  public Complex evaluate(Complex z, Complex w)
+  {
+    arblib.acb_poly_evaluate(w, this, z, Complex.defaultPrec);
+    return w;
+  } 
   
 
   public void setCoeffs(Complex value) {
