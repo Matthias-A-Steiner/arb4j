@@ -37,9 +37,8 @@ public class CoshPlot
     Dimension screen = new Dimension(600,
                                      1200);
 
-    int prec = 256; ///// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------/*
 
-    ComplexFunction function = (z, w) ->
+    ComplexFunction function = (z, order, prec, w) ->
     {
       z.getReal().sub(Constants.HALF, prec, z.getReal());
       //z.cosh(prec, w);//.mul(Constants.i, prec, w);

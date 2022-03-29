@@ -158,5 +158,11 @@ import static arblib.Constants.*;
   {
     arblib.arf_div_ui(dt, this, numPoints, prec, ARF_RND_DOWN);
     return dt;
-  }  
+  }
+  
+  public double doubleValue()
+  {
+    return doubleValue( ARF_RND_NEAR );
+  }
+    
 %};

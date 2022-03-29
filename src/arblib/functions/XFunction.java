@@ -50,7 +50,7 @@ public class XFunction implements
   }
 
   @Override
-  public Complex evaluate(Complex z, Complex w)
+  public Complex evaluate(Complex z, int order, int prec, Complex w)
   {
     return X(z, w, scale, 2, w, prec);
   }

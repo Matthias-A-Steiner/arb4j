@@ -33,18 +33,17 @@ public class SZetaPlot
     Dimension              screen    = new Dimension(2500,
                                                      1250);
 
-    final int              prec      = 256;
     Real                   scale     = new Real().assign(1);
 
     SFunction              sFunction = new SFunction(scale);
     ComplexFunctionPlotter plotter   = new ComplexFunctionPlotter(screen,
                                                                   domain,
                                                                   (z,
-                                                                   w) -> sFunction.evaluate(z.mul(Constants.i,
+                                                                   order, prec, w) -> sFunction.evaluate(z.mul(Constants.i,
                                                                                                   prec,
                                                                                                   w)
                                                                                              .ζ(prec, w),
-                                                                                            w)
+                                                                                            order, prec, w)
                                                                                   .normalize(w));
 
     plotter.color_mode        = 0;

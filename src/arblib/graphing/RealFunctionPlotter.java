@@ -7,18 +7,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 
+import arblib.Constants;
+import arblib.Float;
 import arblib.FloatInterval;
+import arblib.Real;
 import arblib.RealFunction;
-import arblib.functions.SineFunction;
-import hageldave.imagingkit.core.Img;
-import hageldave.imagingkit.core.io.ImageSaver;
+import arblib.RealPart;
+import arblib.functions.SFunction;
 import hageldave.jplotter.canvas.BlankCanvas;
-import hageldave.jplotter.canvas.BlankCanvasFallback;
-import hageldave.jplotter.canvas.JPlotterCanvas;
 import hageldave.jplotter.renderables.Lines;
 import hageldave.jplotter.renderables.Lines.SegmentDetails;
 import hageldave.jplotter.renderables.Triangles;
@@ -26,8 +24,6 @@ import hageldave.jplotter.renderables.Triangles.TriangleDetails;
 import hageldave.jplotter.renderers.CoordSysRenderer;
 import hageldave.jplotter.renderers.LinesRenderer;
 import hageldave.jplotter.renderers.TrianglesRenderer;
-import arblib.Constants;
-import arblib.Float;
 
 public class RealFunctionPlotter extends
                                  BlankCanvas
@@ -35,6 +31,29 @@ public class RealFunctionPlotter extends
   static
   {
     System.loadLibrary("arblib");
+  }
+
+  public static void main(String args[])
+  {
+    JFrame              frame        = new JFrame();
+    RealFunction        sineFunction = new RealPart(new SFunction());       // SineFunction();
+    FloatInterval       domain       = new FloatInterval(-5,
+                                                         5);
+    FloatInterval       range        = new FloatInterval(-2,
+                                                         2);
+    RealFunctionPlotter plotter      = new RealFunctionPlotter(sineFunction,
+                                                               domain,
+                                                               range,
+                                                               200);
+
+    frame.getContentPane().add(plotter.asComponent());
+    frame.setTitle(sineFunction.getClass().getSimpleName());
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    plotter.addCleanupOnWindowClosingListener(frame);
+
+    frame.pack();
+    frame.setVisible(true);
+
   }
 
   private static double[] randomData(int n)
@@ -47,55 +66,37 @@ public class RealFunctionPlotter extends
     return d;
   }
 
-  public static void main(String args[])
+  private RealFunction  func;
+  private Float         left;
+  private Float         right;
+  private Float         width;
+  private Float         dt;
+  private Float         point;
+  private FloatInterval domain;
+  private int           numPoints;
+  private FloatInterval range;
+  private Float         top;
+  private Float         bottom;
+  private Real          realIn  = new Real();
+  private Real          realOut = new Real();
+
+  public RealFunctionPlotter(RealFunction function, FloatInterval domain, FloatInterval range, int numPoints)
   {
-    JFrame              frame        = new JFrame();
-    SineFunction        sineFunction = new SineFunction();
-    FloatInterval       domain       = new FloatInterval(-5,
-                                                         5);
-    RealFunctionPlotter plotter      = new RealFunctionPlotter(sineFunction,
-                                                               domain,
-                                                               1000);
-
-    frame.getContentPane().add(plotter.asComponent());
-    frame.setTitle(sineFunction.getClass().getSimpleName());
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    plotter.addCleanupOnWindowClosingListener(frame);
-    // make visible on AWT event dispatch thread
-    SwingUtilities.invokeLater(() ->
-    {
-      frame.pack();
-      frame.setVisible(true);
-    });
-    if ("false".equals("true"))
-    {
-      saveScreenshot(frame);
-    }
-
-    long t = System.currentTimeMillis() + 2000;
-    while (t > System.currentTimeMillis())
-      ;
-    System.out.println("Neat eh");
-  }
-
-  private RealFunction func;
-
-  public RealFunctionPlotter(RealFunction function, FloatInterval domain, int numPoints)
-  {
-    this.func = function;
-    Float    left      = domain.getA();
-    Float    right     = domain.getB();
-    Float    width     = right.sub(left, new Float(), 128);
-    Float    dt        = width.div(numPoints, new Float(), 128);
-    Float    point     = new Float();
-
-    double[] seriesA_x = IntStream.range(0, numPoints)
-                                  .mapToDouble(i -> left.add(dt.mul(i, point, 128), new Float(), i)
-                                                        .doubleValue(Constants.ARF_RND_DOWN))
-                                  .toArray();
-    double[] seriesA_y = randomData(20);
-    double[] seriesB_y = randomData(30);
-    double[] seriesB_x = randomData(30);
+    this.func      = function;
+    left           = domain.getA();
+    right          = domain.getB();
+    top            = range.getA();
+    bottom         = range.getB();
+    width          = right.sub(left, new Float(), 128);
+    dt             = width.div(numPoints, new Float(), 128);
+    point          = new Float();
+    this.domain    = domain;
+    this.range     = range;
+    this.numPoints = numPoints;
+    double[] seriesA_x = discretizeInterval(numPoints);
+    double[] seriesA_y = sampleFunction(seriesA_x);
+    double[] seriesB_x = discretizeInterval(numPoints);
+    double[] seriesB_y = randomData(numPoints);
     Arrays.sort(seriesB_x);
     // create Lines objects, one solid the other dashed
     Lines lineA = new Lines();
@@ -114,7 +115,7 @@ public class RealFunctionPlotter extends
     segmentsB.forEach(seg -> seg.setColor(Color.BLUE));
     // use a coordinate system for display
     CoordSysRenderer coordsys = new CoordSysRenderer();
-    coordsys.setCoordinateView(-1, -1, 1, 1);
+    coordsys.setCoordinateView(left.doubleValue(), top.doubleValue(), right.doubleValue(), bottom.doubleValue());
     // set the content renderer of the coordinate system
     // we want to render Lines objects
     LinesRenderer lineContent = new LinesRenderer();
@@ -168,14 +169,20 @@ public class RealFunctionPlotter extends
 
   }
 
-  public static void saveScreenshot(JFrame frame)
+  public double[] discretizeInterval(int n)
   {
-    SwingUtilities.invokeLater(() ->
-    {
-      Img img = new Img(frame.getSize());
-      img.paint(g2d -> frame.paintAll(g2d));
-      ImageSaver.saveImage(img.getRemoteBufferedImage(), "linechart.png");
-    });
+    return IntStream.range(0, n)
+                    .mapToDouble(i -> left.add(dt.mul(i, point, 128), point, 128)
+                                          .doubleValue(Constants.ARF_RND_DOWN))
+                    .toArray();
+  }
+
+  private double[] sampleFunction(double[] domainPoints)
+  {
+    // TODO: consider tradeoffs of passing in double[] array vs Float[] array.
+    return IntStream.range(0, domainPoints.length)
+                    .mapToDouble(i -> func.evaluate(realIn.assign(domainPoints[i]), 1, 128, realOut).doubleValue())
+                    .toArray();
   }
 
 }

@@ -34,12 +34,11 @@ public class ZetaPlot
                                                    1040);
 
     ThreadLocalComplex     Z       = new ThreadLocalComplex(2);
-    final int              prec    = 256;
     Real                   scale   = new Real().assign(1);
 
     ComplexFunctionPlotter plotter = new ComplexFunctionPlotter(screen,
                                                                 domain,
-                                                                (z, w) ->
+                                                                (z, order, prec, w) ->
                                                                 {
                                                                   return z.mul(Constants.i, prec, w).ζ(prec, w).normalize(w);
                                                                 });

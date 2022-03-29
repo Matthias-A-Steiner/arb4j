@@ -36,7 +36,7 @@ public class ZPlot
 
     ThreadLocalComplex Z = new ThreadLocalComplex(2);
 
-    ComplexFunction normalizedHardyZFunction = (z, w) ->
+    ComplexFunction normalizedHardyZFunction = (z, order, prec, w) ->
     {
       ZFunction.Z(z, 2, w, Complex.defaultPrec);
       return w.normalize(w);

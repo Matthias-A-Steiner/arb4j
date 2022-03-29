@@ -7,6 +7,12 @@ import static arblib.Constants.*;
 
 %typemap(javacode) arf_interval_struct %{
 
+  static
+  {
+    System.loadLibrary("arblib");
+  }
+
+
   public static final int BYTES = 64;
 
   @Override

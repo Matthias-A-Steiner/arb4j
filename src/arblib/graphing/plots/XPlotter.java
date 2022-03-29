@@ -39,7 +39,6 @@ public class XPlotter
     Dimension          screen        = new Dimension(2500,
                                                      1250);
 
-    int                prec          = 256;                                  ///// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------/*
 
     Complex            root          = ZFunction.complexRoots.getOrCreate(1);
     final int          normalization = (int) Math.pow(2, 3);
@@ -49,7 +48,7 @@ public class XPlotter
 
     plotter                   = new ComplexFunctionPlotter(screen,
                                                            domain,
-                                                           (z, w) -> xFunction.evaluate(z, w));
+                                                           (z, order, prec, w) -> xFunction.evaluate(z, order, prec, w));
 
     plotter.color_mode        = 1;
     plotter.bilinearSmoothing = false;

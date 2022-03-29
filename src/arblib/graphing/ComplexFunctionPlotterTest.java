@@ -26,7 +26,7 @@ public class ComplexFunctionPlotterTest extends
 
     ComplexFunctionPlotter plotter = new ComplexFunctionPlotter(screen,
                                                                 domain,
-                                                                (z, w) ->
+                                                                (z, order, prec, w) ->
                                                                 {
                                                                   Functions.trace = false;
                                                                   return SFunction.S(null,
@@ -54,7 +54,7 @@ public class ComplexFunctionPlotterTest extends
 
     ComplexFunctionPlotter plotter = new ComplexFunctionPlotter(screen,
                                                                 domain,
-                                                                (z, w) ->
+                                                                (z, order, prec, w) ->
                                                                 {
                                                                   Functions.trace = false;
                                                                   return SFunction.S(null,

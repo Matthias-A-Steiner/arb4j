@@ -34,6 +34,12 @@ public class FloatInterval implements AutoCloseable {
   }
 
 
+  static
+  {
+    System.loadLibrary("arblib");
+  }
+
+
   public static final int BYTES = 64;
 
   @Override

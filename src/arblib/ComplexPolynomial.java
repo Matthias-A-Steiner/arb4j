@@ -44,7 +44,7 @@ public class ComplexPolynomial implements AutoCloseable,ComplexFunction {
    * TODO: change method signature so it takes the order and precision parameters
    */
   @Override
-  public Complex evaluate(Complex z, Complex w)
+  public Complex evaluate(Complex z, int order, int prec, Complex w)
   {
     arblib.acb_poly_evaluate(w, this, z, Complex.defaultPrec);
     return w;

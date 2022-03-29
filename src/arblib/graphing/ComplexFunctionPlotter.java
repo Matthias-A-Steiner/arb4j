@@ -394,7 +394,7 @@ public class ComplexFunctionPlotter extends
           {
             zi.add(dy, zi, thisprec, Constants.ARF_RND_DOWN);
           }
-          function.evaluate(z, w);
+          function.evaluate(z, 2, prec, w);
           // System.out.format("(%s,%s)=%s\n", zr, zi, w );
 
           if (w.relAccuracyBits() > 4)
@@ -957,7 +957,7 @@ public class ComplexFunctionPlotter extends
   // w=f(z)
   public void evalFunction(Complex z, Complex w)
   {
-    function.evaluate(z, w);
+    function.evaluate(z, 2, prec, w);
 
   }
 
