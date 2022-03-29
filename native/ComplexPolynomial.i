@@ -23,4 +23,16 @@ import static arblib.Constants.*;
     return w;
   } 
   
+ /**
+   * @see arblib#acb_poly_product_roots(ComplexPolynomial, Complex, int, int)
+   * 
+   * @param xs
+   * @param prec
+   * @return
+   */
+  public ComplexPolynomial productRoots(Complex xs, int prec)
+  {
+    arblib.acb_poly_product_roots(this, xs, xs.dim, prec);
+    return this;
+  }
 %};

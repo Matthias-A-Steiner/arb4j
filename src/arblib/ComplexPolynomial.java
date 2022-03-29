@@ -102,7 +102,7 @@ public class ComplexPolynomial implements
    * @param prec
    * @return
    */
-  public ComplexPolynomial polyRoots(Complex xs, int prec)
+  public ComplexPolynomial productRoots(Complex xs, int prec)
   {
     arblib.acb_poly_product_roots(this, xs, xs.dim, prec);
     return this;
