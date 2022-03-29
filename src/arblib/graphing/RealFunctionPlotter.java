@@ -1,25 +1,31 @@
 package arblib.graphing;
 
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
-import java.util.stream.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.IntStream;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
-import hageldave.imagingkit.core.*;
-import hageldave.imagingkit.core.io.*;
-import hageldave.jplotter.canvas.*;
-import hageldave.jplotter.renderables.*;
-import hageldave.jplotter.renderables.Lines.*;
-import hageldave.jplotter.renderables.Triangles.*;
-import hageldave.jplotter.renderers.*;
+import hageldave.imagingkit.core.Img;
+import hageldave.imagingkit.core.io.ImageSaver;
+import hageldave.jplotter.canvas.BlankCanvas;
+import hageldave.jplotter.canvas.BlankCanvasFallback;
+import hageldave.jplotter.canvas.JPlotterCanvas;
+import hageldave.jplotter.renderables.Lines;
+import hageldave.jplotter.renderables.Lines.SegmentDetails;
+import hageldave.jplotter.renderables.Triangles;
+import hageldave.jplotter.renderables.Triangles.TriangleDetails;
+import hageldave.jplotter.renderers.CoordSysRenderer;
+import hageldave.jplotter.renderers.LinesRenderer;
+import hageldave.jplotter.renderers.TrianglesRenderer;
 
-/**
- * TODO: adapt this cut-n-paste of hageldave.jplotter.howto.LineChart modeled after CommplexFunctionPlotter
- */
 public class RealFunctionPlotter extends
-                                 JComponent
+                                 BlankCanvas
 {
 
   private static double[] randomData(int n)
@@ -32,8 +38,32 @@ public class RealFunctionPlotter extends
     return d;
   }
 
-  @SuppressWarnings("resource")
-  public static void main(String[] args)
+  public static void main(String args[])
+  {
+    JFrame              frame   = new JFrame();
+    RealFunctionPlotter plotter = new RealFunctionPlotter();
+    frame.getContentPane().add(plotter.asComponent());
+    frame.setTitle("linechart");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    plotter.addCleanupOnWindowClosingListener(frame);
+    // make visible on AWT event dispatch thread
+    SwingUtilities.invokeLater(() ->
+    {
+      frame.pack();
+      frame.setVisible(true);
+    });
+    if ("false".equals("true"))
+    {
+      saveScreenshot(frame);
+    }
+
+    long t = System.currentTimeMillis() + 2000;
+    while (t > System.currentTimeMillis())
+      ;
+    System.out.println("Neat eh");
+  }
+
+  public RealFunctionPlotter()
   {
     // obtain data series
     double[] seriesA_y = randomData(20);
@@ -66,24 +96,11 @@ public class RealFunctionPlotter extends
     coordsys.setContent(lineContent);
 
     // display within a JFrame
-    JFrame         frame     = new JFrame();
-    boolean        useOpenGL = true;
-    JPlotterCanvas canvas    = useOpenGL ? new BlankCanvas() : new BlankCanvasFallback();
-    canvas.setRenderer(coordsys);
-    canvas.asComponent()
-          .setPreferredSize(new Dimension(700,
-                                          400));
-    canvas.asComponent().setBackground(Color.WHITE);
-    frame.getContentPane().add(canvas.asComponent());
-    frame.setTitle("linechart");
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    canvas.addCleanupOnWindowClosingListener(frame);
-    // make visible on AWT event dispatch thread
-    SwingUtilities.invokeLater(() ->
-    {
-      frame.pack();
-      frame.setVisible(true);
-    });
+
+    setRenderer(coordsys);
+    asComponent().setPreferredSize(new Dimension(700,
+                                                 400));
+    asComponent().setBackground(Color.WHITE);
 
     // (optional) area under curve with transparency
     Triangles areaA = new Triangles();
@@ -121,18 +138,18 @@ public class RealFunctionPlotter extends
     areaContent.addItemToRender(areaA);
     // append the line renderer to the triangle renderer and use as new content
     coordsys.setContent(areaContent.withAppended(lineContent));
-    canvas.scheduleRepaint();
+    scheduleRepaint();
 
-    long t = System.currentTimeMillis() + 2000;
-    while (t > System.currentTimeMillis())
-      ;
-    if ("false".equals("true"))
-      SwingUtilities.invokeLater(() ->
-      {
-        Img img = new Img(frame.getSize());
-        img.paint(g2d -> frame.paintAll(g2d));
-        ImageSaver.saveImage(img.getRemoteBufferedImage(), "linechart.png");
-      });
+  }
+
+  public static void saveScreenshot(JFrame frame)
+  {
+    SwingUtilities.invokeLater(() ->
+    {
+      Img img = new Img(frame.getSize());
+      img.paint(g2d -> frame.paintAll(g2d));
+      ImageSaver.saveImage(img.getRemoteBufferedImage(), "linechart.png");
+    });
   }
 
 }
