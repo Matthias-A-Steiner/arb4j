@@ -4925,7 +4925,8 @@ JNI_OnLoad (JavaVM *vm, void *reserved)
 
   realFunctionEvaluationMethod = (*env)->GetMethodID(env, realFunctionClass, "evaluate",
                                                      "(Larblib/Real;IILarblib/Real;)Larblib/Real;");
-                                                     
+  complexFunctionEvaluationMethod = (*env)->GetMethodID(env, complexFunctionClass, "evaluate",
+                                                     "(Larblib/Complex;IILarblib/Real;)Larblib/Complex;");                                                    
   if (realFunctionEvaluationMethod == 0)
   {
     printf("GetMethodID failed for realFunctionEvaluationMethod\n");

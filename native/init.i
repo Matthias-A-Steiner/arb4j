@@ -37,7 +37,8 @@ JNI_OnLoad (JavaVM *vm, void *reserved)
 
   realFunctionEvaluationMethod = (*env)->GetMethodID(env, realFunctionClass, "evaluate",
                                                      "(Larblib/Real;IILarblib/Real;)Larblib/Real;");
-                                                     
+  complexFunctionEvaluationMethod = (*env)->GetMethodID(env, complexFunctionClass, "evaluate",
+                                                     "(Larblib/Complex;IILarblib/Real;)Larblib/Complex;");                                                    
   if (realFunctionEvaluationMethod == 0)
   {
     printf("GetMethodID failed for realFunctionEvaluationMethod\n");
@@ -47,7 +48,7 @@ JNI_OnLoad (JavaVM *vm, void *reserved)
   realCPtrField = (*env)->GetFieldID(env, realClass, "swigCPtr", "J");
   complexCPtrField = (*env)->GetFieldID(env, complexClass, "swigCPtr", "J");
   
-  printf("arblib loaded, realConstructor=0x%lx\n", realConstructor );
+  printf("arblib loaded\n" );
   fflush(stdout);
 
   return JNI_VERSION_10;
