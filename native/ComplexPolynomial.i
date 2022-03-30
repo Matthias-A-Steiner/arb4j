@@ -13,13 +13,10 @@ import static arblib.Constants.*;
       delete();
   }
   
-  /**
-   * TODO: change method signature so it takes the order and precision parameters
-   */
   @Override
-  public Complex evaluate(Complex z, Complex w)
+  public Complex evaluate(Complex z, int order, int prec, Complex w)
   {
-    arblib.acb_poly_evaluate(w, this, z, Complex.defaultPrec);
+    arblib.acb_poly_evaluate(w, this, z, prec );
     return w;
   } 
   

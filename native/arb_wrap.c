@@ -2491,38 +2491,6 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1poly_1evaluate2(JNIEnv *jenv,
 }
 
 
-SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_isolateRootsOfRealFunction(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2, jlong jarg3, jobject jarg3_, jlong jarg4, jobject jarg4_, jint jarg5, jint jarg6, jint jarg7, jint jarg8) {
-  jint jresult = 0 ;
-  root_struct *arg1 = (root_struct *) 0 ;
-  jobject arg2 ;
-  real_java_function_param_struct *arg3 = (real_java_function_param_struct *) 0 ;
-  arf_interval_struct *arg4 ;
-  long arg5 ;
-  long arg6 ;
-  long arg7 ;
-  long arg8 ;
-  long result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg3_;
-  (void)jarg4_;
-  arg1 = *(root_struct **)&jarg1; 
-  arg2 = jarg2; 
-  arg3 = *(real_java_function_param_struct **)&jarg3; 
-  arg4 = *(arf_interval_struct **)&jarg4; 
-  arg5 = (long)jarg5; 
-  arg6 = (long)jarg6; 
-  arg7 = (long)jarg7; 
-  arg8 = (long)jarg8; 
-  result = (long)isolateRootsOfRealFunction(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8);
-  jresult = (jint)result; 
-  
-  return jresult;
-}
-
-
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_flint_1free(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   void *arg1 = (void *) 0 ;
   
@@ -2732,29 +2700,6 @@ SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_arf_1mul_1rnd_1down(JNIEnv *jenv, 
   arg3 = *(arf_srcptr *)&jarg3; 
   arg4 = (long)jarg4; 
   result = (int)arf_mul_rnd_down(arg1,(arf_struct const *)arg2,(arf_struct const *)arg3,arg4);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_arf_1div_1rnd_1down(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_, jint jarg4) {
-  jint jresult = 0 ;
-  arf_ptr arg1 = (arf_ptr) 0 ;
-  arf_srcptr arg2 = (arf_srcptr) 0 ;
-  arf_srcptr arg3 = (arf_srcptr) 0 ;
-  long arg4 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  (void)jarg3_;
-  arg1 = *(arf_ptr *)&jarg1; 
-  arg2 = *(arf_srcptr *)&jarg2; 
-  arg3 = *(arf_srcptr *)&jarg3; 
-  arg4 = (long)jarg4; 
-  result = (int)arf_div_rnd_down(arg1,(arf_struct const *)arg2,(arf_struct const *)arg3,arg4);
   jresult = (jint)result; 
   return jresult;
 }
@@ -4990,7 +4935,7 @@ JNI_OnLoad (JavaVM *vm, void *reserved)
   realCPtrField = (*env)->GetFieldID(env, realClass, "swigCPtr", "J");
   complexCPtrField = (*env)->GetFieldID(env, complexClass, "swigCPtr", "J");
   
-  printf("arblib loaded, realConstructor=0x%lx\n", realConstructor );
+  printf("arblib loaded\n" );
   fflush(stdout);
 
   return JNI_VERSION_10;

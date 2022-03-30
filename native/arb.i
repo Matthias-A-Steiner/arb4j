@@ -51,8 +51,6 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 
 %include "FoundRoots.i"
 
-%include "RealFunctionParams.i"
-
 %include "TypesAndStructures.i"
 
 %include "functions.i"

@@ -8,9 +8,7 @@
 
 package arblib;
 
-import static arblib.Constants.*;
-
-public class RealFunctionParams implements AutoCloseable {
+public class RealFunctionParams {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -23,6 +21,11 @@ public class RealFunctionParams implements AutoCloseable {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
+  @SuppressWarnings("deprecation")
+  protected void finalize() {
+    delete();
+  }
+
   public synchronized void delete() {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
@@ -32,15 +35,6 @@ public class RealFunctionParams implements AutoCloseable {
       swigCPtr = 0;
     }
   }
-
-
-  @Override
-  public void close()
-  { 
-      delete();
-  }
-
-  
 
   public void setRealFunction(java.lang.Object value) {
     arblibJNI.RealFunctionParams_realFunction_set(swigCPtr, this, value);

@@ -8,13 +8,6 @@ void acb_poly_product_roots(acb_poly_t poly, acb_srcptr xs, slong n, slong prec)
 void acb_poly_evaluate(acb_t y, const acb_poly_t f, const acb_t x, slong prec);
  
 void acb_poly_evaluate2(acb_t y, acb_t z, const acb_poly_t f, const acb_t x, slong prec);
-  
-slong
-isolateRootsOfRealFunction (root_struct *rootStruct, jobject realFunction, real_java_function_param_struct *params,
-                            arf_interval_t interval, slong maxdepth,
-                            slong maxeval,
-                            slong maxfound,
-                            slong prec);
 
 void flint_free(void * ptr);
                             
@@ -37,8 +30,6 @@ int arf_mul_si(arf_ptr z, arf_srcptr x, slong y, slong prec, arf_rnd_t rnd);
 int arf_mul_rnd_any(arf_ptr z, arf_srcptr x, arf_srcptr y, slong prec, arf_rnd_t rnd);
 
 int arf_mul_rnd_down(arf_ptr z, arf_srcptr x, arf_srcptr y, slong prec);
-
-int arf_div_rnd_down(arf_ptr z, arf_srcptr x, arf_srcptr y, slong prec);
 
 void * flint_malloc(size_t size);
 void * flint_realloc(void * ptr, size_t size);

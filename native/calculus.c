@@ -3,6 +3,15 @@
  *
  *  Created on: Mar 19, 2022
  *      Author: crow
+ *
+ * Copyright ©2022 Stephen Crowley
+ *
+ * This file is part of Arb4j
+ *
+ * Arb4j is free software: you can redistribute it and/or modify it under the
+ * terms of the GNU Lesser General Public License (LGPL) as published by the
+ * Free Software Foundation; either version 2.1 of the License, or (at your
+ * option) any later version. See <http://www.gnu.org/licenses/>.
  */
 
 #include <jni.h>
@@ -29,23 +38,6 @@ jmethodID complexFunctionEvaluationMethod;
 jfieldID realCPtrField;
 jfieldID complexCPtrField;
 
-jobject
-newReal (long long p)
-{
-  printf("newReal p=0x%lx env=0x%lx realClass=0x%lx realConstructor=0x%lx\n", p, env, realClass, realConstructor);
-  fflush(stdout);
-  jobject o = (*env)->NewObject(env, realClass, realConstructor, p);
-  if ((*env)->ExceptionCheck(env))
-  {
-    printf(" NewObject thrw an EXCEPTION p=%p\n", p);
-    (*env)->ExceptionDescribe(env);
-    fflush(stdout);
-    exit(1);
-    return ARB_CALC_NO_CONVERGENCE;
-  }
-  return o;
-}
-
 /**
  * Implements  a univariate real function that calls RealFunction#evaluate for some jobject passed
  * in via the param.
@@ -66,10 +58,10 @@ slong order,
   jobject realFunction = params->realFunction;
   printf("inp=");
   arb_print(inp);
-  printf(" address=%p\n", (void*)&inp);
+  printf(" address=%p\n", (void*) &inp);
   printf("outp=");
   arb_print(outp);
-  printf(" address=%p\n", (void*)outp);
+  printf(" address=%p\n", (void*) outp);
 
   fflush(stdout);
 
@@ -84,18 +76,16 @@ slong order,
     params->zobj = (*env)->NewObject(env, realClass, realConstructor);
   }
 
-
   if (params->wobj == 0)
   {
     params->wobj = (*env)->NewObject(env, realClass, realConstructor);
   }
 
-
   jobject z = params->zobj;
   jobject w = params->wobj;
   (*env)->SetLongField(env, z, realCPtrField, inpointer);
   (*env)->SetLongField(env, w, realCPtrField, outpointer);
-  printf("setting zPtr to 0x%lx and wPtr to 0x%lx\n", inpointer, outpointer );
+  printf("setting zPtr to 0x%lx and wPtr to 0x%lx\n", inpointer, outpointer);
   printf("\n");
   fflush(stdout);
 //  jlong zaddr = (*env)->GetLongField(env, z, realCPtrField);

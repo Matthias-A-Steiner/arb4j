@@ -71,12 +71,7 @@ public interface RealFunction
    *                 does not make sense for maxdepth to exceed prec.
    * @return
    */
-  public default FoundRoots isolateRoots(RealFunctionParams params,
-                                         FloatInterval interval,
-                                         int maxdepth,
-                                         int maxeval,
-                                         int maxfound,
-                                         int prec)
+  public default FoundRoots isolateRoots(FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec)
   {
     FoundRoots roots  = new FoundRoots();
     int        asign, bsign;
@@ -86,11 +81,12 @@ public interface RealFunction
     {
       m.setMid(interval.getA());
       asign = evaluate(m, 1, prec, v).sign();
-
+      System.out.format("f(l=%s)=%s\n", m, v);
       m.setMid(interval.getB());
       bsign = evaluate(m, 1, prec, v).sign();
+      System.out.format("f(r=%s)=%s\n", m, v);
     }
-
+    System.out.format("asign=%s bsign=%s\n", asign, bsign);
 //    isolate_roots_recursive(blocks, flags, &length, &alloc,
 //        func, param, block, asign, bsign,
 //        maxdepth, &maxeval, &maxfound, prec);
@@ -100,14 +96,6 @@ public interface RealFunction
 //
 //    return length;
     return roots;
-  }
-
-  default RealFunctionParams getParams()
-  {
-    RealFunctionParams params = new RealFunctionParams();
-    params.setRealFunction(this);
-
-    return params;
   }
 
   /**

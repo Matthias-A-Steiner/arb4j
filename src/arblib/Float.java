@@ -85,12 +85,6 @@ public class Float implements AutoCloseable {
    return this;
   }
 
-  public Float div( Float y, int prec, Float res )
-  {
-   arblib.arf_div_rnd_down( res, this, y, prec );
-   return this;
-  }
-     
   public Magnitude getMagnitude(Magnitude v)
   {
     arblib.arf_get_mag(v, this);

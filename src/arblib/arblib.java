@@ -33,10 +33,6 @@ public class arblib {
     arblibJNI.acb_poly_evaluate2(Complex.getCPtr(y), y, Complex.getCPtr(z), z, ComplexPolynomial.getCPtr(f), f, Complex.getCPtr(x), x, prec);
   }
 
-  public static int isolateRootsOfRealFunction(FoundRoots rootStruct, java.lang.Object realFunction, RealFunctionParams params, FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec) {
-    return arblibJNI.isolateRootsOfRealFunction(FoundRoots.getCPtr(rootStruct), rootStruct, realFunction, RealFunctionParams.getCPtr(params), params, FloatInterval.getCPtr(interval), interval, maxdepth, maxeval, maxfound, prec);
-  }
-
   public static void flint_free(SWIGTYPE_p_void ptr) {
     arblibJNI.flint_free(SWIGTYPE_p_void.getCPtr(ptr));
   }
@@ -79,10 +75,6 @@ public class arblib {
 
   public static int arf_mul_rnd_down(Float z, Float x, Float y, int prec) {
     return arblibJNI.arf_mul_rnd_down(Float.getCPtr(z), z, Float.getCPtr(x), x, Float.getCPtr(y), y, prec);
-  }
-
-  public static int arf_div_rnd_down(Float z, Float x, Float y, int prec) {
-    return arblibJNI.arf_div_rnd_down(Float.getCPtr(z), z, Float.getCPtr(x), x, Float.getCPtr(y), y, prec);
   }
 
   public static SWIGTYPE_p_void flint_malloc(long size) {
