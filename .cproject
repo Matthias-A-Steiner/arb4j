@@ -83,7 +83,9 @@
 			<resource resourceType="PROJECT" workspacePath="/fastmath"/>
 		</configuration>
 		<configuration configurationName="fuck"/>
-		<configuration configurationName="sharedlib"/>
+		<configuration configurationName="sharedlib">
+			<resource resourceType="PROJECT" workspacePath="/arb4j"/>
+		</configuration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 	<storageModule moduleId="org.eclipse.cdt.core.language.mapping">

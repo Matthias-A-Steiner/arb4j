@@ -29,15 +29,6 @@ typedef struct
 
 typedef struct
 {
-  jobject realFunction;
-  arb_ptr z;
-  jobject zobj;
-  arb_ptr w;
-  jobject wobj;
-} real_java_function_param_struct;
-
-typedef struct
-{
     arb_ptr entries;
     slong r;
     slong c;
