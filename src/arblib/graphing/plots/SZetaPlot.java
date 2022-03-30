@@ -31,7 +31,7 @@ public class SZetaPlot
     Rectangle2D.Double     domain   = new Rectangle2D.Double(410,
                                                              1.75,
                                                              20,
-                                                             -5);
+                                                             -4);
 
     Dimension              screen   = new Dimension(2500,
                                                     1250);
