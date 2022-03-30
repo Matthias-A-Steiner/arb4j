@@ -47,7 +47,7 @@ JNI_OnLoad (JavaVM *vm, void *reserved)
   realCPtrField = (*env)->GetFieldID(env, realClass, "swigCPtr", "J");
   complexCPtrField = (*env)->GetFieldID(env, complexClass, "swigCPtr", "J");
   
-  printf("arblib loaded, realConstructor=0x%lx\n", realConstructor );
+  printf("arblib loaded\n" );
   fflush(stdout);
 
   return JNI_VERSION_10;

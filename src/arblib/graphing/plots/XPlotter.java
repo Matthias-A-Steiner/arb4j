@@ -29,30 +29,30 @@ public class XPlotter
   public XPlotter(double vscale) throws NoninvertibleTransformException,
                                  IOException
   {
-    // the first Lehmer pair
-    Rectangle2D.Double     domain        = new Rectangle2D.Double(3002.8,
-                                                                  -1.15,
-                                                                  4,
-                                                                  2.5);
+//    Rectangle2D.Double     domain        = new Rectangle2D.Double(3002.8,
+//                                                                  -1.15,
+//                                                                  4,
+//                                                                  2.5);
 
-//    Rectangle2D.Double domain        = new Rectangle2D.Double(-15,
-//                                                              -5,
-//                                                              70,
-//                                                              25);
+    Rectangle2D.Double domain        = new Rectangle2D.Double(-15,
+                                                              -12.5,
+                                                              70,
+                                                              25);
 
-    Dimension          screen        = new Dimension(2500,
-                                                     1250);
-
+    Dimension          screen        = new Dimension(1800,
+                                                     900);
 
     Complex            root          = ZFunction.complexRoots.getOrCreate(1);
     final int          normalization = (int) Math.pow(2, 3);
 
     Real               scale         = new Real().assign(vscale);
     XFunction          xFunction     = new XFunction(scale);
-
     plotter                   = new ComplexFunctionPlotter(screen,
                                                            domain,
-                                                           (z, order, prec, w) -> xFunction.evaluate(z, order, prec, w));
+                                                           (z, order, prec, w) -> xFunction.evaluate(z,
+                                                                                                     order,
+                                                                                                     prec,
+                                                                                                     w));
 
     plotter.color_mode        = 1;
     plotter.bilinearSmoothing = false;
@@ -66,7 +66,7 @@ public class XPlotter
     frame.pack();
     frame.setResizable(false);
     frame.setVisible(true);
-    plotter.displayMode       = Part.Blend;
+    plotter.displayMode = Part.Blend;
 
   }
 
@@ -85,7 +85,7 @@ public class XPlotter
 
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
-    XPlotter plotter = new XPlotter(2.5);
+    XPlotter plotter = new XPlotter(1);
     plotter.plot();
   }
 }
