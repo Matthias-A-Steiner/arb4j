@@ -361,9 +361,7 @@ public class ComplexFunctionPlotter extends
      */
     for (int i = 0; i < 2; i++)
     {
-      // TODO: evaluate function for each of the 4 corners of the square then add the
-      // values and divide by 4 to get the interpolated function value which should
-      // look much smoother
+
       for (int j = 0; j < 2; j++)
       {
         Complex z  = zbasis[i][j];
@@ -600,7 +598,7 @@ public class ComplexFunctionPlotter extends
   private void setFunctionCoordinateSpaceGraphicsProperties(Graphics2D g) throws NoninvertibleTransformException
   {
     g.setColor(Color.BLACK);
-    g.setStroke(new BasicStroke(0.004f));
+    g.setStroke(new BasicStroke(0.008f));
     g.setFont(newFont);
     g.setTransform(getFunctionSpaceCoordinates());
     g.setRenderingHints(renderingHints);

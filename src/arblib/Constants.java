@@ -25,6 +25,8 @@ public class Constants
   public static final Real HALF = new Real().init();
   public static final Real ONE = new Real().init();
   public static final Complex COMPLEX_ONE = new Complex().init();
+  public static final Complex COMPLEX_HALF = new Complex().init();
+
   public static final Complex IMAGINARY_UNIT = new Complex().init();
 
   public static final Complex COMPLEX_ONE_POINT_OH_FIVE = new Complex();
@@ -48,6 +50,7 @@ public class Constants
     acb_init(Constants.iπ);
     acb_init(Constants.COMPLEX_ONE_POINT_OH_FIVE);
     arb_set_d(Constants.HALF, 0.5);
+    COMPLEX_HALF.getReal().set(HALF);
     arb_set_d(Constants.ONE, 1);
     arb_set_d(Constants.COMPLEX_ONE.getReal(), 1);
     arb_set_d(Constants.IMAGINARY_UNIT.getImag(), 1);

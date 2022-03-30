@@ -1,5 +1,8 @@
 package arblib.graphing.plots;
 
+import static arblib.Constants.COMPLEX_HALF;
+import static arblib.Constants.IMAGINARY_UNIT;
+
 import java.awt.Dimension;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Rectangle2D;
@@ -7,6 +10,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import arblib.ComplexFunction;
 import arblib.Constants;
 import arblib.Real;
 import arblib.functions.SFunction;
@@ -24,29 +28,34 @@ public class SZetaPlot
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
 
-    Rectangle2D.Double     domain    = new Rectangle2D.Double(13,
-                                                              5,
-                                                              25,
-                                                              -10);
+    Rectangle2D.Double     domain   = new Rectangle2D.Double(410,
+                                                             1.75,
+                                                             20,
+                                                             -5);
 
-    Dimension              screen    = new Dimension(2500,
-                                                     1250);
+    Dimension              screen   = new Dimension(2500,
+                                                    1250);
 
-    Real                   scale     = new Real().assign(1);
+    Real                   scale    = new Real().assign(1);
 
-    SFunction              sFunction = new SFunction(scale);
-    ComplexFunctionPlotter plotter   = new ComplexFunctionPlotter(screen,
-                                                                  domain,
-                                                                  (z,
-                                                                   order, prec, w) -> sFunction.evaluate(z.mul(Constants.i,
-                                                                                                  prec,
-                                                                                                  w)
-                                                                                             .ζ(prec, w),
-                                                                                            order, prec, w)
-                                                                                  .normalize(w));
+    SFunction              s        = new SFunction(scale);
 
-    plotter.color_mode        = 0;
-    plotter.bilinearSmoothing = true;
+    ComplexFunction        function = (z,
+                                       order,
+                                       prec,
+                                       w) -> s.evaluate(z.mul(IMAGINARY_UNIT, prec, w)
+                                                         .add(COMPLEX_HALF, prec, w)
+                                                         .ζ(prec, w),
+                                                        order,
+                                                        prec,
+                                                        w)
+                                              .normalize(w);
+    ComplexFunctionPlotter plotter  = new ComplexFunctionPlotter(screen,
+                                                                 domain,
+                                                                 function);
+
+    plotter.color_mode        = 1;
+    plotter.bilinearSmoothing = false;
     plotter.displayMode       = arblib.functions.Part.Blend;
 
     frame                     = new JFrame();
