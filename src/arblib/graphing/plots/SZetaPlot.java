@@ -27,11 +27,14 @@ public class SZetaPlot
 
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
-
-    Rectangle2D.Double     domain   = new Rectangle2D.Double(410,
-                                                             1.75,
-                                                             20,
-                                                             -4);
+    Rectangle2D.Double     domain   = new Rectangle2D.Double(13,
+                                                             1,
+                                                             2,
+                                                             -2);
+//    Rectangle2D.Double     domain   = new Rectangle2D.Double(410,
+//                                                             1.75,
+//                                                             20,
+//                                                             -4);
 
     Dimension              screen   = new Dimension(2500,
                                                     1250);
