@@ -8,7 +8,7 @@
 
 package arblib;
 
-import static arblib.Constants.*;
+import arblib.RealFunction.BlockStatus;
 
 public class FloatInterval implements AutoCloseable {
   private transient long swigCPtr;
@@ -39,7 +39,41 @@ public class FloatInterval implements AutoCloseable {
     System.loadLibrary("arblib");
   }
 
+  public BlockStatus flags[];
+  public int         length;
+  public int         allocated;
 
+  public void addBlock(FloatInterval block, BlockStatus status)
+  {
+    if (length >= allocated)
+    {
+      int newAllocation = (allocated == 0) ? 1 : 2 * allocated;
+
+//        *blocks = flint_realloc(*blocks, sizeof(arf_interval_struct) * new_alloc);   
+//        *flags = flint_realloc(*flags, sizeof(int) * new_alloc);   
+//        *alloc = new_alloc;   
+//    }   
+//    arf_interval_init((*blocks) + *length);   
+//    arf_interval_set((*blocks) + *length, block);   
+//    (*flags)[*length] = status; 
+//    (*length)++; 
+    }
+
+    throw new UnsupportedOperationException("TODO: implement this then change the cPtr");
+  }
+
+
+  public void split(FloatInterval blocks,
+                    int asign,
+                    int bsign,
+                    long depth,
+                    long[] evalCount,
+                    long[] foundCount,
+                    long prec)
+  {
+    throw new UnsupportedOperationException("TODO");
+  }  
+  
   public static final int BYTES = 64;
 
   @Override
@@ -75,6 +109,55 @@ public class FloatInterval implements AutoCloseable {
     setB(interval.getB());
   }
   
+  public BlockStatus determineStatus(int asign, int bsign, long prec)
+  {
+    /**
+     * <code>
+    static int
+    check_block(arb_calc_func_t func, void * param, const arf_interval_t block,
+        int asign, int bsign, slong prec)
+    {
+        arb_struct t[2];
+        arb_t x;
+        int result;
+    
+        arb_init(t + 0);
+        arb_init(t + 1);
+        arb_init(x);
+    
+        arf_interval_get_arb(x, block, prec);
+        func(t, x, param, 1, prec);
+    
+        result = BLOCK_UNKNOWN;
+    
+        if (arb_is_positive(t) || arb_is_negative(t))
+        {
+            result = BLOCK_NO_ZERO;
+        }
+        else
+        {
+            if ((asign < 0 && bsign > 0) || (asign > 0 && bsign < 0))
+            {
+                func(t, x, param, 2, prec);
+    
+                if (arb_is_finite(t + 1) && !arb_contains_zero(t + 1))
+                {
+                    result = BLOCK_ISOLATED_ZERO;
+                }
+            }
+        }
+    
+        arb_clear(t + 0);
+        arb_clear(t + 1);
+        arb_clear(x);
+    
+        return result;
+    }  
+      </code>
+     */
+    throw new UnsupportedOperationException("TODO");
+
+  }  
 
   public void setA(Float value) {
     arblibJNI.FloatInterval_a_set(swigCPtr, this, Float.getCPtr(value), value);

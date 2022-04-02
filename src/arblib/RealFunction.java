@@ -1,5 +1,7 @@
 package arblib;
 
+import static java.lang.System.out;
+
 import arblib.functions.RealConvergenceTester;
 
 /**
@@ -15,6 +17,13 @@ import arblib.functions.RealConvergenceTester;
 public interface RealFunction
 {
   public Real evaluate(Real z, int order, int prec, Real res);
+
+  public static enum BlockStatus
+  {
+   NoZero,
+   IsolatedZero,
+   UnknownZero
+  }
 
   /**
    * <code>
@@ -98,6 +107,52 @@ public interface RealFunction
     return roots;
   }
 
+  boolean verbose = false;
+
+  public default void isolate_roots_recursive(FloatInterval blocks,
+                                              FloatInterval block,
+                                              int asign,
+                                              int bsign,
+                                              long depth,
+                                              long evalCount[],
+                                              long foundCount[],
+                                              long prec)
+  {
+
+    if (foundCount[0] <= 0 || evalCount[0] <= 0)
+    {
+      blocks.addBlock(block, BlockStatus.UnknownZero);
+    }
+    else
+    {
+      evalCount[0] -= 1;
+      BlockStatus status = block.determineStatus(asign, bsign, prec);
+
+      if (status != BlockStatus.NoZero)
+      {
+        if (status == BlockStatus.IsolatedZero || depth <= 0)
+        {
+          if (status == BlockStatus.IsolatedZero)
+          {
+            if (verbose)
+            {
+              out.printf("found isolated root in: %s\n", block);
+              out.flush();
+            }
+
+            foundCount[0] -= 1;
+          }
+
+          block.addBlock(block, status);
+        }
+        else
+        {
+          block.split(blocks, asign, bsign, depth, evalCount, foundCount, prec);
+        }
+      }
+    }
+  }
+
   /**
    * TODO: add option for monotonic convergence
    * 
@@ -111,6 +166,7 @@ public interface RealFunction
    * @return
    */
   public default Real
+
          iteratedCompositionLimit(Real z0, RealConvergenceTester convergenceTester, int iters[], Real res, int bits)
   {
     // TODO: fix loss of precision
