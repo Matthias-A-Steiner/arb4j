@@ -18,13 +18,6 @@ public interface RealFunction
 {
   public Real evaluate(Real z, int order, int prec, Real res);
 
-  public static enum BlockStatus
-  {
-   NoZero,
-   IsolatedZero,
-   UnknownZero
-  }
-
   /**
    * <code>
    * Rigorously isolates single roots of a real analytic function on the interior of an interval.
@@ -121,18 +114,18 @@ public interface RealFunction
 
     if (foundCount[0] <= 0 || evalCount[0] <= 0)
     {
-      blocks.addBlock(block, BlockStatus.UnknownZero);
+      blocks.addBlock(block, FloatInterval.BlockStatus.UnknownZero);
     }
     else
     {
       evalCount[0] -= 1;
-      BlockStatus status = block.determineStatus(asign, bsign, prec);
+      FloatInterval.BlockStatus status = block.determineStatus(asign, bsign, prec);
 
-      if (status != BlockStatus.NoZero)
+      if (status != FloatInterval.BlockStatus.NoZero)
       {
-        if (status == BlockStatus.IsolatedZero || depth <= 0)
+        if (status == FloatInterval.BlockStatus.IsolatedZero || depth <= 0)
         {
-          if (status == BlockStatus.IsolatedZero)
+          if (status == FloatInterval.BlockStatus.IsolatedZero)
           {
             if (verbose)
             {
