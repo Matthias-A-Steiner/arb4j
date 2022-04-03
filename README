@@ -67,17 +67,8 @@ acb_poly_struct
 + gcc -O3 -fPIC -shared native/complex_plot.c native/arb_wrap.c -I/usr/lib/jvm/jdk-17/include -I/usr/lib/jvm/jdk-17/include/linux -olibarblib.so -lflint-arb
 
 
-
-
-
-
 If that looks good, then go ahead and run "mvn install" or just open
 the project in Eclipse with the CDT (and Groovy) packages installed
 and let the builder call gaw/caw for you and open the progam "Zplot"
 or run the script bin/updateClasspath before running bin/Zplot to run
 the program from the console
-
-
-
-
-Stephen Crowley
