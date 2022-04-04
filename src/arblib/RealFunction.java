@@ -99,18 +99,17 @@ public interface RealFunction
     recursivelyLocateRoots(roots.getFound(), interval, asign, bsign, maxdepth, evals, found, prec);
     roots.n     = (int) found[0];
     roots.evals = evals[0];
-//
-//    *blocks = flint_realloc(*blocks, length * sizeof(arf_interval_struct));
+
+//    *roots = flint_realloc(*blocks, length * sizeof(arf_interval_struct));
 //    *flags = flint_realloc(*flags, length * sizeof(int));
-//
-//    return length;
+
     return roots;
   }
 
   boolean verbose = false;
 
-  public default void recursivelyLocateRoots(FloatInterval blocks,
-                                             FloatInterval block,
+  public default void recursivelyLocateRoots(FloatInterval roots,
+                                             FloatInterval root,
                                              int asign,
                                              int bsign,
                                              int depth,
@@ -121,12 +120,12 @@ public interface RealFunction
 
     if (foundCount[0] <= 0 || evalCount[0] <= 0)
     {
-      blocks.addRoot(block, RootStatus.RootUnknown);
+      roots.addRoot(root, RootStatus.RootUnknown);
     }
     else
     {
       evalCount[0] -= 1;
-      RootStatus status = block.determineStatus(asign, bsign, prec);
+      RootStatus status = root.determineStatus(asign, bsign, prec);
 
       if (status != RootStatus.NoRoot)
       {
@@ -136,18 +135,18 @@ public interface RealFunction
           {
             if (verbose)
             {
-              out.printf("found isolated root in: %s\n", block);
+              out.printf("found isolated root in: %s\n", root);
               out.flush();
             }
 
             foundCount[0] -= 1;
           }
 
-          block.addRoot(block, status);
+          root.addRoot(root, status);
         }
         else
         {
-          block.split(blocks, asign, bsign, depth, evalCount, foundCount, prec);
+          root.split(roots, asign, bsign, depth, evalCount, foundCount, prec);
         }
       }
     }
