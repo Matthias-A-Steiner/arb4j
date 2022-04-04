@@ -40,17 +40,20 @@ public interface RealFunction
    * further searches on those subintervals may be attempted with possibly with increased precision and/or increased bounds for 
    * the breaking criteria. 
    * 
-   * Note that roots of multiplicity higher than one and roots located exactly at endpoints cannot be isolated by the this function.
+   * Note that roots of multiplicity higher than one and roots located exactly at endpoints cannot be isolated by this function.
    
    * The following breaking criteria are implemented:
-   * At most maxdepth recursive subdivisions are attempted. 
-   * The smallest details that can be distinguished are therefore about maxdepth times the width of interval. 
+   * At most maxdepth recursive subdivisions are attempted therefore the smallest details that can be distinguished are therefore 
+   * about maxdepth times the width of interval. 
    * 
-   * The total number of calls to func is thereby restricted to a small multiple of maxeval (the actual count can be slightly higher depending on implementation details). 
+   * The total number of calls to this{@link #evaluate(Real, int, int, Real)} is thereby restricted to a small multiple of maxeval;
+   * the actual count can be slightly higher depending on implementation details. 
    * </code>
    * 
-   * Warning: it is assumed that subdivision points of interval can be represented
-   * exactly as floating-point numbers in memory. Do not pass as input.
+   * NOTICE: it is assumed that subdivision points of interval can be represented
+   * exactly as floating-point numbers in memory.
+   * 
+   * For instance, the following will not produce reliable results:
    * 1+/-2^(-10^(100))
    * 
    * @param found    upon return this is populated with an array of n interesting
