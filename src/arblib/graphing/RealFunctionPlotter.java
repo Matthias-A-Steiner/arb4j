@@ -7,15 +7,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-import javax.swing.JFrame;
-
 import arblib.Constants;
 import arblib.Float;
 import arblib.FloatInterval;
 import arblib.Real;
 import arblib.RealFunction;
-import arblib.RealPart;
-import arblib.functions.SFunction;
 import hageldave.jplotter.canvas.BlankCanvas;
 import hageldave.jplotter.renderables.Lines;
 import hageldave.jplotter.renderables.Lines.SegmentDetails;
@@ -28,42 +24,20 @@ import hageldave.jplotter.renderers.TrianglesRenderer;
 /**
  * Copyright ©2022 Stephen Crowley
  * 
- * This file is part of Arb4j
- * 
- * Arb4j is free software: you can redistribute it and/or modify it under the
- * terms of the GNU Lesser General Public License (LGPL) as published by the
- * Free Software Foundation; either version 2.1 of the License, or (at your
- * option) any later version. See <http://www.gnu.org/licenses/>.
+ * This file is part of Arb4j which is free software: you can redistribute it
+ * and/or modify it under the terms of the GNU Lesser General Public License
+ * (LGPL) as published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version. See
+ * <http://www.gnu.org/licenses/>.
  */
 public class RealFunctionPlotter extends
                                  BlankCanvas
 {
+  private static final int prec = 128;
+
   static
   {
     System.loadLibrary("arblib");
-  }
-
-  public static void main(String args[])
-  {
-    JFrame              frame        = new JFrame();
-    RealFunction        sineFunction = new RealPart(new SFunction());       // SineFunction();
-    FloatInterval       domain       = new FloatInterval(-5,
-                                                         5);
-    FloatInterval       range        = new FloatInterval(-2,
-                                                         2);
-    RealFunctionPlotter plotter      = new RealFunctionPlotter(sineFunction,
-                                                               domain,
-                                                               range,
-                                                               200);
-
-    frame.getContentPane().add(plotter.asComponent());
-    frame.setTitle(sineFunction.getClass().getSimpleName());
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    plotter.addCleanupOnWindowClosingListener(frame);
-
-    frame.pack();
-    frame.setVisible(true);
-
   }
 
   private static double[] randomData(int n)
@@ -105,8 +79,8 @@ public class RealFunctionPlotter extends
     right          = domain.getB();
     top            = range.getA();
     bottom         = range.getB();
-    width          = right.sub(left, new Float(), 128);
-    dt             = width.div(numPoints, new Float(), 128);
+    width          = right.sub(left, new Float(), prec);
+    dt             = width.div(numPoints, new Float(), prec);
     point          = new Float();
     this.domain    = domain;
     this.range     = range;
@@ -190,7 +164,7 @@ public class RealFunctionPlotter extends
   public double[] discretizeInterval(int n)
   {
     return IntStream.range(0, n)
-                    .mapToDouble(i -> left.add(dt.mul(i, point, 128), point, 128)
+                    .mapToDouble(i -> left.add(dt.mul(i, point, prec), point, prec)
                                           .doubleValue(Constants.ARF_RND_DOWN))
                     .toArray();
   }
@@ -199,7 +173,7 @@ public class RealFunctionPlotter extends
   {
     // TODO: consider tradeoffs of passing in double[] array vs Float[] array.
     return IntStream.range(0, domainPoints.length)
-                    .mapToDouble(i -> func.evaluate(realIn.assign(domainPoints[i]), 1, 128, realOut).doubleValue())
+                    .mapToDouble(i -> func.evaluate(realIn.assign(domainPoints[i]), 1, prec, realOut).doubleValue())
                     .toArray();
   }
 
