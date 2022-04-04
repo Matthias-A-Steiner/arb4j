@@ -2,10 +2,10 @@ package arblib;
 
 import static java.lang.System.out;
 
-import arblib.FloatInterval.BlockStatus;
+import arblib.FloatInterval.RootStatus;
 import arblib.functions.RealConvergenceTester;
 
-/** 
+/**
  * Copyright ©2022 Stephen Crowley
  * 
  * This file is part of Arb4j which is free software: you can redistribute it
@@ -20,7 +20,7 @@ public interface RealFunction
 
   /**
    * <code>
-   * Rigorously isolates single roots of a real analytic function on the interior of an interval.
+   * Rigorously locates single roots of a real analytic function on the interior of an interval.
    * 
    * This routine writes an array of n interesting subintervals of interval to found and corresponding flags to flags, returning the integer n. 
    * 
@@ -34,13 +34,13 @@ public interface RealFunction
    * 
    * 4. Subintervals with any other flag may or may not contain roots.
    * 
-   * 5. If no flags other than 1 occur, all roots of the function on interval have been isolated.
+   * 5. If no flags other than 1 occur, all roots of the function on interval have been located.
    *  
    * If there are output subintervals on which the existence or nonexistence of roots could not be determined, 
    * further searches on those subintervals may be attempted with possibly with increased precision and/or increased bounds for 
    * the breaking criteria. 
    * 
-   * Note that roots of multiplicity higher than one and roots located exactly at endpoints cannot be isolated by this function.
+   * Note that roots of multiplicity higher than one and roots located exactly at endpoints cannot be located by this function.
    
    * The following breaking criteria are implemented:
    * At most maxdepth recursive subdivisions are attempted therefore the smallest details that can be distinguished are therefore 
@@ -59,24 +59,23 @@ public interface RealFunction
    * @param found    upon return this is populated with an array of n interesting
    *                 subintervals of interval
    * @param flags    flags corresponding to the found subintervals
-   * @param interval the region with which to isolate the roots
+   * @param interval the region with which to locate the roots
    * @param maxdepth A typical, reasonable value might be between 20 and 50.
    * @param maxeval  If the total number of tested subintervals exceeds maxeval,
    *                 the algorithm is terminated and any untested subintervals are
    *                 added to the output. A typical, reasonable value might be
    *                 between 100 and 100000.
-   * @param maxfound The algorithm terminates if maxfound roots have been
-   *                 isolated. In particular, setting maxfound to 1 can be used to
-   *                 locate just one root of the function even if there are
-   *                 numerous roots. To try to find all roots, LONG_MAX may be
-   *                 passed.
+   * @param maxfound The algorithm terminates if maxfound roots have been located.
+   *                 In particular, setting maxfound to 1 can be used to locate
+   *                 just one root of the function even if there are numerous
+   *                 roots. To try to find all roots, LONG_MAX may be passed.
    * @param prec     denotes the precision used to evaluate the function. It is
    *                 possibly also used for some other arithmetic operations
    *                 performed internally by the algorithm. Note that it probably
    *                 does not make sense for maxdepth to exceed prec.
    * @return
    */
-  public default FoundRoots isolateRoots(FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec)
+  public default FoundRoots locateRoots(FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec)
   {
     FoundRoots roots  = new FoundRoots();
     int        asign, bsign;
@@ -92,9 +91,14 @@ public interface RealFunction
       System.out.format("f(r=%s)=%s\n", m, v);
     }
     System.out.format("asign=%s bsign=%s\n", asign, bsign);
-//    isolate_roots_recursive(blocks, flags, &length, &alloc,
-//        func, param, block, asign, bsign,
-//        maxdepth, &maxeval, &maxfound, prec);
+    int evals[] = new int[]
+    { maxeval };
+    int found[] = new int[]
+    { maxfound };
+
+    recursivelyLocateRoots(roots.getFound(), interval, asign, bsign, maxdepth, evals, found, prec);
+    roots.n     = (int) found[0];
+    roots.evals = evals[0];
 //
 //    *blocks = flint_realloc(*blocks, length * sizeof(arf_interval_struct));
 //    *flags = flint_realloc(*flags, length * sizeof(int));
@@ -109,26 +113,26 @@ public interface RealFunction
                                              FloatInterval block,
                                              int asign,
                                              int bsign,
-                                             long depth,
-                                             long evalCount[],
-                                             long foundCount[],
-                                             long prec)
+                                             int depth,
+                                             int evalCount[],
+                                             int foundCount[],
+                                             int prec)
   {
 
     if (foundCount[0] <= 0 || evalCount[0] <= 0)
     {
-      blocks.addBlock(block, BlockStatus.UnknownZero);
+      blocks.addRoot(block, RootStatus.RootUnknown);
     }
     else
     {
       evalCount[0] -= 1;
-      BlockStatus status = block.determineStatus(asign, bsign, prec);
+      RootStatus status = block.determineStatus(asign, bsign, prec);
 
-      if (status != BlockStatus.NoZero)
+      if (status != RootStatus.NoRoot)
       {
-        if (status == BlockStatus.IsolatedZero || depth <= 0)
+        if (status == RootStatus.RootLocated || depth <= 0)
         {
-          if (status == BlockStatus.IsolatedZero)
+          if (status == RootStatus.RootLocated)
           {
             if (verbose)
             {
@@ -139,7 +143,7 @@ public interface RealFunction
             foundCount[0] -= 1;
           }
 
-          block.addBlock(block, status);
+          block.addRoot(block, status);
         }
         else
         {

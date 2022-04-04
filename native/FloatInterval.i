@@ -11,18 +11,18 @@
     System.loadLibrary("arblib");
   }
 
-  public static enum BlockStatus
+  public static enum RootStatus
   {
-   NoZero,
-   IsolatedZero,
-   UnknownZero
+   NoRoot,
+   RootLocated,
+   RootUnknown
   }
   
-  public BlockStatus flags[];
+  public RootStatus flags[];
   public int         length;
   public int         allocated;
 
-  public void addBlock(FloatInterval block, BlockStatus status)
+  public void addRoot(FloatInterval root, RootStatus status)
   {
     if (length >= allocated)
     {
@@ -42,16 +42,11 @@
   }
 
 
-  public void split(FloatInterval blocks,
-                    int asign,
-                    int bsign,
-                    long depth,
-                    long[] evalCount,
-                    long[] foundCount,
-                    long prec)
+  public void
+         split(FloatInterval blocks, int asign, int bsign, int depth, int[] evalCount, int[] foundCount, int prec)
   {
     throw new UnsupportedOperationException("TODO");
-  }  
+  }
   
   public static final int BYTES = 64;
 
@@ -88,7 +83,7 @@
     setB(interval.getB());
   }
   
-  public BlockStatus determineStatus(int asign, int bsign, long prec)
+  public RootStatus determineStatus(int asign, int bsign, long prec)
   {
     /**
      * <code>

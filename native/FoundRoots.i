@@ -7,6 +7,7 @@ import static arblib.Constants.*;
 
 %typemap(javacode) root_struct %{
   int n;
+  int evals;
   
   @Override
   public void close()

@@ -34,6 +34,7 @@ public class FoundRoots implements AutoCloseable {
   }
 
   int n;
+  int evals;
   
   @Override
   public void close()

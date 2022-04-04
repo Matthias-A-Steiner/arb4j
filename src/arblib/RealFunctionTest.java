@@ -12,7 +12,7 @@ public class RealFunctionTest
   public static void main(String args[])
   {
     SineFunction sineFunction = new SineFunction();
-    FoundRoots   roots        = sineFunction.isolateRoots(new FloatInterval(-1.0,
+    FoundRoots   roots        = sineFunction.locateRoots(new FloatInterval(-1.0,
                                                                             1),
                                                           50,
                                                           20,
