@@ -2,9 +2,10 @@ package arblib;
 
 import static java.lang.System.out;
 
+import arblib.FloatInterval.BlockStatus;
 import arblib.functions.RealConvergenceTester;
 
-/**
+/** 
  * Copyright ©2022 Stephen Crowley
  * 
  * This file is part of Arb4j which is free software: you can redistribute it
@@ -104,30 +105,30 @@ public interface RealFunction
 
   boolean verbose = false;
 
-  public default void isolate_roots_recursive(FloatInterval blocks,
-                                              FloatInterval block,
-                                              int asign,
-                                              int bsign,
-                                              long depth,
-                                              long evalCount[],
-                                              long foundCount[],
-                                              long prec)
+  public default void recursivelyLocateRoots(FloatInterval blocks,
+                                             FloatInterval block,
+                                             int asign,
+                                             int bsign,
+                                             long depth,
+                                             long evalCount[],
+                                             long foundCount[],
+                                             long prec)
   {
 
     if (foundCount[0] <= 0 || evalCount[0] <= 0)
     {
-      blocks.addBlock(block, FloatInterval.BlockStatus.UnknownZero);
+      blocks.addBlock(block, BlockStatus.UnknownZero);
     }
     else
     {
       evalCount[0] -= 1;
-      FloatInterval.BlockStatus status = block.determineStatus(asign, bsign, prec);
+      BlockStatus status = block.determineStatus(asign, bsign, prec);
 
-      if (status != FloatInterval.BlockStatus.NoZero)
+      if (status != BlockStatus.NoZero)
       {
-        if (status == FloatInterval.BlockStatus.IsolatedZero || depth <= 0)
+        if (status == BlockStatus.IsolatedZero || depth <= 0)
         {
-          if (status == FloatInterval.BlockStatus.IsolatedZero)
+          if (status == BlockStatus.IsolatedZero)
           {
             if (verbose)
             {
@@ -161,7 +162,6 @@ public interface RealFunction
    * @return
    */
   public default Real
-
          iteratedCompositionLimit(Real z0, RealConvergenceTester convergenceTester, int iters[], Real res, int bits)
   {
     // TODO: fix loss of precision
