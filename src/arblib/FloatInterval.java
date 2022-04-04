@@ -8,16 +8,8 @@
 
 package arblib;
 
-import arblib.FloatInterval.BlockStatus;
 
 public class FloatInterval implements AutoCloseable {
-  public static enum BlockStatus
-  {
-   NoZero,
-   IsolatedZero,
-   UnknownZero
-  }
-
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -46,11 +38,18 @@ public class FloatInterval implements AutoCloseable {
     System.loadLibrary("arblib");
   }
 
-  public FloatInterval.BlockStatus flags[];
+  public static enum BlockStatus
+  {
+   NoZero,
+   IsolatedZero,
+   UnknownZero
+  }
+  
+  public BlockStatus flags[];
   public int         length;
   public int         allocated;
 
-  public void addBlock(FloatInterval block, FloatInterval.BlockStatus status)
+  public void addBlock(FloatInterval block, BlockStatus status)
   {
     if (length >= allocated)
     {
@@ -116,7 +115,7 @@ public class FloatInterval implements AutoCloseable {
     setB(interval.getB());
   }
   
-  public FloatInterval.BlockStatus determineStatus(int asign, int bsign, long prec)
+  public BlockStatus determineStatus(int asign, int bsign, long prec)
   {
     /**
      * <code>

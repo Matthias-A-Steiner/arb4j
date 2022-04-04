@@ -1,5 +1,4 @@
 %typemap(javaimports) arf_interval_struct %{
-import arblib.RealFunction.BlockStatus;
 %}
 
 %typemap(javafinalize) arf_interval_struct ""
@@ -12,6 +11,13 @@ import arblib.RealFunction.BlockStatus;
     System.loadLibrary("arblib");
   }
 
+  public static enum BlockStatus
+  {
+   NoZero,
+   IsolatedZero,
+   UnknownZero
+  }
+  
   public BlockStatus flags[];
   public int         length;
   public int         allocated;
