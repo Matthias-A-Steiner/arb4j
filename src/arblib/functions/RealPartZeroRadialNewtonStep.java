@@ -13,15 +13,13 @@ import arblib.RealFunction;
 /**
  * Copyright ©2022 Stephen Crowley
  * 
- * This file is part of Arb4j
+ * This file is part of Arb4j which is free software: you can redistribute it
+ * and/or modify it under the terms of the GNU Lesser General Public License
+ * (LGPL) as published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version. See
+ * <http://www.gnu.org/licenses/>.
  * 
- * Arb4j is free software: you can redistribute it and/or modify it under the
- * terms of the GNU Lesser General Public License (LGPL) as published by the
- * Free Software Foundation; either version 2.1 of the License, or (at your
- * option) any later version. See <http://www.gnu.org/licenses/>.
- */
-
-/**
+ * 
  * This function is the Newton iteration which converges to the angle which,
  * when stepped towards with a given radius h results in the value where the
  * function has Re(f(t+h*exp(i*a)))=0 . The input to this function is an angle,
