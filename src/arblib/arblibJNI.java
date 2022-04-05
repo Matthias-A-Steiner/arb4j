@@ -147,6 +147,7 @@ public class arblibJNI {
   public final static native int ComplexPolynomial_alloc_get(long jarg1, ComplexPolynomial jarg1_);
   public final static native long new_ComplexPolynomial();
   public final static native void delete_ComplexPolynomial(long jarg1);
+  public final static native void arf_interval_get_arb(long jarg1, Real jarg1_, long jarg2, FloatInterval jarg2_, int jarg3);
   public final static native int arb_sgn_nonzero(long jarg1, Real jarg1_);
   public final static native void acb_poly_derivative(long jarg1, ComplexPolynomial jarg1_, long jarg2, ComplexPolynomial jarg2_, int jarg3);
   public final static native void acb_poly_integral(long jarg1, ComplexPolynomial jarg1_, long jarg2, ComplexPolynomial jarg2_, int jarg3);

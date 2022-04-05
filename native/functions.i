@@ -1,3 +1,5 @@
+void arf_interval_get_arb(arb_t x, const arf_interval_t v, slong prec);
+
 int arb_sgn_nonzero(const arb_t x);
 
 void acb_poly_derivative(acb_poly_t res, const acb_poly_t poly, slong prec);

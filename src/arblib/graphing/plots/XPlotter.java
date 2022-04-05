@@ -35,12 +35,12 @@ public class XPlotter
 //                                                                  2.5);
 
     Rectangle2D.Double domain        = new Rectangle2D.Double(-15,
-                                                              -12.5,
-                                                              70,
-                                                              25);
+                                                              -30,
+                                                              45,
+                                                              60);
 
-    Dimension          screen        = new Dimension(1800,
-                                                     900);
+    Dimension          screen        = new Dimension(2000,
+                                                     1000);
 
     Complex            root          = ZFunction.complexRoots.getOrCreate(1);
     final int          normalization = (int) Math.pow(2, 3);
@@ -54,8 +54,8 @@ public class XPlotter
                                                                                                      prec,
                                                                                                      w));
 
-    plotter.color_mode        = 1;
-    plotter.bilinearSmoothing = false;
+    plotter.color_mode        = 2;
+    plotter.bilinearSmoothing = true;
 
     frame                     = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +85,7 @@ public class XPlotter
 
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
-    XPlotter plotter = new XPlotter(1);
+    XPlotter plotter = new XPlotter(2);
     plotter.plot();
   }
 }
