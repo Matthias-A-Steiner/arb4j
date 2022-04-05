@@ -36,7 +36,7 @@ public class XPlotter
 
     Rectangle2D.Double domain        = new Rectangle2D.Double(-15,
                                                               -30,
-                                                              45,
+                                                              30,
                                                               60);
 
     Dimension          screen        = new Dimension(2000,
@@ -55,7 +55,7 @@ public class XPlotter
                                                                                                      w));
 
     plotter.color_mode        = 2;
-    plotter.bilinearSmoothing = true;
+    plotter.bilinearSmoothing = false;
 
     frame                     = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -110,13 +110,19 @@ public class FloatInterval implements AutoCloseable {
     setB(interval.getB());
   }
   
+  public Real getReal(Real res, int prec)
+  {
+    arblib.arf_interval_get_arb(res, this, prec);
+    return res;
+  }
+  
   public RootStatus determineStatus(int asign, int bsign, int prec)
   {
-    try ( Real t = Real.claim2() ; Real x = Real.claim() )
+    try ( Real t = Real.claim2() ; Real x = getReal( Real.claim(), prec ) )
     {
-      arblib.arf_interval_get_arb(x, this, prec);
       
     }
+
     /**
      * <code>
         int result;

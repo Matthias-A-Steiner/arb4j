@@ -83,12 +83,19 @@
     setB(interval.getB());
   }
   
-  public RootStatus determineStatus(int asign, int bsign, long prec)
+  public Real getReal(Real res, int prec)
   {
-    try ( Real t = Real.claim2() ; Real x = Real.claim() )
+    arblib.arf_interval_get_arb(res, this, prec);
+    return res;
+  }
+  
+  public RootStatus determineStatus(int asign, int bsign, int prec)
+  {
+    try ( Real t = Real.claim2() ; Real x = getReal( Real.claim(), prec ) )
     {
       
     }
+
     /**
      * <code>
         int result;
