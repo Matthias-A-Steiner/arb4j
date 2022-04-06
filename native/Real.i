@@ -365,6 +365,16 @@ import static arblib.Constants.*;
   public int sign()
   {
     return arblib.arb_sgn_nonzero(this);
-  }  
+  }
+
+  public boolean isPositive()
+  {
+    return arblib.arb_is_positive(this) != 0;
+  }
+
+  public boolean isNegative()
+  {
+    return arblib.arb_is_negative(this) != 0;
+  }
 %};
 

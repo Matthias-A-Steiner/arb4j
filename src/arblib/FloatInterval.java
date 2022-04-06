@@ -116,11 +116,17 @@ public class FloatInterval implements AutoCloseable {
     return res;
   }
   
-  public RootStatus determineRootStatus(int asign, int bsign, int prec)
+  public RootStatus determineRootStatus(RealFunction func, int asign, int bsign, int prec)
   {
+    RootStatus result = RootStatus.RootUnknown;
+    
     try ( Real t = Real.claim2() ; Real x = getReal( Real.claim(), prec ) )
     {
-      
+      func.evaluate(x, 1, prec, t);
+      if ( t.isPositive() || t.isNegative() )
+      {
+        result = RootStatus.NoRoot;
+      }
     }
 
     /**
