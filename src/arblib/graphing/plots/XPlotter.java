@@ -34,10 +34,10 @@ public class XPlotter
 //                                                                  4,
 //                                                                  2.5);
 
-    Rectangle2D.Double domain        = new Rectangle2D.Double(-15,
-                                                              -30,
-                                                              30,
-                                                              60);
+    Rectangle2D.Double domain        = new Rectangle2D.Double(-40,
+                                                              -20,
+                                                              80,
+                                                              40);
 
     Dimension          screen        = new Dimension(2000,
                                                      1000);

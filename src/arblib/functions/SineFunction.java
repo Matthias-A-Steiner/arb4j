@@ -13,9 +13,13 @@ public class SineFunction implements
     assert z != null;
     assert w != null;
     // TODO: implement derivative(s) with order>1
-    assert order == 1;
-    Real sin = z.sin(prec, w);
-    return sin;
+    assert order <= 2;
+    z.sin(prec, w);
+    if (order == 2)
+    {
+      z.cos(prec, w.get(1));
+    }
+    return w;
   }
 
 }
