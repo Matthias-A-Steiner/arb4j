@@ -119,53 +119,35 @@ public class FloatInterval implements AutoCloseable {
   public RootStatus determineRootStatus(RealFunction func, int asign, int bsign, int prec)
   {
     RootStatus result = RootStatus.RootUnknown;
-    
-    try ( Real t = Real.claim2() ; Real x = getReal( Real.claim(), prec ) )
+
+    try ( Real t = Real.claim2(); Real x = getReal(Real.claim(), prec))
     {
       func.evaluate(x, 1, prec, t);
-      if ( t.isPositive() || t.isNegative() )
+      if (t.isPositive() || t.isNegative())
       {
         result = RootStatus.NoRoot;
       }
+      else
+      {
+        /**
+         * <code>
+                if ((asign < 0 && bsign > 0) || (asign > 0 && bsign < 0))
+                {
+                    func(t, x, param, 2, prec);
+        
+                    if (arb_is_finite(t + 1) && !arb_contains_zero(t + 1))
+                    {
+                        result = BLOCK_ISOLATED_ZERO;
+                    }
+                }
+          </code>
+         */
+      }
     }
 
-    /**
-     * <code>
-        int result;
-    
-        arf_interval_get_arb(x, block, prec);
-        func(t, x, param, 1, prec);
-    
-        result = BLOCK_UNKNOWN;
-    
-        if (arb_is_positive(t) || arb_is_negative(t))
-        {
-            result = BLOCK_NO_ZERO;
-        }
-        else
-        {
-            if ((asign < 0 && bsign > 0) || (asign > 0 && bsign < 0))
-            {
-                func(t, x, param, 2, prec);
-    
-                if (arb_is_finite(t + 1) && !arb_contains_zero(t + 1))
-                {
-                    result = BLOCK_ISOLATED_ZERO;
-                }
-            }
-        }
-    
-        arb_clear(t + 0);
-        arb_clear(t + 1);
-        arb_clear(x);
-    
-        return result;
-    }  
-      </code>
-     */
-    throw new UnsupportedOperationException("TODO");
-
-  }  
+    return result;
+  }
+  
 
   public void setA(Float value) {
     arblibJNI.FloatInterval_a_set(swigCPtr, this, Float.getCPtr(value), value);
