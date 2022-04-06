@@ -8,30 +8,35 @@
 
 package arblib;
 
-
-public class FloatInterval implements AutoCloseable {
-  private transient long swigCPtr;
+public class FloatInterval implements
+                           AutoCloseable
+{
+  private transient long      swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  public FloatInterval(long cPtr, boolean cMemoryOwn) {
+  public FloatInterval(long cPtr, boolean cMemoryOwn)
+  {
     swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
+    swigCPtr    = cPtr;
   }
 
-  public static long getCPtr(FloatInterval obj) {
+  public static long getCPtr(FloatInterval obj)
+  {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
+  public synchronized void delete()
+  {
+    if (swigCPtr != 0)
+    {
+      if (swigCMemOwn)
+      {
         swigCMemOwn = false;
         arblibJNI.delete_FloatInterval(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
-
 
   static
   {
@@ -44,10 +49,10 @@ public class FloatInterval implements AutoCloseable {
    RootLocated,
    RootUnknown
   }
-  
+
   public RootStatus flags[];
-  public int         length;
-  public int         allocated;
+  public int        length;
+  public int        allocated;
 
   public void addRoot(FloatInterval root, RootStatus status)
   {
@@ -68,13 +73,12 @@ public class FloatInterval implements AutoCloseable {
     throw new UnsupportedOperationException("TODO: implement this then change the cPtr");
   }
 
-
   public void
          split(FloatInterval blocks, int asign, int bsign, int depth, int[] evalCount, int[] foundCount, int prec)
   {
     throw new UnsupportedOperationException("TODO");
   }
-  
+
   public static final int BYTES = 64;
 
   @Override
@@ -82,13 +86,13 @@ public class FloatInterval implements AutoCloseable {
   {
     return String.format("FloatInterval[A=%s, B=%s]", getA(), getB());
   }
-    
+
   @Override
   public void close()
-  { 
-      delete();
+  {
+    delete();
   }
-  
+
   public FloatInterval(double left, double right)
   {
     this();
@@ -96,26 +100,26 @@ public class FloatInterval implements AutoCloseable {
     getA().assign(left);
     getB().assign(right);
   }
-  
+
   public FloatInterval init()
   {
-   getA().init();
-   getB().init();
-   return this;
+    getA().init();
+    getB().init();
+    return this;
   }
-  
+
   public void set(FloatInterval interval)
   {
     setA(interval.getA());
     setB(interval.getB());
   }
-  
+
   public Real getReal(Real res, int prec)
   {
     arblib.arf_interval_get_arb(res, this, prec);
     return res;
   }
-  
+
   public RootStatus determineRootStatus(RealFunction func, int asign, int bsign, int prec)
   {
     RootStatus result = RootStatus.RootUnknown;
@@ -131,8 +135,7 @@ public class FloatInterval implements AutoCloseable {
       {
         if ((asign < 0 && bsign > 0) || (asign > 0 && bsign < 0))
         {
-          func.evaluate(x, 2, prec, t);
-          Real firstDerivative = t.get(1);
+          Real firstDerivative = func.evaluate(x, 2, prec, t).get(1);
           if (firstDerivative.isFinite() && !firstDerivative.containsZero())
           {
             result = RootStatus.RootLocated;
@@ -143,28 +146,35 @@ public class FloatInterval implements AutoCloseable {
 
     return result;
   }
-  
 
-  public void setA(Float value) {
+  public void setA(Float value)
+  {
     arblibJNI.FloatInterval_a_set(swigCPtr, this, Float.getCPtr(value), value);
   }
 
-  public Float getA() {
+  public Float getA()
+  {
     long cPtr = arblibJNI.FloatInterval_a_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new Float(cPtr, false);
+    return (cPtr == 0) ? null : new Float(cPtr,
+                                          false);
   }
 
-  public void setB(Float value) {
+  public void setB(Float value)
+  {
     arblibJNI.FloatInterval_b_set(swigCPtr, this, Float.getCPtr(value), value);
   }
 
-  public Float getB() {
+  public Float getB()
+  {
     long cPtr = arblibJNI.FloatInterval_b_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new Float(cPtr, false);
+    return (cPtr == 0) ? null : new Float(cPtr,
+                                          false);
   }
 
-  public FloatInterval() {
-    this(arblibJNI.new_FloatInterval(), true);
+  public FloatInterval()
+  {
+    this(arblibJNI.new_FloatInterval(),
+         true);
   }
 
 }

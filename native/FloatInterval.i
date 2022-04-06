@@ -104,8 +104,7 @@
       {
         if ((asign < 0 && bsign > 0) || (asign > 0 && bsign < 0))
         {
-          func.evaluate(x, 2, prec, t);
-          Real firstDerivative = t.get(1);
+          Real firstDerivative = func.evaluate(x, 2, prec, t).get(1);
           if (firstDerivative.isFinite() && !firstDerivative.containsZero())
           {
             result = RootStatus.RootLocated;
