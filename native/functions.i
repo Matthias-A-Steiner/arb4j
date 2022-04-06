@@ -168,6 +168,8 @@ void acb_sin(acb_t r, const acb_t z, slong prec);
 
  int arb_contains(const arb_t x, const arb_t y);
 
+int arb_contains_zero(const arb_t x);
+
  int arb_set_str(arb_t res, const char *inp, slong prec);
   
  int arb_overlaps(const arb_t x, const arb_t y);

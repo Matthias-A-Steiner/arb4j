@@ -102,19 +102,15 @@
       }
       else
       {
-        /**
-         * <code>
-                if ((asign < 0 && bsign > 0) || (asign > 0 && bsign < 0))
-                {
-                    func(t, x, param, 2, prec);
-        
-                    if (arb_is_finite(t + 1) && !arb_contains_zero(t + 1))
-                    {
-                        result = BLOCK_ISOLATED_ZERO;
-                    }
-                }
-          </code>
-         */
+        if ((asign < 0 && bsign > 0) || (asign > 0 && bsign < 0))
+        {
+          func.evaluate(x, 2, prec, t);
+          Real firstDerivative = t.get(1);
+          if (firstDerivative.isFinite() && !firstDerivative.containsZero())
+          {
+            result = RootStatus.RootLocated;
+          }
+        }
       }
     }
 

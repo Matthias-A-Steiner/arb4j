@@ -324,6 +324,10 @@ public class arblib {
     return arblibJNI.arb_contains(Real.getCPtr(x), x, Real.getCPtr(y), y);
   }
 
+  public static int arb_contains_zero(Real x) {
+    return arblibJNI.arb_contains_zero(Real.getCPtr(x), x);
+  }
+
   public static int arb_set_str(Real res, String inp, int prec) {
     return arblibJNI.arb_set_str(Real.getCPtr(res), res, inp, prec);
   }

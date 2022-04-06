@@ -388,6 +388,11 @@ public class Real implements AutoCloseable {
   {
     return arblib.arb_is_negative(this) != 0;
   }
+  
+  public boolean containsZero()
+  {
+    return arblib.arb_contains_zero(this) != 0;
+  }
 
   public void setMid(Float value) {
     arblibJNI.Real_mid_set(swigCPtr, this, Float.getCPtr(value), value);

@@ -3743,6 +3743,22 @@ SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_arb_1contains(JNIEnv *jenv, jclass
 }
 
 
+SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_arb_1contains_1zero(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  arb_struct *arg1 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(arb_struct **)&jarg1; 
+  result = (int)arb_contains_zero((arb_struct const (*))arg1);
+  jresult = (jint)result; 
+  
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_arb_1set_1str(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
   jint jresult = 0 ;
   arb_struct *arg1 ;

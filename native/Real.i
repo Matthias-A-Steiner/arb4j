@@ -376,5 +376,10 @@ import static arblib.Constants.*;
   {
     return arblib.arb_is_negative(this) != 0;
   }
+  
+  public boolean containsZero()
+  {
+    return arblib.arb_contains_zero(this) != 0;
+  }
 %};
 
