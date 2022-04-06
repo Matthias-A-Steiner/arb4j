@@ -9,6 +9,14 @@
 package arblib;
 
 public class arblib {
+  public static int arb_is_positive(Real x) {
+    return arblibJNI.arb_is_positive(Real.getCPtr(x), x);
+  }
+
+  public static int arb_is_negative(Real x) {
+    return arblibJNI.arb_is_negative(Real.getCPtr(x), x);
+  }
+
   public static void arf_interval_get_arb(Real x, FloatInterval v, int prec) {
     arblibJNI.arf_interval_get_arb(Real.getCPtr(x), x, FloatInterval.getCPtr(v), v, prec);
   }

@@ -125,7 +125,7 @@ public interface RealFunction
     else
     {
       evalCount[0] -= 1;
-      RootStatus status = root.determineStatus(asign, bsign, prec);
+      RootStatus status = root.determineRootStatus(asign, bsign, prec);
 
       if (status != RootStatus.NoRoot)
       {
