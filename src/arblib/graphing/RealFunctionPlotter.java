@@ -93,14 +93,13 @@ public class RealFunctionPlotter extends
     // create Lines objects, one solid the other dashed
     Lines lineA = new Lines();
     Lines lineB = new Lines();
-    lineB.setStrokePattern(0xf0f0);
+    
+    lineB.setStrokePattern(0xb33f);
+    
     // add line segments to A
     for (int i = 0; i < seriesA_y.length - 1; i++)
     {
-      double         x1      = seriesA_x[i], x2 = seriesA_x[i + 1];
-      double         y1      = seriesA_y[i], y2 = seriesA_y[i + 1];
-      SegmentDetails segment = lineA.addSegment(x1, y1, x2, y2);
-      segment.setColor(Color.RED);
+      addLineSegment(seriesA_x, seriesA_y, lineA, i);
     }
     // add line segments to B (the short way)
     ArrayList<SegmentDetails> segmentsB = lineB.addLineStrip(seriesB_x, seriesB_y);
@@ -127,30 +126,7 @@ public class RealFunctionPlotter extends
     // add area quads under each segment
     for (SegmentDetails segment : lineA.getSegments())
     {
-      Point2D pL = segment.p0, pR = segment.p1;
-      if (Math.signum(pL.getY()) == Math.signum(pR.getY()))
-      {
-        // points are on same side of x-axis
-        ArrayList<TriangleDetails> quad = areaA.addQuad(pL.getX(),
-                                                        0,
-                                                        pL.getX(),
-                                                        pL.getY(),
-                                                        pR.getX(),
-                                                        pR.getY(),
-                                                        pR.getX(),
-                                                        0);
-        quad.forEach(tri -> tri.setColor(Color.RED));
-      }
-      else
-      {
-        // segment intersects x-axis, need to find intersection
-        double x0 = pL.getX(), y0 = pL.getY(), x2 = pR.getX(), y2 = pR.getY();
-        double m  = (y2 - y0) / (x2 - x0);
-        // solving for x1 in (x1-x0)*m+y0 = 0 --> 1x = x0-y0/m;
-        double x1 = x0 - y0 / m;
-        areaA.addTriangle(x0, y0, x1, 0, x0, 0).setColor(Color.RED);
-        areaA.addTriangle(x2, y2, x1, 0, x2, 0).setColor(Color.RED);
-      }
+      addAreaQuads(areaA, segment);
     }
     // use a TriangleRenderer for the Triangles
     TrianglesRenderer areaContent = new TrianglesRenderer();
@@ -161,6 +137,42 @@ public class RealFunctionPlotter extends
 
   }
 
+  public void addLineSegment(double[] seriesAx, double[] seriesA, Lines lines, int i)
+  {
+    double         x1      = seriesAx[i], x2 = seriesAx[i + 1];
+    double         y1      = seriesA[i], y2 = seriesA[i + 1];
+    SegmentDetails segment = lines.addSegment(x1, y1, x2, y2);
+    segment.setColor(Color.RED);
+  }
+
+  public void addAreaQuads(Triangles quads, SegmentDetails segment)
+  {
+    Point2D pL = segment.p0, pR = segment.p1;
+    if (Math.signum(pL.getY()) == Math.signum(pR.getY()))
+    {
+      // points are on same side of x-axis
+      ArrayList<TriangleDetails> quad = quads.addQuad(pL.getX(),
+                                                      0,
+                                                      pL.getX(),
+                                                      pL.getY(),
+                                                      pR.getX(),
+                                                      pR.getY(),
+                                                      pR.getX(),
+                                                      0);
+      quad.forEach(tri -> tri.setColor(Color.RED));
+    }
+    else
+    {
+      // segment intersects x-axis, need to find intersection
+      double x0 = pL.getX(), y0 = pL.getY(), x2 = pR.getX(), y2 = pR.getY();
+      double m  = (y2 - y0) / (x2 - x0);
+      // solving for x1 in (x1-x0)*m+y0 = 0 --> 1x = x0-y0/m;
+      double x1 = x0 - y0 / m;
+      quads.addTriangle(x0, y0, x1, 0, x0, 0).setColor(Color.RED);
+      quads.addTriangle(x2, y2, x1, 0, x2, 0).setColor(Color.RED);
+    }
+  }
+
   public double[] discretizeInterval(int n)
   {
     return IntStream.range(0, n)
@@ -169,7 +181,7 @@ public class RealFunctionPlotter extends
                     .toArray();
   }
 
-  private double[] sampleFunction(double[] domainPoints)
+  public double[] sampleFunction(double[] domainPoints)
   {
     // TODO: consider tradeoffs of passing in double[] array vs Float[] array.
     return IntStream.range(0, domainPoints.length)
