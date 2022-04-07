@@ -45,8 +45,7 @@ public class XPlotter
     Complex            root          = ZFunction.complexRoots.getOrCreate(1);
     final int          normalization = (int) Math.pow(2, 3);
 
-    Real               scale         = new Real().assign(vscale);
-    XFunction          xFunction     = new XFunction(scale);
+    XFunction          xFunction     = new XFunction(vscale);
     plotter                   = new ComplexFunctionPlotter(screen,
                                                            domain,
                                                            (z, order, prec, w) -> xFunction.evaluate(z,

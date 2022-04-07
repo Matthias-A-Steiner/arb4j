@@ -54,7 +54,8 @@ public class RealPartZeroRadialNewtonStep<F extends ComplexFunction> implements
   Complex s;
   Real    h;
   Complex t;
-
+  ComplexFunction func;
+  
   @Override
   public Real evaluate(Real a, int order, int prec, Real res)
   {
@@ -66,7 +67,7 @@ public class RealPartZeroRadialNewtonStep<F extends ComplexFunction> implements
       s = t.add(h.mul(iπ.mul(a, prec, dt).exp(prec, dt), dt), prec, s);
       assert s.isFinite() : String.format("s is not finite: s=%s t=%s h=%s a=%s dt=%s\n", s, t, h, a, dt);
 
-      Real yRealPart           = SFunction.S(null, s, a, 2, false, prec, y).getReal();
+      Real yRealPart           = func.evaluate( s, 2, prec, y).getReal();
       Real yDerivativeImagPart = y.get(1).mul(dt, prec, p).getImag().mul(π, p.getImag());
       return yRealPart.div(yDerivativeImagPart, prec, res).tanh(res, prec).add(a, prec, res).frac(prec, res);
 

@@ -57,7 +57,8 @@ public class SPlot
                                            public synchronized Complex calculateNewtonTrajectory(Complex t, int n)
                                            {
 
-                                             return sfunc.SNewtonIter(t, n);
+                                             throw new UnsupportedOperationException( "Replacing with Newton flow");
+                                            // return sfunc.SNewtonIter(t, n);
 
                                            }
                                          };

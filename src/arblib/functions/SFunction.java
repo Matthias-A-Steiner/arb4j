@@ -14,7 +14,8 @@ public class SFunction implements
                        ComplexFunction
 {
   private static final Complex ONE = COMPLEX_ONE;
-  Real a;
+  Real                         a;
+  Complex                      f   = null;
 
   public SFunction()
   {
@@ -26,17 +27,23 @@ public class SFunction implements
     this.a = scale;
   }
 
-  @Override
-  public Complex evaluate(Complex z, int order, int prec, Complex w)
+  public SFunction(Real scale, Complex f)
   {
-    return S(null, z, a, order, false, prec, w);
+    this.a = scale;
+    this.f = f;
   }
 
-  public static Complex
-         S(Complex f, Complex t, Real a, int order, boolean functionalDerivative, int prec, Complex res)
+  public SFunction(Complex f)
   {
+    this.f = f;
+  }
+
+  @Override
+  public Complex evaluate(Complex t, int order, int prec, Complex res)
+  {
+    
     assert res.dim >= order && order > 0 : format("res.dim = %d must be >= order = %d > 0", res.dim, order);
-    try (Complex r = claim(); Complex s = claim())
+    try ( Complex r = claim(); Complex s = claim())
     {
       if (order >= 1)
       {
@@ -52,18 +59,15 @@ public class SFunction implements
       {
         Complex res1 = res.get(1);
 
-        try (Complex b = t.div(a, prec, claim());
-                      Complex c = b.pow(2, prec, claim());
-                      Complex d = c.neg(claim());
-                      Complex e = d.add(1, prec, claim());
-                      Complex g = e.pow(2, prec, claim());
-                      Complex h = g.add(1, prec, claim());)
+        try ( Complex b = t.div(a, prec, claim()); Complex c = b.pow(2, prec, claim()); Complex d = c.neg(claim());
+              Complex e = d.add(1, prec, claim()); Complex g = e.pow(2, prec, claim());
+              Complex h = g.add(1, prec, claim());)
         {
 
           ONE.div(h.pow(2, prec, g), prec, h);
           b.mul(8, prec, g).mul(e, prec, g).mul(h, prec, g).neg(res1);
 
-          if (functionalDerivative)
+          if (f != null)
           {
             res1.mul(f.get(1), prec, res1);
           }
@@ -73,77 +77,5 @@ public class SFunction implements
     }
   }
 
-  public Complex performNewtonStep(Complex t, int prec, Complex res)
-  {
-    try (Complex r = claim(); Complex s = claim2())
-    {
-      return t.sub(S(null, t, a, 2, false, prec, s).div(s.get(1), prec, r), prec, res);
-    }
-  }
-
-  /**
-   * TODO: functionalize
-   * 
-   * @param t0
-   * @param bits
-   * @param res
-   * @return
-   */
-  public Complex takeNewtonStepLimit(Complex t0, int bits, Complex res)
-  {
-    try (Complex Y = claim(); Complex Z = claim(); Complex r = claim(); Complex s = claim(); Complex q = claim())
-    {
-      res.set(t0);
-      for (int i = 0; performNewtonStep(res, bits, r).isFinite() && r.relAccuracyBits() > 60; i++)
-      {
-        if (i == 0)
-        {
-          q.set(t0);
-        }
-        if (Double.isInfinite(r.norm()))
-        {
-          res.set(Constants.posInf);
-          return res;
-        }
-        else
-        {
-          res.set(r);
-        }
-        r.sub(q, bits, s);
-        bits = r.relAccuracyBits() * 2;
-        if (Functions.trace)
-        {
-          System.out.format("i=%d q=%s\n    r=%s\n    s=%s=%.20f rabs=%d\n\n",
-                            i,
-                            q.get(0),
-                            r.get(0),
-                            s.get(0),
-                            s.get(0).norm(),
-                            r.get(0).relAccuracyBits());
-        }
-        q.set(r);
-
-      }
-    }
-    return res;
-  }
-
-  public Complex SNewtonIter(Complex t0, int n)
-  {
-    Complex trajectory = Complex.newVector(n);
-    try (Complex t = claim().set(t0); Complex r = claim())
-    {
-      for (int i = 0; i < n; i++)
-      {
-        trajectory.get(i).set(t);
-        performNewtonStep(t, Functions.prec, r);
-        System.out.println(i + " " + r);
-        t.set(r);
-      }
-      return trajectory;
-    }
-  }
-
- 
 
 }

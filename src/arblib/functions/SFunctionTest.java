@@ -9,9 +9,10 @@ public class SFunctionTest extends
 {
   public static void testS()
   {
-    try (Complex t = Complex.claim().set(2, 0.2); Real a = Real.claim().assign(1))
+    SFunction sFunction = new SFunction();
+    try ( Complex t = Complex.claim().set(2, 0.2);)
     {
-      Complex result = SFunction.S(null, t, a, 2, false, 256, Complex.newVector(2));
+      Complex result = sFunction.evaluate(t, 2, 256, Complex.newVector(2));
       System.out.format("S(%s)=%s\n", t, result);
 
       assertEquals(result.getReal().doubleValue(), 0.8272968560866428);

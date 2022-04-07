@@ -37,13 +37,14 @@ public class SCoshPlot
     Dimension screen = new Dimension(600,
                                      1200);
 
-
+    SFunction sFunction = new SFunction();
+    
     ComplexFunction function = (z, order, prec, w) ->
     {
       z.getReal().sub(Constants.HALF, prec, z.getReal());
       //z.cosh(prec, w);//.mul(Constants.i, prec, w);
       // TFunction.T(z, w, Constants.ONE, 2, false, prec, w);
-      return SFunction.S(z.cosh(prec, w), w, ONE, 2, false, prec, w);
+      return sFunction.evaluate(z.cosh(prec, w), 2, prec, w);
 
     };
 
