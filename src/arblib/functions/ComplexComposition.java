@@ -22,7 +22,7 @@ public class ComplexComposition implements
   @Override
   public Complex evaluate(Complex t, int order, int prec, Complex z)
   {
-    // TODO: fiinish implementing
+    // TODO: fiinish implementing, properly handle the chain-rule here
     assert order <= 2;
     g.evaluate(t, order, prec, y);
     return f.evaluate(y, order, prec, z);
