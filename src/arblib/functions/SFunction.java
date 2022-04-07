@@ -13,6 +13,12 @@ import arblib.Real;
 public class SFunction implements
                        ComplexFunction
 {
+  @Override
+  public ComplexFunction differentiate()
+  {
+    throw new UnsupportedOperationException("TODO: return the derivative of S(t)");
+  }
+
   private static final Complex ONE = COMPLEX_ONE;
   Real                         a;
   Complex                      f   = null;
@@ -41,7 +47,7 @@ public class SFunction implements
   @Override
   public Complex evaluate(Complex t, int order, int prec, Complex res)
   {
-    
+
     assert res.dim >= order && order > 0 : format("res.dim = %d must be >= order = %d > 0", res.dim, order);
     try ( Complex r = claim(); Complex s = claim())
     {
@@ -76,6 +82,5 @@ public class SFunction implements
       return res;
     }
   }
-
 
 }

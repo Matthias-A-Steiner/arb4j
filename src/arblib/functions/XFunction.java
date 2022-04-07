@@ -28,7 +28,7 @@ import arblib.RealFunction;
  * The conjugate of this function is {@link YFunction}
  */
 public class XFunction extends
-                       ComplexCompositionOperator
+                       ComplexComposition
 {
 
   SFunction sFunction = new SFunction();
