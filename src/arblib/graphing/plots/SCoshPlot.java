@@ -32,7 +32,7 @@ public class SCoshPlot
     Rectangle2D.Double domain = new Rectangle2D.Double(-1.5,
                                                        -6,
                                                        4,
-                                                       12);
+                                                       30);
 
     Dimension screen = new Dimension(600,
                                      1200);
@@ -44,7 +44,9 @@ public class SCoshPlot
       z.getReal().sub(Constants.HALF, prec, z.getReal());
       //z.cosh(prec, w);//.mul(Constants.i, prec, w);
       // TFunction.T(z, w, Constants.ONE, 2, false, prec, w);
-      return sFunction.evaluate(z.cosh(prec, w), 2, prec, w);
+      //?return sFunction.evaluate(z.cosh(prec, w), 2, prec, w);
+
+      return z.cosh(prec, w);
 
     };
 

@@ -1,5 +1,14 @@
 package arblib.functions;
 
+/**
+ * Copyright ©2022 Stephen Crowley
+ * 
+ * This file is part of Arb4j which is free software: you can redistribute it
+ * and/or modify it under the terms of the GNU Lesser General Public License
+ * (LGPL) as published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version. See
+ * <http://www.gnu.org/licenses/>.
+ */
 import static arblib.Complex.claim;
 import static arblib.Complex.claim2;
 import static arblib.Constants.COMPLEX_ONE;
@@ -10,6 +19,11 @@ import arblib.ComplexFunction;
 import arblib.Constants;
 import arblib.Real;
 
+/**
+ * The rational meromorphic quartic tanh(ln(1-t^2)))
+ * 
+ * @author Stephen Crowley
+ */
 public class SFunction implements
                        ComplexFunction
 {
@@ -20,8 +34,8 @@ public class SFunction implements
   }
 
   private static final Complex ONE = COMPLEX_ONE;
+
   Real                         a;
-  Complex                      f   = null;
 
   public SFunction()
   {
@@ -31,17 +45,6 @@ public class SFunction implements
   public SFunction(Real scale)
   {
     this.a = scale;
-  }
-
-  public SFunction(Real scale, Complex f)
-  {
-    this.a = scale;
-    this.f = f;
-  }
-
-  public SFunction(Complex f)
-  {
-    this.f = f;
   }
 
   @Override
@@ -72,11 +75,6 @@ public class SFunction implements
 
           ONE.div(h.pow(2, prec, g), prec, h);
           b.mul(8, prec, g).mul(e, prec, g).mul(h, prec, g).neg(res1);
-
-          if (f != null)
-          {
-            res1.mul(f.get(1), prec, res1);
-          }
         }
       }
       return res;
