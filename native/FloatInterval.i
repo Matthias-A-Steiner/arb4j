@@ -4,12 +4,31 @@
 %typemap(javafinalize) arf_interval_struct ""
 %typemap(javainterfaces) arf_interval_struct "AutoCloseable"
 
-%typemap(javacode) arf_interval_struct %{
+%typemap(javabody) arf_interval_struct %{
 
-  static
-  {
-    System.loadLibrary("arblib");
+ static
+ {
+   System.loadLibrary( "arblib" );
+ }
+ 
+  public long swigCPtr;
+  public boolean swigCMemOwn;
+
+  public $javaclassname(long cPtr) {
+    this(cPtr,false);
   }
+    
+  public $javaclassname(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
+
+  public static long getCPtr($javaclassname obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
+%}
+
+%typemap(javacode) arf_interval_struct %{
 
   public static enum RootStatus
   {
@@ -27,7 +46,8 @@
     if (length >= allocated)
     {
       int newAllocation = (allocated == 0) ? 1 : 2 * allocated;
-
+      swigCPtr = SWIGTYPE_p_void.getCPtr( arblib.flint_realloc(new SWIGTYPE_p_void(this.swigCPtr,false), newAllocation) );
+      length++;
 //        *blocks = flint_realloc(*blocks, sizeof(arf_interval_struct) * new_alloc);   
 //        *flags = flint_realloc(*flags, sizeof(int) * new_alloc);   
 //        *alloc = new_alloc;   
@@ -38,7 +58,7 @@
 //    (*length)++; 
     }
 
-    throw new UnsupportedOperationException("TODO: implement this then change the cPtr");
+    throw new UnsupportedOperationException("TODO: implement this then change the cPtr: " + this + " root=" + root );
   }
 
 
