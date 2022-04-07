@@ -93,9 +93,9 @@ public class RealFunctionPlotter extends
     // create Lines objects, one solid the other dashed
     Lines lineA = new Lines();
     Lines lineB = new Lines();
-    
+
     lineB.setStrokePattern(0xb33f);
-    
+
     // add line segments to A
     for (int i = 0; i < seriesA_y.length - 1; i++)
     {
