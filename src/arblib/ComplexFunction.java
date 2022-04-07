@@ -15,4 +15,8 @@ public interface ComplexFunction
 
   Complex evaluate(Complex z, int order, int prec, Complex w);
 
+  public default ComplexFunction differentiate()
+  {
+    throw new UnsupportedOperationException("implementation must override");
+  }
 }
