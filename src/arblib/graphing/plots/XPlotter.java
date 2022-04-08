@@ -1,3 +1,12 @@
+/**
+ * Copyright ©2022 Stephen Crowley
+ * 
+ * This file is part of Arb4j which is free software: you can redistribute it
+ * and/or modify it under the terms of the GNU Lesser General Public License
+ * (LGPL) as published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version. See
+ * <http://www.gnu.org/licenses/>.
+ */
 package arblib.graphing.plots;
 
 import java.awt.Dimension;
@@ -15,24 +24,13 @@ import arblib.functions.ZFunction;
 import arblib.graphing.ComplexFunctionPlotter;
 
 /**
- * Copyright ©2022 Stephen Crowley
- * 
- * This file is part of Arb4j.
- * 
- * Arb4j is free software: you can redistribute it and/or modify it under the
- * terms of the GNU Lesser General Public License (LGPL) as published by the
- * Free Software Foundation; either version 2.1 of the License, or (at your
- * option) any later version. See <http://www.gnu.org/licenses/>.
+ * Renders {@link XFunction} via {@link ComplexFunctionPlotter}
  */
 public class XPlotter
 {
   public XPlotter(double vscale) throws NoninvertibleTransformException,
                                  IOException
   {
-//    Rectangle2D.Double     domain        = new Rectangle2D.Double(3002.8,
-//                                                                  -1.15,
-//                                                                  4,
-//                                                                  2.5);
 
     Rectangle2D.Double domain        = new Rectangle2D.Double(-40,
                                                               -20,
@@ -48,10 +46,7 @@ public class XPlotter
     XFunction          xFunction     = new XFunction(vscale);
     plotter                   = new ComplexFunctionPlotter(screen,
                                                            domain,
-                                                           (z, order, prec, w) -> xFunction.evaluate(z,
-                                                                                                     order,
-                                                                                                     prec,
-                                                                                                     w));
+                                                           xFunction);
 
     plotter.color_mode        = 2;
     plotter.bilinearSmoothing = false;
@@ -84,7 +79,7 @@ public class XPlotter
 
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
-    XPlotter plotter = new XPlotter(2);
+    XPlotter plotter = new XPlotter(3);
     plotter.plot();
   }
 }
