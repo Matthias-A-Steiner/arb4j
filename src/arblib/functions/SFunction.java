@@ -20,17 +20,26 @@ import arblib.Constants;
 import arblib.Real;
 
 /**
- * The rational meromorphic quartic tanh(ln(1-t^2)))
+ * The rational meromorphic quartic
+ * <code>S(t)=tanh(ln(1-t^2)))=(-1 + (1 - t^2)^2)/(1 + (1 - t^2)^2)</code>
  * 
  * @author Stephen Crowley
  */
 public class SFunction implements
                        ComplexFunction
 {
+  /**
+   * @return a function that evaluates the derivative via
+   *         this{@link #evaluateDerivative(Complex, int, Complex)}
+   */
   @Override
   public ComplexFunction differentiate()
   {
-    throw new UnsupportedOperationException("TODO: return the derivative of S(t)");
+    return (t, order, prec, z) ->
+    {
+      assert order == 1;
+      return evaluateDerivative(t, prec, z);
+    };
   }
 
   private static final Complex ONE = COMPLEX_ONE;
@@ -68,17 +77,31 @@ public class SFunction implements
       {
         Complex res1 = res.get(1);
 
-        try ( Complex b = t.div(a, prec, claim()); Complex c = b.pow(2, prec, claim()); Complex d = c.neg(claim());
-              Complex e = d.add(1, prec, claim()); Complex g = e.pow(2, prec, claim());
-              Complex h = g.add(1, prec, claim());)
-        {
-
-          ONE.div(h.pow(2, prec, g), prec, h);
-          b.mul(8, prec, g).mul(e, prec, g).mul(h, prec, g).neg(res1);
-        }
+        evaluateDerivative(t, prec, res1);
       }
       return res;
     }
+  }
+
+  /**
+   * Evaluate the derivative of S(t)
+   * 
+   * @param t
+   * @param prec
+   * @param res
+   * @return (8*(t-1)*t*(t+1)) / (t^4 - 2*(t-1)*(t+1))^2
+   */
+  public Complex evaluateDerivative(Complex t, int prec, Complex res1)
+  {
+    try ( Complex b = t.div(a, prec, claim()); Complex c = b.pow(2, prec, claim()); Complex d = c.neg(claim());
+          Complex e = d.add(1, prec, claim()); Complex g = e.pow(2, prec, claim());
+          Complex h = g.add(1, prec, claim());)
+    {
+
+      ONE.div(h.pow(2, prec, g), prec, h);
+      b.mul(8, prec, g).mul(e, prec, g).mul(h, prec, g).neg(res1);
+    }
+    return res1;
   }
 
 }
