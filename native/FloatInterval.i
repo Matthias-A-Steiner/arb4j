@@ -1,4 +1,5 @@
 %typemap(javaimports) arf_interval_struct %{
+import java.util.ArrayList;
 %}
 
 %typemap(javafinalize) arf_interval_struct ""
@@ -37,28 +38,25 @@
    RootUnknown
   }
   
-  public RootStatus flags[];
-  public int         length;
-  public int         allocated;
+  public ArrayList<RootStatus> flags = new ArrayList<>();
+  
+  public int         length = 1;
+  public int         allocated = 1;
 
   public void addRoot(FloatInterval root, RootStatus status)
   {
     if (length >= allocated)
     {
-      int newAllocation = (allocated == 0) ? 1 : 2 * allocated;
-      swigCPtr = SWIGTYPE_p_void.getCPtr( arblib.flint_realloc(new SWIGTYPE_p_void(this.swigCPtr,false), newAllocation) );
+      int newAllocation = (allocated == 0) ? 1 : 2 * allocated;      
+      swigCPtr = SWIGTYPE_p_void.getCPtr( arblib.flint_realloc(new SWIGTYPE_p_void(this.swigCPtr,false), newAllocation * BYTES) );
       length++;
-//        *blocks = flint_realloc(*blocks, sizeof(arf_interval_struct) * new_alloc);   
-//        *flags = flint_realloc(*flags, sizeof(int) * new_alloc);   
-//        *alloc = new_alloc;   
-//    }   
+      allocated=newAllocation;
+      flags.add(status);
 //    arf_interval_init((*blocks) + *length);   
 //    arf_interval_set((*blocks) + *length, block);   
-//    (*flags)[*length] = status; 
-//    (*length)++; 
     }
 
-    throw new UnsupportedOperationException("TODO: implement this then change the cPtr: " + this + " root=" + root );
+    throw new UnsupportedOperationException("TODO: consider using Arrays.copyOf instead of ArrayList for flags" );
   }
 
 
