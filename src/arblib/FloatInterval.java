@@ -51,7 +51,7 @@ public class FloatInterval implements AutoCloseable {
    RootUnknown
   }
   
-  public ArrayList<RootStatus> flags = new ArrayList<>;
+  public ArrayList<RootStatus> flags = new ArrayList<>();
   
   public int         length = 1;
   public int         allocated = 1;
@@ -64,7 +64,7 @@ public class FloatInterval implements AutoCloseable {
       swigCPtr = SWIGTYPE_p_void.getCPtr( arblib.flint_realloc(new SWIGTYPE_p_void(this.swigCPtr,false), newAllocation * BYTES) );
       length++;
       allocated=newAllocation;
-      flags.add(status);      
+      flags.add(status);
 //    arf_interval_init((*blocks) + *length);   
 //    arf_interval_set((*blocks) + *length, block);   
     }
