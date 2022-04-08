@@ -26,11 +26,6 @@
 		</plugins>
 	</build>
 	<dependencies>
-	  <dependency>
- 	    <groupId>com.github.hageldave.jplotter</groupId> 
-	    <artifactId>jplotter</artifactId>
-	    <version>0.5.1-arb4j</version>	
-	  </dependency>	
 		<dependency>
 			<groupId>com.github.hageldave.jplotter</groupId>
 			<artifactId>jplotter</artifactId>
@@ -47,19 +42,9 @@
 			<version>4.12</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-math3</artifactId>
-			<version>3.6</version>
-		</dependency>
-		<dependency>
 			<groupId>dnl.utils</groupId>
 			<artifactId>j-text-utils</artifactId>
 			<version>0.3.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-math3</artifactId>
-			<version>3.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.madgag</groupId>
@@ -76,17 +61,7 @@
 
 	<repositories>
 
-		<repository>
-			<id>swt-repo</id>
-			<url>https://raw.githubusercontent.com/maven-eclipse/swt-repo/master/</url>
-		</repository>
-		<repository>
-			<url>https://github.com/eugener/oxbow/raw/master/maven/repository</url>
-			<id>oxbowrepo</id>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
+
 		<repository>
 			<id>amelentev</id>
 			<url>http://amelentev.github.io/mvnrepo/</url>
