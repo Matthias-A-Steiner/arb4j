@@ -1,4 +1,4 @@
-package util;
+package arblib.util;
 
 import java.util.ArrayList;
 import java.util.function.Function;
