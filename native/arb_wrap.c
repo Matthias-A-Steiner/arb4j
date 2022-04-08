@@ -2240,6 +2240,22 @@ SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_arb_1is_1negative(JNIEnv *jenv, jc
 }
 
 
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_arf_1interval_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  arf_interval_struct *arg1 ;
+  arf_interval_struct *arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(arf_interval_struct **)&jarg1; 
+  arg2 = *(arf_interval_struct **)&jarg2; 
+  arf_interval_set(arg1,(arf_interval_struct const (*))arg2);
+  
+  
+}
+
+
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_arf_1interval_1get_1arb(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3) {
   arb_struct *arg1 ;
   arf_interval_struct *arg2 ;

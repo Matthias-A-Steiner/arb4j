@@ -2,6 +2,8 @@ int arb_is_positive(const arb_t x);
 
 int arb_is_negative(const arb_t x);
 
+void arf_interval_set(arf_interval_t v, const arf_interval_t u);
+
 void arf_interval_get_arb(arb_t x, const arf_interval_t v, slong prec);
 
 int arb_sgn_nonzero(const arb_t x);
