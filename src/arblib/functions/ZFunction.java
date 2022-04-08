@@ -12,6 +12,7 @@ public class ZFunction implements
                        ComplexFunction
 {
 
+
   public static AutoArrayList<Real>    roots        = new AutoArrayList<>(i ->
                                                     {
                                                       Real root = new Real();

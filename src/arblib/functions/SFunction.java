@@ -10,7 +10,6 @@ package arblib.functions;
  * <http://www.gnu.org/licenses/>.
  */
 import static arblib.Complex.claim;
-import static arblib.Complex.claim2;
 import static arblib.Constants.COMPLEX_ONE;
 import static java.lang.String.format;
 
@@ -28,19 +27,6 @@ import arblib.Real;
 public class SFunction implements
                        ComplexFunction
 {
-  /**
-   * @return a function that evaluates the derivative via
-   *         this{@link #evaluateDerivative(Complex, int, Complex)}
-   */
-  @Override
-  public ComplexFunction differentiate()
-  {
-    return (t, order, prec, z) ->
-    {
-      assert order == 1;
-      return evaluateDerivative(t, prec, z);
-    };
-  }
 
   private static final Complex ONE = COMPLEX_ONE;
 
@@ -75,9 +61,7 @@ public class SFunction implements
       }
       if (order >= 2)
       {
-        Complex res1 = res.get(1);
-
-        evaluateDerivative(t, prec, res1);
+        evaluateDerivative(t, prec, res.get(1));
       }
       return res;
     }
