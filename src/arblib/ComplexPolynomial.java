@@ -40,13 +40,6 @@ public class ComplexPolynomial implements AutoCloseable,ComplexFunction {
       delete();
   }
   
-  @Override
-  public Complex evaluate(Complex z, int order, int prec, Complex w)
-  {
-    arblib.acb_poly_evaluate(w, this, z, prec );
-    return w;
-  } 
-  
  /**
    * @see arblib#acb_poly_product_roots(ComplexPolynomial, Complex, int, int)
    * 
@@ -58,6 +51,23 @@ public class ComplexPolynomial implements AutoCloseable,ComplexFunction {
   {
     arblib.acb_poly_product_roots(this, xs, xs.dim, prec);
     return this;
+  }
+  
+  @Override
+  public Complex evaluate(Complex z, int order, int prec, Complex w)
+  {
+    switch (order)
+    {
+    case 1:
+      arblib.acb_poly_evaluate(w, this, z, prec);
+      return w;
+    case 2:
+      arblib.acb_poly_evaluate2(w, w.get(1), this, z, prec);
+      return w;
+    default:
+      throw new UnsupportedOperationException("derivatives beyond the first are not yet implemented");
+    }
+
   }
 
   public void setCoeffs(Complex value) {

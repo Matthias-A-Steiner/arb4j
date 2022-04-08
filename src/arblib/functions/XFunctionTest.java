@@ -12,6 +12,7 @@ public class XFunctionTest extends
           Complex result = xFunc.evaluate(t, 2, 256, Complex.newVector(2));)
     {
       System.out.println("result=" + result);
+      // TODO: verify these
     }
   }
 }
