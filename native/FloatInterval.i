@@ -56,7 +56,7 @@ import java.util.ArrayList;
 //    arf_interval_set((*blocks) + *length, block);   
     }
 
-    throw new UnsupportedOperationException("TODO: implement this then change the cPtr: " + this + " root=" + root );
+    throw new UnsupportedOperationException("TODO: consider using Arrays.copyOf instead of ArrayList for flags" );
   }
 
 
