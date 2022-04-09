@@ -44,7 +44,7 @@ public class ZetaPlot
                                                                 });
 
     plotter.color_mode        = 0;
-    plotter.bilinearSmoothing = true;
+    plotter.bilinearSmoothing = false;
     plotter.displayMode       = Part.Blend;
 
     frame                     = new JFrame();

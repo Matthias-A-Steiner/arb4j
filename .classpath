@@ -16,7 +16,15 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/usr/share/java/gluegen2.jar"/>
-	<classpathentry kind="lib" path="/usr/share/java/gluegen2-rt.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/gluegen2.jar">
+		<attributes>
+			<attribute name="module" value="false"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/usr/share/java/gluegen2-rt.jar">
+		<attributes>
+			<attribute name="module" value="false"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

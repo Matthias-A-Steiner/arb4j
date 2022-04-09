@@ -6,7 +6,7 @@ import static arblib.arblib.nthHardyZero;
 import arblib.Complex;
 import arblib.ComplexFunction;
 import arblib.Real;
-import util.AutoArrayList;
+import arblib.util.AutoArrayList;
 
 public class ZFunction implements
                        ComplexFunction
