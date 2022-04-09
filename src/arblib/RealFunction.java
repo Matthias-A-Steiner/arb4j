@@ -75,7 +75,8 @@ public interface RealFunction
    *                 does not make sense for maxdepth to exceed prec.
    * @return
    */
-  public default FoundRoots locateRoots(FloatInterval interval, int maxdepth, int maxeval, int maxfound, int prec)
+  public default FoundRoots
+         locateRoots(RealRootInterval interval, int maxdepth, int maxevals, int maxfound, int prec)
   {
     FoundRoots roots  = new FoundRoots();
     int        asign, bsign;
@@ -91,14 +92,8 @@ public interface RealFunction
       System.out.format("f(r=%s)=%s\n", m, v);
     }
     System.out.format("asign=%s bsign=%s\n", asign, bsign);
-    int evals[] = new int[]
-    { maxeval };
-    int found[] = new int[]
-    { maxfound };
 
-    recursivelyLocateRoots(roots.getFound(), interval, asign, bsign, maxdepth, evals, found, prec);
-    roots.n     = (int) found[0];
-    roots.evals = evals[0];
+    recursivelyLocateRoots(roots, interval, asign, bsign, maxdepth, maxevals, maxfound, prec);
 
 //    *roots = flint_realloc(*blocks, length * sizeof(arf_interval_struct));
 //    *flags = flint_realloc(*flags, length * sizeof(int));
@@ -108,23 +103,24 @@ public interface RealFunction
 
   boolean verbose = false;
 
-  public default void recursivelyLocateRoots(FloatInterval roots,
-                                             FloatInterval root,
+  public default void recursivelyLocateRoots(FoundRoots found,
+                                             RealRootInterval root,
                                              int asign,
                                              int bsign,
                                              int depth,
-                                             int evalCount[],
-                                             int foundCount[],
+                                             int maxEvals,
+                                             int maxFound,
                                              int prec)
   {
 
-    if (foundCount[0] <= 0 || evalCount[0] <= 0)
+    if (found.isEmpty() || found.evals <= 0)
     {
-      roots.addRoot(root, RootStatus.RootUnknown);
+      root.status = RootStatus.RootUnknown;
+      found.add(root);
     }
     else
     {
-      evalCount[0] -= 1;
+      found.evals--;
       RootStatus status = root.determineRootStatus(this, asign, bsign, prec);
 
       if (status != RootStatus.NoRoot)
@@ -138,15 +134,13 @@ public interface RealFunction
               out.printf("found isolated root in: %s\n", root);
               out.flush();
             }
-
-            foundCount[0] -= 1;
           }
 
-          root.addRoot(root, status);
+          found.add(root);
         }
         else
         {
-          root.split(roots, asign, bsign, depth, evalCount, foundCount, prec);
+          root.split(found, asign, bsign, depth, maxEvals, maxFound, prec);
         }
       }
     }

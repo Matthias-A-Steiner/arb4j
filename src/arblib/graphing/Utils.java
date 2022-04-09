@@ -5,6 +5,7 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 
 /**
  * A few utilities that simplify using windows in Swing. 1998-99 Marty Hall,
@@ -68,6 +69,7 @@ public class Utils
     frame.setSize(width, height);
     frame.setContentPane(content);
     frame.setVisible(true);
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     return (frame);
   }
 

@@ -221,7 +221,6 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include <acb_dirichlet.h>
 #include <dirichlet.h>
 #include <acb_modular.h>
-#include "calculus.h"
 
 #include "complex_plot.h"
 #ifndef size_t
@@ -232,113 +231,6 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_FoundRoots_1found_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
-  root_struct *arg1 = (root_struct *) 0 ;
-  arf_interval_ptr arg2 = (arf_interval_ptr) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(root_struct **)&jarg1; 
-  arg2 = *(arf_interval_ptr *)&jarg2; 
-  if (arg1) (arg1)->found = arg2;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_FoundRoots_1found_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  root_struct *arg1 = (root_struct *) 0 ;
-  arf_interval_ptr result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(root_struct **)&jarg1; 
-  result = (arf_interval_ptr) ((arg1)->found);
-  *(arf_interval_ptr *)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_FoundRoots_1flags_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  root_struct *arg1 = (root_struct *) 0 ;
-  int *arg2 = (int *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(root_struct **)&jarg1; 
-  arg2 = *(int **)&jarg2; 
-  if (arg1) (arg1)->flags = arg2;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_FoundRoots_1flags_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  root_struct *arg1 = (root_struct *) 0 ;
-  int *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(root_struct **)&jarg1; 
-  result = (int *) ((arg1)->flags);
-  *(int **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_FoundRoots_1n_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
-  root_struct *arg1 = (root_struct *) 0 ;
-  int arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(root_struct **)&jarg1; 
-  arg2 = (int)jarg2; 
-  if (arg1) (arg1)->n = arg2;
-}
-
-
-SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_FoundRoots_1n_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  root_struct *arg1 = (root_struct *) 0 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(root_struct **)&jarg1; 
-  result = (int) ((arg1)->n);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_arblib_arblibJNI_new_1FoundRoots(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  root_struct *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (root_struct *)calloc(1, sizeof(root_struct));
-  *(root_struct **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1FoundRoots(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  root_struct *arg1 = (root_struct *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(root_struct **)&jarg1; 
-  free((char *) arg1);
-}
-
 
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_RealMatrix_1entries_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   arb_mat_struct *arg1 = (arb_mat_struct *) 0 ;
@@ -4803,63 +4695,6 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1sqrt(JNIEnv *jenv, jclass jcl
   
   
 }
-
-
-
-#include <jni.h>
-#include "calculus.h"
-
-extern JNIEnv* env;
-extern jclass realClass;
-extern jclass complexClass;
-extern jclass realFunctionClass;
-extern jclass complexFunctionClass;
-extern jmethodID realConstructor;
-extern jmethodID realFunctionEvaluationMethod;
-extern jmethodID complexFunctionEvaluationMethod;
-extern jfieldID realCPtrField;
-extern jfieldID complexCPtrField;
-
-jint
-JNI_OnLoad (JavaVM *vm, void *reserved)
-{
-  
-  printf("trying to load...\n");
-  printf("\n");
-  fflush(stdout);
-
-  if ((*vm)->GetEnv(vm, (void**) &env, JNI_VERSION_10) != JNI_OK)
-  {
-    printf("GetEnv failed\n");
-    fflush(stdout);
-    return -1;
-  }
-  realClass = (*env)->FindClass(env, "arblib/Real");
-  realConstructor = (*env)->GetMethodID(env,  realClass, "<init>", "(J)V");
-  
-  complexClass = (*env)->FindClass(env, "arblib/Complex");  
-  realFunctionClass = (*env)->FindClass(env, "arblib/RealFunction");
-  complexFunctionClass = (*env)->FindClass(env, "arblib/ComplexFunction");
-
-  realFunctionEvaluationMethod = (*env)->GetMethodID(env, realFunctionClass, "evaluate",
-                                                     "(Larblib/Real;IILarblib/Real;)Larblib/Real;");
-  complexFunctionEvaluationMethod = (*env)->GetMethodID(env, complexFunctionClass, "evaluate",
-                                                     "(Larblib/Complex;IILarblib/Complex;)Larblib/Complex;");                                                    
-  if (realFunctionEvaluationMethod == 0)
-  {
-    printf("GetMethodID failed for realFunctionEvaluationMethod\n");
-    fflush(stdout);
-    return -1;
-  }
-  realCPtrField = (*env)->GetFieldID(env, realClass, "swigCPtr", "J");
-  complexCPtrField = (*env)->GetFieldID(env, complexClass, "swigCPtr", "J");
-  
-  printf("arblib loaded\n" );
-  fflush(stdout);
-
-  return JNI_VERSION_10;
-}
-
 
 
 #ifdef __cplusplus

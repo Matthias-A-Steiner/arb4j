@@ -36,6 +36,7 @@ import java.util.stream.IntStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.Timer;
 
 import org.apache.commons.lang.time.StopWatch;
@@ -54,12 +55,11 @@ import util.DateUtils;
 /**
  * Copyright ©2022 Stephen Crowley
  * 
- * This file is part of Arb4j
- * 
- * Arb4j is free software: you can redistribute it and/or modify it under the
- * terms of the GNU Lesser General Public License (LGPL) as published by the
- * Free Software Foundation; either version 2.1 of the License, or (at your
- * option) any later version. See <http://www.gnu.org/licenses/>.
+ * This file is part of Arb4j which is free software: you can redistribute it
+ * and/or modify it under the terms of the GNU Lesser General Public License
+ * (LGPL) as published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version. See *
+ * <http://www.gnu.org/licenses/>.
  */
 public class ComplexFunctionPlotter extends
                                     JComponent
@@ -116,9 +116,9 @@ public class ComplexFunctionPlotter extends
 
   boolean                headless   = false;
 
-  private Dimension      screen;
+  protected Dimension    screen;
 
-  private Rectangle2D    domain;
+  protected Rectangle2D  domain;
 
   AffineTransform        screenToFunctionMapping;
 
@@ -145,9 +145,10 @@ public class ComplexFunctionPlotter extends
 
   private Graphics2D     dynamicOverlayGraphics;
 
+  protected JFrame       frame;
   private Font           newFont;
 
-  BufferedImage          outputImage;
+  public BufferedImage   outputImage;
 
   private Graphics2D     outputGraphics;
 
@@ -155,6 +156,8 @@ public class ComplexFunctionPlotter extends
                                 Rectangle2D.Double domain,
                                 ComplexFunction function) throws NoninvertibleTransformException
   {
+    this.screen = screen;
+    this.domain = domain;
     setPreferredSize(screen);
     setSize(screen);
     this.function  = function;
@@ -339,6 +342,14 @@ public class ComplexFunctionPlotter extends
     });
   }
 
+  /**
+   * TODO: this needs improvement.. its not very effective at blending regions
+   * where the hue changes sharply
+   * 
+   * @param x
+   * @param y
+   * @return
+   */
   public Complex evaluateFunctionWithBilinearInterpolation(int x, int y)
   {
     Complex[][] basis  = cells.get();
@@ -346,19 +357,6 @@ public class ComplexFunctionPlotter extends
     Complex[][] zbasis = zcells.get();
     Complex[][] wbasis = wcells.get();
 
-    /**
-     * TODO: Suppose that we want to find the value of the unknown function f at the
-     * point (x, y). It is assumed that we know the value of f at the four points
-     * 
-     * Q11 = (x1, y1), <br>
-     * Q12 = (x1, y2), <br>
-     * Q21 = (x2, y1), <br>
-     * Q22 = (x2, y2). <br>
-     * 
-     * HOW: To achieve this, we need to sample the corners of a square which is one
-     * pixel wide and one pixel tall centered at the central point
-     * 
-     */
     for (int i = 0; i < 2; i++)
     {
 
@@ -367,7 +365,6 @@ public class ComplexFunctionPlotter extends
         Complex z  = zbasis[i][j];
         Complex w  = wbasis[i][j];
 
-        // TOOD: add or subtract to zr and zi to form the corners of the sampling square
         Float   zr = z.getReal().getMid();
         Float   zi = z.getImag().getMid();
         for (int thisprec = 30; thisprec < 500; thisprec *= 2)
@@ -560,6 +557,11 @@ public class ComplexFunctionPlotter extends
 
   public BufferedImage plot() throws IOException, NoninvertibleTransformException
   {
+    if (!headless)
+    {
+      showFrame();
+    }
+
     StopWatch stopWatch = new StopWatch();
     stopWatch.start();
     startRepaintTimer();
@@ -577,6 +579,11 @@ public class ComplexFunctionPlotter extends
     writeGridToFile();
 
     return functionImage;
+  }
+
+  public void showFrame()
+  {
+    frame = Utils.openInJFrame(this, screen.width, screen.height, getClass().getSimpleName());
   }
 
   private void reportRenderingRate(StopWatch stopWatch)
@@ -746,7 +753,6 @@ public class ComplexFunctionPlotter extends
   private RenderingHints renderingHints;
 
   public Point2D.Double  cursorInScreenSpace;
-
 
   Color                  cursorColor                     = Color.BLACK;
 

@@ -1,6 +1,6 @@
 all: libarblib.so
 
-SOURCES:=native/complex_plot.c native/arb_wrap.c native/calculus.c
+SOURCES:=native/complex_plot.c native/arb_wrap.c
 
 libarblib.so: $(SOURCES)
 	gcc -g -O3 -fPIC -shared $(SOURCES) -I/usr/lib/jvm/jdk-17/include -I/usr/lib/jvm/jdk-17/include/linux -olibarblib.so -lflint-arb 

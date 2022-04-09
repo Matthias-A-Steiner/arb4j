@@ -12,13 +12,13 @@ public class RealFunctionTest
   public static void main(String args[])
   {
     SineFunction sineFunction = new SineFunction();
-    FoundRoots   roots        = sineFunction.locateRoots(new FloatInterval(-1.0,
-                                                                            1),
-                                                          50,
-                                                          20,
-                                                          10,
-                                                          256);
-    System.out.println("roots=" + roots.getFound());
+    FoundRoots   roots        = sineFunction.locateRoots(new RealRootInterval(-1.0,
+                                                                              1.0),
+                                                         50,
+                                                         20,
+                                                         10,
+                                                         256);
+    System.out.println("roots=" + roots);
 
   }
 }

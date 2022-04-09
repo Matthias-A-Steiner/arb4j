@@ -37,34 +37,13 @@ import java.util.ArrayList;
    RootLocated,
    RootUnknown
   }
-  
-  public ArrayList<RootStatus> flags = new ArrayList<>();
-  
-  public int         length = 1;
-  public int         allocated = 1;
-
-  public void addRoot(FloatInterval root, RootStatus status)
-  {
-    if (length >= allocated)
-    {
-      int newAllocation = (allocated == 0) ? 1 : 2 * allocated;      
-      swigCPtr = SWIGTYPE_p_void.getCPtr( arblib.flint_realloc(new SWIGTYPE_p_void(this.swigCPtr,false), newAllocation * BYTES) );
-      length++;
-      allocated=newAllocation;
-      flags.add(status);
-//    arf_interval_init((*blocks) + *length);   
-//    arf_interval_set((*blocks) + *length, block);   
-    }
-
-    throw new UnsupportedOperationException("TODO: consider using Arrays.copyOf instead of ArrayList for flags" );
-  }
 
 
-  public void
-         split(FloatInterval blocks, int asign, int bsign, int depth, int[] evalCount, int[] foundCount, int prec)
+  public void split(FoundRoots found, int asign, int bsign, int depth, int maxEvals, int maxFound, int prec)
   {
     throw new UnsupportedOperationException("TODO");
   }
+
   
   public static final int BYTES = 64;
 

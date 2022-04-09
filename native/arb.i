@@ -53,7 +53,6 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 
 %include "functions.i"
 
-%include "init.i"
 
 
 

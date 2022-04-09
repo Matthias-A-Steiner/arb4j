@@ -12,20 +12,12 @@
 #include <acb_dirichlet.h>
 #include <dirichlet.h>
 #include <acb_modular.h>
-#include "calculus.h"
 
 #include "complex_plot.h"
 #ifndef size_t
 #define size_t long unsigned int
 #endif
 %}
-
-typedef struct
-{
-  arf_interval_ptr found;
-  int *flags;
-  int n;
-} root_struct;
 
 typedef struct
 {
@@ -180,8 +172,6 @@ typedef fmpz fmpz_t[1];
 typedef arf_struct arf_t[1];
 typedef arf_struct * arf_ptr;
 typedef const arf_struct * arf_srcptr;
-
-typedef int (*acb_calc_func_t)(acb_ptr out, const acb_t inp, void * param, slong order, slong prec);
 
 typedef struct
 {

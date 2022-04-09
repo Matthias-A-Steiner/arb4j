@@ -9,14 +9,6 @@
 package arblib;
 
 public class arblibJNI {
-  public final static native void FoundRoots_found_set(long jarg1, FoundRoots jarg1_, long jarg2, FloatInterval jarg2_);
-  public final static native long FoundRoots_found_get(long jarg1, FoundRoots jarg1_);
-  public final static native void FoundRoots_flags_set(long jarg1, FoundRoots jarg1_, long jarg2);
-  public final static native long FoundRoots_flags_get(long jarg1, FoundRoots jarg1_);
-  public final static native void FoundRoots_n_set(long jarg1, FoundRoots jarg1_, int jarg2);
-  public final static native int FoundRoots_n_get(long jarg1, FoundRoots jarg1_);
-  public final static native long new_FoundRoots();
-  public final static native void delete_FoundRoots(long jarg1);
   public final static native void RealMatrix_entries_set(long jarg1, RealMatrix jarg1_, long jarg2, Real jarg2_);
   public final static native long RealMatrix_entries_get(long jarg1, RealMatrix jarg1_);
   public final static native void RealMatrix_r_set(long jarg1, RealMatrix jarg1_, int jarg2);
