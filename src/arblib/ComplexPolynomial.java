@@ -69,6 +69,16 @@ public class ComplexPolynomial implements AutoCloseable,ComplexFunction {
     }
 
   }
+  
+  public double evaluateDouble(double d)
+  {
+    try ( Complex t = Complex.claim(); Complex s = Complex.claim() )
+    {
+      t.getReal().assign(d);
+      return evaluate(t, 1, 70, s).getReal().doubleValue();
+    }
+  }
+  
 
   public void setCoeffs(Complex value) {
     arblibJNI.ComplexPolynomial_coeffs_set(swigCPtr, this, Complex.getCPtr(value), value);
