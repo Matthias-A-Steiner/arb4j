@@ -101,7 +101,7 @@ public interface RealFunction
     return roots;
   }
 
-  boolean verbose = false;
+  boolean verbose = true;
 
   public default void recursivelyLocateRoots(FoundRoots found,
                                              RealRootInterval root,
@@ -113,14 +113,14 @@ public interface RealFunction
                                              int prec)
   {
 
-    if (found.isEmpty() || found.evals <= 0)
+    if (maxEvals <= 0 || maxFound <= 0)
     {
       root.status = RootStatus.RootUnknown;
       found.add(root);
     }
     else
     {
-      found.evals--;
+      found.evals++;
       RootStatus status = root.determineRootStatus(this, asign, bsign, prec);
 
       if (status != RootStatus.NoRoot)

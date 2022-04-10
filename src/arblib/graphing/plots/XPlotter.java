@@ -26,7 +26,7 @@ public class XPlotter extends
 {
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
-    XPlotter plotter = new XPlotter(3);
+    XPlotter plotter = new XPlotter(4);
     plotter.plot();
   }
 
@@ -34,13 +34,13 @@ public class XPlotter extends
   {
     super(new Dimension(2000,
                         1000),
-          new Rectangle2D.Double(-40,
-                                 -20,
-                                 80,
-                                 40),
+          new Rectangle2D.Double(0,
+                                 -5,
+                                 40,
+                                 10),
           new XFunction(vscale));
 
-    color_mode        = 2;
+    color_mode        = 3;
     bilinearSmoothing = false;
     displayMode       = Part.Blend;
 
