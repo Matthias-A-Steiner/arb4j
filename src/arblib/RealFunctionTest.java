@@ -13,7 +13,7 @@ public class RealFunctionTest
   {
     SineFunction sineFunction = new SineFunction();
     FoundRoots   roots        = sineFunction.locateRoots(new RealRootInterval(3,
-                                                                              4),
+                                                                              4.1),
                                                          50,
                                                          2000,
                                                          10,
