@@ -20,8 +20,8 @@ import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 
 public class Complex implements AutoCloseable,Iterable<Complex> {
-  public long swigCPtr;
-  public boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   public Complex(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
@@ -41,6 +41,8 @@ public class Complex implements AutoCloseable,Iterable<Complex> {
       swigCPtr = 0;
     }
   }
+
+  static { System.loadLibrary( "arblib" ); }
 
   public Iterator<Real> realIterator()
   {

@@ -9,6 +9,8 @@
  */
 package arblib.functions.curves;
 
+import static java.lang.System.out;
+
 import arblib.Complex;
 import arblib.ComplexFunction;
 import arblib.Constants;
@@ -21,8 +23,10 @@ import arblib.Real;
  * @author crow
  */
 public class Lemniscate implements
-                        ComplexFunction
+                        ComplexFunction,
+                        AutoCloseable
 {
+  Real sqrt2 = new Real().assign(2).sqrt(256);
 
   /**
    * @return sqrt(2)*cos(t))/(1-i*sin(t)
@@ -30,11 +34,20 @@ public class Lemniscate implements
   @Override
   public Complex evaluate(Complex z, int order, int prec, Complex w)
   {
-    Real    sqrt2 = new Real().assign(2).sqrt(prec);
     Complex cost  = z.cos(prec, new Complex());
     Complex isint = z.sin(prec, new Complex());
     isint = isint.mul(Constants.IMAGINARY_UNIT, isint);
-    return sqrt2.mul(cost, prec, w).div(Constants.COMPLEX_ONE.sub(isint, prec, w), prec, w);
+    Complex divisor   = Constants.COMPLEX_ONE.sub(isint, prec, new Complex());
+    Complex numerator = sqrt2.mul(cost, prec, new Complex());
+    out.println("numerator=" + numerator);
+    out.println("divisor=" + divisor);
+    return numerator.div(divisor, prec, w);
+  }
+
+  @Override
+  public void close() throws Exception
+  {
+    sqrt2.delete();
   }
 
 }

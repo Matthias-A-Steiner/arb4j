@@ -38,7 +38,7 @@ public class Real implements AutoCloseable {
     }
   }
 
-
+ static { System.loadLibrary( "arblib" ); }
 
  PoolService<Real> poolService;
  

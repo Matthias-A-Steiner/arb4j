@@ -12,7 +12,7 @@ import static arblib.Constants.*;
 %}
 
 %typemap(javacode) arb_struct %{
-
+ static { System.loadLibrary( "arblib" ); }
 
  PoolService<Real> poolService;
  
