@@ -11,30 +11,6 @@ import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 %}
 
-%typemap(javabody) arb_struct %{
-
- static
- {
-   System.loadLibrary( "arblib" );
- }
- 
-  public long swigCPtr;
-  public boolean swigCMemOwn;
-
-  public $javaclassname(long cPtr) {
-    this(cPtr,false);
-  }
-    
-  public $javaclassname(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  public static long getCPtr($javaclassname obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-%}
-
 %typemap(javacode) arb_struct %{
 
 
@@ -87,9 +63,14 @@ import static arblib.Constants.*;
    return r;
  }
 
-  public Real sqrt( int prec )
+  public Real sqrt( int prec )  
   {
-    arblib.arb_sqrt(this, this, prec);
+    return sqrt(prec,this);
+  }
+  
+  public Real sqrt( int prec, Real res )
+  {
+    arblib.arb_sqrt(res, this, prec);
     return this;
   }
   

@@ -16,19 +16,9 @@ import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 
 public class Real implements AutoCloseable {
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
- static
- {
-   System.loadLibrary( "arblib" );
- }
- 
-  public long swigCPtr;
-  public boolean swigCMemOwn;
-
-  public Real(long cPtr) {
-    this(cPtr,false);
-  }
-    
   public Real(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
@@ -99,9 +89,14 @@ public class Real implements AutoCloseable {
    return r;
  }
 
-  public Real sqrt( int prec )
+  public Real sqrt( int prec )  
   {
-    arblib.arb_sqrt(this, this, prec);
+    return sqrt(prec,this);
+  }
+  
+  public Real sqrt( int prec, Real res )
+  {
+    arblib.arb_sqrt(res, this, prec);
     return this;
   }
   

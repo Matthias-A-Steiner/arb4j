@@ -30,7 +30,7 @@ public class Lemniscate implements
   @Override
   public Complex evaluate(Complex z, int order, int prec, Complex w)
   {
-    Real    sqrt2 = new Real(2).sqrt(prec);
+    Real    sqrt2 = new Real().assign(2).sqrt(prec);
     Complex cost  = z.cos(prec, new Complex());
     Complex isint = z.sin(prec, new Complex());
     isint = isint.mul(Constants.IMAGINARY_UNIT, isint);
