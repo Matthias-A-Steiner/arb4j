@@ -1,4 +1,4 @@
-package arblib.curves;
+package arblib.functions.curves;
 
 import arblib.Complex;
 import arblib.ComplexFunction;

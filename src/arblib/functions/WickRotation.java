@@ -5,7 +5,7 @@ import arblib.ComplexFunction;
 import arblib.Constants;
 
 /**
- * Multiplication by the imaginary unit with optonal negation
+ * Multiplication by the imaginary unit with optional negation
  * 
  * @author crow
  */
