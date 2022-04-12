@@ -3,7 +3,7 @@ package arblib.graphing;
 import arblib.ComplexFunction;
 import arblib.functions.curves.Lemniscate;
 
-public class ComplexParameterizedPlaneCurveTracer
+public class ParameterizedComplexPlaneCurveTracer
 {
   /**
    * TODO: evaluate a {@link ComplexFunction} which specifies the coordinates of
