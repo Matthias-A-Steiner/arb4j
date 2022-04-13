@@ -1,3 +1,5 @@
+void arb_set_arf(arb_t x, const arf_t y);
+
 int arb_is_positive(const arb_t x);
 
 int arb_is_negative(const arb_t x);

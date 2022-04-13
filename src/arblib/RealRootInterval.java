@@ -45,8 +45,67 @@ public class RealRootInterval extends
     return status;
   }
 
-  public void bisectAndRefine( int iters, int prec )
+  public static enum BisectionResult
   {
+   ImpreciseInput,
+   Success,
+   NoConvergence
+  }
 
+  public BisectionResult bisectAndRefine(RealFunction func, FloatInterval r, int iters, int prec)
+  {
+    int           asign, bsign, msign, result;
+    long          i;
+    FloatInterval t = new FloatInterval(), u = new FloatInterval();
+    try ( Real m = Real.claim(); Real v = Real.claim();)
+    {
+
+      arblib.arb_set_arf(m, getA());
+      asign = func.evaluate(m, 1, prec, v).sign();
+
+      arblib.arb_set_arf(m, getB());
+      bsign = func.evaluate(m, 1, prec, v).sign();
+
+      /* must have proper sign changes */
+      if (asign == 0 || bsign == 0 || asign == bsign)
+      {
+        return BisectionResult.ImpreciseInput;
+      }
+      else
+      {
+        r.set(this);
+
+        for (i = 0; i < iters; i++)
+        {
+          msign = calculatePartition(t, u, func, r, prec);
+
+          /*
+           * the algorithm fails if the value at the midpoint cannot be distinguished from
+           * zero
+           */
+          if (msign == 0)
+          {
+            return BisectionResult.NoConvergence;
+          }
+
+//          if (msign == asign)
+//            arblib.arf_interval_swap(r, u);
+//          else
+//            arblib.arf_interval_swap(r, t);
+        }
+      }
+    }
+    finally
+    {
+      t.delete();
+      u.delete();
+    }
+
+    return BisectionResult.Success;
+  }
+
+  private int calculatePartition(FloatInterval t, FloatInterval u, RealFunction func, FloatInterval r, int prec)
+  {
+    throw new UnsupportedOperationException("TODO");
   }
 }
