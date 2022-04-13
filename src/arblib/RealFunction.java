@@ -95,14 +95,12 @@ public interface RealFunction
 
     recursivelyLocateRoots(roots, interval, asign, bsign, maxdepth, maxevals, maxfound, prec);
 
-//    *roots = flint_realloc(*blocks, length * sizeof(arf_interval_struct));
-//    *flags = flint_realloc(*flags, length * sizeof(int));
 
     return roots;
   }
 
   boolean verbose = true;
-
+ 
   public default void recursivelyLocateRoots(FoundRoots found,
                                              RealRootInterval root,
                                              int asign,
@@ -146,6 +144,7 @@ public interface RealFunction
     }
   }
 
+  
   /**
    * TODO: add option for monotonic convergence
    * 

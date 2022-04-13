@@ -1,15 +1,13 @@
 package arblib;
 
 import arblib.functions.SineFunction;
+import junit.framework.TestCase;
 
-public class RealFunctionTest
+public class RealFunctionTest extends
+                              TestCase
 {
-//  static
-//  {
-//    System.loadLibrary("arblib");
-//  }
 
-  public static void main(String args[])
+  public static void testLocateRoots()
   {
     SineFunction sineFunction = new SineFunction();
     FoundRoots   roots        = sineFunction.locateRoots(new RealRootInterval(3,

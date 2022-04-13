@@ -32,7 +32,7 @@ public class SZetaPlotter extends
                                  new ComplexComposition(new RiemannZetaFunction(),
                                                         new WickRotation(true))));
 
-    color_mode        = 1;
+    color_mode        = 3;
     bilinearSmoothing = false;
     displayMode       = arblib.functions.Part.Blend;
   }

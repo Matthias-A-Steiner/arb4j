@@ -45,4 +45,8 @@ public class RealRootInterval extends
     return status;
   }
 
+  public void bisectAndRefine( int iters, int prec )
+  {
+
+  }
 }
