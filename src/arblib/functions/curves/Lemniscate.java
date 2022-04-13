@@ -9,7 +9,7 @@
  */
 package arblib.functions.curves;
 
-import static java.lang.System.out;
+import static arblib.Complex.claim;
 
 import arblib.Complex;
 import arblib.ComplexFunction;
@@ -29,19 +29,29 @@ public class Lemniscate implements
   Real sqrt2 = new Real().assign(2).sqrt(256);
 
   /**
+   * @param z
+   * @param int
+   * @param order
+   * @param w
    * @return sqrt(2)*cos(t))/(1-i*sin(t)
    */
   @Override
   public Complex evaluate(Complex z, int order, int prec, Complex w)
   {
-    Complex cost  = z.cos(prec, new Complex());
-    Complex isint = z.sin(prec, new Complex());
-    isint = isint.mul(Constants.IMAGINARY_UNIT, isint);
-    Complex divisor   = Constants.COMPLEX_ONE.sub(isint, prec, new Complex());
-    Complex numerator = sqrt2.mul(cost, prec, new Complex());
-    out.println("numerator=" + numerator);
-    out.println("divisor=" + divisor);
-    return numerator.div(divisor, prec, w);
+    assert order == w.size();
+    assert order <= 2;
+
+    try ( Complex cos = z.cos(prec, claim()); Complex sin = z.sin(prec, claim());
+          Complex divisor = Constants.COMPLEX_ONE.sub(sin.mul(Constants.IMAGINARY_UNIT, sin), prec, claim());
+          Complex numerator = sqrt2.mul(cos, prec, claim()))
+    {
+      numerator.div(divisor, prec, w);
+    }
+    if (order >= 2)
+    {
+      throw new UnsupportedOperationException("implement  (sqrt2*(sin[t]-i))/(sin[t]+i)^2 via operator overloading");
+    }
+    return w;
   }
 
   @Override
