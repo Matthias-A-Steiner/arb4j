@@ -174,33 +174,6 @@ typedef struct {
 } SWIG_JavaExceptions_t;
 
 
-static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionCodes code, const char *msg) {
-  jclass excep;
-  static const SWIG_JavaExceptions_t java_exceptions[] = {
-    { SWIG_JavaOutOfMemoryError, "java/lang/OutOfMemoryError" },
-    { SWIG_JavaIOException, "java/io/IOException" },
-    { SWIG_JavaRuntimeException, "java/lang/RuntimeException" },
-    { SWIG_JavaIndexOutOfBoundsException, "java/lang/IndexOutOfBoundsException" },
-    { SWIG_JavaArithmeticException, "java/lang/ArithmeticException" },
-    { SWIG_JavaIllegalArgumentException, "java/lang/IllegalArgumentException" },
-    { SWIG_JavaNullPointerException, "java/lang/NullPointerException" },
-    { SWIG_JavaDirectorPureVirtual, "java/lang/RuntimeException" },
-    { SWIG_JavaUnknownError,  "java/lang/UnknownError" },
-    { SWIG_JavaIllegalStateException, "java/lang/IllegalStateException" },
-    { (SWIG_JavaExceptionCodes)0,  "java/lang/UnknownError" }
-  };
-  const SWIG_JavaExceptions_t *except_ptr = java_exceptions;
-
-  while (except_ptr->code != code && except_ptr->code)
-    except_ptr++;
-
-  (*jenv)->ExceptionClear(jenv);
-  excep = (*jenv)->FindClass(jenv, except_ptr->java_exception);
-  if (excep)
-    (*jenv)->ThrowNew(jenv, excep, msg);
-}
-
-
 /* Contract support */
 
 #define SWIG_contract_assert(nullreturn, expr, msg) if (!(expr)) {SWIG_JavaThrowException(jenv, SWIG_JavaIllegalArgumentException, msg); return nullreturn; } else
