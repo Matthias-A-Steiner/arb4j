@@ -210,7 +210,6 @@ public interface RealFunction
 
     try ( Real t = claim(); Real m = claim(); Float u = new Float();)
     {
-      int msign;
 
       /* Compute the midpoint (TODO: try other points) */
       arblib.arf_add(u, block.getA(), block.getB(), Integer.MAX_VALUE, Constants.ARF_RND_DOWN);
@@ -219,7 +218,6 @@ public interface RealFunction
       /* Evaluate and get sign at midpoint */
       arblib.arb_set_arf(m, u);
       evaluate(m, 1, prec, t);
-      msign = t.sign();
 
       /* L, R = block, split at midpoint */
       left.getA().assign(block.getA());
@@ -227,7 +225,7 @@ public interface RealFunction
       left.getB().assign(u);
       right.getA().assign(u);
 
-      return msign;
+      return t.sign();
     }
 
   }
