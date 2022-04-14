@@ -57,7 +57,7 @@ public class RealRootInterval extends
     int           asign, bsign, msign, result;
     long          i;
     FloatInterval t = new FloatInterval(), u = new FloatInterval();
-    try ( Real m = Real.claim(); Real v = Real.claim();)
+    try ( Real m = claim(); Real v = claim();)
     {
 
       arblib.arb_set_arf(m, getA());
@@ -80,18 +80,23 @@ public class RealRootInterval extends
           msign = calculatePartition(t, u, func, r, prec);
 
           /*
-           * the algorithm fails if the value at the midpoint cannot be distinguished from
-           * zero
+           * TODO: handle the case where the value at the midpoint is actually zero even
+           * though it can't be distinguished via sign comparison zero, this should be
+           * just checking isZero before returning NoConvergence
            */
           if (msign == 0)
           {
             return BisectionResult.NoConvergence;
           }
 
-//          if (msign == asign)
-//            arblib.arf_interval_swap(r, u);
-//          else
-//            arblib.arf_interval_swap(r, t);
+          if (msign == asign)
+          {
+            r.swap(u);
+          }
+          else
+          {
+            r.swap(t);
+          }
         }
       }
     }

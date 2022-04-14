@@ -51,6 +51,12 @@ public class FloatInterval implements AutoCloseable {
    RootUnknown
   }
 
+  public FloatInterval swap(FloatInterval u)
+  {
+    arblib.arf_interval_swap(this, u);
+    return this;
+  }
+
 
   public void split(FoundRoots found, int asign, int bsign, int depth, int maxEvals, int maxFound, int prec)
   {

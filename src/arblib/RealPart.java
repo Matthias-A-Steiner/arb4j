@@ -13,6 +13,11 @@ public class RealPart extends
     super(func);
   }
 
+  public RealPart(ComplexFunction func, int deriv )
+  {
+    super(func, deriv );
+  }
+  
   @Override
   public Real evaluate(Real z, int order, int prec, Real res)
   {
