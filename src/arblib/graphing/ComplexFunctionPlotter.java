@@ -576,8 +576,6 @@ public class ComplexFunctionPlotter extends
 
     reportRenderingRate(stopWatch);
 
-    writeGridToFile();
-
     return functionImage;
   }
 
