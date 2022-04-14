@@ -6,8 +6,8 @@ public abstract class ComplexPart implements
 
   protected ComplexFunction func;
   protected Complex         in  = new Complex();
-  protected Complex         out = new Complex();
-  protected int deriv;
+  protected Complex         out = Complex.newVector(2);
+  protected int             deriv;
 
   public ComplexPart(ComplexFunction func)
   {
@@ -22,8 +22,8 @@ public abstract class ComplexPart implements
   @Override
   public void close() throws Exception
   {
-    in.delete();
-    out.delete();
+    in.close();
+    out.close();
   }
 
 }

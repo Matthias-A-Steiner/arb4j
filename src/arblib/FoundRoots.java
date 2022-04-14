@@ -19,8 +19,8 @@ public class FoundRoots extends
 
   public void refine(RealFunction func)
   {
-    FloatInterval t = new FloatInterval();
-    try
+
+    try ( FloatInterval t = new FloatInterval())
     {
       for (RealRootInterval rootInterval : this)
       {
@@ -33,7 +33,7 @@ public class FoundRoots extends
 
         foundCount++;
 
-        rootInterval.bisectAndRefine(func,t, 5, lowPrec);
+        rootInterval.bisectAndRefine(func, t, 5, lowPrec);
         rootInterval.bisectAndRefine(func, t, 5, lowPrec);
 
 //        arf_interval_get_arb(v, t, high_prec);
@@ -51,10 +51,6 @@ public class FoundRoots extends
 //        flint_printf("\n\n");
       }
 
-    }
-    finally
-    {
-      t.close();
     }
   }
 

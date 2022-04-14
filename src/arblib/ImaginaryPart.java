@@ -5,12 +5,22 @@ public class ImaginaryPart extends
                            RealFunction,
                            AutoCloseable
 {
-  Real inReal  = in.getImag();
-  Real outReal = out.getImag();
+  Real inReal;
+  Real outReal;
 
   public ImaginaryPart(ComplexFunction func)
   {
     super(func);
+    inReal  = in.getImag();
+    outReal = out.getImag();
+  }
+
+  public ImaginaryPart(ComplexFunction func, int deriv)
+  {
+    super(func,
+          deriv);
+    inReal  = in.get(deriv).getImag();
+    outReal = out.get(deriv).getImag();
   }
 
   @Override

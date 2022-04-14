@@ -49,14 +49,17 @@ public class Real implements AutoCloseable {
 
   @Override
   public void close()
-  { 
-   if (poolService != null)
+  {
+    if (poolService != null)
     {
       poolService.restore(this);
     }
     else
     {
-      delete();
+      for (int i = 0; i < dim; i++)
+      {
+        get(i).close();
+      }
     }
   }
 
