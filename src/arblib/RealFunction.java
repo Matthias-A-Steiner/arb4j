@@ -1,5 +1,6 @@
 package arblib;
 
+import static arblib.Real.claim;
 import static java.lang.System.out;
 
 import arblib.FloatInterval.RootStatus;
@@ -95,12 +96,11 @@ public interface RealFunction
 
     recursivelyLocateRoots(roots, interval, asign, bsign, maxdepth, maxevals, maxfound, prec);
 
-
     return roots;
   }
 
   boolean verbose = true;
- 
+
   public default void recursivelyLocateRoots(FoundRoots found,
                                              RealRootInterval root,
                                              int asign,
@@ -144,7 +144,6 @@ public interface RealFunction
     }
   }
 
-  
   /**
    * TODO: add option for monotonic convergence
    * 
@@ -205,4 +204,32 @@ public interface RealFunction
     }
     return res;
   }
+
+  public default int calculatePartition(FloatInterval left, FloatInterval right, FloatInterval block, int prec)
+  {
+
+    try ( Real t = claim(); Real m = claim(); Float u = new Float();)
+    {
+      int msign;
+
+      /* Compute the midpoint (TODO: try other points) */
+      arblib.arf_add(u, block.getA(), block.getB(), Integer.MAX_VALUE, Constants.ARF_RND_DOWN);
+      arblib.arf_mul_2exp_si(u, u, -1);
+
+      /* Evaluate and get sign at midpoint */
+      arblib.arb_set_arf(m, u);
+      evaluate(m, 1, prec, t);
+      msign = t.sign();
+
+      /* L, R = block, split at midpoint */
+      left.getA().assign(block.getA());
+      right.getB().assign(block.getB());
+      left.getB().assign(u);
+      right.getA().assign(u);
+
+      return msign;
+    }
+
+  }
+
 }

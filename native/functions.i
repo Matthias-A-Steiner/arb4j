@@ -6,6 +6,8 @@ int arb_is_positive(const arb_t x);
 
 int arb_is_negative(const arb_t x);
 
+void arf_mul_2exp_si(arf_t y, const arf_t x, slong e);
+
 void arf_interval_set(arf_interval_t v, const arf_interval_t u);
 
 void arf_interval_get_arb(arb_t x, const arf_interval_t v, slong prec);

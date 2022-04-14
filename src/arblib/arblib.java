@@ -25,6 +25,10 @@ public class arblib {
     return arblibJNI.arb_is_negative(Real.getCPtr(x), x);
   }
 
+  public static void arf_mul_2exp_si(Float y, Float x, int e) {
+    arblibJNI.arf_mul_2exp_si(Float.getCPtr(y), y, Float.getCPtr(x), x, e);
+  }
+
   public static void arf_interval_set(FloatInterval v, FloatInterval u) {
     arblibJNI.arf_interval_set(FloatInterval.getCPtr(v), v, FloatInterval.getCPtr(u), u);
   }

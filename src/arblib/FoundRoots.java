@@ -20,21 +20,19 @@ public class FoundRoots extends
   public void refine(RealFunction func)
   {
 
-    try ( FloatInterval t = new FloatInterval())
+    for (RealRootInterval rootInterval : this)
     {
-      for (RealRootInterval rootInterval : this)
+
+      if (rootInterval.status != RootStatus.RootLocated)
       {
+        unknownCount++;
+        continue;
+      }
 
-        if (rootInterval.status != RootStatus.RootLocated)
-        {
-          unknownCount++;
-          continue;
-        }
+      foundCount++;
 
-        foundCount++;
-
-        rootInterval.bisectAndRefine(func, t, 5, lowPrec);
-        rootInterval.bisectAndRefine(func, t, 5, lowPrec);
+      rootInterval.bisectAndRefine(func, 5, lowPrec);
+      rootInterval.bisectAndRefine(func, 5, lowPrec);
 
 //        arf_interval_get_arb(v, t, high_prec);
 //        arb_calc_newton_conv_factor(C, function, params, v, low_prec);
@@ -49,9 +47,8 @@ public class FoundRoots extends
 //        flint_printf("refined root (%wd/%wd):\n", i, num);
 //        arb_printn(z, digits + 2, 0);
 //        flint_printf("\n\n");
-      }
-
     }
+
   }
 
 }

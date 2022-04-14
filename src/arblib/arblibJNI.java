@@ -13,6 +13,7 @@ public class arblibJNI {
   public final static native void arb_set_arf(long jarg1, Real jarg1_, long jarg2, Float jarg2_);
   public final static native int arb_is_positive(long jarg1, Real jarg1_);
   public final static native int arb_is_negative(long jarg1, Real jarg1_);
+  public final static native void arf_mul_2exp_si(long jarg1, Float jarg1_, long jarg2, Float jarg2_, int jarg3);
   public final static native void arf_interval_set(long jarg1, FloatInterval jarg1_, long jarg2, FloatInterval jarg2_);
   public final static native void arf_interval_get_arb(long jarg1, Real jarg1_, long jarg2, FloatInterval jarg2_, int jarg3);
   public final static native int arb_sgn_nonzero(long jarg1, Real jarg1_);

@@ -26,23 +26,26 @@ public class XPlotter extends
 {
   public static void main(String args[]) throws IOException, NoninvertibleTransformException
   {
-    XPlotter plotter = new XPlotter(4);
+    /**
+     * TODO: animate this
+     */
+    XPlotter plotter = new XPlotter(1);
     plotter.plot();
   }
 
   public XPlotter(double vscale) throws NoninvertibleTransformException
   {
-    super(new Dimension(2000,
-                        1000),
-          new Rectangle2D.Double(0,
-                                 -5,
-                                 40,
-                                 10),
+    super(new Dimension(2500,
+                        1250),
+          new Rectangle2D.Double(-20,
+                                 -25,
+                                 80,
+                                 50),
           new XFunction(vscale));
 
-    color_mode        = 4;
+    color_mode        = 0;
     bilinearSmoothing = false;
-    displayMode       = Part.Blend;
+    displayMode       = Part.Real;
 
   }
 

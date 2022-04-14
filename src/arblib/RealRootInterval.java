@@ -52,7 +52,7 @@ public class RealRootInterval extends
    NoConvergence
   }
 
-  public BisectionResult bisectAndRefine(RealFunction func, FloatInterval r, int iters, int prec)
+  public BisectionResult bisectAndRefine(RealFunction func,int iters, int prec)
   {
     int           asign, bsign, msign, result;
     long          i;
@@ -73,11 +73,10 @@ public class RealRootInterval extends
       }
       else
       {
-        r.set(this);
 
         for (i = 0; i < iters; i++)
         {
-          msign = calculatePartition(t, u, func, r, prec);
+          msign = func.calculatePartition(t, u, this, prec);
 
           /*
            * TODO: handle the case where the value at the midpoint is actually zero even
@@ -91,11 +90,11 @@ public class RealRootInterval extends
 
           if (msign == asign)
           {
-            r.swap(u);
+            swap(u);
           }
           else
           {
-            r.swap(t);
+            swap(t);
           }
         }
       }
@@ -109,8 +108,4 @@ public class RealRootInterval extends
     return BisectionResult.Success;
   }
 
-  private int calculatePartition(FloatInterval t, FloatInterval u, RealFunction func, FloatInterval r, int prec)
-  {
-    throw new UnsupportedOperationException("TODO");
-  }
 }
