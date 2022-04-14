@@ -498,8 +498,8 @@ public class Complex implements AutoCloseable,Iterable<Complex> {
  
    public Complex(Real norm, Real imag)  
   {
-    setReal(norm);
-    setImag(imag);
+    getReal().set(norm);
+    getImag().set(imag);
   }
  
   public void clear()
@@ -591,27 +591,55 @@ public class Complex implements AutoCloseable,Iterable<Complex> {
     {
       for (int i = 0; i < dim; i++)
       {
-        get(i).close();
+        get(i).delete();
       }
+    }
+  }
+  
+  Real real;
+
+  public Real getReal()
+  {
+    if (real != null)
+    {
+      return real;
+    }
+    else
+    {
+      return real = getRealObj();
+    }
+  }
+
+  Real imag;
+
+  public Real getImag()
+  {
+    if (imag != null)
+    {
+      return imag;
+    }
+    else
+    {
+      return imag = getImagObj();
     }
   }
    
 
-  public void setReal(Real value) {
-    arblibJNI.Complex_real_set(swigCPtr, this, Real.getCPtr(value), value);
+  public void setRealObj(Real value) {
+    arblibJNI.Complex_realObj_set(swigCPtr, this, Real.getCPtr(value), value);
   }
 
-  public Real getReal() {
-    long cPtr = arblibJNI.Complex_real_get(swigCPtr, this);
+  public Real getRealObj() {
+    long cPtr = arblibJNI.Complex_realObj_get(swigCPtr, this);
     return (cPtr == 0) ? null : new Real(cPtr, false);
   }
 
-  public void setImag(Real value) {
-    arblibJNI.Complex_imag_set(swigCPtr, this, Real.getCPtr(value), value);
+  public void setImagObj(Real value) {
+    arblibJNI.Complex_imagObj_set(swigCPtr, this, Real.getCPtr(value), value);
   }
 
-  public Real getImag() {
-    long cPtr = arblibJNI.Complex_imag_get(swigCPtr, this);
+  public Real getImagObj() {
+    long cPtr = arblibJNI.Complex_imagObj_get(swigCPtr, this);
     return (cPtr == 0) ? null : new Real(cPtr, false);
   }
 

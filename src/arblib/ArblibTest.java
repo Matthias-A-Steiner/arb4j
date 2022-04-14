@@ -84,7 +84,7 @@ public class ArblibTest extends
     out.println("theta(" + z.getReal().doubleValue() + ")=" + result);
     assertEquals(-2.0916778325102459547, result, pow(10, -2));
     out.println("e^(" + faze + ")=");
-    faze.setImag(faze.getReal());
+    faze.getImag().set(faze.getReal());
     arb_set_d(faze.getReal(), 0);
     acb_exp(faze, faze, prec);
     out.println(faze + " should be\n -.497644932260514 + I-0.867380839882591 ");

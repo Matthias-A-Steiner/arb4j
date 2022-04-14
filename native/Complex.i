@@ -472,8 +472,8 @@ import static arblib.Constants.*;
  
    public Complex(Real norm, Real imag)  
   {
-    setReal(norm);
-    setImag(imag);
+    getReal().set(norm);
+    getImag().set(imag);
   }
  
   public void clear()
@@ -565,8 +565,36 @@ import static arblib.Constants.*;
     {
       for (int i = 0; i < dim; i++)
       {
-        get(i).close();
+        get(i).delete();
       }
+    }
+  }
+  
+  Real real;
+
+  public Real getReal()
+  {
+    if (real != null)
+    {
+      return real;
+    }
+    else
+    {
+      return real = getRealObj();
+    }
+  }
+
+  Real imag;
+
+  public Real getImag()
+  {
+    if (imag != null)
+    {
+      return imag;
+    }
+    else
+    {
+      return imag = getImagObj();
     }
   }
    

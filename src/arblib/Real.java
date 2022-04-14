@@ -58,7 +58,7 @@ public class Real implements AutoCloseable {
     {
       for (int i = 0; i < dim; i++)
       {
-        get(i).close();
+        get(i).delete();
       }
     }
   }

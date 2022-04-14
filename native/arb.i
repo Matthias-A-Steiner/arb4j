@@ -31,7 +31,6 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 %rename (RealMatrix) arb_mat_struct;
 %rename (FoundRoots) root_struct;
 
-%include "Real.i"
 
 %include "Magnitude.i"
 
@@ -39,7 +38,19 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 
 %include "FloatInterval.i"
 
+%include "Real.i"
+
+
+%include "functions.i"
+
+%rename (realObj) real;
+%rename (imagObj) imag;
+
 %include "Complex.i"
+
+%rename (realObj) realObj;
+%rename (imagObj) imagObj;
+
 
 %include "ComplexPolynomial.i"
 
