@@ -139,6 +139,7 @@ public class arblibJNI {
   public final static native int ComplexPolynomial_alloc_get(long jarg1, ComplexPolynomial jarg1_);
   public final static native long new_ComplexPolynomial();
   public final static native void delete_ComplexPolynomial(long jarg1);
+  public final static native void arf_interval_swap(long jarg1, FloatInterval jarg1_, long jarg2, FloatInterval jarg2_);
   public final static native void arb_set_arf(long jarg1, Real jarg1_, long jarg2, Float jarg2_);
   public final static native int arb_is_positive(long jarg1, Real jarg1_);
   public final static native int arb_is_negative(long jarg1, Real jarg1_);

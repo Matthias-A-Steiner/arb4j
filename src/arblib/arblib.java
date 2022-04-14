@@ -9,6 +9,10 @@
 package arblib;
 
 public class arblib {
+  public static void arf_interval_swap(FloatInterval v, FloatInterval u) {
+    arblibJNI.arf_interval_swap(FloatInterval.getCPtr(v), v, FloatInterval.getCPtr(u), u);
+  }
+
   public static void arb_set_arf(Real x, Float y) {
     arblibJNI.arb_set_arf(Real.getCPtr(x), x, Float.getCPtr(y), y);
   }

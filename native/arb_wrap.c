@@ -2100,6 +2100,22 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_delete_1ComplexPolynomial(JNIEnv *
 }
 
 
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_arf_1interval_1swap(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  arf_interval_struct *arg1 ;
+  arf_interval_struct *arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(arf_interval_struct **)&jarg1; 
+  arg2 = *(arf_interval_struct **)&jarg2; 
+  arf_interval_swap(arg1,arg2);
+  
+  
+}
+
+
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_arb_1set_1arf(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   arb_struct *arg1 ;
   arf_struct *arg2 ;
