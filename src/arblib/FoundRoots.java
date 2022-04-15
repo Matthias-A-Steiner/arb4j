@@ -1,6 +1,8 @@
 
 package arblib;
 
+import static arblib.Real.claim;
+
 import java.util.ArrayList;
 
 import arblib.FloatInterval.RootStatus;
@@ -17,25 +19,37 @@ public class FoundRoots extends
 
   public static int lowPrec = 30;
 
-  public void refine(RealFunction func)
+  /**
+   * Increase the precision of the root intervals via bisection and Newton's
+   * method
+   * 
+   * @param func
+   * @param digits number of digits of precision needed
+   */
+  public void refine(RealFunction func, int digits)
   {
+    int highPrec = (int) (digits * 3.32192809488736 + 10);
 
-    for (RealRootInterval rootInterval : this)
+    try ( Real v = claim(); Real u = claim(); FloatInterval t = new FloatInterval();
+          Float convergenceFactor = Float.claim())
     {
 
-      if (rootInterval.status != RootStatus.RootLocated)
+      for (RealRootInterval rootInterval : this)
       {
-        unknownCount++;
-        continue;
-      }
 
-      foundCount++;
+        if (rootInterval.status != RootStatus.RootLocated)
+        {
+          unknownCount++;
+          continue;
+        }
 
-      rootInterval.bisectAndRefine(func, 5, lowPrec);
-      rootInterval.bisectAndRefine(func, 5, lowPrec);
+        foundCount++;
 
-      // TODO: refactor
-      // arblib.arf_interval_get_arb(v, t, high_prec);
+        rootInterval.bisectAndRefine(func, v, t, 5, lowPrec);
+        rootInterval.bisectAndRefine(func, v, t, 5, lowPrec);
+
+        arblib.arf_interval_get_arb(v, t, highPrec);
+        func.getNewtonConvergenceFactor(v, t.getReal(u, highPrec), lowPrec, convergenceFactor);
 //        arb_calc_newton_conv_factor(C, function, params, v, low_prec);
 //
 //        arf_interval_get_arb(w, blocks + i, high_prec);
@@ -48,10 +62,8 @@ public class FoundRoots extends
 //        flint_printf("refined root (%wd/%wd):\n", i, num);
 //        arb_printn(z, digits + 2, 0);
 //        flint_printf("\n\n");
+      }
     }
-
   }
-  
-  
 
 }

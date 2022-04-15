@@ -18,6 +18,7 @@ public class SZetaPlotter extends
   {
     SZetaPlotter plotter = new SZetaPlotter();
     plotter.plot();
+    plotter.saveToFile();
   }
 
   public SZetaPlotter() throws NoninvertibleTransformException
@@ -32,7 +33,7 @@ public class SZetaPlotter extends
                                  new ComplexComposition(new RiemannZetaFunction(),
                                                         new WickRotation(true))));
 
-    color_mode        = 3;
+    color_mode        = 06;
     bilinearSmoothing = false;
     displayMode       = arblib.functions.Part.Blend;
   }

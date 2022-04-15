@@ -915,7 +915,7 @@ public class ComplexFunctionPlotter extends
     return integers.stream().mapToInt(x -> x);
   }
 
-  private void writeGridToFile() throws IOException
+  public void saveToFile() throws IOException
   {
     File f = new File("out.png");
     System.out.println("Saving image to " + f);

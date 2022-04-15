@@ -12,7 +12,7 @@ public class SineFunction implements
   {
     assert z != null;
     assert w != null;
-    // TODO: implement derivative(s) with order>1
+    // TODO: implement derivative(s) with order>2
     assert order <= 2;
     z.sin(prec, w);
     if (order == 2)

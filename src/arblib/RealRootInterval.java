@@ -52,13 +52,12 @@ public class RealRootInterval extends
    NoConvergence
   }
 
-  public BisectionResult bisectAndRefine(RealFunction func, int iters, int prec)
+  public BisectionResult bisectAndRefine(RealFunction func, Real v, FloatInterval t, int iters, int prec)
   {
     int  asign, bsign, msign, result;
     long i;
 
-    try ( Real m = claim(); Real v = claim(); FloatInterval t = new FloatInterval();
-          FloatInterval u = new FloatInterval();)
+    try ( Real m = claim(); FloatInterval u = new FloatInterval();)
     {
 
       arblib.arb_set_arf(m, getA());

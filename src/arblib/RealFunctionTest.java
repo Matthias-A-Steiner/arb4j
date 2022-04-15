@@ -17,7 +17,7 @@ public class RealFunctionTest extends
                                                          10,
                                                          256);
     System.out.println("roots=" + roots);
-    roots.refine(sineFunction);
+    roots.refine(sineFunction, 30);
     System.out.println("roots=" + roots);
 
   }
