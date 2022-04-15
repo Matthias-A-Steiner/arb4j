@@ -37,10 +37,10 @@ public class XPlotter extends
   {
     super(new Dimension(2500,
                         1250),
-          new Rectangle2D.Double(-20,
-                                 -25,
-                                 80,
-                                 50),
+          new Rectangle2D.Double(0,
+                                 -7.5,
+                                 30,
+                                 15),
           new XFunction(vscale));
 
     color_mode        = 2;

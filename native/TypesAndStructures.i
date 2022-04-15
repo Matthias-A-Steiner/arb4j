@@ -13,7 +13,7 @@
 #include <dirichlet.h>
 #include <acb_modular.h>
 
-#include "complex_plot.h"
+#include "color.h"
 #ifndef size_t
 #define size_t long unsigned int
 #endif
