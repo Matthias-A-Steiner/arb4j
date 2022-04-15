@@ -34,7 +34,8 @@ public class FoundRoots extends
       rootInterval.bisectAndRefine(func, 5, lowPrec);
       rootInterval.bisectAndRefine(func, 5, lowPrec);
 
-//        arf_interval_get_arb(v, t, high_prec);
+      // TODO: refactor
+      // arblib.arf_interval_get_arb(v, t, high_prec);
 //        arb_calc_newton_conv_factor(C, function, params, v, low_prec);
 //
 //        arf_interval_get_arb(w, blocks + i, high_prec);
@@ -50,5 +51,7 @@ public class FoundRoots extends
     }
 
   }
+  
+  
 
 }

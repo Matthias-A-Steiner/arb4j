@@ -24,12 +24,32 @@ public interface RealFunction
   public Real evaluate(Real z, int order, int prec, Real res);
 
   /**
+   * Evaluates a bound for C=sup(1/2|f''(t)|/|f'(u)|) forall {t,u} in I where f is
+   * this function. The bound is obtained by evaluating f'(I) and f''(I) directly.
+   * If this function is ill-conditioned, then I may need to be extremely precise
+   * in order to get an effective, finite bound for C.
+   * 
+   * @param convergenceRegion          I
+   * @param t                          Real 3-vector to hold [f,f',f'']
+   * @param prec
+   * @param resultingConvergenceFactor
+   * 
+   * @return C
+   */
+  public default Float
+         getNewtonConvergenceFactor(Real convergenceRegion, Real t, int prec, Float resultingConvergenceFactor)
+  {
+    arblib.arb_div(evaluate(convergenceRegion, prec, 3, t), t.get(2), t.get(1), prec);
+    arblib.arb_mul_2exp_si(t, t, -1);
+    arblib.arb_get_abs_ubound_arf(resultingConvergenceFactor, t, prec);
+    return resultingConvergenceFactor;
+  }
+
+  /**
    * <code>
-   * Rigorously locates single roots of a real analytic function on the interior of an interval.
+   * Rigorously locates single roots of this function on the interior of an interval.
    * 
-   * This routine writes an array of n interesting subintervals of interval to found and corresponding flags to flags, returning the integer n. 
-   * 
-   * The output has the following properties: 
+   * {@link FoundRoots} has the following properties: 
    * 
    * 1. The function has no roots on interval outside of the output subintervals.
    * 
