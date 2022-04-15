@@ -87,14 +87,14 @@ public class XFunction extends
       { 100 };
       XFunction    xFunc            = new XFunction(1);
       RealFunction realYangFunction = (inDir, order, bits, outDir) -> xFunc.realXang(y0, s, h, inDir, outDir, bits);
-      realYangFunction.iteratedCompositionLimit(a, tester, iters, heading, prec);
+      //realYangFunction.iteratedCompositionLimit(a, tester, iters, heading, prec);
       // assertEquals(0.74754757546711682717, vector.get(0).doubleValue(),
       // Math.pow(10, -17));
       // assertEquals(0.7475482453531754, vector.get(1).doubleValue(), Math.pow(10,
       // -17));
 
-      System.out.println("converged to heading=" + heading + " starting from " + y0 + " in " + iters[0]
-                    + " iterations \n  where the initial angle was a=" + a + " with vector length h=" + h);
+//      System.out.println("converged to heading=" + heading + " starting from " + y0 + " in " + iters[0]
+//                    + " iterations \n  where the initial angle was a=" + a + " with vector length h=" + h);
     }
   }
 

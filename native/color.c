@@ -1,8 +1,6 @@
 /* This file is public domain. Author: Fredrik Johansson. */
 
 
-#include "../native/complex_plot.h"
-
 #include <jni.h>
 #include <string.h>
 #include <acb.h>
@@ -19,6 +17,7 @@
 #include "acb_modular.h"
 #include "acb_elliptic.h"
 #include "flint/profiler.h"
+#include "color.h"
 
 /* some useful color operations */
 #define CLAMP(y) FLINT_MAX(0.0, FLINT_MIN((y), 1.0))
