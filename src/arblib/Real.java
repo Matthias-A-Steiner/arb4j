@@ -414,4 +414,10 @@ public class Real implements AutoCloseable {
     this(arblibJNI.new_Real(), true);
   }
 
+  public Real negate(Real res)
+  {
+    arblib.arb_neg(res, this);
+    return this;
+  }
+
 }

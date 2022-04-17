@@ -12,13 +12,18 @@ public class SineFunction implements
   {
     assert z != null;
     assert w != null;
-    // TODO: implement derivative(s) with order>2
-    assert order <= 2;
+    assert order <= 3;
+
     z.sin(prec, w);
     if (order == 2)
     {
       z.cos(prec, w.get(1));
     }
+    if (order == 3)
+    {
+      w.negate(w.get(2));
+    }
+
     return w;
   }
 

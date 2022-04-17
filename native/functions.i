@@ -1,3 +1,5 @@
+void arb_neg(arb_t y, const arb_t x);
+
 void arf_interval_swap(arf_interval_t v, arf_interval_t u);
 
 void arb_set_arf(arb_t x, const arf_t y);

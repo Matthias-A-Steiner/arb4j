@@ -66,6 +66,12 @@ import static arblib.Constants.*;
    return r;
  }
 
+  public Real negate(Real res)
+  {
+    arblib.arb_neg(res, this);
+    return this;
+  }
+  
   public Real sqrt( int prec )  
   {
     return sqrt(prec,this);

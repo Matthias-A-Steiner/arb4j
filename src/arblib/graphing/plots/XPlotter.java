@@ -31,16 +31,17 @@ public class XPlotter extends
      */
     XPlotter plotter = new XPlotter(1);
     plotter.plot();
+    plotter.saveToFile();
   }
 
   public XPlotter(double vscale) throws NoninvertibleTransformException
   {
-    super(new Dimension(2500,
-                        1250),
-          new Rectangle2D.Double(0,
-                                 -7.5,
-                                 30,
-                                 15),
+    super(new Dimension(2500*2,
+                        1250*2),
+          new Rectangle2D.Double(-10,
+                                 -7.5*0.75,
+                                 40,
+                                 15*0.75),
           new XFunction(vscale));
 
     color_mode        = 6;
