@@ -23,6 +23,37 @@ public interface RealFunction
 {
   public Real evaluate(Real z, int order, int prec, Real res);
 
+  public default boolean
+         calculateNewtonStep(Real xnew, Real x, Real convergenceRegion, Float convergenceFactor, int prec)
+  {
+    try ( Magnitude err = Magnitude.claim(); Magnitude v = Magnitude.claim(); Real t = Real.claim();
+          Real u = Real.claim2();)
+    {
+      x.getRad().pow(2, err);
+      convergenceFactor.getMagnitude(v).mul(err, err);
+
+      t.setMid(x.getMid());
+      t.getRad().zero();
+
+      evaluate(t, 2, prec, u);
+
+      u.div(u.get(1), prec, u);
+      t.sub(u, prec, u);
+      u.getRad().pow(2, err);
+
+      if (convergenceRegion.contains(u) && u.getRad().compareTo(x.getRad()) < 0)
+      {
+        xnew.swap(u);
+        return true;
+      }
+      else
+      {
+        xnew.set(x);
+        return false;
+      }
+    }
+  };
+
   /**
    * Evaluates a bound for C=sup(1/2|f''(t)|/|f'(u)|) forall {t,u} in I where f is
    * this function. The bound is obtained by evaluating f'(I) and f''(I) directly.
@@ -30,7 +61,7 @@ public interface RealFunction
    * in order to get an effective, finite bound for C.
    * 
    * @param convergenceRegion          I
-   * @param jet                          Real 3-vector to hold [f,f',f'']
+   * @param jet                        Real 3-vector to hold [f,f',f'']
    * @param prec
    * @param resultingConvergenceFactor
    * 

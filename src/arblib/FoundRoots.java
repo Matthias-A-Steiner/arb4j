@@ -30,7 +30,7 @@ public class FoundRoots extends
   {
     int highPrec = (int) (digits * 3.32192809488736 + 10);
 
-    try ( Real z = Real.newArray(3); Real v = claim(); Real u = claim(); FloatInterval t = new FloatInterval();
+    try ( Real w = Real.newArray(3); Real v = claim(); Real u = claim(); FloatInterval t = new FloatInterval();
           Float convergenceFactor = Float.claim())
     {
 
@@ -49,12 +49,12 @@ public class FoundRoots extends
         rootInterval.bisectAndRefine(func, v, t, 5, lowPrec);
 
         arblib.arf_interval_get_arb(v, t, highPrec);
-        System.out.println( " convergence region: " + v);
+        System.out.println(" convergence region: " + v);
 
-        func.getNewtonConvergenceFactor(v, z, lowPrec, convergenceFactor);
-        System.out.println( "Newton convergence factor: " +convergenceFactor);
-//
-//        arf_interval_get_arb(w, blocks + i, high_prec);
+        func.getNewtonConvergenceFactor(v, w, lowPrec, convergenceFactor);
+        System.out.println("Newton convergence factor: " + convergenceFactor);
+        rootInterval.getReal(w, highPrec);
+
 //        if (arb_calc_refine_root_newton(z, function, params,
 //            w, v, C, 10, high_prec) != ARB_CALC_SUCCESS)
 //        {
