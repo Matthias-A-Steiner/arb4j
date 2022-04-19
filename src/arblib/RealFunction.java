@@ -26,61 +26,6 @@ public interface RealFunction
 
   public static final int FLINT_BITS = 64;
 
-  public default RefinementResult arb_calc_refine_root_newton(Real r,
-                                                              Real start,
-                                                              Real conv_region,
-                                                              Float conv_factor,
-                                                              int eval_extra_prec,
-                                                              int prec)
-  {
-    int precs[] = new int[FLINT_BITS];
-    int i, iters, wp, padding, start_prec;
-    int result;
-
-    start_prec = arblib.arb_rel_accuracy_bits(start);
-
-    if (verbose)
-    {
-      System.out.format("newton initial accuracy: %wd\n", start_prec);
-    }
-
-    padding  = arblib.arf_abs_bound_lt_2exp_si(conv_factor);
-    padding  = Math.min(padding, prec) + 5;
-    padding  = Math.max(0, padding);
-
-    precs[0] = prec + padding;
-    iters    = 1;
-    while ((iters < FLINT_BITS) && (precs[iters - 1] + padding > 2 * start_prec))
-    {
-      precs[iters] = (precs[iters - 1] / 2) + padding;
-      iters++;
-
-      if (iters == FLINT_BITS)
-      {
-        return RefinementResult.ImpreciseInput;
-      }
-    }
-
-    r.set(start);
-
-    for (i = iters - 1; i >= 0; i--)
-    {
-      wp = precs[i] + eval_extra_prec;
-
-      if (verbose)
-      {
-        System.out.printf("newton step: wp = %wd + %wd = %wd\n", precs[i], eval_extra_prec, wp);
-      }
-
-      if (!calculateNewtonStep(r, r, conv_region, conv_factor, wp))
-      {
-        return RefinementResult.NoConvergence;
-      }
-    }
-
-    return RefinementResult.Success;
-  }
-
   public default boolean
          calculateNewtonStep(Real xnew, Real x, Real convergenceRegion, Float convergenceFactor, int prec)
   {
