@@ -240,10 +240,6 @@ int acb_contains_zero(const acb_t x);
  
  void acb_elliptic_k(acb_t res, const acb_t m, slong prec);
   
- void mp_set_memory_functions (void *(*) (size_t),
-                                      void *(*) (void *, size_t, size_t),
-                                      void (*) (void *, size_t));
-       
 void acb_get_mid(acb_t m, const acb_t x);
                                        
 void arb_const_pi(arb_t z, slong prec);

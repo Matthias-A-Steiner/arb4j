@@ -2391,20 +2391,6 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1elliptic_1k(JNIEnv *jenv, jcl
 }
 
 
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mp_1set_1memory_1functions(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jlong jarg3) {
-  void *(*arg1)(size_t) = (void *(*)(size_t)) 0 ;
-  void *(*arg2)(void *,size_t,size_t) = (void *(*)(void *,size_t,size_t)) 0 ;
-  void (*arg3)(void *,size_t) = (void (*)(void *,size_t)) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(void *(**)(size_t))&jarg1; 
-  arg2 = *(void *(**)(void *,size_t,size_t))&jarg2; 
-  arg3 = *(void (**)(void *,size_t))&jarg3; 
-  mp_set_memory_functions(arg1,arg2,arg3);
-}
-
-
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1get_1mid(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   acb_struct *arg1 ;
   acb_struct *arg2 ;

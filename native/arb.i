@@ -58,7 +58,6 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 
 %include "RealMatrix.i"
 
-%include "FoundRoots.i"
 
 %include "TypesAndStructures.i"
 

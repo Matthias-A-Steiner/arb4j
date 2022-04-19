@@ -466,10 +466,6 @@ public class arblib {
     arblibJNI.acb_elliptic_k(Complex.getCPtr(res), res, Complex.getCPtr(m), m, prec);
   }
 
-  public static void mp_set_memory_functions(SWIGTYPE_p_f_size_t__p_void arg0, SWIGTYPE_p_f_p_void_size_t_size_t__p_void arg1, SWIGTYPE_p_f_p_void_size_t__void arg2) {
-    arblibJNI.mp_set_memory_functions(SWIGTYPE_p_f_size_t__p_void.getCPtr(arg0), SWIGTYPE_p_f_p_void_size_t_size_t__p_void.getCPtr(arg1), SWIGTYPE_p_f_p_void_size_t__void.getCPtr(arg2));
-  }
-
   public static void acb_get_mid(Complex m, Complex x) {
     arblibJNI.acb_get_mid(Complex.getCPtr(m), m, Complex.getCPtr(x), x);
   }
