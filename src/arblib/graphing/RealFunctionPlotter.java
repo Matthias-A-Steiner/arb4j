@@ -74,6 +74,7 @@ public class RealFunctionPlotter extends
    */
   public RealFunctionPlotter(RealFunction function, FloatInterval domain, FloatInterval range, int numPoints)
   {
+    assert function != null;
     this.func      = function;
     left           = domain.getA();
     right          = domain.getB();
