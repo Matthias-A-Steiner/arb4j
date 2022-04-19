@@ -75,7 +75,7 @@ public interface RealFunction
   {
     assert jet.size() >= 3;
     evaluate(convergenceRegion, 3, prec, jet);
-    arblib.arb_div(jet, jet.get(2), jet.get(1), prec);
+    jet.get(2).div( jet.get(1), prec, jet );
     arblib.arb_mul_2exp_si(jet, jet, -1);
     arblib.arb_get_abs_ubound_arf(resultingConvergenceFactor, jet, prec);
     return resultingConvergenceFactor;
