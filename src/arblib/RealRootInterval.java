@@ -52,6 +52,15 @@ public class RealRootInterval extends
    NoConvergence
   }
 
+  /**
+   * 
+   * @param func
+   * @param v
+   * @param t
+   * @param iters
+   * @param prec
+   * @return
+   */
   public BisectionResult bisectAndRefine(RealFunction func, Real v, FloatInterval t, int iters, int prec)
   {
     int  asign, bsign, msign, result;

@@ -13,13 +13,17 @@ public class SineFunction implements
     assert z != null;
     assert w != null;
     assert order <= 3;
+    assert w.size() >= order;
 
-    z.sin(prec, w);
-    if (order == 2)
+    if (order <= 1)
+    {
+      z.sin(prec, w);
+    }
+    if (order <= 2)
     {
       z.cos(prec, w.get(1));
     }
-    if (order == 3)
+    if (order <= 3)
     {
       w.negate(w.get(2));
     }

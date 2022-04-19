@@ -92,6 +92,12 @@ public class Real implements AutoCloseable {
    return r;
  }
 
+  public Real negate(Real res)
+  {
+    arblib.arb_neg(res, this);
+    return this;
+  }
+  
   public Real sqrt( int prec )  
   {
     return sqrt(prec,this);
@@ -412,12 +418,6 @@ public class Real implements AutoCloseable {
 
   public Real() {
     this(arblibJNI.new_Real(), true);
-  }
-
-  public Real negate(Real res)
-  {
-    arblib.arb_neg(res, this);
-    return this;
   }
 
 }

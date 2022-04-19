@@ -30,18 +30,20 @@ public interface RealFunction
    * in order to get an effective, finite bound for C.
    * 
    * @param convergenceRegion          I
-   * @param t                          Real 3-vector to hold [f,f',f'']
+   * @param jet                          Real 3-vector to hold [f,f',f'']
    * @param prec
    * @param resultingConvergenceFactor
    * 
    * @return C
    */
   public default Float
-         getNewtonConvergenceFactor(Real convergenceRegion, Real t, int prec, Float resultingConvergenceFactor)
+         getNewtonConvergenceFactor(Real convergenceRegion, Real jet, int prec, Float resultingConvergenceFactor)
   {
-    arblib.arb_div(evaluate(convergenceRegion, prec, 3, t), t.get(2), t.get(1), prec);
-    arblib.arb_mul_2exp_si(t, t, -1);
-    arblib.arb_get_abs_ubound_arf(resultingConvergenceFactor, t, prec);
+    assert jet.size() >= 3;
+    evaluate(convergenceRegion, 3, prec* 30, jet);
+    arblib.arb_div(jet, jet.get(2), jet.get(1), prec * 10);
+    arblib.arb_mul_2exp_si(jet, jet, -1);
+    arblib.arb_get_abs_ubound_arf(resultingConvergenceFactor, jet, prec);
     return resultingConvergenceFactor;
   }
 

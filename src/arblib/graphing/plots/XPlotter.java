@@ -29,15 +29,15 @@ public class XPlotter extends
     /**
      * TODO: animate this
      */
-    XPlotter plotter = new XPlotter(1);
+    XPlotter plotter = new XPlotter(2);
     plotter.plot();
     plotter.saveToFile();
   }
 
   public XPlotter(double vscale) throws NoninvertibleTransformException
   {
-    super(new Dimension(2500*2,
-                        1250*2),
+    super(new Dimension(2500/2,
+                        1250/2),
           new Rectangle2D.Double(-10,
                                  -7.5*0.75,
                                  40,
