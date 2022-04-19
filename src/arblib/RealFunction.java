@@ -90,7 +90,7 @@ public interface RealFunction
       x.getRad().pow(2, err);
       convergenceFactor.getMagnitude(v).mul(err, err);
 
-      t.setMid(x.getMid());
+      t.getMid().assign(x.getMid());
       t.getRad().zero();
 
       evaluate(t, 2, prec, u);
@@ -101,12 +101,12 @@ public interface RealFunction
 
       if (convergenceRegion.contains(u) && u.getRad().compareTo(x.getRad()) < 0)
       {
-        xnew.swap(u);
+        xnew.get(0).swap(u);
         return true;
       }
       else
       {
-        xnew.set(x);
+        xnew.get(0).set(x);
         return false;
       }
     }
