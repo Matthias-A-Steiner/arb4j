@@ -45,11 +45,68 @@ public class RealRootInterval extends
     return status;
   }
 
-  public static enum BisectionResult
+  public static enum RefinementResult
   {
    ImpreciseInput,
    Success,
    NoConvergence
+  }
+
+  public static final int FLINT_BITS = 64;
+
+  public boolean          verbose    = true;
+
+  public RefinementResult refineRootNewton(RealFunction func,
+                                           Real r,
+                                           Real convergenceRegion,
+                                           Float convergenceFactor,
+                                           int eval_extra_prec,
+                                           int prec)
+  {
+    int precs[] = new int[FLINT_BITS];
+    int i, iters, wp, padding, start_prec;
+    int result;
+
+    start_prec = arblib.arb_rel_accuracy_bits(r);
+
+    if (verbose)
+    {
+      System.out.format("newton initial accuracy: %d\n", start_prec);
+    }
+
+    padding  = arblib.arf_abs_bound_lt_2exp_si(convergenceFactor);
+    padding  = Math.min(padding, prec) + 5;
+    padding  = Math.max(0, padding);
+    precs[0] = prec + padding;
+    iters    = 1;
+    while ((iters < FLINT_BITS) && (precs[iters - 1] + padding > 2 * start_prec))
+    {
+      precs[iters] = (precs[iters - 1] / 2) + padding;
+      iters++;
+
+      if (iters == FLINT_BITS)
+      {
+        return RefinementResult.ImpreciseInput;
+      }
+    }
+
+    System.out.println( "iters=" + iters );
+    for (i = iters - 1; i >= 0; i--)
+    {
+      wp = precs[i] + eval_extra_prec;
+
+      if (verbose)
+      {
+        System.out.printf("newton step: wp = %d + %d = %d      r=%s\n", precs[i], eval_extra_prec, wp, r);
+      }
+
+      if (!func.calculateNewtonStep(r, r, convergenceRegion, convergenceFactor, wp))
+      {
+        return RefinementResult.NoConvergence;
+      }
+    }
+
+    return RefinementResult.Success;
   }
 
   /**
@@ -61,7 +118,7 @@ public class RealRootInterval extends
    * @param prec
    * @return
    */
-  public BisectionResult bisectAndRefine(RealFunction func, Real v, FloatInterval t, int iters, int prec)
+  public RefinementResult bisectAndRefine(RealFunction func, Real v, FloatInterval t, int iters, int prec)
   {
     int  asign, bsign, msign, result;
     long i;
@@ -78,7 +135,7 @@ public class RealRootInterval extends
       /* must have proper sign changes */
       if (asign == 0 || bsign == 0 || asign == bsign)
       {
-        return BisectionResult.ImpreciseInput;
+        return RefinementResult.ImpreciseInput;
       }
       else
       {
@@ -94,7 +151,7 @@ public class RealRootInterval extends
            */
           if (msign == 0)
           {
-            return BisectionResult.NoConvergence;
+            return RefinementResult.NoConvergence;
           }
 
           swap(msign == asign ? u : t);
@@ -102,7 +159,7 @@ public class RealRootInterval extends
       }
     }
 
-    return BisectionResult.Success;
+    return RefinementResult.Success;
   }
 
 }

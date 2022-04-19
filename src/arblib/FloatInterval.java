@@ -8,41 +8,47 @@
 
 package arblib;
 
-import java.util.ArrayList;
+public class FloatInterval implements
+                           AutoCloseable
+{
 
-public class FloatInterval implements AutoCloseable {
+  static
+  {
+    System.loadLibrary("arblib");
+  }
 
- static
- {
-   System.loadLibrary( "arblib" );
- }
- 
-  public long swigCPtr;
+  public long    swigCPtr;
   public boolean swigCMemOwn;
 
-  public FloatInterval(long cPtr) {
-    this(cPtr,false);
-  }
-    
-  public FloatInterval(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
+  public FloatInterval(long cPtr)
+  {
+    this(cPtr,
+         false);
   }
 
-  public static long getCPtr(FloatInterval obj) {
+  public FloatInterval(long cPtr, boolean cMemoryOwn)
+  {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr    = cPtr;
+  }
+
+  public static long getCPtr(FloatInterval obj)
+  {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
+  public synchronized void delete()
+  {
+    if (swigCPtr != 0)
+    {
+      if (swigCMemOwn)
+      {
         swigCMemOwn = false;
         arblibJNI.delete_FloatInterval(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
-
 
   public static enum RootStatus
   {
@@ -57,13 +63,19 @@ public class FloatInterval implements AutoCloseable {
     return this;
   }
 
-
   public void split(FoundRoots found, int asign, int bsign, int depth, int maxEvals, int maxFound, int prec)
   {
+    System.out.format("split(asign=%s bsign=%s depth=%s maxEvals=%s maxFound=%s prec=%s\n",
+                      asign,
+                      bsign,
+                      depth,
+                      maxEvals,
+                      maxFound,
+                      prec);
+
     throw new UnsupportedOperationException("TODO");
   }
 
-  
   public static final int BYTES = 64;
 
   @Override
@@ -71,13 +83,13 @@ public class FloatInterval implements AutoCloseable {
   {
     return String.format("FloatInterval[A=%s, B=%s]", getA(), getB());
   }
-    
+
   @Override
   public void close()
-  { 
-      delete();
+  {
+    delete();
   }
-  
+
   public FloatInterval(double left, double right)
   {
     this();
@@ -85,26 +97,26 @@ public class FloatInterval implements AutoCloseable {
     getA().assign(left);
     getB().assign(right);
   }
-  
+
   public FloatInterval init()
   {
-   getA().init();
-   getB().init();
-   return this;
+    getA().init();
+    getB().init();
+    return this;
   }
-  
+
   public void set(FloatInterval interval)
   {
     setA(interval.getA());
     setB(interval.getB());
   }
-  
+
   public Real getReal(Real res, int prec)
   {
     arblib.arf_interval_get_arb(res, this, prec);
     return res;
   }
-  
+
   public RootStatus determineRootStatus(RealFunction func, int asign, int bsign, int prec)
   {
     RootStatus result = RootStatus.RootUnknown;
@@ -131,28 +143,35 @@ public class FloatInterval implements AutoCloseable {
 
     return result;
   }
-  
 
-  public void setA(Float value) {
+  public void setA(Float value)
+  {
     arblibJNI.FloatInterval_a_set(swigCPtr, this, Float.getCPtr(value), value);
   }
 
-  public Float getA() {
+  public Float getA()
+  {
     long cPtr = arblibJNI.FloatInterval_a_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new Float(cPtr, false);
+    return (cPtr == 0) ? null : new Float(cPtr,
+                                          false);
   }
 
-  public void setB(Float value) {
+  public void setB(Float value)
+  {
     arblibJNI.FloatInterval_b_set(swigCPtr, this, Float.getCPtr(value), value);
   }
 
-  public Float getB() {
+  public Float getB()
+  {
     long cPtr = arblibJNI.FloatInterval_b_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new Float(cPtr, false);
+    return (cPtr == 0) ? null : new Float(cPtr,
+                                          false);
   }
 
-  public FloatInterval() {
-    this(arblibJNI.new_FloatInterval(), true);
+  public FloatInterval()
+  {
+    this(arblibJNI.new_FloatInterval(),
+         true);
   }
 
 }

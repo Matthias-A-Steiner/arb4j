@@ -6,7 +6,7 @@ public abstract class ComplexPart implements
 
   protected ComplexFunction func;
   protected Complex         in  = new Complex();
-  protected Complex         out = Complex.newVector(2);
+  protected Complex         out = Complex.newVector(3);
   protected int             deriv;
 
   public ComplexPart(ComplexFunction func)

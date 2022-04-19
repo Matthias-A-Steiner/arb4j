@@ -38,7 +38,7 @@ public class ZFunction implements
   @Override
   public Complex evaluate(Complex z, int order, int prec, Complex w)
   {
-    assert w.dim >= order;
+    assert w.dim >= order : String.format("wdim=%d >= order = %d", w.dim, order );
     assert prec > 0;
     acb_dirichlet_hardy_z(w, z, null, null, order, prec);
     return w;
