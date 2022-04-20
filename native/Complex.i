@@ -192,9 +192,9 @@ import static arblib.Constants.*;
 
   public Complex normalize(Complex res)
   {
-    try ( Real magnitude = Real.claim()) { return div(norm(defaultPrec, magnitude ), res); }
+    try ( Real magnitude = new Real()) { return div(norm(defaultPrec, magnitude ), res); }
   }
-
+  
   public Complex div(Real norm, Complex res)
   {
     return div( norm, defaultPrec, res );
@@ -345,13 +345,6 @@ import static arblib.Constants.*;
     return dim;
   }
   
-  public static Complex newVector( int dim )
-  {
-    Complex array = arblib._acb_vec_init(dim);    
-    array.dim = dim;
-    return array;
-  }
-  
   public Complex cos(int prec, Complex result )
   {
     arblib.acb_cos(result, this, prec );
@@ -377,7 +370,7 @@ import static arblib.Constants.*;
   
   public double norm()
   {
-    try ( Real magnitude = Real.claim() ) { return norm(defaultPrec, magnitude ).doubleValue(); }
+    try ( Real magnitude = new Real() ) { return norm(defaultPrec, magnitude ).doubleValue(); }
   }
 
   /**
@@ -516,42 +509,22 @@ import static arblib.Constants.*;
    return r;
  }
  
-  static final PoolService<Complex> pool = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
-                                                                new ComplexFactory(),
-                                                                0,
-                                                                100000000,
-                                                                false,
-                                                                new ComplexListener() );
-
-  static final PoolService<Complex> pool2 = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
-                                                                 new ComplexFactory(2),
-                                                                 0,
-                                                                 100000000,
-                                                                 false,
-                                                                 new ComplexListener() );
   
- public static Complex claim()
+ public static Complex newVector(int dim)
  {
-   Complex r = pool.take();
-   r.poolService = pool;
-   return r;
- }
-
- public static Complex claim2()
- {
-   Complex r = pool2.take();
-   r.poolService = pool2;
-   return r;
+    Complex array = arblib._acb_vec_init(dim);    
+    array.dim = dim;
+    return array;
  }
    
  public Complex plus(Complex that)
  {
-   return add(that, claim() );
+   return add(that, new Complex() );
  }
 
  public Complex div(Complex that)
  {
-   return div(that, claim() );
+   return div(that, new Complex() );
  }
 
   @Override

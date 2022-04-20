@@ -1,7 +1,5 @@
 package arblib.functions;
 
-import static arblib.Complex.claim;
-import static arblib.Complex.claim2;
 import static arblib.Constants.iπ;
 import static arblib.Constants.π;
 import static java.lang.String.format;
@@ -46,7 +44,7 @@ public class TFunction implements
          T(Complex f, Complex t, Real a, int order, boolean functionalDerivative, int prec, Complex res)
   {
     assert res.dim >= order && order > 0 : format("res.dim = %d must be >= order = %d > 0", res.dim, order);
-    try ( Complex r = claim())
+    try ( Complex r = new Complex())
     {
       if (order >= 1)
       {
@@ -62,7 +60,7 @@ public class TFunction implements
       {
         Complex res1 = res.get(1);
 
-        try ( Complex q = claim(); Complex s = claim())
+        try ( Complex q = new Complex(); Complex s = new Complex())
         {
           t.div(a, prec, r).pow(2, prec, q).add(1, prec, q).mul(t, prec, r);
           if (functionalDerivative)
@@ -78,7 +76,7 @@ public class TFunction implements
 
   public Complex TNewton(Complex t, int prec, Complex res)
   {
-    try ( Complex r = claim(); Complex s = claim2())
+    try ( Complex r = new Complex(); Complex s = Complex.newVector(2))
     {
       return t.sub(T(null, t, a, 2, false, prec, s).div(s.get(1), prec, r), prec, res);
     }
@@ -94,7 +92,7 @@ public class TFunction implements
    */
   public Complex TNewtonLim(Complex t0, int bits, Complex res)
   {
-    try ( Complex Y = claim(); Complex Z = claim(); Complex r = claim(); Complex s = claim(); Complex q = claim())
+    try ( Complex Y = new Complex(); Complex Z = new Complex(); Complex r = new Complex(); Complex s = new Complex(); Complex q = new Complex())
     {
       res.set(t0);
       for (int i = 0; TNewton(res, bits, r).isFinite() && r.relAccuracyBits() > 60; i++)
@@ -134,7 +132,7 @@ public class TFunction implements
   public Complex TNewtonIter(Complex t0, int n)
   {
     Complex trajectory = Complex.newVector(n);
-    try ( Complex t = claim().set(t0); Complex r = claim())
+    try ( Complex t = new Complex().set(t0); Complex r = new Complex())
     {
       for (int i = 0; i < n; i++)
       {
@@ -165,7 +163,7 @@ public class TFunction implements
   {
     assert t.isFinite();
     assert a.isFinite();
-    try ( Complex dt = claim(); Complex y = claim2(); Complex p = claim(); Complex Z = claim2())
+    try ( Complex dt = new Complex(); Complex y = Complex.newVector(2); Complex p = new Complex(); Complex Z = Complex.newVector(2))
     {
       s = t.add(h.mul(iπ.mul(a, prec, dt).exp(prec, dt), dt), prec, s);
       assert s.isFinite() : String.format("s=%s t=%s h=%s a=%s dt=%s\n", s, t, h, a, dt);

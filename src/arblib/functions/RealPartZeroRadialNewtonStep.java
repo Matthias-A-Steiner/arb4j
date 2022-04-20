@@ -1,7 +1,6 @@
 package arblib.functions;
 
-import static arblib.Complex.claim;
-import static arblib.Complex.claim2;
+
 import static arblib.Constants.iπ;
 import static arblib.Constants.π;
 
@@ -48,7 +47,7 @@ public class RealPartZeroRadialNewtonStep<F extends ComplexFunction> implements
     this.f = f;
     this.t = t;
     this.h = h;
-    this.s = claim();
+    this.s = new Complex();
   }
 
   Complex s;
@@ -62,7 +61,7 @@ public class RealPartZeroRadialNewtonStep<F extends ComplexFunction> implements
     assert a.isFinite();
     assert order == 1;
 
-    try ( Complex dt = claim(); Complex y = claim2(); Complex p = claim(); Complex Z = claim2())
+    try ( Complex dt = new Complex(); Complex y = Complex.newVector(2); Complex p = new Complex(); Complex Z = Complex.newVector(2))
     {
       s = t.add(h.mul(iπ.mul(a, prec, dt).exp(prec, dt), dt), prec, s);
       assert s.isFinite() : String.format("s is not finite: s=%s t=%s h=%s a=%s dt=%s\n", s, t, h, a, dt);
