@@ -43,7 +43,7 @@ public interface RealFunction
 
       if (convergenceRegion.contains(u) && u.getRad().compareTo(x.getRad()) < 0)
       {
-        xnew.get(0).swap(u);
+        xnew.get(0).set(u);
         return true;
       }
       else
