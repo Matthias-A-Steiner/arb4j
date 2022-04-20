@@ -75,7 +75,7 @@ public interface RealFunction
   {
     assert jet.size() >= 3;
     evaluate(convergenceRegion, 3, prec, jet);
-    jet.get(2).div( jet.get(1), prec, jet );
+    jet.get(2).div(jet.get(1), prec, jet);
     arblib.arb_mul_2exp_si(jet, jet, -1);
     arblib.arb_get_abs_ubound_arf(resultingConvergenceFactor, jet, prec);
     return resultingConvergenceFactor;
@@ -161,7 +161,7 @@ public interface RealFunction
       System.out.format("asign=%s bsign=%s\n", asign, bsign);
     }
 
-    recursivelyLocateRoots(roots, interval, asign, bsign, maxdepth, maxevals, maxfound, prec);
+    recursivelyLocateRoots(roots, interval, asign, bsign, 0, maxdepth, maxevals, maxfound, prec);
 
     return roots;
   }
@@ -173,6 +173,7 @@ public interface RealFunction
                                              int asign,
                                              int bsign,
                                              int depth,
+                                             int maxDepth,
                                              int maxEvals,
                                              int maxFound,
                                              int prec)
@@ -190,22 +191,25 @@ public interface RealFunction
 
       if (status != RootStatus.NoRoot)
       {
-        if (status == RootStatus.RootLocated || depth <= 0)
+        if (status == RootStatus.RootLocated || depth >= maxDepth || found.evals > maxEvals)
         {
           if (status == RootStatus.RootLocated)
           {
-            if (verbose)
+            //if (verbose)
             {
               out.printf("found isolated root in: %s\n", root);
               out.flush();
             }
-          }
 
-          found.add(root);
+          
+          }
+          System.out.println("Adding " + root);
+
+          found.add(new RealRootInterval().set(root));
         }
         else
         {
-          root.split(found, asign, bsign, depth, maxEvals, maxFound, prec);
+          root.split(this, found, asign, bsign, depth, maxDepth, maxEvals, maxFound, prec);
         }
       }
     }

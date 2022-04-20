@@ -43,13 +43,6 @@ import java.util.ArrayList;
     arblib.arf_interval_swap(this, u);
     return this;
   }
-
-
-  public void split(FoundRoots found, int asign, int bsign, int depth, int maxEvals, int maxFound, int prec)
-  {
-    throw new UnsupportedOperationException("TODO");
-  }
-
   
   public static final int BYTES = 64;
 
@@ -80,10 +73,11 @@ import java.util.ArrayList;
    return this;
   }
   
-  public void set(FloatInterval interval)
+  public FloatInterval set(FloatInterval interval)
   {
     setA(interval.getA());
     setB(interval.getB());
+    return this;
   }
   
   public Real getReal(Real res, int prec)

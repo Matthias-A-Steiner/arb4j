@@ -1,29 +1,16 @@
 package arblib;
 
-public abstract class ComplexPart implements
-                                  AutoCloseable
+public abstract class ComplexPart 
 {
 
-  protected ComplexFunction func;
-  protected Complex         in  = Complex.newVector(2);
-  protected Complex         out = Complex.newVector(3);
-  protected int             deriv;
+  protected ComplexFunction    func;
+
 
   public ComplexPart(ComplexFunction func)
   {
     this.func = func;
   }
 
-  public ComplexPart(ComplexFunction func2, int deriv)
-  {
-    this.deriv = deriv;
-  }
-
-  @Override
-  public void close() throws Exception
-  {
-    in.close();
-    out.close();
-  }
+ 
 
 }

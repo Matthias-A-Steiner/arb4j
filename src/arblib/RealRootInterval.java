@@ -7,6 +7,12 @@ public class RealRootInterval extends
                               FloatInterval
 {
   @Override
+  public RealRootInterval set(FloatInterval interval)
+  {
+    return (RealRootInterval) super.set(interval);
+  }
+
+  @Override
   public String toString()
   {
     return String.format("RealRootInterval[(%s, %s),status=%s]", getA(), getB(), status);
@@ -18,7 +24,48 @@ public class RealRootInterval extends
           right);
   }
 
-  public RootStatus status;
+  public RealRootInterval()
+  {
+    // TODO Auto-generated constructor stub
+  }
+
+  public RootStatus status = RootStatus.RootUnknown;
+
+  public void split(RealFunction func,
+                    FoundRoots found,
+                    int asign,
+                    int bsign,
+                    int depth,
+                    int maxDepth,
+                    int maxEvals,
+                    int maxFound,
+                    int prec)
+  {
+    for (int i = 0; i < depth; i++)
+    {
+      System.out.print(" ");
+    }
+    System.out.format("split(interval=%s, asign=%s bsign=%s depth=%s maxDepth=%s evals=%s, maxEvals=%s maxFound=%s prec=%s\n",
+                      this,
+                      asign,
+                      bsign,
+                      depth,
+                      
+                      maxDepth,
+                      found.evals,
+                      maxEvals,
+                      maxFound,
+                      prec);
+
+    try ( RealRootInterval L = new RealRootInterval(); RealRootInterval R = new RealRootInterval();)
+    {
+      int msign = func.calculatePartition(L, R, this, prec);
+
+      func.recursivelyLocateRoots(found, L, asign, bsign, depth + 1, maxDepth, maxEvals, maxFound, prec);
+      func.recursivelyLocateRoots(found, R, asign, bsign, depth + 1, maxDepth, maxEvals, maxFound, prec);
+    }
+
+  }
 
   public RootStatus determineRootStatus(RealFunction func, int asign, int bsign, int prec)
   {
@@ -90,7 +137,7 @@ public class RealRootInterval extends
       }
     }
 
-    System.out.println( "iters=" + iters );
+    System.out.println("iters=" + iters);
     for (i = iters - 1; i >= 0; i--)
     {
       wp = precs[i] + eval_extra_prec;

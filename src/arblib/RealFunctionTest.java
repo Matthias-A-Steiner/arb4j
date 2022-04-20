@@ -24,15 +24,15 @@ public class RealFunctionTest extends
 
   public synchronized static void testLocateRoots2()
   {
-    RealFunction f            = new RealPart(new ZFunction());
-    FoundRoots   roots        = f.locateRoots(new RealRootInterval(3,
-                                                                              3.6),
-                                                         50,
-                                                         20000,
-                                                         10,
-                                                         512);
+    RealFunction f     = new RealPart(new ZFunction());
+    FoundRoots   roots = f.locateRoots(new RealRootInterval(14.1,
+                                                            14.14),
+                                       10,
+                                       5000,
+                                       10,
+                                       256);
     System.out.println("roots=" + roots);
-    roots.refine(f, 55);
+//    roots.refine(f, 25);
 
   }
 }
