@@ -60,10 +60,10 @@ public class RealRootInterval extends
     try ( RealRootInterval L = new RealRootInterval(); RealRootInterval R = new RealRootInterval();)
     {
       int msign = func.calculatePartition(L, R, this, prec);
-      if ( msign == 0 )
+      if (msign == 0)
       {
-        System.out.println( "fuck the goddamn world");
-        }
+        System.out.println("fuck the goddamn world");
+      }
       func.recursivelyLocateRoots(found, L, asign, bsign, depth + 1, maxDepth, maxEvals, maxFound, prec);
       func.recursivelyLocateRoots(found, R, asign, bsign, depth + 1, maxDepth, maxEvals, maxFound, prec);
     }
@@ -90,7 +90,7 @@ public class RealRootInterval extends
           }
           else
           {
-            System.out.println( "who knows firstDeriv= " + firstDerivative );
+            System.out.println("who knows firstDeriv= " + firstDerivative);
           }
         }
       }
@@ -206,6 +206,10 @@ public class RealRootInterval extends
           if (msign == 0)
           {
             return RefinementResult.NoConvergence;
+          }
+          if (true != false)
+          {
+            throw new UnsupportedOperationException("fucking debug this god damn son of a bitching motherfucking god damn fucking thing");
           }
           if (msign == asign)
           {
