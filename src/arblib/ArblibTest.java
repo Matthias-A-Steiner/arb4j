@@ -46,7 +46,7 @@ public class ArblibTest extends
 
   public void testHardyZZero()
   {
-    Real firstRoot = Real.claim();
+    Real firstRoot = new Real();
     firstRoot.init();
     firstRoot.assign("14.134725141734693790457251983562470270784257115699243175685567460149", prec);
 
@@ -57,7 +57,7 @@ public class ArblibTest extends
     double roots[] = new double[10];
     for (int i = 0; i < roots.length; i++)
     {
-      realRoots[i] = Real.claim();
+      realRoots[i] = new Real();
       realRoots[i].init();
       nthHardyZero(realRoots[i], i + 1, prec);
       roots[i] = realRoots[i].getMid().val();

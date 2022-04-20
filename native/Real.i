@@ -5,66 +5,12 @@
 %typemap(javaimports) arb_struct %{
 import java.util.concurrent.TimeUnit;
 
-import org.vibur.objectpool.ConcurrentPool;
-import org.vibur.objectpool.PoolService;
-import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 %}
 
 %typemap(javacode) arb_struct %{
  static { System.loadLibrary( "arblib" ); }
 
- PoolService<Real> poolService;
- 
- public Real( PoolService<Real> poolService ) {
-  this(arblibJNI.new_Real(), true);
-  this.poolService = poolService;
- }
-
-  @Override
-  public void close()
-  {
-    if (poolService != null)
-    {
-      poolService.restore(this);
-    }
-    else
-    {
-      for (int i = 0; i < dim; i++)
-      {
-        get(i).delete();
-      }
-    }
-  }
-
-  static final PoolService<Real> pool = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
-                                                             new RealFactory(),
-                                                             0,
-                                                             100000000,
-                                                             false,
-                                                             new RealListener() );
-
-  static final PoolService<Real> pool2 = new ConcurrentPool<>(new ConcurrentLinkedQueueCollection<>(),
-                                                              new RealFactory(2),
-                                                              0,
-                                                              100000000,
-                                                              false,
-                                                              new RealListener() );
-  
-  
- public static Real claim()
- {
-   Real r = pool.take();
-   r.poolService = pool;
-   return r;
- }
-
- public static Real claim2()
- {
-   Real r = pool2.take();
-   r.poolService = pool2;
-   return r;
- }
 
   public Real negate(Real res)
   {
@@ -102,7 +48,7 @@ import static arblib.Constants.*;
  
   public Real frac(int prec, Real res)
   {
-    try (Real f = Real.claim())
+    try (Real f = new Real() )
     {
       return sub(floor(prec, f), prec, res);
     }
@@ -207,6 +153,11 @@ import static arblib.Constants.*;
     return this;
   }
   
+  @Override
+  public void close() 
+  { 
+    delete();
+  }
 
   public Real add(Real d, int prec, Real res)
   {

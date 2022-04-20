@@ -1,7 +1,5 @@
 package arblib;
 
-import static arblib.Real.claim;
-import static arblib.Real.claim2;
 
 public class RealRootInterval extends
                               FloatInterval
@@ -72,7 +70,7 @@ public class RealRootInterval extends
 
   public RootStatus determineRootStatus(RealFunction func, int asign, int bsign, int prec)
   {
-    try ( Real t = claim2(); Real x = claim())
+    try ( Real t = Real.newArray(2); Real x = new Real() )
     {
       func.evaluate(getReal(x, prec), 1, prec, t);
       if (t.isPositive() || t.isNegative())
@@ -177,7 +175,7 @@ public class RealRootInterval extends
     int  asign, bsign, msign, result;
     long i;
 
-    try ( Real m = claim(); FloatInterval u = new FloatInterval();)
+    try ( Real m = new Real(); FloatInterval u = new FloatInterval();)
     {
 
       arblib.arb_set_arf(m, getA());

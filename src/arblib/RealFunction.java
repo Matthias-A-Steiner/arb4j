@@ -9,12 +9,9 @@
  */
 package arblib;
 
-import static arblib.Real.claim;
 import static java.lang.System.out;
 
 import arblib.FloatInterval.RootStatus;
-import arblib.RealRootInterval.RefinementResult;
-import arblib.functions.RealConvergenceTester;
 
 /**
  * Interface which defines a function from R -> R where R is the set of real
@@ -29,8 +26,8 @@ public interface RealFunction
   public default boolean
          calculateNewtonStep(Real xnew, Real x, Real convergenceRegion, Float convergenceFactor, int prec)
   {
-    try ( Magnitude err = Magnitude.claim(); Magnitude v = Magnitude.claim(); Real t = Real.claim();
-          Real u = Real.claim2();)
+    try ( Magnitude err = new Magnitude(); Magnitude v = new Magnitude(); Real t = new Real();
+          Real u = Real.newArray(2))
     {
       x.getRad().pow(2, err);
       convergenceFactor.getMagnitude(v).mul(err, err);
@@ -141,7 +138,7 @@ public interface RealFunction
     int        asign, bsign;
     long       length = 0, alloc = 0;
 
-    try ( Real m = Real.claim(); Real v = Real.claim();)
+    try ( Real m = new Real(); Real v = new Real();)
     {
       m.getMid().assign(interval.getA());
       asign = evaluate(m, 1, prec, v).sign();
@@ -178,7 +175,7 @@ public interface RealFunction
                                              int maxFound,
                                              int prec)
   {
-    //root.status = RootStatus.RootUnknown;
+    // root.status = RootStatus.RootUnknown;
 
     if (maxEvals <= 0 || maxFound <= 0)
     {
@@ -188,20 +185,19 @@ public interface RealFunction
     {
       found.evals++;
       RootStatus status = root.determineRootStatus(this, asign, bsign, prec);
-      System.out.println( "this " + root + " status=" + status );
+      System.out.println("this " + root + " status=" + status);
       if (status != RootStatus.NoRoot)
       {
         if (status == RootStatus.RootLocated || depth >= maxDepth || found.evals > maxEvals)
         {
           if (status == RootStatus.RootLocated)
           {
-            //if (verbose)
+            // if (verbose)
             {
               out.printf("found isolated root in: %s\n", root);
               out.flush();
             }
 
-         
           }
           System.out.println("Adding " + root);
 
@@ -214,7 +210,7 @@ public interface RealFunction
       }
       else
       {
-        System.out.println( "status=" + status + " where " + root );
+        System.out.println("status=" + status + " where " + root);
       }
     }
   }
@@ -229,7 +225,7 @@ public interface RealFunction
    */
   public default int calculatePartition(FloatInterval left, FloatInterval right, FloatInterval block, int prec)
   {
-    try ( Real t = claim(); Real m = claim(); Float u = Float.claim(); )
+    try ( Real t = new Real(); Real m = new Real(); Float u = new Float();)
     {
 
       /* Compute the midpoint */

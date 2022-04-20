@@ -1,10 +1,7 @@
 
 package arblib;
 
-import static arblib.Real.claim;
-
 import java.util.ArrayList;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import arblib.FloatInterval.RootStatus;
 import arblib.RealRootInterval.RefinementResult;
@@ -31,11 +28,10 @@ public class FoundRoots extends
   public void refine(RealFunction func, int digits)
   {
     int highPrec = (int) (digits * 3.32192809488736 + 10);
-    
-    System.out.println( "highPrec=" + highPrec );
-    try ( Real w = Real.newArray(3); Real v = claim(); Real u = claim();
-          FloatInterval convergenceRegion = new FloatInterval();
-          Float convergenceFactor = Float.claim())
+
+    System.out.println("highPrec=" + highPrec);
+    try ( Real w = Real.newArray(3); Real v = new Real(); Real u = new Real();
+          FloatInterval convergenceRegion = new FloatInterval(); Float convergenceFactor = Float.claim())
     {
 
       for (RealRootInterval rootInterval : this)
