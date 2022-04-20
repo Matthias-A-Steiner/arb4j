@@ -4,6 +4,7 @@ package arblib;
 import static arblib.Real.claim;
 
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import arblib.FloatInterval.RootStatus;
 import arblib.RealRootInterval.RefinementResult;

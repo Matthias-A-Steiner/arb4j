@@ -1,14 +1,24 @@
 package arblib;
 
+import org.junit.Test;
+
 import arblib.functions.SineFunction;
 import arblib.functions.ZFunction;
 import junit.framework.TestCase;
 
-public class RealFunctionTest extends
-                              TestCase
+public class RealFunctionTest
 {
 
-  public synchronized static void testLocateRoots()
+//  @Test
+//  public void testLocateRoots3()
+//  {
+//    shitcunt();
+////    System.out.println("roots=" + roots);
+////    roots.refine(sineFunction, 55);
+//
+//  }
+
+  public void shit()
   {
     SineFunction sineFunction = new SineFunction();
     FoundRoots   roots        = sineFunction.locateRoots(new RealRootInterval(3,
@@ -17,22 +27,27 @@ public class RealFunctionTest extends
                                                          20000,
                                                          10,
                                                          512);
-    System.out.println("roots=" + roots);
-    roots.refine(sineFunction, 55);
+  }
+
+  @Test
+  public void testLocateRoots4()
+  {
+    // fuck();
+
+    fuck();
+//    roots.refine(f, 25);
 
   }
 
-  public synchronized static void testLocateRoots2()
+  public void fuck()
   {
-    RealFunction f     = new RealPart(new ZFunction());
-    FoundRoots   roots = f.locateRoots(new RealRootInterval(14.1,
-                                                            14.14),
-                                       10,
-                                       5000,
-                                       10,
-                                       256);
+    RealFunction     f     = new RealPart(new ZFunction());
+    RealRootInterval damn  = new RealRootInterval(14.13,
+                                                  14.15);
+    FoundRoots       roots = f.locateRoots(damn, 30, 500, 1, 256);
     System.out.println("roots=" + roots);
-//    roots.refine(f, 25);
-
+    
+    //roo
+     roots.refine(f, 20);
   }
 }

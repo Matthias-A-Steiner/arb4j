@@ -143,13 +143,13 @@ public interface RealFunction
 
     try ( Real m = Real.claim(); Real v = Real.claim();)
     {
-      m.setMid(interval.getA());
+      m.getMid().assign(interval.getA());
       asign = evaluate(m, 1, prec, v).sign();
       if (verbose)
       {
         System.out.format("f(l=%s)=%s\n", m, v);
       }
-      m.setMid(interval.getB());
+      m.getMid().assign(interval.getB());
       bsign = evaluate(m, 1, prec, v).sign();
       if (verbose)
       {
@@ -178,17 +178,17 @@ public interface RealFunction
                                              int maxFound,
                                              int prec)
   {
+    //root.status = RootStatus.RootUnknown;
 
     if (maxEvals <= 0 || maxFound <= 0)
     {
-      root.status = RootStatus.RootUnknown;
-      found.add(root);
+      found.add(new RealRootInterval().set(root));
     }
     else
     {
       found.evals++;
       RootStatus status = root.determineRootStatus(this, asign, bsign, prec);
-
+      System.out.println( "this " + root + " status=" + status );
       if (status != RootStatus.NoRoot)
       {
         if (status == RootStatus.RootLocated || depth >= maxDepth || found.evals > maxEvals)
@@ -201,7 +201,7 @@ public interface RealFunction
               out.flush();
             }
 
-          
+         
           }
           System.out.println("Adding " + root);
 
@@ -211,6 +211,10 @@ public interface RealFunction
         {
           root.split(this, found, asign, bsign, depth, maxDepth, maxEvals, maxFound, prec);
         }
+      }
+      else
+      {
+        System.out.println( "status=" + status + " where " + root );
       }
     }
   }
@@ -225,7 +229,7 @@ public interface RealFunction
    */
   public default int calculatePartition(FloatInterval left, FloatInterval right, FloatInterval block, int prec)
   {
-    try ( Real t = claim(); Real m = claim(); Float u = new Float();)
+    try ( Real t = claim(); Real m = claim(); Float u = Float.claim(); )
     {
 
       /* Compute the midpoint */

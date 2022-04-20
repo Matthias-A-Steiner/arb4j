@@ -50,7 +50,7 @@ public class RealRootInterval extends
                       asign,
                       bsign,
                       depth,
-                      
+
                       maxDepth,
                       found.evals,
                       maxEvals,
@@ -60,7 +60,10 @@ public class RealRootInterval extends
     try ( RealRootInterval L = new RealRootInterval(); RealRootInterval R = new RealRootInterval();)
     {
       int msign = func.calculatePartition(L, R, this, prec);
-
+      if ( msign == 0 )
+      {
+        System.out.println( "fuck the goddamn world");
+        }
       func.recursivelyLocateRoots(found, L, asign, bsign, depth + 1, maxDepth, maxEvals, maxFound, prec);
       func.recursivelyLocateRoots(found, R, asign, bsign, depth + 1, maxDepth, maxEvals, maxFound, prec);
     }
@@ -69,9 +72,9 @@ public class RealRootInterval extends
 
   public RootStatus determineRootStatus(RealFunction func, int asign, int bsign, int prec)
   {
-    try ( Real t = claim2(); Real x = getReal(claim(), prec))
+    try ( Real t = claim2(); Real x = claim())
     {
-      func.evaluate(x, 1, prec, t);
+      func.evaluate(getReal(x, prec), 1, prec, t);
       if (t.isPositive() || t.isNegative())
       {
         status = RootStatus.NoRoot;
@@ -84,6 +87,10 @@ public class RealRootInterval extends
           if (firstDerivative.isFinite() && !firstDerivative.containsZero())
           {
             status = RootStatus.RootLocated;
+          }
+          else
+          {
+            System.out.println( "who knows firstDeriv= " + firstDerivative );
           }
         }
       }
@@ -200,8 +207,14 @@ public class RealRootInterval extends
           {
             return RefinementResult.NoConvergence;
           }
-
-          swap(msign == asign ? u : t);
+          if (msign == asign)
+          {
+            swap(u);
+          }
+          else
+          {
+            swap(t);
+          }
         }
       }
     }
