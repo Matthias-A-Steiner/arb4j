@@ -33,7 +33,7 @@ public class RealFunctionTest
   public void testLocateRoots4()
   {
     // fuck();
-
+    shit();
     fuck();
 //    roots.refine(f, 25);
 
@@ -44,7 +44,7 @@ public class RealFunctionTest
     RealFunction     f     = new RealPart(new ZFunction());
     RealRootInterval damn  = new RealRootInterval(14.13,
                                                   14.15);
-    FoundRoots       roots = f.locateRoots(damn, 30, 500, 1, 256);
+    FoundRoots       roots = f.locateRoots(damn, 30, 50, 1, 256);
     System.out.println("roots=" + roots);
     
     //roo

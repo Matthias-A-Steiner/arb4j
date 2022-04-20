@@ -34,6 +34,7 @@ public class FloatInterval implements AutoCloseable {
   }
 
   public synchronized void delete() {
+    
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;

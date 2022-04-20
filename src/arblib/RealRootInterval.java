@@ -207,10 +207,10 @@ public class RealRootInterval extends
           {
             return RefinementResult.NoConvergence;
           }
-          if (true != false)
-          {
-            throw new UnsupportedOperationException("fucking debug this god damn son of a bitching motherfucking god damn fucking thing");
-          }
+//          if (true != false)
+//          {
+//            throw new UnsupportedOperationException("fucking debug this god damn son of a bitching motherfucking god damn fucking thing");
+//          }
           if (msign == asign)
           {
             swap(u);
