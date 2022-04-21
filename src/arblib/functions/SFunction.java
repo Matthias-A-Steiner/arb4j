@@ -9,7 +9,6 @@ package arblib.functions;
  * the License, or (at your option) any later version. See
  * <http://www.gnu.org/licenses/>.
  */
-import static arblib.Complex.claim;
 import static arblib.Constants.COMPLEX_ONE;
 import static java.lang.String.format;
 
@@ -47,7 +46,7 @@ public class SFunction implements
   {
 
     assert res.dim >= order && order > 0 : format("res.dim = %d must be >= order = %d > 0", res.dim, order);
-    try ( Complex r = claim(); Complex s = claim())
+    try ( Complex r = new Complex(); Complex s = new Complex())
     {
       if (order >= 1)
       {
@@ -55,7 +54,7 @@ public class SFunction implements
          .pow(2, prec, r)
          .neg(r)
          .add(1, prec, r)
-         .pow(2, prec, r)
+         .pow(2, prec, r) 
          .sub(1, prec, r)
          .div(r.add(2, prec, s), prec, res);
       }
@@ -77,9 +76,9 @@ public class SFunction implements
    */
   public Complex evaluateDerivative(Complex t, int prec, Complex res1)
   {
-    try ( Complex b = t.div(a, prec, claim()); Complex c = b.pow(2, prec, claim()); Complex d = c.neg(claim());
-          Complex e = d.add(1, prec, claim()); Complex g = e.pow(2, prec, claim());
-          Complex h = g.add(1, prec, claim());)
+    try ( Complex b = t.div(a, prec, new Complex()); Complex c = b.pow(2, prec, new Complex()); Complex d = c.neg(new Complex());
+          Complex e = d.add(1, prec, new Complex()); Complex g = e.pow(2, prec, new Complex());
+          Complex h = g.add(1, prec, new Complex());)
     {
 
       ONE.div(h.pow(2, prec, g), prec, h);

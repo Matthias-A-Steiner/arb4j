@@ -1,16 +1,10 @@
 package arblib.functions;
 
-import static arblib.Complex.claim;
-import static arblib.Complex.claim2;
-import static arblib.Complex.defaultPrec;
-import static arblib.Constants.ONE;
 import static arblib.Constants.iπ;
 import static arblib.Constants.π;
-import static arblib.functions.ZFunction.Z;
 import static java.lang.Math.pow;
 
 import arblib.Complex;
-import arblib.ComplexFunction;
 import arblib.Constants;
 import arblib.Real;
 import arblib.RealFunction;
@@ -62,7 +56,7 @@ public class XFunction extends
   public Real realXang(Complex t, Complex s, Real scale, Real h, Real res, int prec)
   {
     assert t.isFinite();
-    try ( Complex dt = claim(); Complex y = claim2(); Complex p = claim(); Complex Z = claim2())
+    try ( Complex dt = new Complex(); Complex y = Complex.newVector(2); Complex p = new Complex(); Complex Z = Complex.newVector(2))
     {
       s = t.add(h.mul(iπ.mul(scale, prec, dt).exp(prec, dt), dt), prec, s);
       assert s.isFinite() : String.format("s=%s t=%s h=%s a=%s dt=%s\n", s, t, h, scale, dt);
@@ -79,9 +73,9 @@ public class XFunction extends
     int                   prec   = 256;
     RealConvergenceTester tester = new RealConvergenceTester(prec,
                                                              pow(10, -17));
-    try ( Real h = Real.claim().assign(0.1); Real a = Real.claim().assign(0.75); Real heading = Real.claim();
-          Complex s = Complex.claim();
-          Complex y0 = Complex.claim().set(ZFunction.roots.getOrCreate(1), Constants.ZERO.getImag()))
+    try ( Real h = new Real().assign(0.1); Real a = new Real().assign(0.75); Real heading = new Real();
+          Complex s = new Complex();
+          Complex y0 = new Complex().set(ZFunction.roots.getOrCreate(1), Constants.ZERO.getImag()))
     {
       int          iters[]          = new int[]
       { 100 };

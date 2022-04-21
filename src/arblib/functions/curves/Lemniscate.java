@@ -9,7 +9,6 @@
  */
 package arblib.functions.curves;
 
-import static arblib.Complex.claim;
 
 import arblib.Complex;
 import arblib.ComplexFunction;
@@ -41,9 +40,9 @@ public class Lemniscate implements
     assert order == w.size();
     assert order <= 2;
 
-    try ( Complex cos = z.cos(prec, claim()); Complex sin = z.sin(prec, claim());
-          Complex divisor = Constants.COMPLEX_ONE.sub(sin.mul(Constants.IMAGINARY_UNIT, sin), prec, claim());
-          Complex numerator = sqrt2.mul(cos, prec, claim()))
+    try ( Complex cos = z.cos(prec, new Complex()); Complex sin = z.sin(prec, new Complex());
+          Complex divisor = Constants.COMPLEX_ONE.sub(sin.mul(Constants.IMAGINARY_UNIT, sin), prec, new Complex());
+          Complex numerator = sqrt2.mul(cos, prec, new Complex()))
     {
       numerator.div(divisor, prec, w);
     }

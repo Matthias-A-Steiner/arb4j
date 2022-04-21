@@ -5,9 +5,6 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import java.util.Spliterator;
 import java.util.Spliterators;
-import org.vibur.objectpool.ConcurrentPool;
-import org.vibur.objectpool.PoolService;
-import org.vibur.objectpool.util.ConcurrentLinkedQueueCollection;
 import static arblib.Constants.*;
 %}
 
@@ -82,14 +79,6 @@ import static arblib.Constants.*;
     return new ComplexIterator(this);
   }
   
-  PoolService<Complex> poolService;
-   
-  public Complex( PoolService<Complex> poolService ) 
-  {
-   this(arblibJNI.new_Complex(), true);
-   this.poolService = poolService;
-  }
-   
   public Complex(Real firstRoot)
   {
    this(arblibJNI.new_Complex(), true);
@@ -530,9 +519,9 @@ import static arblib.Constants.*;
   @Override
   public void close()
   {
-    if (poolService != null)
+    if ( dim == 1 )
     {
-      poolService.restore(this);
+      delete();
     }
     else
     {
