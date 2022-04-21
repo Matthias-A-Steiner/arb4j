@@ -14,9 +14,11 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 import java.util.Spliterator;
 import java.util.Spliterators;
+import java.io.IOException;
 import static arblib.Constants.*;
+import java.io.Serializable;
 
-public class Complex implements AutoCloseable,Iterable<Complex> {
+public class Complex implements AutoCloseable,Iterable<Complex>,Serializable {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
@@ -41,6 +43,18 @@ public class Complex implements AutoCloseable,Iterable<Complex> {
 
   static { System.loadLibrary( "arblib" ); }
 
+  private static final long serialVersionUID = 1L;
+  
+  private void writeObject(java.io.ObjectOutputStream stream)
+                throws IOException {
+                // TODO implement
+        }
+
+        private void readObject(java.io.ObjectInputStream stream)
+                throws IOException, ClassNotFoundException {
+                // TODO implement
+        }
+        
   public Iterator<Real> realIterator()
   {
     return new ComplexRealPartIterator(this);
