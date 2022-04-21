@@ -32,11 +32,6 @@
 			<version>0.5.1-arb4j</version>
 		</dependency>
 		<dependency>
-			<groupId>org.vibur</groupId>
-			<artifactId>vibur-object-pool</artifactId>
-			<version>25.0</version>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
