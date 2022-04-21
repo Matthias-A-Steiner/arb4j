@@ -32,8 +32,8 @@ public class ArblibTest extends
   public static void testHardyZFunction()
   {
 
-    Complex result = Complex.claim();
-    Complex input = Complex.claim();
+    Complex result = new Complex();
+    Complex input = new Complex();
     input.init();
     result.init();
     acb_set_d(input, 13.2);
@@ -74,8 +74,8 @@ public class ArblibTest extends
 
   public static void testHardyTheta()
   {
-    Complex z = Complex.claim();
-    Complex faze = Complex.claim();
+    Complex z = new Complex();
+    Complex faze = new Complex();
     z.init();
     faze.init();
     z.getReal().assign(13.2);

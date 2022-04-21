@@ -90,7 +90,7 @@ import java.util.ArrayList;
   {
     RootStatus result = RootStatus.RootUnknown;
 
-    try ( Real t = Real.claim2(); Real x = getReal(Real.claim(), prec))
+    try ( Real t = Real.newArray(2); Real x = getReal(new Real(), prec))
     {
       func.evaluate(x, 1, prec, t);
       if (t.isPositive() || t.isNegative())
@@ -112,5 +112,6 @@ import java.util.ArrayList;
 
     return result;
   }
+
   
 %};

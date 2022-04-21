@@ -125,6 +125,7 @@ public class FloatInterval implements AutoCloseable {
 
     return result;
   }
+
   
 
   public void setA(Float value) {

@@ -8,7 +8,7 @@ public class RealConvergenceTester implements
 {
   double ε;
 
-  Real Δ = Real.claim();
+  Real Δ = new Real();
 
   private int prec = 256;
 

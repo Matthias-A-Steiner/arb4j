@@ -169,7 +169,7 @@ public class ComplexFunctionPlotter extends
     this.domain        = domain;
     this.xnum          = screen.width;
     this.ynum          = screen.height;
-    phase              = Real.claim();
+    phase              = new Real();
     w                  = Complex.newVector(2);
     functionImage      = new BufferedImage(xnum,
                                            ynum,
@@ -286,7 +286,7 @@ public class ComplexFunctionPlotter extends
   private Pixel colorizePixel(Complex w)
   {
     Pixel pixel = this.pixel.get();
-    try ( Complex w2 = Complex.claim())
+    try ( Complex w2 = new Complex())
     {
 
       switch (displayMode)
@@ -773,7 +773,7 @@ public class ComplexFunctionPlotter extends
     // t=cursor position in function space coordinates
     // w=f(t)
     // w'=f'(t)
-    try ( Real phase = Real.claim())
+    try ( Real phase = new Real())
     {
       N.arg(prec, phase);
 
@@ -863,7 +863,7 @@ public class ComplexFunctionPlotter extends
   public String getCursorText()
   {
     Complex w1stDeriv = w.get(1);
-    try ( Real warg = Real.claim(); Real w1stDerivarg = Real.claim())
+    try ( Real warg = new Real(); Real w1stDerivarg = new Real())
     {
       return String.format("    t=%+.05f%+.05fi\n" + " f(t)=%+.05f%+.05fi arg=%+.06f\n"
                     + "f'(t)=%+.05f%+.05fi arg=%+.06f\n N(t)=%+.05f%+.05fi mag=%.06f arg=%+.06f\n",

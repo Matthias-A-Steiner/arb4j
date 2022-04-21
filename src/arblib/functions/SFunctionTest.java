@@ -10,7 +10,7 @@ public class SFunctionTest extends
   public static void testS()
   {
     SFunction sFunction = new SFunction();
-    try ( Complex t = Complex.claim().set(2, 0.2);)
+    try ( Complex t = new Complex().set(2, 0.2);)
     {
       Complex result = sFunction.evaluate(t, 2, 256, Complex.newVector(2));
       System.out.format("S(%s)=%s\n", t, result);

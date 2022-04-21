@@ -45,7 +45,7 @@ import static arblib.Constants.*;
   
   public double evaluateDouble(double d)
   {
-    try ( Complex t = Complex.claim(); Complex s = Complex.claim() )
+    try ( Complex t = new Complex(); Complex s = new Complex() )
     {
       t.getReal().assign(d);
       return evaluate(t, 1, 70, s).getReal().doubleValue();

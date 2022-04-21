@@ -14,7 +14,7 @@ public class ImaginaryPart extends
   @Override
   public Real evaluate(Real z, int order, int prec, Real res)
   {
-    try ( Complex complexRes = Complex.claim(); Complex complexIn = Complex.claim();)
+    try ( Complex complexRes = new Complex(); Complex complexIn = new Complex();)
     {
       complexIn.getReal().set(z);
       func.evaluate(complexIn, order, prec, complexRes);
