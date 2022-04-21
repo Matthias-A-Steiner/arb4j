@@ -303,6 +303,7 @@ public class ComplexFunctionPlotter extends
         arblib.color_function(pixel.R, pixel.G, pixel.B, w2, color_mode);
         break;
       case Blend:
+        // TODO: make another mode that averages the rgb values and only calls color_function once
         w2.getImag().set(w.getImag());
         arblib.color_function(pixel.R, pixel.G, pixel.B, w2, color_mode);
         Pixel pixel2 = this.pixel2.get();
