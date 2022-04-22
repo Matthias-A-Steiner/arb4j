@@ -72,6 +72,8 @@ void color_function(double * R, double * G, double * B, const acb_t z, int mode)
 	 			  
  char *arb_get_str(const arb_t x, slong n, ulong flags);
 
+char * arf_get_str(const arf_t x, slong d);
+
  double arf_get_d(const arf_t x, arf_rnd_t rnd);
 
  void arf_set_d(arf_t x, double v);

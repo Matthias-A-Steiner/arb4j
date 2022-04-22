@@ -909,6 +909,24 @@ SWIGEXPORT jstring JNICALL Java_arblib_arblibJNI_arb_1get_1str(JNIEnv *jenv, jcl
 }
 
 
+SWIGEXPORT jstring JNICALL Java_arblib_arblibJNI_arf_1get_1str(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jstring jresult = 0 ;
+  arf_struct *arg1 ;
+  long arg2 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(arf_struct **)&jarg1; 
+  arg2 = (long)jarg2; 
+  result = (char *)arf_get_str((arf_struct const (*))arg1,arg2);
+  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  
+  return jresult;
+}
+
+
 SWIGEXPORT jdouble JNICALL Java_arblib_arblibJNI_arf_1get_1d(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jdouble jresult = 0 ;
   arf_struct *arg1 ;

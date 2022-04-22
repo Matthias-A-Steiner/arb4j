@@ -148,6 +148,10 @@ public class arblib {
     return arblibJNI.arb_get_str(Real.getCPtr(x), x, n, flags);
   }
 
+  public static String arf_get_str(Float x, int d) {
+    return arblibJNI.arf_get_str(Float.getCPtr(x), x, d);
+  }
+
   public static double arf_get_d(Float x, int rnd) {
     return arblibJNI.arf_get_d(Float.getCPtr(x), x, rnd);
   }

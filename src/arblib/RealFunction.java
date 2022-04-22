@@ -179,9 +179,10 @@ public interface RealFunction
     // root.status = RootStatus.RootUnknown;
 
     RealRootInterval realRootInterval = new RealRootInterval();
+    realRootInterval.set(root);
     if (found.evals++ >= maxEvals || found.size() >= maxFound)
     {
-      found.add(realRootInterval.set(root));
+      found.add(realRootInterval);
     }
     else
     {
@@ -200,7 +201,7 @@ public interface RealFunction
             out.printf("found isolated root in: %s\n", root);
             out.flush();
           }
-
+          
         }
         System.out.println("Adding " + root);
         realRootInterval.status = status;
@@ -236,6 +237,8 @@ public interface RealFunction
 
       /* Evaluate the function at the midpoint so the sign can be returned */
       arblib.arb_set_arf(m, u);
+      
+      int sign = evaluate(m, 1, prec, t).sign();
 
       /* split the interval at the midpoint */
       left.getA().assign(block.getA());
@@ -243,7 +246,7 @@ public interface RealFunction
       right.getA().assign(u);
       right.getB().assign(block.getB());
 
-      return evaluate(m, 1, prec, t).sign();
+      return sign;
     }
 
   }

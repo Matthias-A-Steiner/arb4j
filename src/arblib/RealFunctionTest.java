@@ -37,7 +37,11 @@ public class RealFunctionTest
     roots.forEach(out::println);
     System.out.println( "evals=" + roots.evals );
     
-    roots.get(0).refine(f, prec, 30, null, null, damn, null);
+//    roots = f.locateRoots(roots.get(0), 20, 5000, 1, 256);
+//    System.out.println("(sub)intervals=");
+//    roots.forEach(out::println);
+//    System.out.println( "evals=" + roots.evals );
+//    //roots.get(0).refine(f, prec, 30, null, null, damn, null);
 
   }
 

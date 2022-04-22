@@ -43,6 +43,7 @@ public class arblibJNI {
   public final static native void acb_dirichlet_hardy_z(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, DirichletGroup jarg3_, long jarg4, DirichletCharacter jarg4_, int jarg5, int jarg6);
   public final static native void acb_print(long jarg1, Complex jarg1_);
   public final static native String arb_get_str(long jarg1, Real jarg1_, int jarg2, long jarg3);
+  public final static native String arf_get_str(long jarg1, Float jarg1_, int jarg2);
   public final static native double arf_get_d(long jarg1, Float jarg1_, int jarg2);
   public final static native void arf_set_d(long jarg1, Float jarg1_, double jarg2);
   public final static native int arf_sub(long jarg1, Float jarg1_, long jarg2, Float jarg2_, long jarg3, Float jarg3_, int jarg4, int jarg5);

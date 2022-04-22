@@ -85,7 +85,7 @@ public class Float implements AutoCloseable {
   
   public String toString()
   {
-    return String.valueOf( val() );
+    return arblib.arf_get_str(this,20);
   }
 
   public double val()

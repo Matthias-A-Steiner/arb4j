@@ -15,7 +15,7 @@ public class RealRootInterval extends
   @Override
   public String toString()
   {
-    return String.format("RealRootInterval[(%s, %s),status=%s]", getA(), getB(), status);
+    return String.format("[%s, %s]", getA(), getB() );
   }
 
   public RealRootInterval(double left, double right)
@@ -41,25 +41,7 @@ public class RealRootInterval extends
                        int maxFound,
                        int prec)
   {
-    if (verbose)
-    {
-      for (int i = 0; i < depth; i++)
-      {
-        System.out.print(" ");
-      }
-      System.out.format("split(interval=%s, asign=%s bsign=%s depth=%s maxDepth=%s evals=%s, maxEvals=%s maxFound=%s prec=%s\n",
-                        this,
-                        asign,
-                        bsign,
-                        depth,
-
-                        maxDepth,
-                        found.evals,
-                        maxEvals,
-                        maxFound,
-                        prec);
-    }
-
+    
     try ( RealRootInterval L = new RealRootInterval(); RealRootInterval R = new RealRootInterval();)
     {
       int msign = func.calculatePartition(L, R, this, prec);
@@ -67,6 +49,12 @@ public class RealRootInterval extends
       {
         return false;
       }
+      if (verbose)
+      {
+      
+        System.out.format("split(left=%s right=%s) depth=%d\n", L, R, maxDepth - depth);
+      }
+
       func.recursivelyLocateRoots(found, L, asign, msign, depth + 1, maxDepth, maxEvals, maxFound, prec);
       func.recursivelyLocateRoots(found, R, msign, bsign, depth + 1, maxDepth, maxEvals, maxFound, prec);
     }
@@ -75,6 +63,7 @@ public class RealRootInterval extends
 
   public RootStatus determineRootStatus(RealFunction func, int asign, int bsign, int prec)
   {
+    status = RootStatus.RootUnknown;
     try ( Real t = Real.newArray(2); Real x = new Real())
     {
       func.evaluate(getReal(x, prec), 1, prec, t);
