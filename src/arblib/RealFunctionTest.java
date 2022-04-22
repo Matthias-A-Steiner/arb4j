@@ -1,5 +1,7 @@
 package arblib;
 
+import static java.lang.System.out;
+
 import org.junit.Test;
 
 import arblib.functions.SineFunction;
@@ -24,13 +26,24 @@ public class RealFunctionTest
   public void testLocateRootsHardyZ()
   {
     RealFunction     f     = new RealPart(new ZFunction());
-    RealRootInterval damn  = new RealRootInterval(14.13,
-                                                  14.15);
-    FoundRoots       roots = f.locateRoots(damn, 30, 50, 1, 256);
-    System.out.println("roots=" + roots);
-
-    roots.refine(f, 20);
+    RealRootInterval damn  = new RealRootInterval(14,
+                                                  14.2);
+    int maxdepth = 12;
+    int maxevals = 5000;
+    int maxfound = 1;
+    int prec = 256;
+    FoundRoots       roots    = f.locateRoots(damn, maxdepth, maxevals, maxfound, prec);
+    System.out.println("(sub)intervals=");
+    roots.forEach(out::println);
+    System.out.println( "evals=" + roots.evals );
+    
+    roots.get(0).refine(f, prec, 30, null, null, damn, null);
 
   }
 
+  public void testCalculateStuff()
+  {
+    RealFunction     f     = new RealPart(new ZFunction());
+    //f.calculatePartition(left, right, block, prec );
+  }
 }

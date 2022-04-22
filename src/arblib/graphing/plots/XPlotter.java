@@ -37,11 +37,11 @@ public class XPlotter extends
   public XPlotter(double vscale) throws NoninvertibleTransformException
   {
     super(new Dimension(2500,
-                        1250/2),
+                        1250),
           new Rectangle2D.Double(-10,
-                                 -7.5*0.75,
+                                 -7.5*1.5,
                                  80,
-                                 15*0.75),
+                                 15*1.5),
           new XFunction(vscale));
 
     color_mode        = 6;

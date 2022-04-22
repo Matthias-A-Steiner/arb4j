@@ -16,7 +16,6 @@ public class FoundRoots extends
 
   public int        foundCount;
 
-  public static int lowPrec = 30;
 
   /**
    * Increase the precision of the root intervals via bisection and Newton's
@@ -25,71 +24,19 @@ public class FoundRoots extends
    * @param func
    * @param digits number of digits of precision needed
    */
-  public void refine(RealFunction func, int digits)
+  public void refine(RealFunction func, int prec, int digits)
   {
-    int highPrec = (int) (digits * 3.32192809488736 + 10);
 
-    System.out.println("highPrec=" + highPrec);
+    System.out.println("digits=" + digits);
     try ( Real w = Real.newArray(3); Real v = new Real(); Real u = new Real();
           FloatInterval convergenceRegion = new FloatInterval(); Float convergenceFactor = new Float())
     {
 
       for (RealRootInterval rootInterval : this)
       {
-
-        refine(func, highPrec, w, v, convergenceRegion, convergenceFactor, rootInterval);
+        rootInterval.refine(func, prec, digits, w, v, convergenceRegion, convergenceFactor);
       }
     }
-  }
-
-  /**
-   * 
-   * @param func
-   * @param highPrec
-   * @param w                 3-vector of Taylor jet
-   * @param v                 input/output result
-   * @param convergenceRegion
-   * @param convergenceFactor
-   * @param rootInterval
-   * @return
-   */
-  public Real refine(RealFunction func,
-                     int highPrec,
-                     Real w,
-                     Real v,
-                     FloatInterval convergenceRegion,
-                     Float convergenceFactor,
-                     RealRootInterval rootInterval)
-  {
-    if (rootInterval.status != RootStatus.RootLocated)
-    {
-      unknownCount++;
-      return null;
-    }
-
-    foundCount++;
-
-    rootInterval.bisectAndRefine(func, v, convergenceRegion, 5, lowPrec);
-    rootInterval.bisectAndRefine(func, v, convergenceRegion, 5, lowPrec);
-
-    arblib.arf_interval_get_arb(v, convergenceRegion, highPrec);
-    System.out.println(" convergence region: " + v);
-
-    func.getNewtonConvergenceFactor(v, w, lowPrec, convergenceFactor);
-    System.out.println("Newton convergence factor: " + convergenceFactor);
-
-    if (rootInterval.refineRootNewton(func,
-                                      v,
-                                      rootInterval.getReal(w, highPrec),
-                                      convergenceFactor,
-                                      10,
-                                      highPrec) != RefinementResult.Success)
-    {
-      System.out.println("Warning: some newton steps failed\n");
-    }
-    System.out.println("Refined root: " + v);
-    return v;
-
   }
 
 }

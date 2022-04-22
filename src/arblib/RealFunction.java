@@ -140,13 +140,13 @@ public interface RealFunction
 
     try ( Real m = new Real(); Real v = new Real();)
     {
-      m.getMid().assign(interval.getA());
+      m.setMid(interval.getA());
       asign = evaluate(m, 1, prec, v).sign();
       if (verbose)
       {
         System.out.format("f(l=%s)=%s\n", m, v);
       }
-      m.getMid().assign(interval.getB());
+      m.setMid(interval.getB());
       bsign = evaluate(m, 1, prec, v).sign();
       if (verbose)
       {
@@ -158,6 +158,7 @@ public interface RealFunction
       System.out.format("asign=%s bsign=%s\n", asign, bsign);
     }
 
+    roots.evals += 2;
     recursivelyLocateRoots(roots, interval, asign, bsign, 0, maxdepth, maxevals, maxfound, prec);
 
     return roots;
@@ -177,41 +178,42 @@ public interface RealFunction
   {
     // root.status = RootStatus.RootUnknown;
 
-    if (maxEvals <= 0 || maxFound <= 0)
+    RealRootInterval realRootInterval = new RealRootInterval();
+    if (found.evals++ >= maxEvals || found.size() >= maxFound)
     {
-      found.add(new RealRootInterval().set(root));
+      found.add(realRootInterval.set(root));
     }
     else
     {
-      found.evals++;
       RootStatus status = root.determineRootStatus(this, asign, bsign, prec);
-      System.out.println("this " + root + " status=" + status);
-      if (status != RootStatus.NoRoot)
+      if (status == RootStatus.NoRoot)
       {
-        if (status == RootStatus.RootLocated || depth >= maxDepth || found.evals > maxEvals)
+        return;
+      }
+
+      if (status == RootStatus.RootLocated || depth >= maxDepth)
+      {
+        if (status == RootStatus.RootLocated)
         {
-          if (status == RootStatus.RootLocated)
+          // if (verbose)
           {
-            // if (verbose)
-            {
-              out.printf("found isolated root in: %s\n", root);
-              out.flush();
-            }
-
+            out.printf("found isolated root in: %s\n", root);
+            out.flush();
           }
-          System.out.println("Adding " + root);
 
-          found.add(new RealRootInterval().set(root));
         }
-        else
-        {
-          root.split(this, found, asign, bsign, depth, maxDepth, maxEvals, maxFound, prec);
-        }
+        System.out.println("Adding " + root);
+        realRootInterval.status = status;
+        found.add(realRootInterval.set(root));
       }
       else
       {
-        System.out.println("status=" + status + " where " + root);
+        if (!root.split(this, found, asign, bsign, depth, maxDepth, maxEvals, maxFound, prec))
+        {
+          out.println("Possible zero at midpoint of " + this);
+        }
       }
+
     }
   }
 

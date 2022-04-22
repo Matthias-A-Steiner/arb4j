@@ -1,5 +1,7 @@
 package arblib;
 
+import arblib.FloatInterval.RootStatus;
+import arblib.RealRootInterval.RefinementResult;
 
 public class RealRootInterval extends
                               FloatInterval
@@ -29,48 +31,51 @@ public class RealRootInterval extends
 
   public RootStatus status = RootStatus.RootUnknown;
 
-  public void split(RealFunction func,
-                    FoundRoots found,
-                    int asign,
-                    int bsign,
-                    int depth,
-                    int maxDepth,
-                    int maxEvals,
-                    int maxFound,
-                    int prec)
+  public boolean split(RealFunction func,
+                       FoundRoots found,
+                       int asign,
+                       int bsign,
+                       int depth,
+                       int maxDepth,
+                       int maxEvals,
+                       int maxFound,
+                       int prec)
   {
-    for (int i = 0; i < depth; i++)
+    if (verbose)
     {
-      System.out.print(" ");
-    }
-    System.out.format("split(interval=%s, asign=%s bsign=%s depth=%s maxDepth=%s evals=%s, maxEvals=%s maxFound=%s prec=%s\n",
-                      this,
-                      asign,
-                      bsign,
-                      depth,
+      for (int i = 0; i < depth; i++)
+      {
+        System.out.print(" ");
+      }
+      System.out.format("split(interval=%s, asign=%s bsign=%s depth=%s maxDepth=%s evals=%s, maxEvals=%s maxFound=%s prec=%s\n",
+                        this,
+                        asign,
+                        bsign,
+                        depth,
 
-                      maxDepth,
-                      found.evals,
-                      maxEvals,
-                      maxFound,
-                      prec);
+                        maxDepth,
+                        found.evals,
+                        maxEvals,
+                        maxFound,
+                        prec);
+    }
 
     try ( RealRootInterval L = new RealRootInterval(); RealRootInterval R = new RealRootInterval();)
     {
       int msign = func.calculatePartition(L, R, this, prec);
       if (msign == 0)
       {
-        System.out.println("fuck the goddamn world");
+        return false;
       }
-      func.recursivelyLocateRoots(found, L, asign, bsign, depth + 1, maxDepth, maxEvals, maxFound, prec);
-      func.recursivelyLocateRoots(found, R, asign, bsign, depth + 1, maxDepth, maxEvals, maxFound, prec);
+      func.recursivelyLocateRoots(found, L, asign, msign, depth + 1, maxDepth, maxEvals, maxFound, prec);
+      func.recursivelyLocateRoots(found, R, msign, bsign, depth + 1, maxDepth, maxEvals, maxFound, prec);
     }
-
+    return true;
   }
 
   public RootStatus determineRootStatus(RealFunction func, int asign, int bsign, int prec)
   {
-    try ( Real t = Real.newArray(2); Real x = new Real() )
+    try ( Real t = Real.newArray(2); Real x = new Real())
     {
       func.evaluate(getReal(x, prec), 1, prec, t);
       if (t.isPositive() || t.isNegative())
@@ -85,10 +90,6 @@ public class RealRootInterval extends
           if (firstDerivative.isFinite() && !firstDerivative.containsZero())
           {
             status = RootStatus.RootLocated;
-          }
-          else
-          {
-            System.out.println("who knows firstDeriv= " + firstDerivative);
           }
         }
       }
@@ -107,6 +108,50 @@ public class RealRootInterval extends
   public static final int FLINT_BITS = 64;
 
   public boolean          verbose    = true;
+
+  /**
+   * 
+   * @param func
+   * @param highPrec
+   * @param w                 3-vector of Taylor jet
+   * @param v                 input/output result
+   * @param convergenceRegion
+   * @param convergenceFactor
+   * @param rootInterval
+   * @return
+   */
+  public Real refine(RealFunction func,
+                     int lowPrec,
+                     int digits,
+                     Real w,
+                     Real v,
+                     FloatInterval convergenceRegion,
+                     Float convergenceFactor)
+  {
+    int highPrec = (int) (digits * 3.32192809488736 + 10);
+
+    if (status != RootStatus.RootLocated)
+    {
+      return null;
+    }
+
+    bisectAndRefine(func, v, convergenceRegion, 5, lowPrec);
+    bisectAndRefine(func, v, convergenceRegion, 5, lowPrec);
+
+    arblib.arf_interval_get_arb(v, convergenceRegion, highPrec);
+    System.out.println(" convergence region: " + v);
+
+    func.getNewtonConvergenceFactor(v, w, lowPrec, convergenceFactor);
+    System.out.println("Newton convergence factor: " + convergenceFactor);
+
+    if (refineRootNewton(func, v, getReal(w, highPrec), convergenceFactor, 10, highPrec) != RefinementResult.Success)
+    {
+      System.out.println("Warning: some newton steps failed\n");
+    }
+    System.out.println("Refined root: " + v);
+    return v;
+
+  }
 
   public RefinementResult refineRootNewton(RealFunction func,
                                            Real r,
