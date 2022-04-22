@@ -29,7 +29,7 @@ public class FoundRoots extends
 
     System.out.println("digits=" + digits);
     try ( Real w = Real.newArray(3); Real v = new Real(); Real u = new Real();
-          FloatInterval convergenceRegion = new FloatInterval(); Float convergenceFactor = new Float())
+          RealRootInterval convergenceRegion = new RealRootInterval(); Float convergenceFactor = new Float())
     {
 
       for (RealRootInterval rootInterval : this)

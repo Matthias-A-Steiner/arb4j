@@ -27,6 +27,15 @@ public class RealRootInterval extends
   {
   }
 
+  public RealRootInterval swap(RealRootInterval u)
+  {
+    RealRootInterval r = (RealRootInterval) super.swap(u);    
+    RootStatus status = u.status;
+    u.status = r.status;
+    r.status = status;
+    return r;
+  }
+
   public RootStatus status = RootStatus.RootUnknown;
 
   public boolean split(RealFunction func,
@@ -117,7 +126,7 @@ public class RealRootInterval extends
                      int digits,
                      Real w,
                      Real v,
-                     FloatInterval convergenceRegion,
+                     RealRootInterval convergenceRegion,
                      Float convergenceFactor)
   {
     int highPrec = (int) (digits * 3.32192809488736 + 10);
@@ -133,18 +142,19 @@ public class RealRootInterval extends
     }
     else
     {
-      if ( bisectAndRefine(func, v, convergenceRegion, 5, lowPrec) != RefinementResult.Success )
+      out.println("After bisection 1 : " + this);
+      if (convergenceRegion.bisectAndRefine(func, v, this, 5, lowPrec) != RefinementResult.Success)
       {
         System.out.println("second Bisection failed");
       }
+      out.println("After bisection 2 : " + this);
 
     }
 
-    out.println( "highPrec=" + highPrec );
-    arblib.arf_interval_get_arb(v, convergenceRegion, highPrec);
-    System.out.println(" convergence region: " + convergenceRegion);
+    out.println("highPrec=" + highPrec);
+    convergenceRegion.getReal(v, highPrec);
 
-    System.out.println(" convergence region: " + v);
+    System.out.println(" convergence region: " + convergenceRegion + " = " + " convergence region: " + v);
 
     func.getNewtonConvergenceFactor(v, w, lowPrec, convergenceFactor);
     System.out.println("Newton convergence factor: " + convergenceFactor);
@@ -193,7 +203,7 @@ public class RealRootInterval extends
     }
 
     System.out.println("iters=" + iters);
-    for (i = iters-1; i >= 0; i--)
+    for (i = iters - 1; i >= 0; i--)
     {
       wp = precs[i] + eval_extra_prec;
 
@@ -220,18 +230,18 @@ public class RealRootInterval extends
    * @param prec
    * @return
    */
-  public RefinementResult bisectAndRefine(RealFunction func, Real v, FloatInterval t, int iters, int prec)
+  public RefinementResult bisectAndRefine(RealFunction func, Real v, RealRootInterval t, int iters, int prec)
   {
     int  asign, bsign, msign, result;
     long i;
 
-    try ( Real m = new Real(); FloatInterval u = new FloatInterval();)
+    try ( Real m = new Real(); RealRootInterval u = new RealRootInterval();)
     {
-
-      arblib.arb_set_arf(m, getA());
+      m.setMid(getA());
+      
       asign = func.evaluate(m, 1, prec, v).sign();
 
-      arblib.arb_set_arf(m, getB());
+      m.setMid(getB());
       bsign = func.evaluate(m, 1, prec, v).sign();
 
       /* must have proper sign changes */
@@ -258,10 +268,12 @@ public class RealRootInterval extends
 
           if (msign == asign)
           {
+            out.println( "swapping " + this + " with " + u );
             swap(u);
           }
           else
           {
+            out.println( "swapping " + this + " with " + t );
             swap(t);
           }
         }
