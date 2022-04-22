@@ -62,7 +62,7 @@ import static arblib.Constants.*;
   
   public String toString()
   {
-    return arblib.arf_get_str(this,30);
+    return arblib.arf_get_str(this,15);
   }
 
   public double val()

@@ -18,7 +18,10 @@ public class ImaginaryPart extends
     {
       complexIn.getReal().set(z);
       func.evaluate(complexIn, order, prec, complexRes);
-      res.set(complexRes.getImag());
+      for (int i = 0; i < order; i++)
+      {
+        res.get(i).set(complexRes.get(i).getImag());
+      }
     }
     return res;
   }

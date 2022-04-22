@@ -35,6 +35,7 @@ public class FoundRoots extends
       for (RealRootInterval rootInterval : this)
       {
         rootInterval.refine(func, prec, digits, w, v, convergenceRegion, convergenceFactor);
+        
       }
     }
   }

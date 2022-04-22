@@ -15,8 +15,7 @@ import arblib.FloatInterval.RootStatus;
 
 /**
  * Interface which defines a function from R -> R where R is the set of real
- * numbers
- */
+ * number */
 public interface RealFunction
 {
   public Real evaluate(Real z, int order, int prec, Real res);
@@ -43,7 +42,7 @@ public interface RealFunction
 
       if (convergenceRegion.contains(u) && u.getRad().compareTo(x.getRad()) < 0)
       {
-        xnew.get(0).set(u);
+        xnew.get(0).swap(u);
         return true;
       }
       else
@@ -180,13 +179,13 @@ public interface RealFunction
 
     RealRootInterval realRootInterval = new RealRootInterval();
     realRootInterval.set(root);
-    if (found.evals++ >= maxEvals || found.size() >= maxFound)
+    if (found.evals >= maxEvals || found.size() >= maxFound)
     {
       found.add(realRootInterval);
     }
     else
     {
-      RootStatus status = root.determineRootStatus(this, asign, bsign, prec);
+      RootStatus status = root.determineRootStatus(found, this, asign, bsign, prec);
       if (status == RootStatus.NoRoot)
       {
         return;

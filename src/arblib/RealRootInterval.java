@@ -1,7 +1,6 @@
 package arblib;
 
-import arblib.FloatInterval.RootStatus;
-import arblib.RealRootInterval.RefinementResult;
+import static java.lang.System.out;
 
 public class RealRootInterval extends
                               FloatInterval
@@ -15,7 +14,7 @@ public class RealRootInterval extends
   @Override
   public String toString()
   {
-    return String.format("[%s, %s]", getA(), getB() );
+    return String.format("[%s, %s]=%s", getA(), getB(), status);
   }
 
   public RealRootInterval(double left, double right)
@@ -26,7 +25,6 @@ public class RealRootInterval extends
 
   public RealRootInterval()
   {
-    // TODO Auto-generated constructor stub
   }
 
   public RootStatus status = RootStatus.RootUnknown;
@@ -41,17 +39,18 @@ public class RealRootInterval extends
                        int maxFound,
                        int prec)
   {
-    
+
     try ( RealRootInterval L = new RealRootInterval(); RealRootInterval R = new RealRootInterval();)
     {
       int msign = func.calculatePartition(L, R, this, prec);
+      found.evals++;
       if (msign == 0)
       {
         return false;
       }
       if (verbose)
       {
-      
+
         System.out.format("split(left=%s right=%s) depth=%d\n", L, R, maxDepth - depth);
       }
 
@@ -61,12 +60,14 @@ public class RealRootInterval extends
     return true;
   }
 
-  public RootStatus determineRootStatus(RealFunction func, int asign, int bsign, int prec)
+  public RootStatus determineRootStatus(FoundRoots found, RealFunction func, int asign, int bsign, int prec)
   {
     status = RootStatus.RootUnknown;
     try ( Real t = Real.newArray(2); Real x = new Real())
     {
       func.evaluate(getReal(x, prec), 1, prec, t);
+      found.evals++;
+
       if (t.isPositive() || t.isNegative())
       {
         status = RootStatus.NoRoot;
@@ -76,6 +77,8 @@ public class RealRootInterval extends
         if ((asign < 0 && bsign > 0) || (asign > 0 && bsign < 0))
         {
           Real firstDerivative = func.evaluate(x, 2, prec, t).get(1);
+          found.evals++;
+
           if (firstDerivative.isFinite() && !firstDerivative.containsZero())
           {
             status = RootStatus.RootLocated;
@@ -124,10 +127,23 @@ public class RealRootInterval extends
       return null;
     }
 
-    bisectAndRefine(func, v, convergenceRegion, 5, lowPrec);
-    bisectAndRefine(func, v, convergenceRegion, 5, lowPrec);
+    if (bisectAndRefine(func, v, convergenceRegion, 5, lowPrec) != RefinementResult.Success)
+    {
+      System.out.println("Bisection failed");
+    }
+    else
+    {
+      if ( bisectAndRefine(func, v, convergenceRegion, 5, lowPrec) != RefinementResult.Success )
+      {
+        System.out.println("second Bisection failed");
+      }
 
+    }
+
+    out.println( "highPrec=" + highPrec );
     arblib.arf_interval_get_arb(v, convergenceRegion, highPrec);
+    System.out.println(" convergence region: " + convergenceRegion);
+
     System.out.println(" convergence region: " + v);
 
     func.getNewtonConvergenceFactor(v, w, lowPrec, convergenceFactor);
@@ -177,7 +193,7 @@ public class RealRootInterval extends
     }
 
     System.out.println("iters=" + iters);
-    for (i = iters - 1; i >= 0; i--)
+    for (i = iters-1; i >= 0; i--)
     {
       wp = precs[i] + eval_extra_prec;
 
@@ -239,10 +255,7 @@ public class RealRootInterval extends
           {
             return RefinementResult.NoConvergence;
           }
-//          if (true != false)
-//          {
-//            throw new UnsupportedOperationException("fucking debug this god damn son of a bitching motherfucking god damn fucking thing");
-//          }
+
           if (msign == asign)
           {
             swap(u);
