@@ -9,7 +9,6 @@
  */
 package arblib.functions.curves;
 
-
 import arblib.Complex;
 import arblib.ComplexFunction;
 import arblib.Constants;
@@ -45,10 +44,13 @@ public class Lemniscate implements
           Complex numerator = sqrt2.mul(cos, prec, new Complex()))
     {
       numerator.div(divisor, prec, w);
-    }
-    if (order >= 2)
-    {
-      throw new UnsupportedOperationException("implement  (sqrt2*(sin[t]-i))/(sin[t]+i)^2 via operator overloading");
+      if (order >= 2)
+      {
+        sqrt2.mul(sin.sub(Constants.IMAGINARY_UNIT, numerator), numerator);
+        sin.add(Constants.IMAGINARY_UNIT, divisor).pow(2, divisor);
+        numerator.div(divisor, prec, w.get(1));
+      }
+
     }
     return w;
   }

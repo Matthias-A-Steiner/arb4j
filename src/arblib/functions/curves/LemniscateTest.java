@@ -10,7 +10,7 @@ public class LemniscateTest extends
   public static void testLemniscate()
   {
     Lemniscate lem = new Lemniscate();
-    Complex    w   = lem.evaluate(Constants.COMPLEX_ONE, 2, 256, new Complex());
+    Complex    w   = lem.evaluate(Constants.COMPLEX_ONE, 2, 256, Complex.newVector(2));
     System.out.println("l(1)=" + w);
   }
 }
