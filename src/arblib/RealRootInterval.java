@@ -108,7 +108,7 @@ public class RealRootInterval extends
 
   public static final int FLINT_BITS = 64;
 
-  public boolean          verbose    = true;
+  public boolean          verbose    = false;
 
   /**
    * 
