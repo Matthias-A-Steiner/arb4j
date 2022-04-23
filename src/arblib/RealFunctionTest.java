@@ -1,9 +1,12 @@
 package arblib;
 
+import static java.lang.Math.pow;
 import static java.lang.System.out;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import arblib.FloatInterval.RootStatus;
 import arblib.functions.SineFunction;
 import arblib.functions.ZFunction;
 
@@ -26,20 +29,25 @@ public class RealFunctionTest
   @Test
   public void testLocateRootsHardyZ()
   {
-    RealFunction     f     = new RealPart(new ZFunction());
-    RealRootInterval damn  = new RealRootInterval(14,
-                                                  14.2);
-    int maxdepth = 11;
-    int maxevals = 5000;
-    int maxfound = 1;
-    int prec = 256;
+    RealFunction     f        = new RealPart(new ZFunction());
+    RealRootInterval damn     = new RealRootInterval(14,
+                                                     14.2);
+    int              maxdepth = 11;
+    int              maxevals = 5000;
+    int              maxfound = 1;
+    int              prec     = 256;
     FoundRoots       roots    = f.locateRoots(damn, maxdepth, maxevals, maxfound, prec);
-    System.out.println("(sub)intervals=");
     roots.forEach(out::println);
-    System.out.println( "evals=" + roots.evals );
-    
-    roots.refine(f, prec, 40);
-    
+
+    assertEquals(192, roots.evals);
+    assertEquals(3, roots.size());
+    RealRootInterval first     = roots.get(0);
+    Real             firstRoot = first.getReal(new Real(), prec);
+    assertEquals(14.13125, firstRoot.getMid().doubleValue(), pow(10, -30));
+    assertEquals(first.status, FloatInterval.RootStatus.RootLocated);
+
+    // roots.refine(f, prec, 40);
+
 //    roots = f.locateRoots(roots.get(0), 20, 5000, 1, 256);
 //    System.out.println("(sub)intervals=");
 //    roots.forEach(out::println);
@@ -50,7 +58,7 @@ public class RealFunctionTest
 
   public void testCalculateStuff()
   {
-    RealFunction     f     = new RealPart(new ZFunction());
-    //f.calculatePartition(left, right, block, prec );
+    RealFunction f = new RealPart(new ZFunction());
+    // f.calculatePartition(left, right, block, prec );
   }
 }
