@@ -24,7 +24,8 @@ public class Lemniscate implements
                         ComplexFunction,
                         AutoCloseable
 {
-  Real sqrt2 = new Real().assign(2).sqrt(256);
+  private static final Complex i     = Constants.IMAGINARY_UNIT;
+  Real                         sqrt2 = new Real().assign(2).sqrt(256);
 
   /**
    * @param z
@@ -40,14 +41,14 @@ public class Lemniscate implements
     assert order <= 2;
 
     try ( Complex cos = z.cos(prec, new Complex()); Complex sin = z.sin(prec, new Complex());
-          Complex divisor = Constants.COMPLEX_ONE.sub(sin.mul(Constants.IMAGINARY_UNIT, sin), prec, new Complex());
+          Complex divisor = Constants.COMPLEX_ONE.sub(sin.mul(i, sin), prec, new Complex());
           Complex numerator = sqrt2.mul(cos, prec, new Complex()))
     {
       numerator.div(divisor, prec, w);
       if (order >= 2)
       {
-        sqrt2.mul(sin.sub(Constants.IMAGINARY_UNIT, numerator), numerator);
-        sin.add(Constants.IMAGINARY_UNIT, divisor).pow(2, divisor);
+        sqrt2.mul(sin.sub(i, numerator), numerator);
+        sin.add(i, divisor).pow(2, divisor);
         numerator.div(divisor, prec, w.get(1));
       }
 
