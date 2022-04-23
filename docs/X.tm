@@ -1,6 +1,6 @@
 <TeXmacs|2.1.1>
 
-<style|<tuple|article|alt-colors|dark-vador|framed-theorems>>
+<style|<tuple|article|alt-colors|framed-theorems>>
 
 <\body>
   <doc-data|<doc-title|<with|font-base-size|8|Complex Dynamics of The
@@ -947,10 +947,10 @@
     </associate>
     <\associate|figure>
       <tuple|normal|<\surround|<hidden-binding|<tuple>|1>|>
-        <with|color|<quote|pastel red>|font-family|<quote|rm>|<with|mode|<quote|math>|Illustration>>
-        of the relationship between vartheta <with|color|<quote|pastel
+        <with|color|<quote|dark red>|font-family|<quote|rm>|<with|mode|<quote|math>|Illustration>>
+        of the relationship between vartheta <with|color|<quote|dark
         red>|font-family|<quote|rm>|<with|mode|<quote|math>|\<vartheta\>>>
-        and the argument of zeta <with|color|<quote|pastel
+        and the argument of zeta <with|color|<quote|dark
         red>|font-family|<quote|rm>|<with|mode|<quote|math>|\<zeta\>>> on the
         critical line
       </surround>|<pageref|auto-24>>
@@ -984,28 +984,28 @@
       <no-break><pageref|auto-4>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>The
-      Operator <with|color|<quote|pastel red>|font-family|<quote|rm>|<with|mode|<quote|math>|S<rsup|a><rsub|f><around*|(|t|)>=tanh<around*|(|ln<around*|(|1-<around*|(|<frac|f<around*|(|t|)>|a>|)><rsup|2>|)>|)>>>>
+      Operator <with|color|<quote|dark red>|font-family|<quote|rm>|<with|mode|<quote|math>|S<rsup|a><rsub|f><around*|(|t|)>=tanh<around*|(|ln<around*|(|1-<around*|(|<frac|f<around*|(|t|)>|a>|)><rsup|2>|)>|)>>>>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-5><vspace|0.5fn>
 
       <with|par-left|<quote|1tab>|2.1<space|2spc>The Curve
-      <with|color|<quote|pastel red>|font-family|<quote|rm>|<with|mode|<quote|math>|Re<around*|(|S<around*|(|t|)>|)>=0>>
+      <with|color|<quote|dark red>|font-family|<quote|rm>|<with|mode|<quote|math>|Re<around*|(|S<around*|(|t|)>|)>=0>>
       is a Bernoullian Lemniscate <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-6>>
 
       <with|par-left|<quote|1tab>|2.2<space|2spc>The Curve
-      <with|color|<quote|pastel red>|font-family|<quote|rm>|<with|mode|<quote|math>|Im<around*|(|S<around*|(|t|)>|)>=0>>
+      <with|color|<quote|dark red>|font-family|<quote|rm>|<with|mode|<quote|math>|Im<around*|(|S<around*|(|t|)>|)>=0>>
       is a Conjugate Pair of Rectangular Hyperbolas
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-7>>
 
       <with|par-left|<quote|1tab>|2.3<space|2spc>The Newton Map of
-      <with|color|<quote|pastel red>|font-family|<quote|rm>|<with|mode|<quote|math>|S<rsub|f><around*|(|t|)>>>
+      <with|color|<quote|dark red>|font-family|<quote|rm>|<with|mode|<quote|math>|S<rsub|f><around*|(|t|)>>>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-8>>
 
       <with|par-left|<quote|2tab>|2.3.1<space|2spc>Factoring Out The
-      Double-Root at the Origin of <with|color|<quote|pastel
+      Double-Root at the Origin of <with|color|<quote|dark
       red>|font-family|<quote|rm>|<with|mode|<quote|math>|N<rsub|S<rsub|f>><around*|(|t|)>>>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-9>>
@@ -1023,12 +1023,12 @@
       <no-break><pageref|auto-12>>
 
       <with|par-left|<quote|2tab>|2.3.5<space|2spc>Linearizing the Newton Map
-      of <with|color|<quote|pastel red>|font-family|<quote|rm>|<with|mode|<quote|math>|S<around*|(|t|)>>>
+      of <with|color|<quote|dark red>|font-family|<quote|rm>|<with|mode|<quote|math>|S<around*|(|t|)>>>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-13>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>The
-      Riemann Zeta <with|color|<quote|pastel
+      Riemann Zeta <with|color|<quote|dark
       red>|font-family|<quote|rm>|<with|mode|<quote|math>|\<zeta\>>>
       Function> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-14><vspace|0.5fn>
@@ -1046,13 +1046,13 @@
       <no-break><pageref|auto-19>>
 
       <with|par-left|<quote|2tab>|3.2.1<space|2spc>The Phase
-      of<with|color|<quote|pastel red>|font-family|<quote|rm>|<with|mode|<quote|math>|>>
-      <with|color|<quote|pastel red>|font-family|<quote|rm>|<with|mode|<quote|math>|\<zeta\>>>
+      of<with|color|<quote|dark red>|font-family|<quote|rm>|<with|mode|<quote|math>|>>
+      <with|color|<quote|dark red>|font-family|<quote|rm>|<with|mode|<quote|math>|\<zeta\>>>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-21>>
 
       <with|par-left|<quote|1tab>|3.3<space|2spc>The Function
-      <with|color|<quote|pastel red>|font-family|<quote|rm>|<with|mode|<quote|math>|X<around*|(|t|)>=<around*|(|S\<circ\>Z|)><around*|(|t|)>>>
+      <with|color|<quote|dark red>|font-family|<quote|rm>|<with|mode|<quote|math>|X<around*|(|t|)>=<around*|(|S\<circ\>Z|)><around*|(|t|)>>>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-25>>
 
@@ -1061,7 +1061,7 @@
       <no-break><pageref|auto-26>>
 
       <with|par-left|<quote|2tab>|3.3.2<space|2spc>Roots of
-      <with|color|<quote|pastel red>|font-family|<quote|rm>|<with|mode|<quote|math>|X<around*|(|t|)>>>
+      <with|color|<quote|dark red>|font-family|<quote|rm>|<with|mode|<quote|math>|X<around*|(|t|)>>>
       on the Real Line <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-27>>
 

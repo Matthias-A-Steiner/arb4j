@@ -41,7 +41,7 @@ public class Lemniscate implements
     assert order <= 2;
 
     try ( Complex cos = z.cos(prec, new Complex()); Complex sin = z.sin(prec, new Complex());
-          Complex divisor = Constants.COMPLEX_ONE.sub(sin.mul(i, sin), prec, new Complex());
+          Complex tmp = new Complex(); Complex divisor = Constants.COMPLEX_ONE.sub(sin.mul(i, tmp), prec, tmp);
           Complex numerator = sqrt2.mul(cos, prec, new Complex()))
     {
       numerator.div(divisor, prec, w);
