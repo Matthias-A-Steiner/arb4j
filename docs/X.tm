@@ -511,8 +511,9 @@
   <subsubsection|The Newton Flow>
 
   <\definition>
-    The Newton flow of <math|S<rsup|><rsub|f><around*|(|t|)>> is defined by
-    the differential equation
+    The Newton flow <math|N<rsub|S<rsub|>><around*|(|f|)>> of
+    <math|S<rsup|><rsub|f><around*|(|t|)>> is defined by the differential
+    equation
 
     <\equation>
       <wide|z|\<dot\>><around*|(|t|)>=<frac|\<mathd\>|\<mathd\>t>z<around*|(|t|)>=-<frac|S<rsub|f><around*|(|z<around*|(|t|)>|)>|<wide|S|\<dot\>><rsub|f><around*|(|z<around*|(|t|)>|)>>
@@ -522,32 +523,65 @@
     step size is taken towards zero , it is defined by\ 
 
     <\equation>
-      <tabular|<tformat|<table|<row|<cell|N<rsup|h><rsub|S<rsub|f>><around*|(|t|)>>|<cell|=t-h<frac|S<rsub|f><around*|(|t|)>|<wide|S|\<dot\>><rsub|f><around*|(|t|)>>>>|<row|<cell|>|<cell|=t-<frac|h<frac|<around*|(|1-f<around*|(|t|)><rsup|2>|)><rsup|2>-1|<around*|(|1<rsup|>-f<around*|(|t|)><rsup|2>|)><rsup|2>+1>|<frac|8<wide|f|\<dot\>><around*|(|t|)>f<around*|(|t|)><around*|(|f<around*|(|t|)><rsup|2>-1|)>|<around*|(|<around*|(|f<around*|(|t|)>-1|)><rsup|2>*<around*|(|f<around*|(|t|)>+1|)><rsup|2>+1|)><rsup|2>>>>>|<row|<cell|>|<cell|=t-<frac|h|8><frac|<around*|(|<around*|(|f<around*|(|t|)>-1|)><rsup|2>*<around*|(|1+f<around*|(|*t|)><rsup|2>|)><rsup|2>+1|)><rsup|2>*<around*|(|<around*|(|1-f<around*|(|t|)><rsup|2>|)><rsup|2>-1|)>|f*<around*|(|t|)><wide|f|\<dot\>><around*|(|t|)><around*|(|f<around*|(|t|)><rsup|2>-1|)><around*|(|1+<around*|(|1-f<around*|(|t|)><rsup|2>|)><rsup|2>|)>>>>>>>
+      <tabular|<tformat|<table|<row|<cell|N<rsup|h><rsub|S><around*|(|f|)>>|<cell|=t-h<frac|S<rsub|f><around*|(|t|)>|<wide|S|\<dot\>><rsub|f><around*|(|t|)>>>>|<row|<cell|>|<cell|=t-<frac|h<frac|<around*|(|1-f<around*|(|t|)><rsup|2>|)><rsup|2>-1|<around*|(|1<rsup|>-f<around*|(|t|)><rsup|2>|)><rsup|2>+1>|<frac|8<wide|f|\<dot\>><around*|(|t|)>f<around*|(|t|)><around*|(|f<around*|(|t|)><rsup|2>-1|)>|<around*|(|<around*|(|f<around*|(|t|)>-1|)><rsup|2>*<around*|(|f<around*|(|t|)>+1|)><rsup|2>+1|)><rsup|2>>>>>|<row|<cell|>|<cell|=t-<frac|h|8><frac|<around*|(|<around*|(|f<around*|(|t|)>-1|)><rsup|2>*<around*|(|1+f<around*|(|*t|)><rsup|2>|)><rsup|2>+1|)><rsup|2>*<around*|(|<around*|(|1-f<around*|(|t|)><rsup|2>|)><rsup|2>-1|)>|f*<around*|(|t|)><wide|f|\<dot\>><around*|(|t|)><around*|(|f<around*|(|t|)><rsup|2>-1|)><around*|(|1+<around*|(|1-f<around*|(|t|)><rsup|2>|)><rsup|2>|)>>>>>>>
     </equation>
 
     where <math|h> is taken to be a small number which is used to approximate
-    the flow <math|<wide|z|\<dot\>><around*|(|t|)>>\ 
+    the flow <math|<wide|z|\<dot\>><around*|(|t|)>>
   </definition>
+
+  The Newton flow <math|N<rsub|f>> has the drawback that it is undefined at
+  the critical points of <math|f>. To remedy this situation we have the
+  so-called desingularized Newton flow for entire functions.\ 
 
   <subsubsection|The Desingularized Newton Flow>
 
   <\definition>
-    An equivalent flow which is devoid of singularities is given by
+    If <math|f> is an entire function then an equivalent flow which is devoid
+    of singularities at the critical points is given by
 
     <\equation>
-      <wide|z|\<dot\>><around*|(|t|)>=-<wide|<wide|S|\<dot\>><rsub|f><around*|(|z<around*|(|t|)>|)>|\<bar\>>S<rsub|f><around*|(|z<around*|(|t|)>|)>
+      <wide|z|\<dot\>><around*|(|t|)>=-<wide|<wide|f|\<dot\>><around*|(|z<around*|(|t|)>|)>|\<bar\>>f<around*|(|z<around*|(|t|)>|)>
     </equation>
 
-    as described in <cite|jongen1988continuous>.
+    <cite|jongen1988continuous>.
   </definition>
+
+  The function of interest here, <math|S<rsub|f>>, is meromorphic and
+  therefore will be undefined at the critical points of f. To remedy this
+  situation we can apply the continuous Newton method for mermorphic
+  functions which defines an equivalent real holomorphic vector field devoid
+  of any singularities.
 
   <subsubsection|The Continuous Newton Method for Meromorphic Functions>
 
-  Define the flow
+  <\lemma>
+    (Desingularization Lemma) The flow defined by
 
-  TODO: read <cite|Peitgen1988GlobalAO>
+    <\equation>
+      <wide|\<cal-N\>|\<bar\>><around*|(|f|)>=-<frac|<wide|<wide|f|\<dot\>>|\<bar\>><around*|(|z|)>f<around*|(|z|)>|<around*|(|1+<around*|\||f<around*|(|z|)>|\|><rsup|4>|)>*>
+    </equation>
+
+    is a <verbatim|real analytic vector field> <cite|Peitgen1988GlobalAO>
+    defined on the whole complex plane <math|\<bbb-C\>> with the properties
+    that
+
+    <\enumerate-roman>
+      <item>Trajectories of <math|\<cal-N\>> are also trajectories of
+      <math|<wide|\<cal-N\>|\<bar\>><around*|(|f|)>>
+
+      <item>A critical point of <math|f> is an equilibrium state for
+      <math|<wide|\<cal-N\>|\<bar\>><around*|(|f|)>>
+
+      <item><math|<wide|\<cal-N\>|\<bar\>><around*|(|f|)>=-<wide|\<cal-N\>|\<bar\>><around*|(|<frac|1|f>|)>>
+    </enumerate-roman>
+  </lemma>
+
+  \ 
 
   <subsubsection|Linearizing the Newton Map of <math|S<around*|(|t|)>>>
+
+  TODO: apply Koenig's theorem
 
   <section|The Riemann Zeta <math|\<zeta\>> Function>
 
@@ -873,33 +907,33 @@
 
 <\references>
   <\collection>
-    <associate|N|<tuple|36|8|../../y/Y.tm>>
+    <associate|N|<tuple|37|9|../../y/Y.tm>>
     <associate|NS|<tuple|23|5|../../y/Y.tm>>
     <associate|auto-1|<tuple|1|1|../../y/Y.tm>>
-    <associate|auto-10|<tuple|2.3.2|5|../../y/Y.tm>>
+    <associate|auto-10|<tuple|2.3.2|6|../../y/Y.tm>>
     <associate|auto-11|<tuple|2.3.3|6|../../y/Y.tm>>
     <associate|auto-12|<tuple|2.3.4|6|../../y/Y.tm>>
-    <associate|auto-13|<tuple|2.3.5|6|../../y/Y.tm>>
-    <associate|auto-14|<tuple|3|6|../../y/Y.tm>>
-    <associate|auto-15|<tuple|Riemann zeta function|6|../../y/Y.tm>>
-    <associate|auto-16|<tuple|3.1|6|../../y/Y.tm>>
-    <associate|auto-17|<tuple|critical line|6|../../y/Y.tm>>
-    <associate|auto-18|<tuple|3.1.1|6|../../y/Y.tm>>
+    <associate|auto-13|<tuple|2.3.5|7|../../y/Y.tm>>
+    <associate|auto-14|<tuple|3|7|../../y/Y.tm>>
+    <associate|auto-15|<tuple|Riemann zeta function|7|../../y/Y.tm>>
+    <associate|auto-16|<tuple|3.1|7|../../y/Y.tm>>
+    <associate|auto-17|<tuple|critical line|7|../../y/Y.tm>>
+    <associate|auto-18|<tuple|3.1.1|7|../../y/Y.tm>>
     <associate|auto-19|<tuple|3.2|7|../../y/Y.tm>>
     <associate|auto-2|<tuple|1.1|2|../../y/Y.tm>>
     <associate|auto-20|<tuple|gamma function|7|../../y/Y.tm>>
-    <associate|auto-21|<tuple|3.2.1|7|../../y/Y.tm>>
+    <associate|auto-21|<tuple|3.2.1|8|../../y/Y.tm>>
     <associate|auto-22|<tuple|Riemann-Siegel (var)theta
-    function|7|../../y/Y.tm>>
-    <associate|auto-23|<tuple|Hardy Z function|7|../../y/Y.tm>>
+    function|8|../../y/Y.tm>>
+    <associate|auto-23|<tuple|Hardy Z function|8|../../y/Y.tm>>
     <associate|auto-24|<tuple|1|8|../../y/Y.tm>>
     <associate|auto-25|<tuple|3.3|8|../../y/Y.tm>>
     <associate|auto-26|<tuple|3.3.1|8|../../y/Y.tm>>
     <associate|auto-27|<tuple|3.3.2|9|../../y/Y.tm>>
     <associate|auto-28|<tuple|4|9|../../y/Y.tm>>
-    <associate|auto-29|<tuple|5|9|../../y/Y.tm>>
+    <associate|auto-29|<tuple|5|10|../../y/Y.tm>>
     <associate|auto-3|<tuple|1.1.1|2|../../y/Y.tm>>
-    <associate|auto-30|<tuple|42|10|../../y/Y.tm>>
+    <associate|auto-30|<tuple|43|10|../../y/Y.tm>>
     <associate|auto-31|<tuple|8|10|../../y/Y.tm>>
     <associate|auto-4|<tuple|1.2|2|../../y/Y.tm>>
     <associate|auto-5|<tuple|2|3|../../y/Y.tm>>
@@ -916,7 +950,7 @@
     <associate|bib-klein2018riemann|<tuple|2|10|../../y/Y.tm>>
     <associate|bib-riemann|<tuple|1|10|../../y/Y.tm>>
     <associate|kc|<tuple|3|2|../../y/Y.tm>>
-    <associate|rh|<tuple|14|6|../../y/Y.tm>>
+    <associate|rh|<tuple|15|7|../../y/Y.tm>>
   </collection>
 </references>
 
