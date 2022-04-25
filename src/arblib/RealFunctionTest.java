@@ -45,7 +45,7 @@ public class RealFunctionTest
     assertEquals(14.13125, firstRoot.getMid().doubleValue(), pow(10, -30));
     assertEquals(first.status, FloatInterval.RootStatus.RootLocated);
 
-    // roots.refine(f, prec, 40);
+    roots.refine(f, prec, 40); 
 
 //    roots = f.locateRoots(roots.get(0), 20, 5000, 1, 256);
 //    System.out.println("(sub)intervals=");
