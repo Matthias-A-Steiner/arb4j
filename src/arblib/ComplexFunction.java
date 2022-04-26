@@ -25,6 +25,33 @@ public interface ComplexFunction
   { 1, 2, 4, 6, 8, 12, 16, 22, 32, 46, 64, 90, 128, 182, 256, 362, 512, 724, 1024, 1448, 2048, 2896, 4096, 5792,
     8192, 11586, 16384, 23170, 32768, 46340, 65536, 92682, 131072, 185364, 262144, 370728, 524288, 741456 };
 
+  public default void quadSimple(Complex res, Complex a, Complex b, int prec)
+  {
+    try ( Complex mid = new Complex(); Complex delta = new Complex(); Complex wide = new Complex();
+          Magnitude tmpm = new Magnitude();)
+    {
+      /* delta = (b-a)/2 */
+      acb_sub(delta, b, a, prec);
+      acb_mul_2exp_si(delta, delta, -1);
+
+      /* mid = (a+b)/2 */
+      acb_add(mid, a, b, prec);
+      acb_mul_2exp_si(mid, mid, -1);
+
+      /* wide = mid +- [delta] */
+      acb_set(wide, mid);
+      arb_get_mag(tmpm, delta.getReal());
+      arb_add_error_mag(wide.getReal(), tmpm);
+      arb_get_mag(tmpm, delta.getReal());
+      arb_add_error_mag(wide.getReal(), tmpm);
+
+      /* Direct evaluation: integral = (b-a) * f([a,b]). */
+      evaluate(wide, 0, prec, res);
+      acb_mul(res, res, delta, prec);
+      acb_mul_2exp_si(res, res, 1);
+    }
+  }
+
   public default boolean acb_calc_integrate_gl_auto_deg(Complex res,
                                                         AtomicLong evalCount,
                                                         Complex a,
@@ -34,24 +61,11 @@ public interface ComplexFunction
                                                         int verbose,
                                                         int prec)
   {
-    Complex   mid =
-    null, delta =
-    null, wide =
-    null;
-    Magnitude tmpm =
-    null;
+    Complex   mid       = null, delta = null, wide = null;
+    Magnitude tmpm      = null;
     boolean   converged = false;
-    Complex   s =
-    null, v =
-    null;
-    Magnitude M =
-    null, X =
-    null, Y =
-    null, rho =
-    null, err =
-    null, t =
-                    null, best_rho =
-    null;
+    Complex   s         = null, v = null;
+    Magnitude M         = null, X = null, Y = null, rho = null, err = null, t = null, best_rho = null;
     int       k, Xexp;
     int       i, n, best_n;
 
@@ -165,9 +179,6 @@ public interface ComplexFunction
     {
       try ( Real x = new Real(); Real w = new Real();)
       {
-        arb_init(x);
-        arb_init(w);
-
         assert best_n != -1;
 
         for (i = 0; i < glStepCount; i++)

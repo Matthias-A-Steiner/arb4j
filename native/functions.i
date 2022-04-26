@@ -1,4 +1,8 @@
+void arb_get_mag(mag_t z, const arb_t x);
+
 void mag_sub_lower(mag_t z, const mag_t x, const mag_t y);
+
+void arb_add_error_mag(arb_t x, const mag_t err);
 
 void mag_div(mag_t z, const mag_t x, const mag_t y);
 

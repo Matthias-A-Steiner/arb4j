@@ -9,8 +9,16 @@
 package arblib;
 
 public class arblib {
+  public static void arb_get_mag(Magnitude z, Real x) {
+    arblibJNI.arb_get_mag(Magnitude.getCPtr(z), z, Real.getCPtr(x), x);
+  }
+
   public static void mag_sub_lower(Magnitude z, Magnitude x, Magnitude y) {
     arblibJNI.mag_sub_lower(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, Magnitude.getCPtr(y), y);
+  }
+
+  public static void arb_add_error_mag(Real x, Magnitude err) {
+    arblibJNI.arb_add_error_mag(Real.getCPtr(x), x, Magnitude.getCPtr(err), err);
   }
 
   public static void mag_div(Magnitude z, Magnitude x, Magnitude y) {
