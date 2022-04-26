@@ -9,6 +9,54 @@
 package arblib;
 
 public class arblib {
+  public static void mag_sub_lower(Magnitude z, Magnitude x, Magnitude y) {
+    arblibJNI.mag_sub_lower(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, Magnitude.getCPtr(y), y);
+  }
+
+  public static void mag_div(Magnitude z, Magnitude x, Magnitude y) {
+    arblibJNI.mag_div(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, Magnitude.getCPtr(y), y);
+  }
+
+  public static void mag_mul_ui_lower(Magnitude z, Magnitude x, long y) {
+    arblibJNI.mag_mul_ui_lower(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, y);
+  }
+
+  public static void mag_sub(Magnitude z, Magnitude x, Magnitude y) {
+    arblibJNI.mag_sub(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, Magnitude.getCPtr(y), y);
+  }
+
+  public static void acb_zero(Complex z) {
+    arblibJNI.acb_zero(Complex.getCPtr(z), z);
+  }
+
+  public static void acb_sub(Complex z, Complex x, Complex y, int prec) {
+    arblibJNI.acb_sub(Complex.getCPtr(z), z, Complex.getCPtr(x), x, Complex.getCPtr(y), y, prec);
+  }
+
+  public static void acb_addmul_arb(Complex z, Complex x, Real y, int prec) {
+    arblibJNI.acb_addmul_arb(Complex.getCPtr(z), z, Complex.getCPtr(x), x, Real.getCPtr(y), y, prec);
+  }
+
+  public static void mag_add_lower(Magnitude z, Magnitude x, Magnitude y) {
+    arblibJNI.mag_add_lower(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, Magnitude.getCPtr(y), y);
+  }
+
+  public static void mag_mul_lower(Magnitude z, Magnitude x, Magnitude y) {
+    arblibJNI.mag_mul_lower(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, Magnitude.getCPtr(y), y);
+  }
+
+  public static void acb_add_error_mag(Complex x, Magnitude err) {
+    arblibJNI.acb_add_error_mag(Complex.getCPtr(x), x, Magnitude.getCPtr(err), err);
+  }
+
+  public static void heap_up(Complex as, Complex bs, Complex vs, Magnitude ms, int n) {
+    arblibJNI.heap_up(Complex.getCPtr(as), as, Complex.getCPtr(bs), bs, Complex.getCPtr(vs), vs, Magnitude.getCPtr(ms), ms, n);
+  }
+
+  public static void heap_down(Complex as, Complex bs, Complex vs, Magnitude ms, int n) {
+    arblibJNI.heap_down(Complex.getCPtr(as), as, Complex.getCPtr(bs), bs, Complex.getCPtr(vs), vs, Magnitude.getCPtr(ms), ms, n);
+  }
+
   public static void arb_neg(Real y, Real x) {
     arblibJNI.arb_neg(Real.getCPtr(y), y, Real.getCPtr(x), x);
   }
@@ -19,6 +67,34 @@ public class arblib {
 
   public static void arb_set_arf(Real x, Float y) {
     arblibJNI.arb_set_arf(Real.getCPtr(x), x, Float.getCPtr(y), y);
+  }
+
+  public static void acb_calc_gl_node(Real x, Real w, int i, int k, int prec) {
+    arblibJNI.acb_calc_gl_node(Real.getCPtr(x), x, Real.getCPtr(w), w, i, k, prec);
+  }
+
+  public static void mag_one(Magnitude x) {
+    arblibJNI.mag_one(Magnitude.getCPtr(x), x);
+  }
+
+  public static void mag_mul_2exp_si(Magnitude z, Magnitude x, int y) {
+    arblibJNI.mag_mul_2exp_si(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, y);
+  }
+
+  public static void mag_clear(Magnitude x) {
+    arblibJNI.mag_clear(Magnitude.getCPtr(x), x);
+  }
+
+  public static void mag_inf(Magnitude x) {
+    arblibJNI.mag_inf(Magnitude.getCPtr(x), x);
+  }
+
+  public static void acb_mul_2exp_si(Complex z, Complex x, int e) {
+    arblibJNI.acb_mul_2exp_si(Complex.getCPtr(z), z, Complex.getCPtr(x), x, e);
+  }
+
+  public static void acb_indeterminate(Complex x) {
+    arblibJNI.acb_indeterminate(Complex.getCPtr(x), x);
   }
 
   public static int arb_is_positive(Real x) {
@@ -456,10 +532,6 @@ public class arblib {
 
   public static void acb_div(Complex z, Complex x, Complex y, int prec) {
     arblibJNI.acb_div(Complex.getCPtr(z), z, Complex.getCPtr(x), x, Complex.getCPtr(y), y, prec);
-  }
-
-  public static void acb_sub(Complex z, Complex x, Complex y, int prec) {
-    arblibJNI.acb_sub(Complex.getCPtr(z), z, Complex.getCPtr(x), x, Complex.getCPtr(y), y, prec);
   }
 
   public static void acb_mul_fmpz(Complex z, Complex x, SWIGTYPE_p_fmpz y, int prec) {

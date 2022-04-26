@@ -1,8 +1,46 @@
+void mag_sub_lower(mag_t z, const mag_t x, const mag_t y);
+
+void mag_div(mag_t z, const mag_t x, const mag_t y);
+
+void mag_mul_ui_lower(mag_t z, const mag_t x, ulong y);
+
+void mag_sub(mag_t z, const mag_t x, const mag_t y);
+
+void acb_zero(acb_t z);
+
+void acb_sub(acb_t z, const acb_t x, const acb_t y, slong prec);
+
+void acb_addmul_arb(acb_t z, const acb_t x, const arb_t y, slong prec);
+
+void mag_add_lower(mag_t z, const mag_t x, const mag_t y);
+
+void mag_mul_lower(mag_t z, const mag_t x, const mag_t y);
+
+void acb_add_error_mag(acb_t x, const mag_t err);
+
+void heap_up(acb_ptr as, acb_ptr bs, acb_ptr vs, mag_ptr ms, slong n);
+
+void heap_down(acb_ptr as, acb_ptr bs, acb_ptr vs, mag_ptr ms, slong n);
+
 void arb_neg(arb_t y, const arb_t x);
 
 void arf_interval_swap(arf_interval_t v, arf_interval_t u);
 
 void arb_set_arf(arb_t x, const arf_t y);
+
+extern void acb_calc_gl_node(arb_t x, arb_t w, slong i, slong k, slong prec);
+
+void mag_one(mag_t x);
+
+void mag_mul_2exp_si(mag_t z, const mag_t x, slong y);
+
+void mag_clear(mag_t x);
+
+void mag_inf(mag_t x);
+
+void acb_mul_2exp_si(acb_t z, const acb_t x, slong e);
+
+void acb_indeterminate(acb_t x);
 
 int arb_is_positive(const arb_t x);
 

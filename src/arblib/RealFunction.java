@@ -11,11 +11,15 @@ package arblib;
 
 import static java.lang.System.out;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 import arblib.FloatInterval.RootStatus;
+import static arblib.arblib.*;
 
 /**
  * Interface which defines a function from R -> R where R is the set of real
- * number */
+ * number
+ */
 public interface RealFunction
 {
   public Real evaluate(Real z, int order, int prec, Real res);
@@ -200,7 +204,7 @@ public interface RealFunction
             out.printf("found isolated root in: %s\n", root);
             out.flush();
           }
-          
+
         }
         System.out.println("Adding " + root);
         realRootInterval.status = status;
@@ -236,7 +240,7 @@ public interface RealFunction
 
       /* Evaluate the function at the midpoint so the sign can be returned */
       arblib.arb_set_arf(m, u);
-      
+
       int sign = evaluate(m, 1, prec, t).sign();
 
       /* split the interval at the midpoint */
@@ -249,5 +253,6 @@ public interface RealFunction
     }
 
   }
+
 
 }

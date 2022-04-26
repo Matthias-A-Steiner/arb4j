@@ -9,9 +9,28 @@
 package arblib;
 
 public class arblibJNI {
+  public final static native void mag_sub_lower(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3, Magnitude jarg3_);
+  public final static native void mag_div(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3, Magnitude jarg3_);
+  public final static native void mag_mul_ui_lower(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3);
+  public final static native void mag_sub(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3, Magnitude jarg3_);
+  public final static native void acb_zero(long jarg1, Complex jarg1_);
+  public final static native void acb_sub(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, int jarg4);
+  public final static native void acb_addmul_arb(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, Real jarg3_, int jarg4);
+  public final static native void mag_add_lower(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3, Magnitude jarg3_);
+  public final static native void mag_mul_lower(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3, Magnitude jarg3_);
+  public final static native void acb_add_error_mag(long jarg1, Complex jarg1_, long jarg2, Magnitude jarg2_);
+  public final static native void heap_up(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, long jarg4, Magnitude jarg4_, int jarg5);
+  public final static native void heap_down(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, long jarg4, Magnitude jarg4_, int jarg5);
   public final static native void arb_neg(long jarg1, Real jarg1_, long jarg2, Real jarg2_);
   public final static native void arf_interval_swap(long jarg1, FloatInterval jarg1_, long jarg2, FloatInterval jarg2_);
   public final static native void arb_set_arf(long jarg1, Real jarg1_, long jarg2, Float jarg2_);
+  public final static native void acb_calc_gl_node(long jarg1, Real jarg1_, long jarg2, Real jarg2_, int jarg3, int jarg4, int jarg5);
+  public final static native void mag_one(long jarg1, Magnitude jarg1_);
+  public final static native void mag_mul_2exp_si(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, int jarg3);
+  public final static native void mag_clear(long jarg1, Magnitude jarg1_);
+  public final static native void mag_inf(long jarg1, Magnitude jarg1_);
+  public final static native void acb_mul_2exp_si(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, int jarg3);
+  public final static native void acb_indeterminate(long jarg1, Complex jarg1_);
   public final static native int arb_is_positive(long jarg1, Real jarg1_);
   public final static native int arb_is_negative(long jarg1, Real jarg1_);
   public final static native void mag_sqrt(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_);
@@ -120,7 +139,6 @@ public class arblibJNI {
   public final static native void acb_add(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, int jarg4);
   public final static native void acb_sub_ui(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, int jarg4);
   public final static native void acb_div(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, int jarg4);
-  public final static native void acb_sub(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, int jarg4);
   public final static native void acb_mul_fmpz(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, int jarg4);
   public final static native void _arb_vec_clear(long jarg1, Real jarg1_, int jarg2);
   public final static native void acb_mul_onei(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_);
