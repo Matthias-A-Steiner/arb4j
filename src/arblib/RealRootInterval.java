@@ -29,8 +29,8 @@ public class RealRootInterval extends
 
   public RealRootInterval swap(RealRootInterval u)
   {
-    RealRootInterval r = (RealRootInterval) super.swap(u);    
-    RootStatus status = u.status;
+    RealRootInterval r      = (RealRootInterval) super.swap(u);
+    RootStatus       status = u.status;
     u.status = r.status;
     r.status = status;
     return r;
@@ -147,16 +147,19 @@ public class RealRootInterval extends
       {
         System.out.println("second Bisection failed");
       }
-      out.println("After bisection 2 : " + this);
+      else
+      {
+        out.println("After bisection 2 : " + convergenceRegion );
+      }
 
     }
 
     out.println("highPrec=" + highPrec);
     convergenceRegion.getReal(v, highPrec);
 
-    System.out.println(" convergence region: " + convergenceRegion + " = " + " convergence region: " + v);
+    System.out.println(" " + "convergence region: " + convergenceRegion + " = " + " convergence region: " + v);
 
-    func.getNewtonConvergenceFactor(v, w, lowPrec, convergenceFactor);
+    func.getNewtonConvergenceFactor(v, w, highPrec, convergenceFactor);
     System.out.println("Newton convergence factor: " + convergenceFactor);
 
     if (refineRootNewton(func, v, getReal(w, highPrec), convergenceFactor, 10, highPrec) != RefinementResult.Success)
@@ -224,7 +227,7 @@ public class RealRootInterval extends
   /**
    * 
    * @param func
-   * @param v
+   * @param v tmp variable 
    * @param t
    * @param iters
    * @param prec
@@ -238,7 +241,7 @@ public class RealRootInterval extends
     try ( Real m = new Real(); RealRootInterval u = new RealRootInterval();)
     {
       m.setMid(getA());
-      
+
       asign = func.evaluate(m, 1, prec, v).sign();
 
       m.setMid(getB());
@@ -268,12 +271,12 @@ public class RealRootInterval extends
 
           if (msign == asign)
           {
-            out.println( "swapping " + this + " with " + u );
+            out.println("swapping " + this + " with " + u);
             swap(u);
           }
           else
           {
-            out.println( "swapping " + this + " with " + t );
+            out.println("swapping " + this + " with " + t);
             swap(t);
           }
         }

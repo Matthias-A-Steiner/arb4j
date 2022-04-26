@@ -231,7 +231,7 @@ public class Real implements AutoCloseable {
           sb.append(",\n ");
         }
       sb.append(String.format("%s",
-                              arblib.arb_get_str(get(i), digits, 0)));
+                              get(i)));
     }
     sb.append("]");
     return sb.toString();
