@@ -14,6 +14,20 @@ public class arblibJNI {
   public final static native void arb_set_arf(long jarg1, Real jarg1_, long jarg2, Float jarg2_);
   public final static native int arb_is_positive(long jarg1, Real jarg1_);
   public final static native int arb_is_negative(long jarg1, Real jarg1_);
+  public final static native void mag_sqrt(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_);
+  public final static native void mag_sqrt_lower(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_);
+  public final static native void mag_rsqrt(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_);
+  public final static native void mag_rsqrt_lower(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_);
+  public final static native void mag_root(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3);
+  public final static native void mag_hypot(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3, Magnitude jarg3_);
+  public final static native void mag_binpow_uiui(long jarg1, Magnitude jarg1_, long jarg2, long jarg3);
+  public final static native void mag_polylog_tail(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, int jarg3, long jarg4, long jarg5);
+  public final static native void mag_geom_series(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3);
+  public final static native void mag_hurwitz_zeta_uiui(long jarg1, Magnitude jarg1_, long jarg2, long jarg3);
+  public final static native void mag_set_ui(long jarg1, Magnitude jarg1_, long jarg2);
+  public final static native void mag_set_ui_lower(long jarg1, Magnitude jarg1_, long jarg2);
+  public final static native void mag_set(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_);
+  public final static native void mag_pow_ui_lower(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3);
   public final static native void arf_mul_2exp_si(long jarg1, Float jarg1_, long jarg2, Float jarg2_, int jarg3);
   public final static native void arf_interval_set(long jarg1, FloatInterval jarg1_, long jarg2, FloatInterval jarg2_);
   public final static native void arf_interval_get_arb(long jarg1, Real jarg1_, long jarg2, FloatInterval jarg2_, int jarg3);
@@ -25,6 +39,7 @@ public class arblibJNI {
   public final static native void acb_poly_evaluate2(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, ComplexPolynomial jarg3_, long jarg4, Complex jarg4_, int jarg5);
   public final static native void flint_free(long jarg1);
   public final static native void arb_mat_init(long jarg1, RealMatrix jarg1_, int jarg2, int jarg3);
+  public final static native void acb_get_mag(long jarg1, Magnitude jarg1_, long jarg2, Complex jarg2_);
   public final static native void acb_mat_init(long jarg1, ComplexMatrix jarg1_, int jarg2, int jarg3);
   public final static native void acb_dot(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, int jarg3, long jarg4, Complex jarg4_, int jarg5, long jarg6, Complex jarg6_, int jarg7, int jarg8, int jarg9);
   public final static native void acb_poly_interpolate_newton(long jarg1, ComplexPolynomial jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, int jarg4, int jarg5);

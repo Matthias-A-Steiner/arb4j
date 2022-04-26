@@ -312,6 +312,242 @@ SWIGEXPORT jint JNICALL Java_arblib_arblibJNI_arb_1is_1negative(JNIEnv *jenv, jc
 }
 
 
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1sqrt(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  mag_struct *arg1 ;
+  mag_struct *arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = *(mag_struct **)&jarg2; 
+  mag_sqrt(arg1,(mag_struct const (*))arg2);
+  
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1sqrt_1lower(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  mag_struct *arg1 ;
+  mag_struct *arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = *(mag_struct **)&jarg2; 
+  mag_sqrt_lower(arg1,(mag_struct const (*))arg2);
+  
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1rsqrt(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  mag_struct *arg1 ;
+  mag_struct *arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = *(mag_struct **)&jarg2; 
+  mag_rsqrt(arg1,(mag_struct const (*))arg2);
+  
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1rsqrt_1lower(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  mag_struct *arg1 ;
+  mag_struct *arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = *(mag_struct **)&jarg2; 
+  mag_rsqrt_lower(arg1,(mag_struct const (*))arg2);
+  
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1root(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3) {
+  mag_struct *arg1 ;
+  mag_struct *arg2 ;
+  unsigned long arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = *(mag_struct **)&jarg2; 
+  arg3 = (unsigned long)jarg3; 
+  mag_root(arg1,(mag_struct const (*))arg2,arg3);
+  
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1hypot(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
+  mag_struct *arg1 ;
+  mag_struct *arg2 ;
+  mag_struct *arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg3_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = *(mag_struct **)&jarg2; 
+  arg3 = *(mag_struct **)&jarg3; 
+  mag_hypot(arg1,(mag_struct const (*))arg2,(mag_struct const (*))arg3);
+  
+  
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1binpow_1uiui(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
+  mag_struct *arg1 ;
+  unsigned long arg2 ;
+  unsigned long arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = (unsigned long)jarg2; 
+  arg3 = (unsigned long)jarg3; 
+  mag_binpow_uiui(arg1,arg2,arg3);
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1polylog_1tail(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3, jlong jarg4, jlong jarg5) {
+  mag_struct *arg1 ;
+  mag_struct *arg2 ;
+  long arg3 ;
+  unsigned long arg4 ;
+  unsigned long arg5 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = *(mag_struct **)&jarg2; 
+  arg3 = (long)jarg3; 
+  arg4 = (unsigned long)jarg4; 
+  arg5 = (unsigned long)jarg5; 
+  mag_polylog_tail(arg1,(mag_struct const (*))arg2,arg3,arg4,arg5);
+  
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1geom_1series(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3) {
+  mag_struct *arg1 ;
+  mag_struct *arg2 ;
+  unsigned long arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = *(mag_struct **)&jarg2; 
+  arg3 = (unsigned long)jarg3; 
+  mag_geom_series(arg1,(mag_struct const (*))arg2,arg3);
+  
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1hurwitz_1zeta_1uiui(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
+  mag_struct *arg1 ;
+  unsigned long arg2 ;
+  unsigned long arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = (unsigned long)jarg2; 
+  arg3 = (unsigned long)jarg3; 
+  mag_hurwitz_zeta_uiui(arg1,arg2,arg3);
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1set_1ui(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  mag_struct *arg1 ;
+  unsigned long arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = (unsigned long)jarg2; 
+  mag_set_ui(arg1,arg2);
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1set_1ui_1lower(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  mag_struct *arg1 ;
+  unsigned long arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = (unsigned long)jarg2; 
+  mag_set_ui_lower(arg1,arg2);
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  mag_struct *arg1 ;
+  mag_struct *arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = *(mag_struct **)&jarg2; 
+  mag_set(arg1,(mag_struct const (*))arg2);
+  
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1pow_1ui_1lower(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3) {
+  mag_struct *arg1 ;
+  mag_struct *arg2 ;
+  unsigned long arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = *(mag_struct **)&jarg2; 
+  arg3 = (unsigned long)jarg3; 
+  mag_pow_ui_lower(arg1,(mag_struct const (*))arg2,arg3);
+  
+  
+}
+
+
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_arf_1mul_12exp_1si(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3) {
   arf_struct *arg1 ;
   arf_struct *arg2 ;
@@ -505,6 +741,22 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_arb_1mat_1init(JNIEnv *jenv, jclas
   arg2 = (long)jarg2; 
   arg3 = (long)jarg3; 
   arb_mat_init(arg1,arg2,arg3);
+  
+}
+
+
+SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1get_1mag(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  mag_struct *arg1 ;
+  acb_struct *arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(mag_struct **)&jarg1; 
+  arg2 = *(acb_struct **)&jarg2; 
+  acb_get_mag(arg1,(acb_struct const (*))arg2);
+  
   
 }
 

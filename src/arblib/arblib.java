@@ -29,6 +29,62 @@ public class arblib {
     return arblibJNI.arb_is_negative(Real.getCPtr(x), x);
   }
 
+  public static void mag_sqrt(Magnitude y, Magnitude x) {
+    arblibJNI.mag_sqrt(Magnitude.getCPtr(y), y, Magnitude.getCPtr(x), x);
+  }
+
+  public static void mag_sqrt_lower(Magnitude y, Magnitude x) {
+    arblibJNI.mag_sqrt_lower(Magnitude.getCPtr(y), y, Magnitude.getCPtr(x), x);
+  }
+
+  public static void mag_rsqrt(Magnitude y, Magnitude x) {
+    arblibJNI.mag_rsqrt(Magnitude.getCPtr(y), y, Magnitude.getCPtr(x), x);
+  }
+
+  public static void mag_rsqrt_lower(Magnitude y, Magnitude x) {
+    arblibJNI.mag_rsqrt_lower(Magnitude.getCPtr(y), y, Magnitude.getCPtr(x), x);
+  }
+
+  public static void mag_root(Magnitude y, Magnitude x, long n) {
+    arblibJNI.mag_root(Magnitude.getCPtr(y), y, Magnitude.getCPtr(x), x, n);
+  }
+
+  public static void mag_hypot(Magnitude z, Magnitude x, Magnitude y) {
+    arblibJNI.mag_hypot(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, Magnitude.getCPtr(y), y);
+  }
+
+  public static void mag_binpow_uiui(Magnitude b, long m, long n) {
+    arblibJNI.mag_binpow_uiui(Magnitude.getCPtr(b), b, m, n);
+  }
+
+  public static void mag_polylog_tail(Magnitude u, Magnitude z, int sigma, long d, long N) {
+    arblibJNI.mag_polylog_tail(Magnitude.getCPtr(u), u, Magnitude.getCPtr(z), z, sigma, d, N);
+  }
+
+  public static void mag_geom_series(Magnitude res, Magnitude x, long n) {
+    arblibJNI.mag_geom_series(Magnitude.getCPtr(res), res, Magnitude.getCPtr(x), x, n);
+  }
+
+  public static void mag_hurwitz_zeta_uiui(Magnitude res, long s, long a) {
+    arblibJNI.mag_hurwitz_zeta_uiui(Magnitude.getCPtr(res), res, s, a);
+  }
+
+  public static void mag_set_ui(Magnitude z, long x) {
+    arblibJNI.mag_set_ui(Magnitude.getCPtr(z), z, x);
+  }
+
+  public static void mag_set_ui_lower(Magnitude z, long x) {
+    arblibJNI.mag_set_ui_lower(Magnitude.getCPtr(z), z, x);
+  }
+
+  public static void mag_set(Magnitude x, Magnitude y) {
+    arblibJNI.mag_set(Magnitude.getCPtr(x), x, Magnitude.getCPtr(y), y);
+  }
+
+  public static void mag_pow_ui_lower(Magnitude z, Magnitude x, long e) {
+    arblibJNI.mag_pow_ui_lower(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, e);
+  }
+
   public static void arf_mul_2exp_si(Float y, Float x, int e) {
     arblibJNI.arf_mul_2exp_si(Float.getCPtr(y), y, Float.getCPtr(x), x, e);
   }
@@ -71,6 +127,10 @@ public class arblib {
 
   public static void arb_mat_init(RealMatrix mat, int r, int c) {
     arblibJNI.arb_mat_init(RealMatrix.getCPtr(mat), mat, r, c);
+  }
+
+  public static void acb_get_mag(Magnitude u, Complex z) {
+    arblibJNI.acb_get_mag(Magnitude.getCPtr(u), u, Complex.getCPtr(z), z);
   }
 
   public static void acb_mat_init(ComplexMatrix mat, int r, int c) {

@@ -8,6 +8,31 @@ int arb_is_positive(const arb_t x);
 
 int arb_is_negative(const arb_t x);
 
+void mag_sqrt(mag_t y, const mag_t x);
+void mag_sqrt_lower(mag_t y, const mag_t x);
+void mag_rsqrt(mag_t y, const mag_t x);
+void mag_rsqrt_lower(mag_t y, const mag_t x);
+
+void mag_root(mag_t y, const mag_t x, ulong n);
+
+void mag_hypot(mag_t z, const mag_t x, const mag_t y);
+
+void mag_binpow_uiui(mag_t b, ulong m, ulong n);
+
+void mag_polylog_tail(mag_t u, const mag_t z, slong sigma, ulong d, ulong N);
+
+void mag_geom_series(mag_t res, const mag_t x, ulong n);
+
+void mag_hurwitz_zeta_uiui(mag_t res, ulong s, ulong a);
+
+void mag_set_ui(mag_t z, ulong x);
+void mag_set_ui_lower(mag_t z, ulong x);
+
+
+void mag_set(mag_t x, const mag_t y);
+
+void mag_pow_ui_lower(mag_t z, const mag_t x, ulong e);
+
 void arf_mul_2exp_si(arf_t y, const arf_t x, slong e);
 
 void arf_interval_set(arf_interval_t v, const arf_interval_t u);
@@ -29,6 +54,8 @@ void flint_free(void * ptr);
                             
 void arb_mat_init(arb_mat_t mat, slong r, slong c);
   
+  void acb_get_mag(mag_t u, const acb_t z);
+
  void acb_mat_init(acb_mat_t mat, slong r, slong c);
  
 void acb_dot(acb_t res, const acb_t initial, int subtract, acb_srcptr x, slong xstep, acb_srcptr y, slong ystep, slong len, slong prec);
