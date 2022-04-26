@@ -9,6 +9,9 @@
 #define fmpr_rnd_t int
 #define arf_rnd_t int
 
+typedef mag_struct mag_t[1];
+typedef mag_struct * mag_ptr;
+
 %typemap(in) slong = long;
 
 SWIG_JAVABODY_PROXY(public, public, SWIGTYPE)
@@ -30,7 +33,6 @@ SWIG_JAVABODY_TYPEWRAPPER(public, public, public, SWIGTYPE)
 %rename (ComplexMatrix) acb_mat_struct;
 %rename (RealMatrix) arb_mat_struct;
 %rename (FoundRoots) root_struct;
-
 
 %include "Magnitude.i"
 
