@@ -342,6 +342,22 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_mag_1sub(JNIEnv *jenv, jclass jcls
 }
 
 
+SWIGEXPORT jdouble JNICALL Java_arblib_arblibJNI_mag_1get_1d(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  mag_struct *arg1 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(mag_struct **)&jarg1; 
+  result = (double)mag_get_d((mag_struct const (*))arg1);
+  jresult = (jdouble)result; 
+  
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1zero(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   acb_struct *arg1 ;
   

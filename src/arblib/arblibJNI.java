@@ -15,6 +15,7 @@ public class arblibJNI {
   public final static native void mag_div(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3, Magnitude jarg3_);
   public final static native void mag_mul_ui_lower(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3);
   public final static native void mag_sub(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3, Magnitude jarg3_);
+  public final static native double mag_get_d(long jarg1, Magnitude jarg1_);
   public final static native void acb_zero(long jarg1, Complex jarg1_);
   public final static native void acb_sub(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, int jarg4);
   public final static native void acb_addmul_arb(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, Real jarg3_, int jarg4);

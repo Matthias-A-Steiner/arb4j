@@ -169,7 +169,7 @@ import static arblib.Constants.*;
   {
     return new Real(swigCPtr + index * Real.BYTES, false);  
   } 
-  public static final int digits = 75;
+  public static final int digits = 30;
   
   public String toFixedString()
   {
@@ -192,7 +192,7 @@ import static arblib.Constants.*;
   {
     if ( dim == 1 )
     {
-      return arblib.arb_get_str(this, digits, 0);
+      return arblib.arb_get_str(this, digits, 1);
     }
     else
     {

@@ -33,6 +33,10 @@ public class arblib {
     arblibJNI.mag_sub(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, Magnitude.getCPtr(y), y);
   }
 
+  public static double mag_get_d(Magnitude z) {
+    return arblibJNI.mag_get_d(Magnitude.getCPtr(z), z);
+  }
+
   public static void acb_zero(Complex z) {
     arblibJNI.acb_zero(Complex.getCPtr(z), z);
   }

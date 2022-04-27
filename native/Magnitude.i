@@ -10,6 +10,13 @@ import static arblib.Constants.*;
 %typemap(javacode) mag_struct %{
 
   @Override
+  public String toString()
+  {
+    return Double.valueOf(doubleValue()).toString();
+  }
+
+
+  @Override
   public void close()
   { 
     delete();
@@ -19,6 +26,11 @@ import static arblib.Constants.*;
   public int compareTo( Magnitude other )
   {
     return arblib.mag_cmp( this, other );
+  }
+  
+  public double doubleValue()
+  {
+    return arblib.mag_get_d(this);
   }
   
   public Magnitude pow( long y, Magnitude res )

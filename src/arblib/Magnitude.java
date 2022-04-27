@@ -36,6 +36,13 @@ public class Magnitude implements AutoCloseable,Comparable<Magnitude> {
 
 
   @Override
+  public String toString()
+  {
+    return Double.valueOf(doubleValue()).toString();
+  }
+
+
+  @Override
   public void close()
   { 
     delete();
@@ -45,6 +52,11 @@ public class Magnitude implements AutoCloseable,Comparable<Magnitude> {
   public int compareTo( Magnitude other )
   {
     return arblib.mag_cmp( this, other );
+  }
+  
+  public double doubleValue()
+  {
+    return arblib.mag_get_d(this);
   }
   
   public Magnitude pow( long y, Magnitude res )

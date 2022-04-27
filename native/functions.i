@@ -10,6 +10,8 @@ void mag_mul_ui_lower(mag_t z, const mag_t x, ulong y);
 
 void mag_sub(mag_t z, const mag_t x, const mag_t y);
 
+double mag_get_d(const mag_t z);
+
 void acb_zero(acb_t z);
 
 void acb_sub(acb_t z, const acb_t x, const acb_t y, slong prec);

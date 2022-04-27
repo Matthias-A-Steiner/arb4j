@@ -195,7 +195,7 @@ public class Real implements AutoCloseable {
   {
     return new Real(swigCPtr + index * Real.BYTES, false);  
   } 
-  public static final int digits = 75;
+  public static final int digits = 30;
   
   public String toFixedString()
   {
@@ -218,7 +218,7 @@ public class Real implements AutoCloseable {
   {
     if ( dim == 1 )
     {
-      return arblib.arb_get_str(this, digits, 0);
+      return arblib.arb_get_str(this, digits, 1);
     }
     else
     {
