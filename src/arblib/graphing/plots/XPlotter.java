@@ -29,7 +29,7 @@ public class XPlotter extends
     /**
      * TODO: animate this
      */
-    XPlotter plotter = new XPlotter(2);
+    XPlotter plotter = new XPlotter(1);
     plotter.plot();
     plotter.saveToFile();
   }
@@ -39,9 +39,9 @@ public class XPlotter extends
     super(new Dimension(2500,
                         1250),
           new Rectangle2D.Double(-10,
-                                 -7.5*1.5,
+                                 -7.5*2.5,
                                  80,
-                                 15*1.5),
+                                 15*2.5),
           new XFunction(vscale));
 
     color_mode        = 7;
