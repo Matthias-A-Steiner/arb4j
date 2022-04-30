@@ -27,16 +27,9 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>com.github.zakgof</groupId>
-			<artifactId>velvet-video</artifactId>
-			<version>0.5.2</version>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>com.github.zakgof</groupId>
-			<artifactId>velvet-video-natives</artifactId>
-			<version>0.2.8.full</version>
-			<type>pom</type>
+			<groupId>io.humble</groupId>
+			<artifactId>humble-video-all</artifactId>
+			<version>0.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.hageldave.jplotter</groupId>
@@ -52,11 +45,6 @@
 			<groupId>dnl.utils</groupId>
 			<artifactId>j-text-utils</artifactId>
 			<version>0.3.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.madgag</groupId>
-			<artifactId>animated-gif-lib</artifactId>
-			<version>1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jogamp.jogl</groupId>
