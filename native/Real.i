@@ -6,6 +6,8 @@
 import java.util.concurrent.TimeUnit;
 
 import static arblib.Constants.*;
+import static arblib.arblib.*;
+
 %}
 
 %typemap(javacode) arb_struct %{
@@ -322,5 +324,59 @@ import static arblib.Constants.*;
   {
     return arblib.arb_contains_zero(this) != 0;
   }
+  
+  public Real set(FloatInterval interval, int prec)
+  {
+    Float a = interval.getA();
+    Float b = interval.getB();
+
+    /* [-inf, -inf] or [+inf, +inf] */
+    if (arf_is_inf(a) != 0 && arf_equal(a, b) != 0)
+    {
+      arf_set(getMid(), a);
+      mag_zero(getRad());
+      return this;
+    }
+
+    /* any nan -> [nan +/- inf] */
+    if (arf_is_nan(a) != 0 || arf_is_nan(b) != 0)
+    {
+      arb_indeterminate(this);
+      return this;
+    }
+
+    /* [-inf, x] or [x, +inf] = [+/- inf] */
+    if (arf_is_neg_inf(a) != 0 || arf_is_pos_inf(b) != 0)
+    {
+      arf_zero(getMid());
+      mag_inf(getRad());
+      return this;
+    }
+
+    try ( Float t = new Float();)
+    {
+      /* [(a + b) +/- (b - a)] / 2 */
+      arf_sub(t, b, a, MAG_BITS, ARF_RND_UP);
+
+      if (arf_sgn(t) < 0)
+      {
+        throw new IllegalArgumentException("endpoints are out of order");
+      }
+
+      arf_get_mag(getRad(), t);
+
+      int inexact = arf_add(getMid(), a, b, prec, ARB_RND);
+      if (inexact != 0)
+      {
+        Magnitude xrad = getRad();
+        arf_mag_add_ulp(xrad, xrad, getMid(), prec);
+      }
+
+      arb_mul_2exp_si(this, this, -1);
+
+      return this;
+    }
+  }
+    
 %};
 

@@ -167,7 +167,7 @@ public class ComplexFunctionAnimator
   public static void main(String[] args) throws InterruptedException, IOException, AWTException
   {
 
-    recordScreen("hmm.avi", "avi", "something", 30, 5);
+    recordScreen("hmm.avi", "avi", "something", 30, 5 );
   }
 
   /**

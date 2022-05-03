@@ -9,6 +9,34 @@
 package arblib;
 
 public class arblib {
+  public static void arf_mag_add_ulp(Magnitude z, Magnitude x, Float y, int prec) {
+    arblibJNI.arf_mag_add_ulp(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, Float.getCPtr(y), y, prec);
+  }
+
+  public static int arf_is_pos_inf(Float x) {
+    return arblibJNI.arf_is_pos_inf(Float.getCPtr(x), x);
+  }
+
+  public static int arf_is_neg_inf(Float x) {
+    return arblibJNI.arf_is_neg_inf(Float.getCPtr(x), x);
+  }
+
+  public static int arf_sgn(Float x) {
+    return arblibJNI.arf_sgn(Float.getCPtr(x), x);
+  }
+
+  public static int arf_is_nan(Float x) {
+    return arblibJNI.arf_is_nan(Float.getCPtr(x), x);
+  }
+
+  public static int arf_equal(Float x, Float y) {
+    return arblibJNI.arf_equal(Float.getCPtr(x), x, Float.getCPtr(y), y);
+  }
+
+  public static int arf_is_inf(Float x) {
+    return arblibJNI.arf_is_inf(Float.getCPtr(x), x);
+  }
+
   public static void arb_get_mag(Magnitude z, Real x) {
     arblibJNI.arb_get_mag(Magnitude.getCPtr(z), z, Real.getCPtr(x), x);
   }

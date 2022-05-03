@@ -1,5 +1,7 @@
 package arblib;
 
+import static java.lang.Math.pow;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -9,6 +11,18 @@ import junit.framework.TestCase;
 public class ComplexTest extends
                          TestCase
 {
+  static double ε = pow(10, -8);
+
+  public static void testNormalize()
+  {
+    Complex r = new Complex().set(-0.8790040702, 4.0771861722);
+    Complex s = r.normalize(new Complex().init());
+    assertEquals(4.170862649, r.norm(), ε);
+    assertEquals(0.9775402634, s.getImag().doubleValue(), ε);
+    assertEquals(-0.2107487454, s.getReal().doubleValue(), ε);
+
+  }
+
   public static void testNewtonInterpolation()
   {
     Complex    x       = Complex.newVector(5);

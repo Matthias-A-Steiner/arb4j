@@ -9,6 +9,13 @@
 package arblib;
 
 public class arblibJNI {
+  public final static native void arf_mag_add_ulp(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3, Float jarg3_, int jarg4);
+  public final static native int arf_is_pos_inf(long jarg1, Float jarg1_);
+  public final static native int arf_is_neg_inf(long jarg1, Float jarg1_);
+  public final static native int arf_sgn(long jarg1, Float jarg1_);
+  public final static native int arf_is_nan(long jarg1, Float jarg1_);
+  public final static native int arf_equal(long jarg1, Float jarg1_, long jarg2, Float jarg2_);
+  public final static native int arf_is_inf(long jarg1, Float jarg1_);
   public final static native void arb_get_mag(long jarg1, Magnitude jarg1_, long jarg2, Real jarg2_);
   public final static native void mag_sub_lower(long jarg1, Magnitude jarg1_, long jarg2, Magnitude jarg2_, long jarg3, Magnitude jarg3_);
   public final static native void arb_add_error_mag(long jarg1, Real jarg1_, long jarg2, Magnitude jarg2_);
