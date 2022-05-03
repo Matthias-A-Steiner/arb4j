@@ -30,7 +30,7 @@ public interface RealFunction
          calculateNewtonStep(Real xnew, Real x, Real convergenceRegion, Float convergenceFactor, int prec)
   {
     try ( Magnitude err = new Magnitude(); Magnitude v = new Magnitude(); Real t = new Real();
-          Real u = Real.newArray(2))
+          Real u = Real.newVector(2))
     {
       x.getRad().pow(2, err);
       convergenceFactor.getMagnitude(v).mul(err, err);

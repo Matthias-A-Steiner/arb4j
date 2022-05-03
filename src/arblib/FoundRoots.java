@@ -26,7 +26,7 @@ public class FoundRoots extends
   public void refine(RealFunction func, int prec, int digits)
   {
     System.out.println("digits=" + digits);
-    try ( Real w = Real.newArray(3); Real v = new Real(); Real u = new Real();
+    try ( Real w = Real.newVector(3); Real v = new Real(); Real u = new Real();
           RealRootInterval convergenceRegion = new RealRootInterval(); Float convergenceFactor = new Float())
     {
       for (RealRootInterval rootInterval : this)

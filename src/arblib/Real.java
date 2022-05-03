@@ -89,7 +89,7 @@ public class Real implements AutoCloseable {
     return dim;
   }
  
-  public static Real newArray( int dim )
+  public static Real newVector( int dim )
   {
     Real array = arblib._arb_vec_init(dim);    
     array.dim = dim;

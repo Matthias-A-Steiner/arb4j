@@ -78,7 +78,7 @@ public class RealRootInterval extends
   public RootStatus determineRootStatus(FoundRoots found, RealFunction func, int asign, int bsign, int prec)
   {
     status = RootStatus.RootUnknown;
-    try ( Real t = Real.newArray(2); Real x = new Real())
+    try ( Real t = Real.newVector(2); Real x = new Real())
     {
       func.evaluate(getReal(x, prec), 1, prec, t);
       found.evals++;

@@ -12,6 +12,8 @@ import arblib.functions.ZFunction;
 public class RealFunctionTest
 {
 
+  private static final int prec = 256;
+
   @Test
   public void testLocateRootsSine()
   {
@@ -45,7 +47,7 @@ public class RealFunctionTest
     assertEquals(14.13125, firstRoot.getMid().doubleValue(), pow(10, -30));
     assertEquals(first.status, FloatInterval.RootStatus.RootLocated);
 
-    roots.refine(f, prec, 40); 
+    roots.refine(f, prec, 40);
 
 //    roots = f.locateRoots(roots.get(0), 20, 5000, 1, 256);
 //    System.out.println("(sub)intervals=");
@@ -58,11 +60,12 @@ public class RealFunctionTest
   @Test
   public void testNewtonConvergenceFactor()
   {
-    RealFunction f      = new SineFunction();
-    Real         jet    = f.evaluate(new Real().assign(0.7), 3, 256, Real.newArray(3));
+    RealFunction  f        = new SineFunction();
+    Real          x        = new Real().assign(0.7);
+    Real          jet      = f.evaluate(x, 3, prec, Real.newVector(3));
     FloatInterval interval = new FloatInterval(0.2,
-                                            0.3);
-    Real         region = interval.getReal(new Real(), 256);
+                                               0.3);
+    Real          region   = interval.getReal(new Real(), 256);
     System.out.println("region=" + region);
     Float C = f.getNewtonConvergenceFactor(region, jet, 256, new Float());
     System.out.println("C=" + C);
