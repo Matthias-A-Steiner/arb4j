@@ -73,6 +73,14 @@ import java.util.ArrayList;
    return this;
   }
   
+  public FloatInterval(Float left, Float right)
+  {
+    this();
+    init();
+    getA().assign(left);
+    getB().assign(right);
+  }
+  
   public FloatInterval set(FloatInterval interval)
   {
     setA(interval.getA());

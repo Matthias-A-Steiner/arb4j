@@ -60,8 +60,9 @@ public class RealFunctionTest
   {
     RealFunction f      = new SineFunction();
     Real         jet    = f.evaluate(new Real().assign(0.7), 3, 256, Real.newArray(3));
-    Real         region = new FloatInterval(0.2,
-                                            0.3).getReal(new Real(), 256);
+    FloatInterval interval = new FloatInterval(0.2,
+                                            0.3);
+    Real         region = interval.getReal(new Real(), 256);
     System.out.println("region=" + region);
     Float C = f.getNewtonConvergenceFactor(region, jet, 256, new Float());
     System.out.println("C=" + C);
