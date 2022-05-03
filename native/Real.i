@@ -194,7 +194,8 @@ import static arblib.arblib.*;
   {
     if ( dim == 1 )
     {
-      return arblib.arb_get_str(this, digits, 1);
+      return getMid().toString(Math.max(1, digits)) + " +/- " + getRad().toString(5);    
+      //return arblib.arb_get_str(this, digits, 1);
     }
     else
     {

@@ -1,4 +1,8 @@
+void arf_set_mag(arf_t y, const mag_t x);
+
 void arf_mag_add_ulp(mag_t z, const mag_t x, const arf_t y, slong prec);
+
+void arb_printd(const arb_t x, slong digits);
 
 int arf_is_pos_inf(const arf_t x);
 

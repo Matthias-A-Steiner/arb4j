@@ -27,6 +27,12 @@ public class RealRootInterval extends
   {
   }
 
+  public RealRootInterval(Float left, Float right)
+  {
+    super(left,
+          right);
+  }
+
   public RealRootInterval swap(RealRootInterval u)
   {
     RealRootInterval r      = (RealRootInterval) super.swap(u);
@@ -149,7 +155,7 @@ public class RealRootInterval extends
       }
       else
       {
-        out.println("After bisection 2 : " + convergenceRegion );
+        out.println("After bisection 2 : " + convergenceRegion);
       }
 
     }
@@ -227,7 +233,7 @@ public class RealRootInterval extends
   /**
    * 
    * @param func
-   * @param v tmp variable 
+   * @param v     tmp variable
    * @param t
    * @param iters
    * @param prec

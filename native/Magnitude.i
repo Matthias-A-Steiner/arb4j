@@ -9,10 +9,23 @@ import static arblib.Constants.*;
 
 %typemap(javacode) mag_struct %{
 
+  public String toString( int digits )
+  {
+    try ( Float floatMag = new Float())
+    {
+      arblib.arf_set_mag(floatMag, this);
+      return floatMag.toString(digits);
+    }
+  }
+  
   @Override
   public String toString()
   {
-    return Double.valueOf(doubleValue()).toString();
+    try ( Float floatMag = new Float())
+    {
+      arblib.arf_set_mag(floatMag, this);
+      return floatMag.toString();
+    }
   }
 
 

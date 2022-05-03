@@ -18,6 +18,11 @@ import static arblib.Constants.*;
 	delete();    
   }
   
+  public String toString(int digits)
+  {
+    return arblib.arf_get_str(this,digits);
+  }
+  
   public Float zero()
   {
     arblib.arf_zero( this );

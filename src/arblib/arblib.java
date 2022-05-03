@@ -9,8 +9,16 @@
 package arblib;
 
 public class arblib {
+  public static void arf_set_mag(Float y, Magnitude x) {
+    arblibJNI.arf_set_mag(Float.getCPtr(y), y, Magnitude.getCPtr(x), x);
+  }
+
   public static void arf_mag_add_ulp(Magnitude z, Magnitude x, Float y, int prec) {
     arblibJNI.arf_mag_add_ulp(Magnitude.getCPtr(z), z, Magnitude.getCPtr(x), x, Float.getCPtr(y), y, prec);
+  }
+
+  public static void arb_printd(Real x, int digits) {
+    arblibJNI.arb_printd(Real.getCPtr(x), x, digits);
   }
 
   public static int arf_is_pos_inf(Float x) {
