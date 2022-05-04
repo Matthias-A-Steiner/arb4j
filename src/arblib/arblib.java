@@ -9,6 +9,10 @@
 package arblib;
 
 public class arblib {
+  public static int arb_allocated_bytes(Real x) {
+    return arblibJNI.arb_allocated_bytes(Real.getCPtr(x), x);
+  }
+
   public static void arf_set_mag(Float y, Magnitude x) {
     arblibJNI.arf_set_mag(Float.getCPtr(y), y, Magnitude.getCPtr(x), x);
   }

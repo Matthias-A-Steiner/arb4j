@@ -13,7 +13,14 @@ import static arblib.arblib.*;
 %typemap(javacode) arb_struct %{
  static { System.loadLibrary( "arblib" ); }
 
-
+  /**
+   * @return {@link arblib#arb_allocated_bytes(Real)}
+   */
+  public int getAllocatedBytes()
+  {
+    return arblib.arb_allocated_bytes(this);
+  }
+  
   public Real negate(Real res)
   {
     arblib.arb_neg(res, this);

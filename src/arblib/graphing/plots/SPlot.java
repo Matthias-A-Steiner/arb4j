@@ -18,7 +18,6 @@ import arblib.graphing.ComplexFunctionPlotter;
 public class SPlot
 {
 
-  private static JFrame frame;
 
   static
   {
@@ -37,7 +36,6 @@ public class SPlot
     Dimension          screen = new Dimension(2000,
                                               1000);
 
-    frame = new JFrame();
 
     final int              prec          = 512;
 
@@ -62,15 +60,9 @@ public class SPlot
 
                                            }
                                          };
-    frame.setTitle("Field of Forces corresponding to Iterated Newton map of S(t)=tanh(ln(1-t^2))");
 
     plotter.color_mode = 0;
-    frame              = new JFrame();
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(screen.width, screen.height);
-    frame.setVisible(true);
-    frame.setContentPane(new JScrollPane(plotter));
-    frame.pack();
+
     plotter.displayMode = Part.Blend;
     plotter.plot();
   }

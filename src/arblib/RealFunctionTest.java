@@ -65,6 +65,8 @@ public class RealFunctionTest
     Real          jet      = f.evaluate(x, 3, prec, Real.newVector(3));
     FloatInterval interval = new FloatInterval(0.2,
                                                0.3);
+    out.println( "real.allocatedBytes=" + jet.getAllocatedBytes() );
+    System.out.println("interval=" + interval);
     Real          region   = interval.getReal(new Real(), 256);
     System.out.println("region=" + region);
     Float C = f.getNewtonConvergenceFactor(region, jet, 256, new Float());

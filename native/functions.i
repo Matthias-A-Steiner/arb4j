@@ -1,3 +1,5 @@
+slong arb_allocated_bytes(const arb_t x);
+
 void arf_set_mag(arf_t y, const mag_t x);
 
 void arf_mag_add_ulp(mag_t z, const mag_t x, const arf_t y, slong prec);
