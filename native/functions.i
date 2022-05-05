@@ -301,8 +301,6 @@ int arb_contains_zero(const arb_t x);
 
  void acb_sub(acb_t z, const acb_t x, const acb_t y, slong prec);
 
- void acb_mul_fmpz(acb_t z, const acb_t x, const fmpz_t y, slong prec);
-
  arb_ptr _arb_vec_init(slong n);
  void _arb_vec_clear(arb_ptr v, slong n);
  void acb_mul_onei(acb_t z, const acb_t x);

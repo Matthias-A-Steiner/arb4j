@@ -586,10 +586,6 @@ public class arblib {
     arblibJNI.acb_div(Complex.getCPtr(z), z, Complex.getCPtr(x), x, Complex.getCPtr(y), y, prec);
   }
 
-  public static void acb_mul_fmpz(Complex z, Complex x, SWIGTYPE_p_fmpz y, int prec) {
-    arblibJNI.acb_mul_fmpz(Complex.getCPtr(z), z, Complex.getCPtr(x), x, SWIGTYPE_p_fmpz.getCPtr(y), prec);
-  }
-
   public static void _arb_vec_clear(Real v, int n) {
     arblibJNI._arb_vec_clear(Real.getCPtr(v), v, n);
   }

@@ -2889,27 +2889,6 @@ SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1div(JNIEnv *jenv, jclass jcls
 }
 
 
-SWIGEXPORT void JNICALL Java_arblib_arblibJNI_acb_1mul_1fmpz(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jint jarg4) {
-  acb_struct *arg1 ;
-  acb_struct *arg2 ;
-  fmpz *arg3 ;
-  long arg4 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  (void)jarg2_;
-  arg1 = *(acb_struct **)&jarg1; 
-  arg2 = *(acb_struct **)&jarg2; 
-  arg3 = *(fmpz **)&jarg3; 
-  arg4 = (long)jarg4; 
-  acb_mul_fmpz(arg1,(acb_struct const (*))arg2,(fmpz const (*))arg3,arg4);
-  
-  
-  
-}
-
-
 SWIGEXPORT void JNICALL Java_arblib_arblibJNI__1arb_1vec_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   arb_ptr arg1 = (arb_ptr) 0 ;
   long arg2 ;

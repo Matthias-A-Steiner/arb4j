@@ -152,7 +152,6 @@ public class arblibJNI {
   public final static native void acb_add(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, int jarg4);
   public final static native void acb_sub_ui(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, int jarg4);
   public final static native void acb_div(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, Complex jarg3_, int jarg4);
-  public final static native void acb_mul_fmpz(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_, long jarg3, int jarg4);
   public final static native void _arb_vec_clear(long jarg1, Real jarg1_, int jarg2);
   public final static native void acb_mul_onei(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_);
   public final static native void acb_div_onei(long jarg1, Complex jarg1_, long jarg2, Complex jarg2_);

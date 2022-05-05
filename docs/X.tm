@@ -864,7 +864,9 @@
     TODO: this has nice symmetric factorized form, see (<reference|NS>)
   </definition>
 
-  <section|The Spectral Theorem>
+  <section|Appendix>
+
+  <subsection|The Spectral Theorem>
 
   <\theorem>
     The Spectral Theorem
@@ -1001,8 +1003,9 @@
     <associate|auto-31|<tuple|3.3.2|10>>
     <associate|auto-32|<tuple|4|10>>
     <associate|auto-33|<tuple|5|10>>
-    <associate|auto-34|<tuple|47|11>>
-    <associate|auto-35|<tuple|10|11>>
+    <associate|auto-34|<tuple|5.1|11>>
+    <associate|auto-35|<tuple|47|11>>
+    <associate|auto-36|<tuple|10|?>>
     <associate|auto-4|<tuple|1.2|3>>
     <associate|auto-5|<tuple|transfer operator|3>>
     <associate|auto-6|<tuple|1.3|3>>
