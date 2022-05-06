@@ -44,7 +44,7 @@ public class XPlotter extends
                                  15*2.5),
           new XFunction(vscale));
 
-    color_mode        = 7;
+    color_mode        = 5;
     bilinearSmoothing = false;
     displayMode       = Part.Blend;
 

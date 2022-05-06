@@ -438,7 +438,7 @@ public class Real implements AutoCloseable {
   
   public Real pow(int i, Real r)
   {
-    arblib.arb_pow_ui(r, r, i, i);
+    arblib.arb_pow_ui(r, this, i, i);
     return r;
   }
   

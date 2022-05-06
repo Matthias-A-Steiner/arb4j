@@ -167,7 +167,7 @@ public interface RealFunction
     return roots;
   }
 
-  boolean verbose = true;
+  boolean verbose = false;
 
   public default void recursivelyLocateRoots(FoundRoots found,
                                              RealRootInterval root,
