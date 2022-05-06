@@ -599,7 +599,30 @@ public class Complex implements AutoCloseable,Iterable<Complex>,Serializable {
       return imag = getImagObj();
     }
   }
-   
+
+  /**
+   * 
+   * @param prec
+   * @param r
+   * @return the multiplicative inverse of r 
+   */
+  public Complex inv( int prec, Complex r )
+  {
+    arblib.acb_inv(r, this, prec);
+    return r;
+  }
+
+  /**
+   * The secant of r is the multiplicative inverse of the cosine of r
+   * 
+   * @param prec
+   * @param r
+   * @return
+   */
+  public Complex sec(int prec, Complex r)
+  {
+    return cos(prec, r).inv(prec, r);
+  }   
 
   public void setRealObj(Real value) {
     arblibJNI.Complex_realObj_set(swigCPtr, this, Real.getCPtr(value), value);

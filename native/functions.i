@@ -1,3 +1,10 @@
+
+void arb_tan(arb_t y, const arb_t x, slong prec);
+
+void acb_inv(acb_t res, const acb_t z, slong prec);
+
+void arb_inv(arb_t z, const arb_t x, slong prec);
+ 
 slong arb_allocated_bytes(const arb_t x);
 
 void arf_set_mag(arf_t y, const mag_t x);

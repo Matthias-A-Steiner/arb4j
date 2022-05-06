@@ -17,15 +17,17 @@ import arblib.Real;
 /**
  * A parameterization of the Lemniscate of Bernoulli with parameter 2 where t
  * ranges over -Pi to Pi
- *
+ * 
+ * TODO: add scale factor
+ * 
  * @author crow
  */
 public class Lemniscate implements
-                        ComplexFunction,
-                        AutoCloseable
+                        ComplexFunction
 {
+  private static final Complex ONE = Constants.COMPLEX_ONE;
   private static final Complex i     = Constants.IMAGINARY_UNIT;
-  Real                         sqrt2 = new Real().assign(2).sqrt(256);
+  private static Real                         sqrt2 = new Real().assign(2).sqrt(256);
 
   /**
    * @param z
@@ -41,7 +43,7 @@ public class Lemniscate implements
     assert order <= 2;
 
     try ( Complex cos = z.cos(prec, new Complex()); Complex sin = z.sin(prec, new Complex());
-          Complex tmp = new Complex(); Complex divisor = Constants.COMPLEX_ONE.sub(sin.mul(i, tmp), prec, tmp);
+          Complex tmp = new Complex(); Complex divisor = ONE.sub(sin.mul(i, tmp), prec, tmp);
           Complex numerator = sqrt2.mul(cos, prec, new Complex()))
     {
       numerator.div(divisor, prec, w);
@@ -54,12 +56,6 @@ public class Lemniscate implements
 
     }
     return w;
-  }
-
-  @Override
-  public void close() throws Exception
-  {
-    sqrt2.delete();
   }
 
 }

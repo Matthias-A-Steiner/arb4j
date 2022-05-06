@@ -385,6 +385,43 @@ import static arblib.arblib.*;
       return this;
     }
   }
-    
+
+  /**
+   * 
+   * @param prec
+   * @param r
+   * @return the multiplicative inverse of r 
+   */
+  public Real inv( int prec, Real r )
+  {
+    arblib.arb_inv(r, this, prec);
+    return r;
+  }
+
+  /**
+   * The secant of r is the multiplicative inverse of the cosine of r
+   * 
+   * @param prec
+   * @param r
+   * @return
+   */
+  public Real sec(int prec, Real r)
+  {
+    return cos(prec, r).inv(prec, r);
+  }
+  
+  public Real pow(int i, Real r)
+  {
+    arblib.arb_pow_ui(r, r, i, i);
+    return r;
+  }
+  
+  public Real tan(int prec, Real r)
+  {
+    arblib.arb_tan(r, this, prec);
+    return r;
+  }
+  
+  
 %};
 

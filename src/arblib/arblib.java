@@ -9,6 +9,18 @@
 package arblib;
 
 public class arblib {
+  public static void arb_tan(Real y, Real x, int prec) {
+    arblibJNI.arb_tan(Real.getCPtr(y), y, Real.getCPtr(x), x, prec);
+  }
+
+  public static void acb_inv(Complex res, Complex z, int prec) {
+    arblibJNI.acb_inv(Complex.getCPtr(res), res, Complex.getCPtr(z), z, prec);
+  }
+
+  public static void arb_inv(Real z, Real x, int prec) {
+    arblibJNI.arb_inv(Real.getCPtr(z), z, Real.getCPtr(x), x, prec);
+  }
+
   public static int arb_allocated_bytes(Real x) {
     return arblibJNI.arb_allocated_bytes(Real.getCPtr(x), x);
   }
