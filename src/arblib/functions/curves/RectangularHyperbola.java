@@ -16,7 +16,7 @@ import arblib.Real;
 
 /**
  * A parameterization of a rectangular unit hyperbola where t ranges over -Pi to
- * Pi
+ * Pi: sec(t)+itan(t)
  *
  *TODO: add scale factor
  *
