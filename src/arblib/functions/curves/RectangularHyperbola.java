@@ -49,7 +49,7 @@ public class RectangularHyperbola implements
       {
         Complex dw = w.get(1);
         dw.getReal().set(r.mul(s, s));
-        dw.getImag().set(r.pow(2, r));
+        dw.getImag().set(r.mul(r, r));
       }
 
     }
