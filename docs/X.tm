@@ -6,7 +6,7 @@
   <doc-data|<doc-title|<with|font-base-size|8|Complex Dynamics of The
   Hyperbolic Tangent of The Logarithm Of One Minus The Square of The Hardy Z
   Function>>|<doc-author|>|<doc-author|<\author-data|<author-name|Stephen
-  Crowley \<less\>stephencrowley214@gmai.com\<gtr\> >|<\author-affiliation>
+  Crowley \<less\>stephencrowley214@gmail.com\<gtr\> >|<\author-affiliation>
     <date>
   </author-affiliation>>
     \;
@@ -121,17 +121,21 @@
     > <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-32><vspace|0.5fn>
 
-    <vspace*|1fn><with|font-series|bold|math-font-series|bold|5<space|2spc>The
-    Spectral Theorem> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <vspace*|1fn><with|font-series|bold|math-font-series|bold|5<space|2spc>Appendix>
+    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
     <no-break><pageref|auto-33><vspace|0.5fn>
+
+    <with|par-left|1tab|5.1<space|2spc>The Spectral Theorem
+    <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+    <no-break><pageref|auto-34>>
 
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|Bibliography>
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-34><vspace|0.5fn>
+    <no-break><pageref|auto-35><vspace|0.5fn>
 
     <vspace*|1fn><with|font-series|bold|math-font-series|bold|Index>
     <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-    <no-break><pageref|auto-35><vspace|0.5fn>
+    <no-break><pageref|auto-36><vspace|0.5fn>
   </table-of-contents>
 
   <section|Introduction>
@@ -375,7 +379,9 @@
     The zero set <math|<around*|{|t:Re<around*|(|S<around*|(|t|)>|)>=0|}>>of
     the real part <math|Re<around*|(|S<around*|(|t|)>|)>> of
     <math|S<around*|(|t|)>> where <math|t=x+i y> is a horizontally oriented
-    lemniscate of Bernoulli at the origin with parameter <math|2>. That is,
+    lemniscate of Bernoulli, also known as a hyperbolic
+    lemniscate<cite-detail|lawrence1972catalog|5.3 p.121>, at the origin with
+    parameter <math|2>. That is,
 
     <\equation>
       <around*|{|<around*|(|x,y|)>:Re<around*|(|S<around*|(|x+i
@@ -896,7 +902,7 @@
   </theorem>
 
   <\bibliography|bib|tm-plain|references>
-    <\bib-list|10>
+    <\bib-list|11>
       <bibitem*|1><label|bib-riemann>Ueber die anzahl der primzahlen unter
       einer gegebenen grösse. <newblock><with|font-shape|italic|Monatsberichte
       der Berliner Akademie>, R1, 1859.<newblock>
@@ -905,36 +911,40 @@
       Riemann's theory of algebraic functions and their integrals>.
       <newblock>Cambridge: Macmillan and Bowes, 1893.<newblock>
 
-      <bibitem*|3><label|bib-Peitgen1988GlobalAO>Global aspects of the
+      <bibitem*|3><label|bib-lawrence1972catalog><with|font-shape|italic|A
+      Catalog of Special Plane Curves>. <newblock>Dover Books on Mathematics.
+      Dover Publications, 1972.<newblock>
+
+      <bibitem*|4><label|bib-Peitgen1988GlobalAO>Global aspects of the
       continuous and discrete newton method: a case study.
       <newblock><with|font-shape|italic|Acta Applicandae Mathematicae>, 13,
       1988.<newblock>
 
-      <bibitem*|4><label|bib-jongen1988continuous>The continuous,
+      <bibitem*|5><label|bib-jongen1988continuous>The continuous,
       desingularized newton method for meromorphic functions.
       <newblock><localize|In ><with|font-shape|italic|Newton's Method and
       Dynamical Systems>. Springer, 1988.<newblock>
 
-      <bibitem*|5><label|bib-ds2><with|font-shape|italic|Dynamical Systems
+      <bibitem*|6><label|bib-ds2><with|font-shape|italic|Dynamical Systems
       II: Ergodic Theory with Applications to Dynamical Systems and
       Statistical Mechanics>. <newblock>Springer-Verlag, 1989.<newblock>
 
-      <bibitem*|6><label|bib-coxeter1989introduction><with|font-shape|italic|Introduction
+      <bibitem*|7><label|bib-coxeter1989introduction><with|font-shape|italic|Introduction
       to Geometry>. <newblock>Wiley Classics Library. Wiley, 1989.<newblock>
 
-      <bibitem*|7><label|bib-Shapiro1998CompositionOA>Composition operators
+      <bibitem*|8><label|bib-Shapiro1998CompositionOA>Composition operators
       and schroder's functional equation.
       <newblock><with|font-shape|italic|Contemporary Mathematics>, (213),
       1998.<newblock>
 
-      <bibitem*|8><label|bib-Milnor2006><with|font-shape|italic|Dynamics in
+      <bibitem*|9><label|bib-Milnor2006><with|font-shape|italic|Dynamics in
       One Complex Variable>. <newblock>Annals of Mathematics Studies 160.
       Princeton University Press, 2nd<localize| edition>, 2006.<newblock>
 
-      <bibitem*|9><label|bib-krantz2012handbook><with|font-shape|italic|Handbook
+      <bibitem*|10><label|bib-krantz2012handbook><with|font-shape|italic|Handbook
       of Complex Variables>. <newblock>Birkhauser Boston, 2012.<newblock>
 
-      <bibitem*|10><label|bib-constantPhaseRH>Equivalent formulations of the
+      <bibitem*|11><label|bib-constantPhaseRH>Equivalent formulations of the
       riemann hypothesis based on lines of constant phase.
       <newblock><with|font-shape|italic|Physica Scripta>, 93(6),
       2018.<newblock>
@@ -974,15 +984,15 @@
 <\references>
   <\collection>
     <associate|N|<tuple|41|9>>
-    <associate|NS|<tuple|25|6>>
-    <associate|auto-1|<tuple|1|2>>
-    <associate|auto-10|<tuple|2.3|6>>
+    <associate|NS|<tuple|25|5>>
+    <associate|auto-1|<tuple|1|1>>
+    <associate|auto-10|<tuple|2.3|5>>
     <associate|auto-11|<tuple|2.3.1|6>>
     <associate|auto-12|<tuple|2.3.2|6>>
     <associate|auto-13|<tuple|Newton flow|6>>
-    <associate|auto-14|<tuple|2.3.3|7>>
+    <associate|auto-14|<tuple|2.3.3|6>>
     <associate|auto-15|<tuple|desingularized Newton flow (for entire
-    functions)|7>>
+    functions)|6>>
     <associate|auto-16|<tuple|2.3.4|7>>
     <associate|auto-17|<tuple|2.3.5|7>>
     <associate|auto-18|<tuple|3|7>>
@@ -1003,27 +1013,28 @@
     <associate|auto-31|<tuple|3.3.2|10>>
     <associate|auto-32|<tuple|4|10>>
     <associate|auto-33|<tuple|5|10>>
-    <associate|auto-34|<tuple|5.1|11>>
+    <associate|auto-34|<tuple|5.1|10>>
     <associate|auto-35|<tuple|47|11>>
-    <associate|auto-36|<tuple|10|?>>
-    <associate|auto-4|<tuple|1.2|3>>
-    <associate|auto-5|<tuple|transfer operator|3>>
+    <associate|auto-36|<tuple|11|11>>
+    <associate|auto-4|<tuple|1.2|2>>
+    <associate|auto-5|<tuple|transfer operator|2>>
     <associate|auto-6|<tuple|1.3|3>>
-    <associate|auto-7|<tuple|2|4>>
+    <associate|auto-7|<tuple|2|3>>
     <associate|auto-8|<tuple|2.1|4>>
     <associate|auto-9|<tuple|2.2|5>>
-    <associate|bib-Milnor2006|<tuple|8|11>>
-    <associate|bib-Peitgen1988GlobalAO|<tuple|3|11>>
-    <associate|bib-Shapiro1998CompositionOA|<tuple|7|11>>
-    <associate|bib-constantPhaseRH|<tuple|10|11>>
-    <associate|bib-coxeter1989introduction|<tuple|6|11>>
-    <associate|bib-ds2|<tuple|5|11>>
-    <associate|bib-jongen1988continuous|<tuple|4|11>>
+    <associate|bib-Milnor2006|<tuple|9|11>>
+    <associate|bib-Peitgen1988GlobalAO|<tuple|4|11>>
+    <associate|bib-Shapiro1998CompositionOA|<tuple|8|11>>
+    <associate|bib-constantPhaseRH|<tuple|11|11>>
+    <associate|bib-coxeter1989introduction|<tuple|7|11>>
+    <associate|bib-ds2|<tuple|6|11>>
+    <associate|bib-jongen1988continuous|<tuple|5|11>>
     <associate|bib-klein2018riemann|<tuple|2|11>>
-    <associate|bib-krantz2012handbook|<tuple|9|11>>
+    <associate|bib-krantz2012handbook|<tuple|10|11>>
+    <associate|bib-lawrence1972catalog|<tuple|3|11>>
     <associate|bib-riemann|<tuple|1|11>>
     <associate|dl|<tuple|14|7>>
-    <associate|kc|<tuple|3|3>>
+    <associate|kc|<tuple|3|2>>
     <associate|nm|<tuple|32|7>>
     <associate|rh|<tuple|16|8>>
     <associate|rnm|<tuple|29|6>>
@@ -1044,6 +1055,8 @@
       krantz2012handbook
 
       klein2018riemann
+
+      lawrence1972catalog
 
       coxeter1989introduction
 
@@ -1197,17 +1210,21 @@
       > <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-32><vspace|0.5fn>
 
-      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5<space|2spc>The
-      Spectral Theorem> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|5<space|2spc>Appendix>
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
       <no-break><pageref|auto-33><vspace|0.5fn>
+
+      <with|par-left|<quote|1tab>|5.1<space|2spc>The Spectral Theorem
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-34>>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-34><vspace|0.5fn>
+      <no-break><pageref|auto-35><vspace|0.5fn>
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Index>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-35><vspace|0.5fn>
+      <no-break><pageref|auto-36><vspace|0.5fn>
     </associate>
   </collection>
 </auxiliary>
