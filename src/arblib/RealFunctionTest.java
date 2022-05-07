@@ -27,6 +27,10 @@ public class RealFunctionTest
     roots.refine(sineFunction, 256, 40);
   }
 
+  /**
+   * TODO: save the args to pass to real_roots.c to do the same thing
+   * 
+   */
   @Test
   public void testLocateRootsHardyZ()
   {
@@ -49,6 +53,8 @@ public class RealFunctionTest
 
     roots.refine(f, prec, 40);
 
+    // NOTE: there is a bug in real_roots.c which is why this version is more accurate 
+    
 //    roots = f.locateRoots(roots.get(0), 20, 5000, 1, 256);
 //    System.out.println("(sub)intervals=");
 //    roots.forEach(out::println);
